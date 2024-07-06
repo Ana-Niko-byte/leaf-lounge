@@ -1,131 +1,302 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# `Leaf Lounge`
+The application is available for viewing [here](https://moment-canvas-68ed5e5eed98.herokuapp.com/).
 
-Welcome USER_NAME,
+Also available for viewing here:
+[Facebook Page]().
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+![Leaf Lounge Responsive Image]()
+## Introduction
+Leaf Lounge is a full-stack Django-framework networking platform, offering book-lovers the unique opportunity to network, share impressions, reviews, and critiques of books. Visitors wishing to join one of Leaf Lounge's vast communities need only register for a Leaf Lounge account, and they immediately gain access to all Leaf Lounge has to offer.
 
-You can safely delete this README.md file or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **June 18, 2024**
+## Table of Contents
+- [Business/Social Goals](#businesssocial-goals)
+- [UX Goals](#ux-goals)
+- [User Stories](#user-stories)
+- [Wireframes](#wireframes)
+- [Strategy](#strategy)
+- [Target Audience](#target-audience)
+- [Key Information Deliverables](#key-information-deliverables)
+  - [Client Side](#client-side)
+  - [Technical](#technical)
+  - [Marketing](#marketing)
+- [Features](#features)
+- [Structure](#structure)
+- [Models](#models)
+- [Views & Templates](#views--templates)
+- [Scope of Application](#scope-of-application)
+- [Aesthetics](#aesthetics)
+- [Technologies](#technologies)
+- [Testing & Debugging](#testing--debugging)
+  - [Manual Testing](#manual-testing)
+  - [Automated Testing](#automated-testing)
+- [Issues](#issues)
+- [Accessibility & Performance](#accessibility--performance)
+  - [Lighthouse](#lighthouse)
+  - [Colour Accessibility Validator](#colour-accessibility-validator)
+  - [HTML Validation](#html-validation)
+  - [CSS Validation](#css-validation)
+  - [JSHint Validation](#jshint-validation)
+- [Deployment](#deployment)
+  - [Foreword](#foreword)
+  - [Step 1: Create an App on Heroku](#step-1-create-an-app-on-heroku)
+  - [Step 2: Connect to GitHub](#step-2-connect-to-github)
+  - [Step 3: Automatic Deploy (Optional)](#step-3-automatic-deploy-optional)
+  - [Step 4: Settings](#step-4-settings)
+  - [Step 5: Deploy Your Masterpiece](#step-5-deploy-your-masterpiece)
+  - [Step 6: Where is my Application?](#step-6-where-is-my-application)
+- [Forking a GitHub Repository](#forking-a-github-repository)
+- [Cloning a GitHub Repository](#cloning-a-github-repository)
+- [Credits](#credits)
+- [Acknowledgements](#acknowledgements)
 
-## Gitpod Reminders
+## Business/Social Goals
+- As a first time visitor, I would like to be taken directly to the 'Leaf Lounge' home page so that I have quick access to all relevant information to get started.
+- As a site user, I would like a custom profile with my personal information.
+- As a site user, I would like the option to read more information on the book before buying it.
+- As a site user, it would be nice to have a contact page so that I could contact the 'Leaf Lounge' team with queries.
+- As a site user, I require a checkout page from which I can make secure transactions.
+- As a site user, I require access to the chatroom so that I can network with other readers.
+- As a site user, I would like the option of viewing the books I have bought and storing them in my profile.
+- As a site user, I would like the option of amending my books before buying them.
+- As a site user, I would like the option of deleting items in my basket.
+- As a site user, I require a secure payment system to make transactions.
+- As a (potential) site user, I require the option of signing-up, signing-in and signing-out of my account.
+- As a site visitor, I would like the option of signing up for the Leaf Lounge Newsletter, without needing to register for an account.
+- As a site user, I would like access to Leaf Lounge's social media so that I could follow the page and stay up to date.
+- As a book lover, I would like the option of putting my old books up for sale or donating them.
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+## UX Goals
+- As a site user, I would like fast access to only the pages that would benefit my experience.
+  -  All pages should be displayed based on whether I am registered/logged in.
+  - I should be redirected to relevant pages and without coming across site errors.
+- As a site user, I would like all pages to follow the same branding guidelines - this includes font family, colours (colour palette), image styles, spacing, and effects. 
+- As a site visitor and/or potential reseller, I would like colours to convey the correct emotions to ensure the intended branding message and motives.
+- As a site user, I would like all pages to be responsive to ensure I have a good user experience. This includes best practices in legibility, colour contrast, font sizes, branding, and element visibility.
 
-`python3 -m http.server`
+## User Stories
+| Id | User Story | Label | User Story Testing |
+| ----- | ----- | ----- | ----- |
+|  | As a first time visitor, I would like to view the 'moment' home page so that I have quick access to all relevant information to get started. | `must-have` | ----- |
+|  | As a site user, I would like access to a custom profile with my personal information and a list of charities I am a part of so that I may view and amend as needed. | `should-have` | ----- |
+|  | As a site user, I would like the option to read more information on the charity prior to donating. | `must-have` | ----- |
+|  | As a site user, it would be nice to have a contact page so that I could contact the 'Leaf Lounge' team with queries. | `good-to-have` | ----- |
+|  | As a site user, I require a donations page from which I can make a secure transaction to the charity of my choosing. | `must-have` | ----- |
+|  | As a donatee, I require access to the Charity Canvas to collaborate with other artists. | `must-have` | ----- |
+|  | As a donatee, I would like access to a chat room with other people who have donated to the charity for networking and collaboration. | `should-have` | ----- |
+|  | As a donatee, I would like the option of viewing my past donations. | `should-have` | ----- |
+|  | As a donatee, I would like the option of amending my donations prior to charging my card. | `must-have` | ----- |
+|  | As a donatee, I would like the option of deleting items in my basket. | `must-have` | ----- |
+|  | As a donatee, I require a secure payment system to make donations to selected charities. | `must-have` | ----- |
+|  | As a (potential) donatee, I require the option of signing-up, signing-in and signing-out of my account. | `must-have` | ----- |
+|  | As a site visitor, I would like the option of signing up for the Leaf Lounge Newsletter, without needing to register for an account. | `must-have` | ----- |
+|  | As a site user/donatee, I would like access to Leaf Lounge's social media so that I could follow the page and stay up to date. | `good-to-have` | ----- |
+|  | As a charity organisation, I would like the option of registering my charity so that I could have my own community and raise money for my cause. | `should-have` |  |
 
-A blue button should appear to click: _Make Public_,
+## Wireframes
+![Leaf Lounge Wireframe](static/images/Leaf Lounge-wireframe.png)
 
-Another blue button should appear to click: _Open Browser_.
+## Strategy
+## Target Audience
+- Readers
+- Book Enthusiasts
+- 15+ years of age (payment)
+- Publishers
 
-To run a backend Python file, type `python3 app.py` if your Python file is named `app.py`, of course.
+## Key Information Deliverables
+For the purposes of navigation, the key information deliverables for this project have been split into three sections, each focusing on a different vital aspect of the project.
 
-A blue button should appear to click: _Make Public_,
+#### Client-Side
+- _Home page_ with all relevant information about the platform.
+- _Checkout page_ with _Stripe_ Payments.
+- Community Page
+  - _Chatroom_
+  - _Reviews_
+- Creation of _Personal/Seller Profiles_ for audience expansion.
 
-Another blue button should appear to click: _Open Browser_.
+#### Technical
+- _Contact page_ queries reaching Leaf Lounge _Email_.
+- _Stripe_ Payments
+- Testing files for all app views, urls, and models.
 
-By Default, Gitpod gives you superuser security privileges. Therefore, you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+#### Marketing
+- [Facebook Page]()
+- Clear and intuative branding
+- Legibility and responsiveness of all elements on all screen sizing
 
-To log into the Heroku toolbelt CLI:
+## Features
+## Structure
+- Navigation Bar
+  - Logo
+  - Links
+  - Account Management Button
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+- Home Page*
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you, so do not share it. If you accidentally make it public, you can create a new one with _Regenerate API Key_.
+- Contact Page
+  - Contact Form
+    - Validation
+    - To-Email Queries
+    - Success Message
 
-### Connecting your Mongo database
+_If user is not signed-in:_
+- Create Account (Dropdown button menu)
+  - Create Seller
+    - Seller Form
+    - Success Message
+    - Error Message
+    - Admin Approval
+  - Sign Up/ Sign In (allauth)
+    - Sign Up/ Sign In Form
+    - Mandatory Email Verification
+    - Confirmation Message
 
-- **Connect to Mongo CLI on a IDE**
-- navigate to your MongoDB Clusters Sandbox
-- click **"Connect"** button
-- select **"Connect with the MongoDB shell"**
-- select **"I have the mongo shell installed"**
-- choose **mongosh (2.0 or later)** for : **"Select your mongo shell version"**
-- choose option: **"Run your connection string in your command line"**
-- in the terminal, paste the copied code `mongo "mongodb+srv://<CLUSTER-NAME>.mongodb.net/<DBname>" --apiVersion 1 --username <USERNAME>`
-  - replace all `<angle-bracket>` keys with your own data
-- enter password _(will not echo **\*\*\*\*** on screen)_
+_If user is signed in:_
+- Manage Account (Dropdown button menu)
+  - Create Seller (same functionality)
+    - Charity Form
+    - Success Message
+    - Error Message
+    - Admin Approval
+  - My Communities*
+  - My Payment*
+  - Sign Out (allauth)
+    - Sign Out Form
+    - Confirmation Message
 
-------
+- Footer
+  - Links
+  - Copyright
+    - Dynamic Year
 
-## Release History
+## Models
+Below is a simple ERD for `moment`'s models.
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+![Leaf Lounge ERD]()
 
-**June 18, 2024,** Add Mongo back into template
+#### The xxxxx Model
+Fields:
 
-**June 14, 2024,** Temporarily remove Mongo until the key issue is resolved
+Meta:
 
-**May 28 2024:** Fix Mongo and Links installs
+#### The xxxxx Model
+Fields:
 
-**April 26 2024:** Update node version to 16
+Meta:
 
-**September 20 2023:** Update Python version to 3.9.17.
+## Views & Templates
+## Scope of Application
+## Aesthetics
+## Technologies
+1. Django Framework - fullstack technology
+2. HTML5/ Django Syntax - Used for structuring and content.
+3. CSS3 - Used for adding styles to the content for legibility and aesthetic appeal.
+4. Javascript - For adding basic interactivity and dynamically setting URLs.
+5. Python - Used for Django manipulation & interaction.
+6. FontAwesome/Bootstrap icons - used for icons.
+7. Chrome Developer Tools - used for debugging the website during production.
+8. Lighthouse - For performance, accessibility, best practices and SEO checking.
+9. GitHub - For code storage, version control and deployment.
+10. Git - For commiting through the terminal and pushing to GitHub for storage.
+11. Gitpod - The IDE I developed the project in.
+12. VSC - For quick testing of allauth functionality due to Gitpod's limitations.
+12. Balsamiq - For project wireframe design.
+13. Color Contrast Accessibility Validator - for checking colour contrast ratios.
+14. W3C Markup Validation Service - to validate my HTML for potential errors.
+15. W3C CSS Validation Service - to validate my CSS code for potential errors.
+16. JSHint - for checking and validating my JS code. 
+17. Pep8 - for Python code validation and best practices formatting.
 
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
+## Testing & Debugging
+This section outlines procedures for manual testing. For automated testing, please see all files `test*.py`.
 
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
+- ## Manual Testing
+| Feature | Expected Outcome | Testing Procedure | Result | Remark |
+|---|---|---|---|---|
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
+- ## Automated Testing
 
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
+## Issues
+## Accessibility & Performance
+### Lighthouse
+### Colour Accessibility Validator
+### HTML Validation
+### CSS Validation
+### JSHint Validation
 
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
+### Pep8 Validation
+All python files are regularly validated during development.
 
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
+## Deployment
+The application is deployed on Heroku through Git Hub and is available for viewing in the link at the top of this README.md document. To deploy a Heroku project, please refer to the guide below.
 
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
+### Foreword
+There are some general requirements when it comes to setting up your application and its files: 
+- Your dependencies must be placed in the requirements.txt file.
+- You must strictly adhere to the correct folder structure expected by Django's settings.
+- In Django's settings.py file, setting Debug = True in development will display a detailed errors page if the application comes across an error hindering template rendering. It will also allow the collection of static files (stylesheets, images, and javascript files automatically). Setting Debug = False will display standard error pages under the same conditions and will not update any changes to static files.
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+In Heroku, this is configured under `Config Vars`, as `COLLECT_STATIC`, with the value of either:
+  - `0` for blocking automatic collection
+  - `1` for enabling automatic collection.
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
+_Note: Do not commit to GitHub with Debug = True. Always set Debug = False before committing to avoid exposing personal details._
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
+You will need two-factor verification set up to enable log in.
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+### Step 1: Create an App on Heroku
+Log onto your Heroku dashboard using your username and password, and confirm the access code in the two-factor verification app of your choosing.
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
+Create a new Heroku app:
+![New Heroku App]()
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
+You will be asked to pick a name and region for your app before clicking `Create app` on the next page.
+![New App Options]()
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+### Step 2: Connect to GitHub
+Once you've created your app, go to the `Deploy` tab at the top.
 
-------
+Select the middle box with GitHub's logo to connect your Heroku app to a GitHub Repository.
 
-## FAQ about the uptime script
+If prompted, authorize Heroku to access your GitHub account.
+At the bottom, enter the name of the repository you wish to deploy to, and click Connect.
+![Connect GitHub to Heroku]()
 
-**Why have you added this script?**
+### Step 3: Automatic Deploy (Optional)
+Under `Automatic Deploys`, choose a branch from your GitHub repository that Heroku will watch for changes.
 
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
+Enable automatic deploys by clicking `Enable Automatic Deploys`. With this, every push to the selected branch will automatically deploy a new version of your app.
 
-**How will this affect me?**
+### Step 4: Settings
+When you create the app, you will need to add the `heroku/python` buildpack in the Settings tab. 
 
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
+### Step 5: Deploy Your Masterpiece
+If you've enabled automatic deploys, any push to the selected branch will automatically deploy your application.
 
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
+If you prefer to deploy manually or want to deploy a branch without enabling automatic deploys, go to `Manual deploy`, select the branch, and click `Deploy Branch`.
 
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
+### Step 6: Where is my Application?
+Your application will have a similar look to the following Heroku URL configuration: (https://*.herokuapp.com) and can be found after clicking the `Open App` button on your dashboard in the top right corner.
 
-**So….?**
+![Open App]()
 
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
+## Forking a GitHub Repository
+To make changes to your repository without changing its original state, you can make a copy of it via `fork`. This ensures the original repository remains unchanged. 
 
-**Can I opt out?**
+Steps:
+1. Click into the GitHub repository you want to fork.
+2. Click `Fork` in the top right-hand side of the top bar, and this should take you to a page titled `Create a new fork`.
+3. You can now work in this copy of your repository without making changes to the original.
 
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
+## Cloning a GitHub Repository
+Cloning a repository essentially means downloading a copy of your repository that can be worked on locally. This method allows for version control and backup of code.
 
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
+Steps:
+1. Click on the GitHub repository you want to clone.
+2. Click on the `Code` button.
+3. Copy the link in the dropdown.
+4. Open a terminal within your VSC (or whatever IDE you choose to use).
+5. In the terminal type 'git clone' and paste the URL.
+6. Press Enter - you now have a cloned version of your GitHub repository.
 
-**Anything more?**
-
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
-
----
-
-Happy coding!
+## Credits
+## Acknowledgements
