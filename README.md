@@ -53,14 +53,16 @@ Leaf Lounge is a full-stack Django-framework networking platform, offering book-
 - As a first time visitor, I would like to be taken directly to the 'Leaf Lounge' home page so that I have quick access to all relevant information to get started.
 - As a site user, I would like a custom profile with my personal information.
 - As a site user, I would like the option to read more information on the book before buying it.
+- As a site visitor, I require access to the library page so that I can view and choose from available books.
 - As a site user, it would be nice to have a contact page so that I could contact the 'Leaf Lounge' team with queries.
 - As a site user, I require a checkout page from which I can make secure transactions.
 - As a site user, I require access to the chatroom so that I can network with other readers.
 - As a site user, I would like the option of viewing the books I have bought and storing them in my profile.
+- As a site user, I would like the option of viewing my books before buying them.
 - As a site user, I would like the option of amending my books before buying them.
-- As a site user, I would like the option of deleting items in my basket.
+- As a site user, I would like the option of deleting books from my basket.
 - As a site user, I require a secure payment system to make transactions.
-- As a (potential) site user, I require the option of signing-up, signing-in and signing-out of my account.
+- As a site user, I require the option of signing-up, signing-in and signing-out of my account.
 - As a site visitor, I would like the option of signing up for the Leaf Lounge Newsletter, without needing to register for an account.
 - As a site user, I would like access to Leaf Lounge's social media so that I could follow the page and stay up to date.
 - As a book lover, I would like the option of putting my old books up for sale or donating them.
