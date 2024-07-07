@@ -61,6 +61,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     # Home starter app - 'blurb'
     'blurb',
+    # Book Library app - 'library'
+    'library',
 ]
 
 SITE_ID = 1
