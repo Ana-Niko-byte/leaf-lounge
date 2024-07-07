@@ -27,7 +27,7 @@ def contact(request):
             subject = contactForm.cleaned_data['subject']
             message = contactForm.cleaned_data['message']
 
-            recipient_list=[settings.EMAIL_HOST_USER, f'{email}'],
+            recipient_list=[settings.EMAIL_HOST_USER, f'{email}']
             send_mail(
                 subject=subject,
                 message=message,

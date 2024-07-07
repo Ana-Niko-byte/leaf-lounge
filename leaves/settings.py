@@ -31,6 +31,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = [
     "8000-ananikobyte-leaflounge-2r09i0qn29d.ws.codeinstitute-ide.net",
+    "127.0.0.1",
     ".herokuapp.com",
 ]
 
@@ -117,6 +118,12 @@ ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
 ACCOUNT_USERNAME_MIN_LENGTH = 5
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'ananikolayenia@gmail.com'
+EMAIL_HOST_PASSWORD = "hpbe sybu mbma pchf"
+EMAIL_USE_TLS = True
 
 WSGI_APPLICATION = 'leaves.wsgi.application'
 
