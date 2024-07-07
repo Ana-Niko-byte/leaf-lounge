@@ -3,6 +3,7 @@ https://github.com/Ana-Niko-byte/moment -->
 {% load static %}
 
 {% url 'home' as home_url %}
+{% url 'contact' as contact_url %}
 
 {% url 'account_login' as signin_url %}
 {% url 'account_signup' as signup_url %}
@@ -42,7 +43,7 @@ https://github.com/Ana-Niko-byte/moment -->
                         <a href="{{ home_url }}"><i class="fa-solid fa-sm fa-house-chimney me-2"></i>Home</a>
                     </li>
                     <li class="nav-item px-2 mx-1">
-                        <a href=""><i class="fa-solid fa-sm fa-paper-plane me-2"></i>Contact</a>
+                        <a href="{{ contact_url }}"><i class="fa-solid fa-sm fa-paper-plane me-2"></i>Contact</a>
                     </li>
                     <li class="nav-item px-2 mx-1">
                         <a href=""><i class="fa-solid fa-sm fa-paper-plane me-2"></i>Library</a>
@@ -111,10 +112,10 @@ https://github.com/Ana-Niko-byte/moment -->
             <div class="flex-column text-center mb-3">
                 <ul class="navbar-nav flex-row justify-content-center my-2">
                     <li class="nav-item px-2 mx-1">
-                        <a href=""><i class="fa-solid fa-house-chimney me-2"></i>Home</a>
+                        <a href="{{ home_url }}"><i class="fa-solid fa-house-chimney me-2"></i>Home</a>
                     </li>
                     <li class="nav-item px-2 mx-1">
-                        <a href=""><i class="fa-solid fa-paper-plane me-2"></i>Contact</a>
+                        <a href="{{ contact_url }}"><i class="fa-solid fa-paper-plane me-2"></i>Contact</a>
                     </li>
                     <li class="nav-item px-2 mx-1">
                         <a href=""><i class="fa-solid fa-paper-plane me-2"></i>Library</a>
