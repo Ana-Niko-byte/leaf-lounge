@@ -9,21 +9,21 @@ Also available for viewing here:
 Leaf Lounge is a full-stack Django-framework networking platform, offering book-lovers the unique opportunity to network, share impressions, reviews, and critiques of books. Visitors wishing to join one of Leaf Lounge's vast communities need only register for a Leaf Lounge account, and they immediately gain access to all Leaf Lounge has to offer.
 
 ## Table of Contents
+- [Structure](#structure)
+- [Wireframes](#wireframes)
+- [User Stories](#user-stories)
+- [Strategy](#strategy)
 - [Business/Social Goals](#businesssocial-goals)
 - [UX Goals](#ux-goals)
-- [User Stories](#user-stories)
-- [Wireframes](#wireframes)
-- [Strategy](#strategy)
 - [Target Audience](#target-audience)
 - [Key Information Deliverables](#key-information-deliverables)
   - [Client Side](#client-side)
   - [Technical](#technical)
   - [Marketing](#marketing)
+- [Scope of Application](#scope-of-application)
 - [Features](#features)
-- [Structure](#structure)
 - [Models](#models)
 - [Views & Templates](#views--templates)
-- [Scope of Application](#scope-of-application)
 - [Aesthetics](#aesthetics)
 - [Technologies](#technologies)
 - [Testing & Debugging](#testing--debugging)
@@ -49,83 +49,6 @@ Leaf Lounge is a full-stack Django-framework networking platform, offering book-
 - [Credits](#credits)
 - [Acknowledgements](#acknowledgements)
 
-## Business/Social Goals
-- As a first time visitor, I would like to be taken directly to the 'Leaf Lounge' home page so that I have quick access to all relevant information to get started.
-- As a site user, I would like a custom profile with my personal information.
-- As a site user, I would like the option to read more information on the book before buying it.
-- As a site visitor, I require access to the library page so that I can view and choose from available books.
-- As a site user, it would be nice to have a contact page so that I could contact the 'Leaf Lounge' team with queries.
-- As a site user, I require a checkout page from which I can make secure transactions.
-- As a site user, I require access to the chatroom so that I can network with other readers.
-- As a site user, I would like the option of viewing the books I have bought and storing them in my profile.
-- As a site user, I would like the option of viewing my books before buying them.
-- As a site user, I would like the option of amending my books before buying them.
-- As a site user, I would like the option of deleting books from my basket.
-- As a site user, I require a secure payment system to make transactions.
-- As a site user, I require the option of signing-up, signing-in and signing-out of my account.
-- As a site visitor, I would like the option of signing up for the Leaf Lounge Newsletter, without needing to register for an account.
-- As a site user, I would like access to Leaf Lounge's social media so that I could follow the page and stay up to date.
-- As a book lover, I would like the option of putting my old books up for sale or donating them.
-
-## UX Goals
-- As a site user, I would like fast access to only the pages that would benefit my experience.
-  -  All pages should be displayed based on whether I am registered/logged in.
-  - I should be redirected to relevant pages and without coming across site errors.
-- As a site user, I would like all pages to follow the same branding guidelines - this includes font family, colours (colour palette), image styles, spacing, and effects. 
-- As a site visitor and/or potential reseller, I would like colours to convey the correct emotions to ensure the intended branding message and motives.
-- As a site user, I would like all pages to be responsive to ensure I have a good user experience. This includes best practices in legibility, colour contrast, font sizes, branding, and element visibility.
-
-## User Stories
-| Id | User Story | Label | User Story Testing |
-| ----- | ----- | ----- | ----- |
-|  | As a first time visitor, I would like to view the 'moment' home page so that I have quick access to all relevant information to get started. | `must-have` | ----- |
-|  | As a site user, I would like access to a custom profile with my personal information and a list of charities I am a part of so that I may view and amend as needed. | `should-have` | ----- |
-|  | As a site user, I would like the option to read more information on the charity prior to donating. | `must-have` | ----- |
-|  | As a site user, it would be nice to have a contact page so that I could contact the 'Leaf Lounge' team with queries. | `good-to-have` | ----- |
-|  | As a site user, I require a donations page from which I can make a secure transaction to the charity of my choosing. | `must-have` | ----- |
-|  | As a donatee, I require access to the Charity Canvas to collaborate with other artists. | `must-have` | ----- |
-|  | As a donatee, I would like access to a chat room with other people who have donated to the charity for networking and collaboration. | `should-have` | ----- |
-|  | As a donatee, I would like the option of viewing my past donations. | `should-have` | ----- |
-|  | As a donatee, I would like the option of amending my donations prior to charging my card. | `must-have` | ----- |
-|  | As a donatee, I would like the option of deleting items in my basket. | `must-have` | ----- |
-|  | As a donatee, I require a secure payment system to make donations to selected charities. | `must-have` | ----- |
-|  | As a (potential) donatee, I require the option of signing-up, signing-in and signing-out of my account. | `must-have` | ----- |
-|  | As a site visitor, I would like the option of signing up for the Leaf Lounge Newsletter, without needing to register for an account. | `must-have` | ----- |
-|  | As a site user/donatee, I would like access to Leaf Lounge's social media so that I could follow the page and stay up to date. | `good-to-have` | ----- |
-|  | As a charity organisation, I would like the option of registering my charity so that I could have my own community and raise money for my cause. | `should-have` |  |
-
-## Wireframes
-![Leaf Lounge Wireframe](static/images/Leaf Lounge-wireframe.png)
-
-## Strategy
-## Target Audience
-- Readers
-- Book Enthusiasts
-- 15+ years of age (payment)
-- Publishers
-
-## Key Information Deliverables
-For the purposes of navigation, the key information deliverables for this project have been split into three sections, each focusing on a different vital aspect of the project.
-
-#### Client-Side
-- _Home page_ with all relevant information about the platform.
-- _Checkout page_ with _Stripe_ Payments.
-- Community Page
-  - _Chatroom_
-  - _Reviews_
-- Creation of _Personal/Seller Profiles_ for audience expansion.
-
-#### Technical
-- _Contact page_ queries reaching Leaf Lounge _Email_.
-- _Stripe_ Payments
-- Testing files for all app views, urls, and models.
-
-#### Marketing
-- [Facebook Page]()
-- Clear and intuative branding
-- Legibility and responsiveness of all elements on all screen sizing
-
-## Features
 ## Structure
 - Navigation Bar
   - Logo
@@ -167,8 +90,90 @@ _If user is signed in:_
 
 - Footer
   - Links
+  - Newsletter
   - Copyright
     - Dynamic Year
+
+## Wireframes
+![]()
+
+## User Stories
+| Id | User Story | Label | User Story Testing |
+| ----- | ----- | ----- | ----- |
+| 1 | As a first time visitor, I would like to be taken directly to the 'Leaf Lounge' home page so that I have quick access to all relevant information to get started. | `must-have` | ----- |
+| 6 | As a site user, I would like a custom profile with my personal information. | `should-have` | ----- |
+| 3 | As a site visitor, I require access to the library page so that I can view and choose from available books. | `must-have` | ----- |
+| 4 | As a site user, I would like the option to read more information on the book before buying it. | `must-have` | ----- |
+| 2 | As a site user, it would be nice to have a contact page so that I could contact the 'Leaf Lounge' team with queries. | `should-have` | ----- |
+| 7 | As a site user, I require a checkout page from which I can make secure transactions. | `must-have` | ----- |
+| 28 | As a site user, I require access to the chatroom so that I can network with other readers. | `must-have` | ----- |
+| 14 | As a site user, I would like the option of viewing my books before buying them. | `should-have` | ----- |
+| 15 | As a site user, I would like the option of amending my books before buying them. | `must-have` | ----- |
+| 16 | As a site user, I would like the option of deleting books from my basket. | `must-have` | ----- |
+| 17 | As a site user, I require a secure payment system to make transactions. | `must-have` | ----- |
+| 5 | As a site user, I require the option of signing-up, signing-in and signing-out of my account. | `must-have` | ----- |
+| 11 | As a site visitor, I would like the option of signing up for the Leaf Lounge Newsletter, without needing to register for an account. | `must-have` | ----- |
+| 8 | As a site user, I would like access to Leaf Lounge's social media so that I could follow the page and stay up to date. | `good-to-have` | ----- |
+| 27 | As a book lover, I would like the option of putting my old books up for sale or donating them. | `should-have` | ----- |
+| 29 | As a site user, I would like the option of viewing the books I have bought and storing them in my profile. | `should-have` | ----- |
+
+## Strategy
+
+## Business/Social Goals
+- As a first time visitor, I would like to be taken directly to the 'Leaf Lounge' home page so that I have quick access to all relevant information to get started.
+- As a site user, I would like a custom profile with my personal information.
+- As a site user, I would like the option to read more information on the book before buying it.
+- As a site visitor, I require access to the library page so that I can view and choose from available books.
+- As a site user, it would be nice to have a contact page so that I could contact the 'Leaf Lounge' team with queries.
+- As a site user, I require a checkout page from which I can make secure transactions.
+- As a site user, I require access to the chatroom so that I can network with other readers.
+- As a site user, I would like the option of viewing the books I have bought and storing them in my profile.
+- As a site user, I would like the option of viewing my books before buying them.
+- As a site user, I would like the option of amending my books before buying them.
+- As a site user, I would like the option of deleting books from my basket.
+- As a site user, I require a secure payment system to make transactions.
+- As a site user, I require the option of signing-up, signing-in and signing-out of my account.
+- As a site visitor, I would like the option of signing up for the Leaf Lounge Newsletter, without needing to register for an account.
+- As a site user, I would like access to Leaf Lounge's social media so that I could follow the page and stay up to date.
+- As a book lover, I would like the option of putting my old books up for sale or donating them.
+
+## UX Goals
+- As a site user, I would like fast access to only the pages that would benefit my experience.
+  -  All pages should be displayed based on whether I am registered/logged in.
+  - I should be redirected to relevant pages and without coming across site errors.
+- As a site user, I would like all pages to follow the same branding guidelines - this includes font family, colours (colour palette), image styles, spacing, and effects. 
+- As a site visitor and/or potential reseller, I would like colours to convey the correct emotions to ensure the intended branding message and motives.
+- As a site user, I would like all pages to be responsive to ensure I have a good user experience. This includes best practices in legibility, colour contrast, font sizes, branding, and element visibility.
+
+## Target Audience
+- Readers
+- Book Enthusiasts
+- 15+ years of age (payment)
+- Publishers
+
+## Key Information Deliverables
+For the purposes of navigation, the key information deliverables for this project have been split into three sections, each focusing on a different vital aspect of the project.
+
+#### Client-Side
+- _Home page_ with all relevant information about the platform.
+- _Checkout page_ with _Stripe_ Payments.
+- Community Page
+  - _Chatroom_
+  - _Reviews_
+- Creation of _Personal/Seller Profiles_ for audience expansion.
+
+#### Technical
+- _Contact page_ queries reaching Leaf Lounge _Email_.
+- _Stripe_ Payments
+- Testing files for all app views, urls, and models.
+
+#### Marketing
+- [Facebook Page]()
+- Clear and intuative branding
+- Legibility and responsiveness of all elements on all screen sizing
+
+## Scope of Application
+## Features
 
 ## Models
 Below is a simple ERD for `moment`'s models.
@@ -186,7 +191,6 @@ Fields:
 Meta:
 
 ## Views & Templates
-## Scope of Application
 ## Aesthetics
 ## Technologies
 1. Django Framework - fullstack technology
