@@ -55,6 +55,8 @@ INSTALLED_APPS = [
     # Crispy Forms
     'crispy_forms',
     'crispy_bootstrap5',
+    # Summernote
+    'django_summernote',
     # Allauth apps
     'allauth',
     'allauth.account',
