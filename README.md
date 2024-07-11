@@ -116,6 +116,7 @@ _If user is signed in:_
 | 8 | As a site user, I would like access to Leaf Lounge's social media so that I could follow the page and stay up to date. | `good-to-have` | ----- |
 | 27 | As a book lover, I would like the option of putting my old books up for sale or donating them. | `should-have` | ----- |
 | 29 | As a site user, I would like the option of viewing the books I have bought and storing them in my profile. | `should-have` | ----- |
+| 30 | As a user, I would like the ability to search for a book so that I can quickly find the one I am looking for. | `should-have` | ----- |
 
 ## Strategy
 
@@ -135,6 +136,7 @@ _If user is signed in:_
 - As a site user, I require the option of signing-up, signing-in and signing-out of my account.
 - As a site visitor, I would like the option of signing up for the Leaf Lounge Newsletter, without needing to register for an account.
 - As a site user, I would like access to Leaf Lounge's social media so that I could follow the page and stay up to date.
+- As a site user, I would like the ability to search for a book so that I can quickly find the one I am looking for.
 - As a book lover, I would like the option of putting my old books up for sale or donating them.
 
 ## UX Goals

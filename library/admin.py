@@ -8,11 +8,25 @@ from .models import *
 class AuthorAdmin(SummernoteModelAdmin):
     list_display = ('first_name', 'last_name', 'd_o_b')
     summernote_fields = ('bio',)
+    ordering = ('last_name',)
 
 
 @admin.register(Book)
 class BookAdmin(SummernoteModelAdmin):
-    list_display = ('title', 'author', 'year_published', 'publisher', 'rating')
-    search_fields = ['title', 'author', 'genre', 'year_published', 'publisher']
+    list_display = (
+        'title',
+        'author',
+        'year_published',
+        'publisher',
+        'rating'
+    )
+    search_fields = [
+        'title',
+        'author',
+        'genre',
+        'year_published',
+        'publisher'
+    ]
     list_filter = ('genre', 'year_published', 'publisher')
     summernote_fields = ('blurb',)
+    ordering = ('date_added',)
