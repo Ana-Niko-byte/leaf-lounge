@@ -180,15 +180,84 @@ Below is a simple ERD for `moment`'s models.
 
 ![Leaf Lounge ERD]()
 
-#### The xxxxx Model
-Fields:
+#### The Author Model (library app)
+Fields: `first_name`, `last_name`, `d_o_b`, `nationality`, `bio`
 
-Meta:
+1. `first_name` : CharField - represents the author's firstname.
+- Constraints: 
+  - _max-length_ of 20 characters.
 
-#### The xxxxx Model
-Fields:
+2. `last_name` : CharField - represents the author's lastname.
+- Constraints: 
+  - _max-length_ of 20 characters.
 
-Meta:
+3. `d_o_b` : DateField - represents the author's date of birth.
+- Constraints: 
+  - _default_ value of 'unknown'.
+  - _verbose-name_ of 'BirthDate'.
+
+4. `nationality` : CharField : choices - represents a selection field for the author's nationality.
+- Constraints: 
+  - predefined _choices_ from `NATIONALITIES` tuple.
+  - _max-length_ of 30 characters.
+
+5. `bio` : TextField - represents the author's bio.
+- Constraints: 
+  - _max-length_ of 500 characters.
+
+###### Methods:
+`def __str__():` returns (author's first name) (author's last name).
+
+---
+
+#### The Book Model (library app)
+Fields: `title`, `slug`, `author`, `genre`, `blurb`, `year_published`, `date_added`
+
+1. `title` : CharField - the book title.
+- Constraints:
+  - _max-length_ of 100 characters.
+
+2. `slug` : SlugField - the book slug (name-author fields).
+- Constraints:
+  - _max-length_ of 100 characters.
+  - Can be left _blank_.
+  - Can be _null_.
+  - Has _help text_ to explain why it can be left _blank_ and may be _null_.
+
+3. `author` : FK : Author - the author of the book.
+
+4. `genre` : CharField : choices - the book genre.
+- Constraints:
+  - predefined _choices_ from `GENRES` tuple.
+  - _max-length_ of 50 characters.
+
+5. `blurb` : TextField - the book blurb.
+- Constraints:
+  - _max-length_ of 500 characters.
+
+6. `year_published` : IntegerField - the year the book was published.
+- Constraints:
+  - _MaxValueValidator_ : 2024.
+
+7. `date_added` : DateField - the date the book was added to the database.
+- Constraints:
+  - Adds current date.
+
+###### Methods:
+`def __str__():` returns "(book title)" by (book author).
+
+`def save():`
+  try:
+      Saves the concatenated `slug`.
+      Additionally checks if the title of the book has been changed (if it no longer matches the one in the db).
+      If true - re-saves the slug to match the new title-author concatenation.
+  except `Book.DoesNotExist`:
+      Catches the `DoesNotExist` error and saves the model as a new instance. This error was encountered when attempting to perform a similar action in a previous project.
+
+###### Meta:
+Orders by earliest date added.
+
+---
 
 ## Views & Templates
 ## Aesthetics

@@ -17,7 +17,7 @@ class Author(models.Model):
     d_o_b : DateField - represents the author's date of birth.
     nationality : CharField : choices - represents a selection field for the
     author's nationality.
-    books_published : FK : Book - represents the books published by the author.
+    bio : TextField - represents the author's bio.
 
     Methods:
     def __str__():
@@ -25,7 +25,7 @@ class Author(models.Model):
     '''
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=20)
-    # Change to dynamic year - 10 years in case there are any child prodigies :P.
+    # Change to dynamic year - 10 years in case there are any child prodigies.
     d_o_b = models.DateField(default='unknown', verbose_name='BirthDate')
     nationality = models.CharField(choices=NATIONALITIES, max_length=30)
     bio = models.TextField(max_length=500)
@@ -51,11 +51,22 @@ class Book(models.Model):
     def __str__():
         returns "(book title)" by (book author)
 
+    def save():
+        try:
+            Slug is saved automatically.
+            Checks if the title of the book has been changed (if it no longer
+            matches the one in the db).
+            If true - re-saves the slug to match the new title-author
+            concatenation.
+        except Book.DoesNotExist:
+            Catches the DoesNotExist error and saves the model as a new
+            instance.
+
     Meta:
         orders by earliest date added.
     '''
     title = models.CharField(max_length=100)
-    # SlugField can be blank as the slug is saved following model instance save.
+    # SlugField can be blank as slug is saved following model instance save.
     slug = models.SlugField(
         max_length=100,
         blank=True,
@@ -88,4 +99,3 @@ class Book(models.Model):
             super(Book, self).save(*args, **kwargs)
         except Book.DoesNotExist:
             super(Book, self).save(*args, **kwargs)
-
