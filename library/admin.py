@@ -12,7 +12,7 @@ class AuthorAdmin(SummernoteModelAdmin):
 
 @admin.register(Book)
 class BookAdmin(SummernoteModelAdmin):
-    list_display = ('title', 'author', 'year_published')
-    search_fields = ['title', 'author', 'genre', 'year_published']
-    list_filter = ('genre', 'year_published')
+    list_display = ('title', 'author', 'year_published', 'publisher', 'rating')
+    search_fields = ['title', 'author', 'genre', 'year_published', 'publisher']
+    list_filter = ('genre', 'year_published', 'publisher')
     summernote_fields = ('blurb',)

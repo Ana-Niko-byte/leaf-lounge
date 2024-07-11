@@ -211,37 +211,61 @@ Fields: `first_name`, `last_name`, `d_o_b`, `nationality`, `bio`
 ---
 
 #### The Book Model (library app)
-Fields: `title`, `slug`, `author`, `genre`, `blurb`, `year_published`, `date_added`
+Fields: `title`, `isbn`, `slug`, `author`, `genre`, `blurb`, `year_published`, `publisher`, `rating`, `date_added`, `price`, `image`
 
 1. `title` : CharField - the book title.
 - Constraints:
   - _max-length_ of 100 characters.
 
-2. `slug` : SlugField - the book slug (name-author fields).
+2. `isbn` : CharField - the book's Internation Standard Book Number.
+- Constraints:
+  - _max-length_ of 13 characters (all books after 2007 are 13 digits long, all before are 10 digits long).
+
+3. `slug` : SlugField - the book slug (name-author fields).
 - Constraints:
   - _max-length_ of 100 characters.
   - Can be left _blank_.
   - Can be _null_.
   - Has _help text_ to explain why it can be left _blank_ and may be _null_.
 
-3. `author` : FK : Author - the author of the book.
+4. `author` : FK : Author - the author of the book.
 
-4. `genre` : CharField : choices - the book genre.
+5. `genre` : CharField : choices - the book genre.
 - Constraints:
   - predefined _choices_ from `GENRES` tuple.
   - _max-length_ of 50 characters.
 
-5. `blurb` : TextField - the book blurb.
+6. `blurb` : TextField - the book blurb.
 - Constraints:
   - _max-length_ of 500 characters.
 
-6. `year_published` : IntegerField - the year the book was published.
+7. `year_published` : IntegerField - the year the book was published.
 - Constraints:
   - _MaxValueValidator_ : 2024.
 
-7. `date_added` : DateField - the date the book was added to the database.
+8. publisher : CharField - the book publisher.
+- Constraints:
+  - _max-length_ of 100 characters.
+
+9. rating : DecimalField - the book rating (out of 10).
+- Constraints:
+  - _decimal-places_ : 2.
+  - _MinValueValidator_ of 0.01 with message.
+  - _max-digits_ : 3.
+
+10. `date_added` : DateField - the date the book was added to the database.
 - Constraints:
   - Adds current date.
+
+11. `price` : DecimalField - the book price.
+- Constraints:
+  - _decimal-places_ : 2.
+  - _max-digits_ : 5.
+
+12. `image` : ImageField - the book cover image.
+- Constraints:
+  - Can be left _blank_.
+  - Can be _null_.
 
 ###### Methods:
 `def __str__():` returns "(book title)" by (book author).

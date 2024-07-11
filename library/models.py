@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils.text import slugify
-from django.core.validators import MaxValueValidator
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 # Model Tuples
 from ._nationalities import NATIONALITIES
@@ -25,7 +25,6 @@ class Author(models.Model):
     '''
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=20)
-    # Change to dynamic year - 10 years in case there are any child prodigies.
     d_o_b = models.DateField(default='unknown', verbose_name='BirthDate')
     nationality = models.CharField(choices=NATIONALITIES, max_length=30)
     bio = models.TextField(max_length=500)
@@ -40,12 +39,17 @@ class Book(models.Model):
 
     Attributes:
     title : CharField - the book title.
+    isbn : CharField - the book's Internation Standard Book Number.
     slug : SlugField - the book slug (name-author fields).
     author : FK : Author - the author of the book.
     genre : CharField : choices - the book genre.
     blurb : TextField - the book blurb.
     year_published : IntegerField - the year the book was published.
+    publisher : CharField - the book publisher.
+    rating : DecimalField - the book rating (out of 10).
     date_added : DateField - the date the book was added to the database.
+    price : DecimalField - the book price.
+    image : ImageField - the book cover image. 
 
     Methods:
     def __str__():
@@ -66,6 +70,8 @@ class Book(models.Model):
         orders by earliest date added.
     '''
     title = models.CharField(max_length=100)
+    # Internation Standard Book Number - all books after 2007 are 13 digits long.
+    isbn = models.CharField(max_length=13)
     # SlugField can be blank as slug is saved following model instance save.
     slug = models.SlugField(
         max_length=100,
@@ -82,7 +88,21 @@ class Book(models.Model):
     blurb = models.TextField(max_length=500)
     # Change to dynamic year later
     year_published = models.IntegerField(validators=[MaxValueValidator(2024)])
+    publisher = models.CharField(max_length=100)
+    rating = models.DecimalField(
+        decimal_places=2,
+        validators=[
+            MinValueValidator(
+                0.01,
+                message='Rating cannot be lower than 0.01'
+            ),
+        ],
+        max_digits=3,
+    )
     date_added = models.DateField(auto_now_add=True)
+    price = models.DecimalField(max_digits=5, decimal_places=2)
+    # placeholder for Cloudinary.
+    image = models.ImageField(null=True, blank=True)
 
     class Meta:
         ordering = ['-date_added']
