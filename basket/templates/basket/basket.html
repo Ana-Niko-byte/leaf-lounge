@@ -12,6 +12,9 @@
     <div class="row mt-5 text-center">
         <div class="col">
             {% if books_in_basket %}
+            <div class="table-responsive rounded">
+                {{ books_in_basket }}
+            </div>
             {% else %}
             <p class="lead">Your basket is empty.</p>
             <a href="{{ library_url }}" class="btn btn-warning mt-5">

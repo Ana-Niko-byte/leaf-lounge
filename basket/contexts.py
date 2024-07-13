@@ -1,13 +1,29 @@
-from decimal import Decimal
+from django.shortcuts import get_object_or_404
 from django.conf import settings
+
+from decimal import Decimal
+
+from library.models import Book
 
 
 def bag_content(request):
 
     FDT = settings.FREE_DELIVERY_THRESHOLD
+    basket = request.session.get('basket', {})
+
     books_in_basket = []
     total = 0
     book_count = 0
+
+    for book_id, quantity in basket.items():
+       book = get_object_or_404(Book, pk=book_id)
+       total += quantity * book.price
+       book_count += quantity 
+       books_in_basket.append({
+        'book_id': book_id,
+        'quantity': quantity,
+        'book': book,
+       })
 
     if total > FDT:
         delivery = 0
