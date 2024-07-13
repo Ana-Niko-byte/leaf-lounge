@@ -19,6 +19,7 @@ def library(request):
                 )
                 return redirect(reverse('library'))
 
+            # incorporate search by author later
             queries = Q(title__icontains=query)
             books = books.filter(queries)
 
@@ -35,7 +36,6 @@ def library(request):
 
 def book_detail(request, slug):
     requested_book = get_object_or_404(Book,slug=slug)
-    print(requested_book)
 
     context={
         'book': requested_book,
