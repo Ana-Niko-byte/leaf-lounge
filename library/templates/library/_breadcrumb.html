@@ -1,0 +1,11 @@
+<div class="container">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="nav-crumb breadcrumb-item"><a href="{{ home_url }}">Home</a></li>
+            <li class="nav-crumb breadcrumb-item" aria-current="page"><a href="{{ library_url }}">Library</a></li>
+            <li class="nav-crumb breadcrumb-item active"aria-current="page">{{ book.title }} | {{ book.author }}
+                <span class="ms-3"><i class="fa-solid fa-arrow-left me-2"></i>You are here!</span>
+            </li>
+        </ol>
+    </nav>
+</div>

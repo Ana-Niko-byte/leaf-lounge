@@ -2,9 +2,11 @@
 {% load static %}
 
 {% block content %}
-<div class="container">
+<div class="container d-flex flex-column align-items-center py-5">
     <div class="row text-center">
         <h3>This is the detail page for {{ book.title }}!</h3>
+        <div>{{ book.blurb }}</div>
     </div>
+    <button class="btn btn-lg btn-success my-5"><i class="fa-solid fa-basket-shopping me-3"></i>Add to Basket</button>
 </div>
 {% endblock %}

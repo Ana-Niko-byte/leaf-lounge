@@ -23,11 +23,21 @@ html, body{
     text-decoration: none;
     font-size: 1.2rem;
     color: var(--dark-text-color);
+    transition: all 0.2s ease;
+}
+
+.nav-crumb a{
+    text-decoration: none;
+    font-size: 1rem;
+    color: var(--dark-text-color);
+    transition: all 0.2s ease;
 }
 /* /Links */
 
 /* UIUX */
-
+.nav-item:hover a, .nav-crumb:hover a{
+    color: var(--orange);
+}
 /* /UIUX */
 
 /* General */

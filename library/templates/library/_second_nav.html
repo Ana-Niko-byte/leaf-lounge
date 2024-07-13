@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 {% load static %}
 {% block secondary_nav %}
-<div class="secondary-navigation py-3" style="border-top: 2px solid lightgrey; border-bottom: 2px solid lightgrey;">
-    <ul class="navbar-nav flex-row mx-4">
+<div class="secondary-navigation py-3 d-flex justify-content-between" style="border-top: 2px solid lightgrey;">
+    {% include 'library/_breadcrumb.html' with book=book %}
+    <ul class="navbar-nav flex-row justify-content-end mx-4" style="width: 700px;">
         {% if request.user.is_authenticated %}
         <li class="nav-item">
             <a href="">My Books</a>
