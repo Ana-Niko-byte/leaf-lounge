@@ -2,11 +2,53 @@
 {% load static %}
 
 {% block content %}
-<div class="container d-flex flex-column align-items-center py-5">
-    <div class="row text-center">
-        <h3>This is the detail page for {{ book.title }}!</h3>
-        <div>{{ book.blurb }}</div>
+<div class="container">
+    <div class="row d-flex flex-row align-items-start justify-content-between py-5">
+        <div class="col-6 d-flex justify-content-center">
+            <div class="col-6 mb-5">
+                <div class="book p-3 d-flex flex-column align-items-center justify-content-start" style="outline: 2px solid lightgrey; max-height: 550px;">
+                    <div class="picture" style="width: 250px; height: 300px; background-color: lightgrey;"></div>
+                    <div class="text-center mt-3 mb-1">
+                        <p class="h5">{{ book.title }}</p>
+                        <p class="text-secondary"><em>{{ book.author }} | {{ book.year_published }}</em></p>
+                    </div>
+                    <p class="text-center">"{{ book.blurb | safe }}"</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div>
+                <h4 class="mb-3">About the Author</h4>
+                <div>{{ book.author.bio }}</div>
+            </div>
+            <div>
+                <h4 class="mt-5 mb-3">Book Blurb</h4>
+                <div>{{ book.blurb }}</div>
+                <form action="{% url 'add_to_basket' book.id %}" method="POST" class="form">
+                    {% csrf_token %}
+                    <div class="form-row">
+                        <div class="col-12">
+                            <p><strong>Quantity:</strong></p>
+                            <div class="input-group">
+                                <input type="number" class="form-control qty_input" name="quantity" value="1" min="1" max="99" data-book-id="{{ book.id }}" id="book_id_{{ book.id }}">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <a href="{{ library_url }}" class="btn btn-warning">
+                                <i class="fas fa-chevron-left"></i>Return to Library
+                            </a>
+                            <button type="submit" class="btn btn-success my-5"><i class="fa-solid fa-basket-shopping me-3"></i>Add to Basket</button>
+                        </div>
+                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                    </div>
+                </form>
+            </div>
+            <div class="reviews mt-5">
+                <!-- Add functionality to this later -->
+                <button>Read Reviews ></button>
+                <!-- /Add functionality to this later -->
+            </div>
+        </div>
     </div>
-    <button class="btn btn-lg btn-success my-5"><i class="fa-solid fa-basket-shopping me-3"></i>Add to Basket</button>
 </div>
 {% endblock %}
