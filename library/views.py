@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.db.models import Q
 
@@ -29,5 +29,20 @@ def library(request):
     return render(
         request,
         'library/library.html',
+        context
+    )
+
+
+def book_detail(request, slug):
+    requested_book = get_object_or_404(Book,slug=slug)
+    print(requested_book)
+
+    context={
+        'book': requested_book,
+    }
+
+    return render(
+        request,
+        "library/book_detail.html",
         context
     )

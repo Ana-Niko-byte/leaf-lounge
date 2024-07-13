@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.text import slugify
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.shortcuts import reverse
 
 # Model Tuples
 from ._nationalities import NATIONALITIES
@@ -66,6 +67,9 @@ class Book(models.Model):
             Catches the DoesNotExist error and saves the model as a new
             instance.
 
+    def get_absolute_url():
+        Returns the absolute url with the book 'slug' paramter (detail page).
+
     Meta:
         orders by earliest date added.
     '''
@@ -119,3 +123,6 @@ class Book(models.Model):
             super(Book, self).save(*args, **kwargs)
         except Book.DoesNotExist:
             super(Book, self).save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse('book-summary', args=[self.slug])

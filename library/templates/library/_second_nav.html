@@ -3,16 +3,19 @@
 {% block secondary_nav %}
 <div class="secondary-navigation py-3" style="border-top: 2px solid lightgrey; border-bottom: 2px solid lightgrey;">
     <ul class="navbar-nav flex-row mx-4">
+        {% if request.user.is_authenticated %}
         <li class="nav-item">
-            <a href="" class="">My Books</a>
+            <a href="">My Books</a>
         </li>
         <li class="mx-2">|</li>
         <li class="nav-item">
-            <a href="" class="">My Profile</a>
+            <a href="">My Profile</a>
         </li>
         <li class="mx-2">|</li>
+        {% endif %}
         <li class="nav-item">
-            <a href="" class="">Become an Author</a>
+            <!-- Add correct url here -->
+            <a href="{% if request.user.is_authenticated %}{{ home_url }}{% else %}{{ signup_url }}{% endif %}">Become an Author</a>
         </li>
     </ul>
 </div>

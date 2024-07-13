@@ -280,6 +280,8 @@ Fields: `title`, `isbn`, `slug`, `author`, `genre`, `blurb`, `year_published`, `
   except `Book.DoesNotExist`:
       Catches the `DoesNotExist` error and saves the model as a new instance. This error was encountered when attempting to perform a similar action in a previous project.
 
+`def get_absolute_url():` returns the absolute url with the book 'slug' paramter (detail page).
+
 ###### Meta:
 Orders by earliest date added.
 
