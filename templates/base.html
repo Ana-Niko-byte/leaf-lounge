@@ -52,7 +52,7 @@ https://github.com/Ana-Niko-byte/moment -->
                     {% if request.user.is_authenticated %}
                     <li class="nav-item px-2 mx-1">
                         <a>
-                            <i class="fa-solid fa-book-open me-2"></i>Your Communities</a>
+                            <i class="fa-solid fa-book-open me-2"></i>My Communities</a>
                         </a>
                     </li>
                     {% endif %}
@@ -76,10 +76,6 @@ https://github.com/Ana-Niko-byte/moment -->
                                 <i class="fa-solid fa-arrow-right-to-bracket me-2"></i>Sign In
                             </a>
                             {% else %}
-                            <a href="" class="dropdown-item py-2">
-                                <img src="../static/images/typewriter-icon.png" style="width: 25px; height: 25px;">
-                                Become an Author
-                            </a>
                             <a href="{{ signout_url }}" class="dropdown-item pt-3">
                                 <i class="fa-solid fa-arrow-right-from-bracket me-2"></i>Sign Out
                             </a>
@@ -88,6 +84,9 @@ https://github.com/Ana-Niko-byte/moment -->
                     </li>
                 </ul>
             </nav>
+            <!-- Library-specific secondary navigation -->
+            {% block secondary_nav %}{% endblock %}
+            <!-- /Library-specific secondary navigation -->
 
             <!-- Django Messages -->
             {% if messages %}

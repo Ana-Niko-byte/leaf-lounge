@@ -1,12 +1,19 @@
 {% extends "base.html" %}
 {% load static %}
-{% block content %}
-<!-- try to extend a second navigation bar on signin/library page -->
- <!-- This is a placeholder file -->
-<div class="secondary-navigation">
-    <ul>
-        <li>Become an Author</li>
-        <li>Your Books</li>
+{% block secondary_nav %}
+<div class="secondary-navigation py-3" style="border-top: 2px solid lightgrey; border-bottom: 2px solid lightgrey;">
+    <ul class="navbar-nav flex-row mx-4">
+        <li class="nav-item">
+            <a href="" class="">My Books</a>
+        </li>
+        <li class="mx-2">|</li>
+        <li class="nav-item">
+            <a href="" class="">My Profile</a>
+        </li>
+        <li class="mx-2">|</li>
+        <li class="nav-item">
+            <a href="" class="">Become an Author</a>
+        </li>
     </ul>
 </div>
 {% endblock %}
