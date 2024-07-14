@@ -3,17 +3,86 @@
 
 {% block content %}
 <div class="container-fluid">
-    <div class="row text-center">
-        <div class="col mt-3">
-            <h2>Your Basket</h2>
-            <hr>
+    <div id="basket-banner" class="row text-center">
+        <div class="col bg-black text-white py-2">
+            <h5 class="my-1 text-uppercase">Your Basket</h5>
         </div>
     </div>
-    <div class="row mt-5 text-center">
-        <div class="col">
+    <div class="row mt-5 d-flex justify-content-center align-items-center">
+        <div class="col-lg-8 col-md-12">
             {% if books_in_basket %}
             <div class="table-responsive rounded">
-                {{ books_in_basket }}
+                <table class="table table-sm table-borderless">
+                    <thead class="text-center">
+                        <tr class="mb-5" style="border-bottom: 1px solid lightgrey;">
+                            <th class="text-start">Book</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th class="text-end">Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for book in books_in_basket %}
+                        <tr  class="text-center">
+                            <td>
+                                <div class="container-data d-flex flex-column justify-content-center align-items-start">
+                                    <p><strong>{{ book.book.title }}</strong></p>
+                                    <div class="picture" style="width: 250px; height: 300px; background-color: lightgrey;"></div>
+                                    <img src="{{ book.book.image.url }}" alt="">
+                                    <p class="small text-muted">ISBN: {{ book.book.isbn|upper }}</p>
+                                </div>
+                            </td>
+                            <td>
+                                <p>€{{ book.book.price|floatformat:2 }}</p>
+                            </td>
+                            <td>
+                                <p>{{ book.quantity }}</p>
+                            </td>
+                            <td class="text-end">
+                                <p>€{{ book.indiv_total }}</p>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        <tr>
+                            <td colspan="5" class="text-end">
+                                <h6>
+                                    <strong>
+                                        Subtotal: €{{ total|floatformat:2 }}
+                                    </strong>
+                                </h6>
+
+                                {% if total > free_delivery_threshold %}
+                                <p class="mb-1 text-success">
+                                    You qualify for free delivery!
+                                </p>
+                                <h6>
+                                    Delivery: <span class="text-success">FREE</span>
+                                </h6>
+                                {% else %}
+                                <h6>Delivery: €{{ delivery|floatformat:2 }}</h6>
+                                    <p class="mb-1 text-danger">
+                                        Spend just <strong>${{ free_delivery_threshold }}</strong> more to get free delivery!
+                                    </p>
+                                {% endif %}
+                                <h5 class="mt-4">
+                                    <strong>
+                                        Total: €{{ books_total|floatformat:2 }}
+                                    </strong>
+                                </h5>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="5" class="text-end">
+                                <a href="{% url 'library' %}" class="btn btn-warning">
+                                    <i class="fa-solid fa-sm fa-book me-2"></i>Keep Shopping
+                                </a>
+                                <a href="" class="btn btn-success">
+                                    <i class="fas fa-lock me-2"></i>Secure Checkout</span>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
             {% else %}
             <p class="lead">Your basket is empty.</p>

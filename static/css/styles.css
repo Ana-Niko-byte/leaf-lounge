@@ -38,6 +38,10 @@ html, body{
 .nav-item:hover a, .nav-crumb:hover a{
     color: var(--orange);
 }
+
+.basket-highlight{
+    color: var(--orange);
+}
 /* /UIUX */
 
 /* General */

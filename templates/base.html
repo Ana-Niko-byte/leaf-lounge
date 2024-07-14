@@ -65,9 +65,14 @@ https://github.com/Ana-Niko-byte/moment -->
                 <ul class="navbar-nav me-3 d-flex align-items-center">
                     <li class="nav-item px-2 mx-1">
                         <a href="{{ basket_url }}">
-                            <i class="fa-solid fa-basket-shopping"></i>
-                            Bag
-                            <span>(x)</span>
+                            <i class="fa-solid fa-basket-shopping {% if books_total %} basket-highlight {% endif %}"></i>
+                            <span class="{% if books_total %} basket-highlight {% endif %}">
+                                ({% if books_total %}
+                                    €{{ books_total|floatformat:2 }}
+                                {% else %}
+                                    €0.00
+                                {% endif %})
+                            </span>
                         </a>
                     </li>
                     <li class="nav-item px-2 mx-1">
