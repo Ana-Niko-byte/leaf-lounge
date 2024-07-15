@@ -38,6 +38,18 @@ html, body{
 .nav-item:hover a, .nav-crumb:hover a{
     color: var(--orange);
 }
+
+.basket-highlight{
+    color: var(--orange);
+}
+
+.qty_input{
+    min-width: 250px;
+}
+
+#qty_warning{
+    width: 250px;
+}
 /* /UIUX */
 
 /* General */
