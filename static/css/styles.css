@@ -44,11 +44,11 @@ html, body{
 }
 
 .qty_input{
-    min-width: 350px;
+    min-width: 250px;
 }
 
-#warning{
-    max-width: 350px;
+#qty_warning{
+    width: 250px;
 }
 /* /UIUX */
 

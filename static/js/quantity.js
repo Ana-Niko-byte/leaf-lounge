@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     /**
-     * Function for incrementing/decrementing the quantity of books to be ordered.
+     * Increments/decrements the quantity of books to be ordered.
      * 
      * Method:
      * On DOM content load, retrieves the "decrement" and "increment" buttons.
@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
         /**
          * Sets the styling and innerHTML of the error.
          */
-        document.getElementById('qty_warning').innerHTML='Minimum quantity required to place order: 1';
+        document.getElementById('qty_warning').innerHTML='Minimum quantity required: 1';
         document.getElementById('qty_warning').style.color='red';
     }
 

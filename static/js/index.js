@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     /**
-     * Function for setting the copyright year dynamically.
+     * Dynamically sets the copyright year.
      * 
      * Method:
      * On DOM content load, retrieves the "copyright-year" span element.
