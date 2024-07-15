@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
      * Attaches a "click" event listener to each button and increments/decrements the value as needed.
      * Re-assigns the value back to the input element.
      * 
-     * Displays error if user attempts to decrease quantity of books lower than 1.
+     * Displays errors if user attempts to decrease quantity of books lower than 1 or increase over 99.
      */
 
     const decrement_btn = document.getElementsByClassName('decrement')[0];
@@ -50,9 +50,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (quantity > 98){
                 increment_btn.disabled = true;
+                displayError('Maximum quantity allowed: 99');
             }
         } else if (quantity < 2) {
-            displayError();
+            displayError('Minimum quantity required: 1');
             // Keeps the value of 'quantity' at 1 and prevents backstage decrement.
             quantity = 1;
             if (quantity <= 1){
@@ -61,11 +62,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    function displayError(){
+    function displayError(string){
         /**
          * Sets the styling and innerHTML of the error.
          */
-        document.getElementById('qty_warning').innerHTML='Minimum quantity required: 1';
+        document.getElementById('qty_warning').innerHTML= string;
         document.getElementById('qty_warning').style.color='red';
     }
 
@@ -76,5 +77,4 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById('qty_warning').innerHTML='';
         document.getElementsByClassName('qty_input')[0].value = quantity;
     }
-
 });

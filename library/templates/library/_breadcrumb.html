@@ -5,6 +5,7 @@
             <li class="nav-crumb breadcrumb-item"><a href="{{ home_url }}">Home</a></li>
             <li class="nav-crumb breadcrumb-item" aria-current="page"><a href="{{ library_url }}">Library</a></li>
             {% else %}
+            <!-- If breadcrumb is to be kept on all pages, change this to reflect the current path -->
             <li class="nav-crumb breadcrumb-item active"aria-current="page">{{ book.title }} | {{ book.author }}</li>
             {% endif %}
             <span class="ms-3"><i class="fa-solid fa-arrow-left me-2"></i>You are here!</span>

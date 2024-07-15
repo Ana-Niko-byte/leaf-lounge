@@ -32,6 +32,10 @@ html, body{
     color: var(--dark-text-color);
     transition: all 0.2s ease;
 }
+
+.basket-link{
+    text-decoration: none;
+}
 /* /Links */
 
 /* UIUX */
