@@ -42,6 +42,14 @@ html, body{
 .basket-highlight{
     color: var(--orange);
 }
+
+.qty_input{
+    min-width: 350px;
+}
+
+#warning{
+    max-width: 350px;
+}
 /* /UIUX */
 
 /* General */

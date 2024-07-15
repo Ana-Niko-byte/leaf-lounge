@@ -30,13 +30,27 @@
                         <div class="col-12">
                             <p><strong>Quantity:</strong></p>
                             <div class="input-group">
-                                <input type="number" class="form-control qty_input" name="quantity" value="1" min="1" max="99" data-book-id="{{ book.id }}" id="book_id_{{ book.id }}">
+                                <div class="input-group-prepend">
+                                    <button type="button" class="decrement btn" id="decrement_{{ book.id }}" data-book-id="{{ book.id }}">
+                                        <i class="fa-solid fa-minus"></i>
+                                    </button>
+                                </div>
+                                <div class="qty-container">
+                                    <input type="number" class="form-control qty_input" name="quantity" value="1" min="1" max="99" data-book-id="{{ book.id }}" id="book_id_{{ book.id }}">
+                                    <span class="small" id="qty_warning"></span>
+                                </div>
+                                <div class="inut-group-append">
+                                    <button type="button" class="increment btn" id="increment_{{ book.id }}" data-book-id="{{ book.id }}">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                         <div class="col-12">
                             <a href="{{ library_url }}" class="btn btn-warning">
                                 <i class="fas fa-chevron-left"></i>Return to Library
                             </a>
+                            <!-- Bug: when adding same object at different quantities, the original gets replaced instead of added. -->
                             <button type="submit" class="btn btn-success my-5"><i class="fa-solid fa-basket-shopping me-3"></i>Add to Basket</button>
                         </div>
                         <input type="hidden" name="redirect_url" value="{{ request.path }}">

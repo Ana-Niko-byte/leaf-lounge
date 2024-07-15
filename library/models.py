@@ -104,6 +104,7 @@ class Book(models.Model):
         max_digits=3,
     )
     date_added = models.DateField(auto_now_add=True)
+    # Add book type - softback/hardback/kindle after Stripe Payment completion.
     price = models.DecimalField(max_digits=5, decimal_places=2)
     # placeholder for Cloudinary.
     image = models.ImageField(null=True, blank=True)
