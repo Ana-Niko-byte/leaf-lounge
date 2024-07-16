@@ -12,9 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
             e.preventDefault();
             // Set quantity value to input field 'value'.
             const bookId = button.dataset.bookId;
-            let inputField = document.getElementById(`book_id_${bookId}`);
             const actualQTY = document.getElementById(`quantity_${bookId}`);
-            inputField.value = actualQTY.innerHTML;
 
             // Styling
             const inputFields = document.getElementById(`form_${bookId}`);
@@ -31,15 +29,6 @@ document.addEventListener("DOMContentLoaded", () => {
             saveForm(save, bookId);
         });
     }
-
-    // Delete Books in Basket.
-    const delete_btn = document.getElementsByClassName('delete-book')[0];
-    // Or best handle this logic in view?
-    delete_btn.addEventListener('click', function(e){
-        e.preventDefault();
-        console.log('you\'ve clicked the delete button');
-        // Postpone until hardback/softback of books has been added to model
-    });
 });
 
 function cancelActions(cancelBtn, updateBtn, saveBtn, inputFields, actualQTY){

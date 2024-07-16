@@ -8,6 +8,8 @@ https://github.com/Ana-Niko-byte/moment -->
 {% url 'book-summary' as summary_url %}
 {% url 'basket' as basket_url %}
 {% url 'add_to_basket' as add_basket_url %}
+{% url 'update_basket' as update_basket %}
+{% url 'delete_basket' as delete_basket %}
 
 {% url 'account_login' as signin_url %}
 {% url 'account_signup' as signup_url %}
@@ -67,8 +69,8 @@ https://github.com/Ana-Niko-byte/moment -->
                         <a href="{{ basket_url }}">
                             <i class="fa-solid fa-basket-shopping {% if books_total %} basket-highlight {% endif %}"></i>
                             <span class="{% if books_total %} basket-highlight {% endif %}">
-                                ({% if books_total %}
-                                    €{{ books_total|floatformat:2 }}
+                                ({% if total %}
+                                    €{{ total|floatformat:2 }}
                                 {% else %}
                                     €0.00
                                 {% endif %})

@@ -12,6 +12,8 @@
         <div class="col-lg-8 col-md-12">
             {% if books_in_basket %}
             <div class="table-responsive rounded">
+
+                <!-- Table -->
                 <table class="table table-sm table-borderless">
                     <thead class="text-center">
                         <tr class="mb-5" style="border-bottom: 1px solid lightgrey;">
@@ -39,38 +41,47 @@
                                 <p id="quantity_{{ book.book_id }}" class="basket-book-quantity">{{ book.quantity }}</p>
 
                                 <div class="form-container d-flex align-items-center justify-content-center">
-                                    <form action="" method="POST" id="update_form_{{ book.book_id }}">
+                                    <form action="{% url 'update_basket' book.book_id %}" method="POST" id="update_form_{{ book.book_id }}">
                                         {% csrf_token %}
     
                                         <!-- Input Group -->
                                         <div class="input-group d-none align-items-center justify-content-center" id="form_{{ book.book_id }}">
+                                            <!-- '-' -->
                                             <div class="input-group-prepend">
                                                 <button type="button" class="decrement btn" id="decrement_{{ book.book_id }}" data-book-id="{{ book.book_id }}">
                                                     <i class="fa-solid fa-minus"></i>
                                                 </button>
                                             </div>
+                                            <!-- /'-' -->
+
                                             <div class="qty-container">
-                                                <input type="number" class="form-control qty_input text-center" name="quantity" value="1" min="1" max="99" data-book-id="{{ book.book_id }}" id="book_id_{{ book.book_id }}">
+                                                <input type="number" class="form-control qty_input text-center" name="quantity" value="{{ book.quantity }}" min="1" max="99" data-book-id="{{ book.book_id }}" id="book_id_{{ book.book_id }}">
                                                 <span class="small" id="qty_warning"></span>
                                             </div>
+
+                                            <!-- '+' -->
                                             <div class="inut-group-append">
                                                 <button type="button" class="increment btn" id="increment_{{ book.book_id }}" data-book-id="{{ book.book_id }}">
                                                     <i class="fa-solid fa-plus"></i>
                                                 </button>
                                             </div>
+                                            <!-- /'+' -->
                                         </div>
+                                        <!-- /Input Group -->
+
+                                        <!-- Handlers -->
                                         <div class="button-container mt-4 d-flex flex-column justify-content-center">
                                             <!-- Manipulation (js) -->
                                             <span class="d-none basket-link btn btn-sm btn-success cancel-update my-1" data-book-id="{{ book.book_id }}" id="cancel_{{ book.book_id }}">Cancel</span>
                                             <span class="basket-link btn btn-sm btn-warning update-book my-1" data-book-id="{{ book.book_id }}">Update Quantity</span>
                                             <!-- /Manipulation (js) -->
                                             <!-- Buttons -->
-                                            <a href="" class="d-none basket-link btn btn-sm btn-warning save-book my-1" data-book-id="{{ book.book_id }}" id="save_{{ book.book_id }}">Save Changes</a>
-                                            <a href="" class="basket-link btn btn-sm btn-danger delete-book my-1" data-book-id="{{ book.book_id }}" id="delete_{{ book.book_id }}">Delete Book</a>
+                                            <a class="d-none basket-link btn btn-sm btn-warning save-book my-1" data-book-id="{{ book.book_id }}" id="save_{{ book.book_id }}">Save Changes</a>
+                                            <a href="{% url 'delete_basket' book.book_id %}" class="basket-link btn btn-sm btn-danger delete-book my-1" data-book-id="{{ book.book_id }}" id="delete_{{ book.book_id }}">Delete Book</a>
                                             <!-- /Buttons -->
                                         </div>
-                                        <!-- /Input Group -->
-                                        <!-- <input type="hidden" name="redirect_url" value="{{ request.path }}"> -->
+                                        <!-- /Handlers -->
+
                                     </form>
                                 </div>
                             </td>
@@ -119,14 +130,53 @@
                         </tr>
                     </tbody>
                 </table>
+                <!-- /Table -->
             </div>
             {% else %}
-            <p class="lead">Your basket is empty.</p>
-            <a href="{{ library_url }}" class="btn btn-warning mt-5">
-                <i class="fa-solid fa-sm fa-chevron-left me-2"></i>Return to Library
-            </a>
+            <p class="lead text-center">Your basket is empty.</p>
+            <div class="button text-center">
+                <a href="{{ library_url }}" class="btn btn-warning mt-2">
+                    <i class="fa-solid fa-sm fa-chevron-left me-2"></i>Return to Library
+                </a>
+            </div>
             {% endif %}
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block extra_js %}
+    <script type="text/javascript">
+    const delete_btns = document.getElementsByClassName('delete-book');
+    for (let button of delete_btns){
+        button.addEventListener('click', function(e){
+            const bookId = button.dataset.bookId;
+            
+            let csrftoken = getCookie('csrftoken');
+            let data = new FormData();
+            fetch(`delete/${bookId}`, {
+                method: 'DELETE',
+                body: JSON.stringify(data),
+                headers: { "X-CSRFToken": csrftoken },
+            });
+
+            // Taken from Django Documentation + Stack Overflow: 
+            // https://stackoverflow.com/questions/43606056/proper-django-csrf-validation-using-fetch-post-request
+            function getCookie(name) {
+                var cookieValue = null;
+                if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                    }
+                }}
+            return cookieValue;
+            }
+        });
+    }
+</script>
 {% endblock %}
