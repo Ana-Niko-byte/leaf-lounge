@@ -24,8 +24,16 @@ def add_basket(request, book_id):
 
     if book_id in list(basket.keys()):
         basket[book_id] += quantity
+        messages.add_message(
+            request, messages.SUCCESS,
+            '''Your book order has been updated! :)'''
+        )
     else:
         basket[book_id] = quantity
+        messages.add_message(
+            request, messages.SUCCESS,
+            '''Your book has been added to basket! :)'''
+        )
 
     request.session['basket'] = basket
     return redirect(redirect_url)
@@ -40,8 +48,16 @@ def amend_basket(request, book_id):
 
     if book_id in list(basket.keys()):
         basket[book_id] = quantity
+        messages.add_message(
+            request, messages.SUCCESS,
+            '''Your book order has been updated! :)'''
+        )
     else:
         basket[book_id] += quantity
+        messages.add_message(
+            request, messages.SUCCESS,
+            '''Your book order has been updated! :)'''
+        )
 
     request.session['basket'] = basket
     return redirect(reverse('basket'))
@@ -55,5 +71,9 @@ def delete_basket(request, book_id):
         basket = request.session['basket']
         if book_id in list(basket.keys()):
             basket.pop(book_id)
+            messages.add_message(
+                request, messages.SUCCESS,
+                '''Your book was successfully deleted.'''
+            )
             request.session['basket'] = basket
     return HttpResponseRedirect(reverse('basket'))

@@ -37,7 +37,7 @@
                                 </div>
                                 <div class="qty-container">
                                     <input type="number" class="form-control qty_input" name="quantity" value="1" min="1" max="99" data-book-id="{{ book.id }}" id="book_id_{{ book.id }}">
-                                    <span class="small" id="qty_warning"></span>
+                                    <span class="small" id="qty_warning_{{ book.id }}"></span>
                                 </div>
                                 <div class="inut-group-append">
                                     <button type="button" class="increment btn" id="increment_{{ book.id }}" data-book-id="{{ book.id }}">
@@ -50,7 +50,6 @@
                             <a href="{{ library_url }}" class="btn btn-warning">
                                 <i class="fas fa-chevron-left"></i>Return to Library
                             </a>
-                            <!-- Bug: when adding same object at different quantities, the original gets replaced instead of added. -->
                             <button type="submit" class="btn btn-success my-5"><i class="fa-solid fa-basket-shopping me-3"></i>Add to Basket</button>
                         </div>
                         <input type="hidden" name="redirect_url" value="{{ request.path }}">
