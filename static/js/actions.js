@@ -1,3 +1,5 @@
+import { displayError } from './module.js';
+
 document.addEventListener("DOMContentLoaded", () => {
     /**
      * Handles update/delete functionality of books in the basket.
@@ -6,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Update Book Quantity in Basket.
     const update_btns = document.getElementsByClassName('update-book');
     for (let button of update_btns){
-        // Iterates over each update button visible in the template and executes styling code 
+        // Iterates over each update button visible in the template and executes styling code
         // + displays buttons for form handling.
         button.addEventListener('click', function(e){
             e.preventDefault();
@@ -80,14 +82,24 @@ function handleStyling(cancelBtn, updateBtn, saveBtn, inputFields, actualQTY){
 
 function saveForm(saveBtn, bookId){
     /**
-     * Saves the relevant quantity form.
+     * Handles manual input in quantity input field and saves the relevant quantity form accordingly.
      * 
      * Arguments:
      * saveBtn - the 'Save Changes' button.
      * bookId - the unique id of the book being updated.
      */
     saveBtn.addEventListener('click', function(e){
-        e.preventDefault();
-        document.getElementById(`update_form_${bookId}`).submit();
+
+        const value = document.getElementById(`book_id_${bookId}`).value;
+        
+        if (value < 1){
+            e.preventDefault();
+            displayError('Minimum quantity required: 1', bookId);
+        } else if (value > 99){
+            e.preventDefault();
+            displayError('Maximum quantity allowed: 99', bookId);
+        } else {
+            document.getElementById(`update_form_${bookId}`).submit();
+        }
     });
 }

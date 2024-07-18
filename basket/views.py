@@ -60,15 +60,17 @@ def amend_basket(request, book_id):
     '''
     A view for amending items in the basket.
     '''
-    # Amend basket to include size
     quantity = int(request.POST.get('quantity'))
     basket = request.session.get('basket', {})
 
-    if book_id in list(map(int, basket.keys())):
-        # this appears to return an empty array?
+    if book_id in list(basket.keys()):
+        # if quantity == 0:
+        #    messages.add_message(
+        #     request, messages.error,
+        #     '''Please ensure quantity is greater than 0 or delete the item'''
+        # ) 
+        # else:
         basket[book_id] = quantity
-        # And after returns [3]?
-        print(basket[book_id])
         messages.add_message(
             request, messages.SUCCESS,
             '''Your book order has been updated! :)'''

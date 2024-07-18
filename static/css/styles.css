@@ -1,6 +1,7 @@
 /* Colour Specification */
 :root {
     --dark-text-color : rgb(77, 77, 77);
+    --mute-grey-color : rgb(156, 156, 156);
     --white-text : rgb(246, 246, 246);
     --light-grey : rgb(161, 161, 161);
     --orange : orange;
@@ -54,6 +55,19 @@ html, body{
 #qty_warning{
     width: 250px;
 }
+
+#contact-form{
+    box-shadow: 8px 8px 8px 5px rgb(149, 149, 149);
+    border-radius: 8px;
+}
+
+.footer-nav-items{
+    width: 120px;
+}
+
+.second-nav-link a{
+    font-size: 1rem;
+}
 /* /UIUX */
 
 /* General */
@@ -62,9 +76,20 @@ body {
 }
 
 .jumbotron{
-    background-image: url(../images/florian-klauer-mk7D-4UCfmg-unsplash.jpg);
+    /* background-image: url(../images/florian-klauer-mk7D-4UCfmg-unsplash.jpg); */
+    background-color: var(--mute-grey-color);
     background-size: contain;
     background-position: center;
-    height: 650px;
+    height: 550px;
 }
 /* /General */
+
+/* Media Queries */
+@media all and (min-width: 400px){
+    /* .jumbotron-container{
+        text-align: left;
+        outline: 3px solid red;
+
+    } */
+}
+/* /Media Queries */

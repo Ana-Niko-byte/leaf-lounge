@@ -5,16 +5,32 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-12 d-flex justify-content-around align-items-start ms-5">
-            <div class="contact-info">
-                <h2 class="text-center my-5">Contact Us</h2>
-                <ul>
-                    <li class="my-3">blah blah blah</li>
-                    <li class="my-3">blah blah blah</li>
-                    <li class="my-3">blah blah blah</li>
+        <div class="col-12 d-flex flex-column flex-lg-row justify-content-around align-items-center align-items-lg-start">
+            <!-- Motivational Text -->
+            <div class="contact-info my-lg-5 me-lg-5 d-flex flex-column align-items-center">
+                <h2 class="my-5 text-center">
+                    <i class="fa-solid fa-sm fa-paper-plane me-2"></i>
+                    <strong>Contact Us</strong>
+                </h2>
+                <ul class="col-md-8">
+                    <li class="my-4">
+                        <strong>Contact our dedicated support</strong>
+                         will reach back out to you via email within two days!
+                    </li>
+                    <li class="my-4">
+                        <strong>Join in the conversation</strong>
+                         and connect with like-minded individuals!
+                    </li>
+                    <li class="my-4">
+                        <strong>Be part of something bigger:</strong>
+                         Your participation makes our community stronger. Join us today!
+                    </li>
                 </ul>
             </div>
-            <div class="col-7 d-flex justify-content-center my-3 p-5" style="box-shadow: 8px 8px 8px 5px rgb(149, 149, 149); border-radius: 8px;">
+            <!-- /Motivational Text -->
+            <!-- Contact Form -->
+            <div class="col-lg-7 col-md-8 col-sm-12 d-flex justify-content-center my-3 p-3 p-md-5 mb-5 me-0 me-lg-5" 
+            id="contact-form">
                 <form id="contactForm" class="col-12" method="post">
                     {% csrf_token %}
                     {{ contactForm | crispy }}
@@ -23,6 +39,7 @@
                     </div>
                 </form>
             </div>
+            <!-- Contact Form -->
         </div>
     </div>
 </div>

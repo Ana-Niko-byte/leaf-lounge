@@ -1,38 +1,25 @@
-{% extends "library/_second_nav.html" %}
+{% extends "_second_nav.html" %}
 {% load static %}
 
 {% block content %}
 <div class="container">
-    <div class="row d-flex justify-content-center my-4">
-        <div class="col-lg-3 col-md-4 col-sm-12">
-            <!-- Form shell obtained from https://github.com/Code-Institute-Solutions/
-            boutique_ado_v1/blob/e59745990a036961e36cc0d469458b5e9b5a80de/templates/base.html -->
-            <form method="GET" action="{% url 'library' %}">
-                <div class="input-group">
-                    <input class="form-control" type="text" name="q" placeholder="Wuthering He...">
-                    <div class="input-group-append">
-                        <button class="form-control" type="submit">
-                            <span class="icon">
-                                <i class="fas fa-search"></i>
-                            </span>
-                        </button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
     <div class="row">
+        {% if 'q' in request.GET %}
+        <div class="button-container text-center my-5">
+            <a href="{{ library_url }}" class="btn btn-lg btn-warning">Show All Books</a>
+        </div>
+        {% endif %}
         {% for book in books %}
-            <div class="col-3 mb-5">
-                <div class="book p-3 d-flex flex-column align-items-center justify-content-start" style="outline: 2px solid lightgrey; max-height: 550px;">
-                    <div class="picture" style="width: 250px; height: 300px; background-color: lightgrey;"></div>
-                    <img src="" alt="">
+            <div class="col-lg-3 col-md-4 col-sm-12 mb-5">
+                <div class="book p-3 d-flex flex-column align-items-center justify-content-start" style="max-height: 550px;">
+                    <!-- <div class="picture" style="width: 250px; height: 300px; background-color: lightgrey;"></div> -->
+                    <img src="../../../static/images/1984_cover.jpg" alt="" style="width: 220px;">
                     <div class="text-center mt-3 mb-1">
                         <p class="h5">{{ book.title }}</p>
                         <p class="text-secondary"><em>by {{ book.author }} | {{ book.year_published }}</em></p>
                     </div>
-                    <p class="text-center">"{{ book.blurb | safe }}"</p>
-                    <a href="{{ book.get_absolute_url }}" class="btn btn-warning">Read More</a>
+                    <p class="text-center text-sm">"{{ book.blurb | safe }}"</p>
+                    <a href="{{ book.get_absolute_url }}" class="btn btn-warning mb-5">Read More</a>
                 </div>
             </div>
         {% endfor %}
