@@ -36,9 +36,11 @@ def library(request):
 
 def book_detail(request, slug):
     requested_book = get_object_or_404(Book,slug=slug)
+    types = Book.COVERS
 
     context={
         'book': requested_book,
+        'types' : types,
     }
 
     return render(

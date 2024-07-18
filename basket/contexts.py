@@ -15,17 +15,32 @@ def bag_content(request):
     total = 0
     book_count = 0
 
-    for book_id, quantity in basket.items():
-       book = get_object_or_404(Book, pk=book_id)
-       total += quantity * book.price
-       indiv_total = quantity * book.price
-       book_count += quantity 
-       books_in_basket.append({
-        'book_id': book_id,
-        'quantity': quantity,
-        'indiv_total': indiv_total,
-        'book': book,
-       })
+    # book_data = type & quantity
+    for book_id, book_data in basket.items():
+        if isinstance(book_data, int):
+            book = get_object_or_404(Book, pk=book_id)
+            total += book_data * book.price
+            indiv_total = book_data * book.price
+            book_count += book_data 
+            books_in_basket.append({
+                'book_id': book_id,
+                'quantity': book_data,
+                'indiv_total': indiv_total,
+                'book': book,
+            })
+        else:
+            book = get_object_or_404(Book, pk=book_id)
+            for type, quantity in book_data['books_by_type'].items():
+                total += quantity * book.price
+                indiv_total = quantity * book.price
+                book_count += quantity
+                books_in_basket.append({
+                    'book_id': book_id,
+                    'quantity': quantity,
+                    'indiv_total': indiv_total,
+                    'book': book,
+                    'type': type,
+            })
 
     if total > FDT:
         delivery = 0

@@ -6,6 +6,7 @@ from django.shortcuts import reverse
 # Model Tuples
 from ._nationalities import NATIONALITIES
 from ._genres import GENRES
+from ._covers import COVERS
 
 
 class Author(models.Model):
@@ -73,6 +74,11 @@ class Book(models.Model):
     Meta:
         orders by earliest date added.
     '''
+    COVERS = [
+        ('SC', 'Softcover'),
+        ('HB', 'Hardback'),
+        ('D', 'Epub'),
+    ]
     title = models.CharField(max_length=100)
     # Internation Standard Book Number - all books after 2007 are 13 digits long.
     isbn = models.CharField(max_length=13)
@@ -103,6 +109,7 @@ class Book(models.Model):
         ],
         max_digits=3,
     )
+    type = models.CharField(max_length=9, choices=COVERS, default='SC')
     date_added = models.DateField(auto_now_add=True)
     # Add book type - softback/hardback/kindle after Stripe Payment completion.
     price = models.DecimalField(max_digits=5, decimal_places=2)
