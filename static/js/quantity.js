@@ -1,4 +1,4 @@
-import { displayError } from './module.js';
+import { displayError, returnBookId } from './module.js';
 
 document.addEventListener("DOMContentLoaded", () => {
     /**
@@ -14,13 +14,6 @@ document.addEventListener("DOMContentLoaded", () => {
      */
 
     const iButtons = document.getElementsByClassName('increment');
-
-    function returnBookId(button){
-        /**
-         * Returns the id of the book for individual form handling.
-         */
-        return button.dataset.bookId;
-    }
 
     function returnCounter(button){
         /**

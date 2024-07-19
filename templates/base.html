@@ -109,20 +109,16 @@ https://github.com/Ana-Niko-byte/moment -->
 
             <!-- Django Messages -->
             {% if messages %}
-            <div class="container">
-                <div class="row d-flex justify-content-center">
-                    <div class="col-lg-9 col-sm-12 mb-4">
-                        {% for message in messages %}
-                        {% include 'toasts/toast_success.html' %}
-                        <!-- <div class="alert {{ message.tags }} alert-dismissible
-                        fade show text-center" id="msg" role="alert">
-                        {{ message | safe }}
-                        <button type="button" class="btn-close"
-                            data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div> -->
-                        {% endfor %}
-                    </div>
-                </div>
+            <div class="message-container">
+                {% for message in messages %}
+                {% include 'toasts/toast_success.html' %}
+                <!-- <div class="alert {{ message.tags }} alert-dismissible
+                fade show text-center" id="msg" role="alert">
+                {{ message | safe }}
+                <button type="button" class="btn-close"
+                    data-bs-dismiss="alert" aria-label="Close"></button>
+                </div> -->
+                {% endfor %}
             </div>
             {% endif %}
             <!-- /Django Messages -->
@@ -193,6 +189,13 @@ https://github.com/Ana-Niko-byte/moment -->
         <script src="{% static 'js/index.js' %}" type="module"></script>
         <script src="{% static 'js/quantity.js' %}" type="module"></script>
         <script src="{% static 'js/actions.js' %}" type="module"></script>
+        <script src="{% static 'js/library.js' %}" type="module"></script>
+        <script type="text/javascript">
+            const toasts = [...document.getElementsByClassName('toast')];
+            console.log(toasts);
+            toasts.forEach((toastElement) => new bootstrap.Toast(toastElement).show()
+            );
+        </script>
         {% endblock %}
         {% block extra_js %}
         {% endblock %}

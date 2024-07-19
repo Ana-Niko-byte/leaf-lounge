@@ -28,10 +28,12 @@
                         <tr class="text-center">
                             <td>
                                 <div class="container-data d-flex flex-column justify-content-center align-items-start">
-                                    <p class="mt-3"><strong>Title: </strong>{{ book.book.title }}</p>
-                                    <p><strong>Type: </strong>{{ book.type|upper }}</p>
-                                    <img src="../../../static/images/1984_cover.jpg" style="width: 220px;" alt="">
-                                    <p class="small text-muted">ISBN: {{ book.book.isbn|upper }}</p>
+                                        <p class="mt-3"><strong>Title: </strong>{{ book.book.title }}</p>
+                                        <p><strong>Type: </strong>{{ book.type|upper }}</p>
+                                        <a href="{{ book.book.get_absolute_url }}">
+                                            <img src="../../../static/images/1984_cover.jpg" style="width: 220px;" alt="">
+                                        </a>
+                                        <p class="small text-muted">ISBN: {{ book.book.isbn|upper }}</p>
                                 </div>
                             </td>
                             <td>
@@ -98,8 +100,7 @@
                                         Subtotal: €{{ total|floatformat:2 }}
                                     </strong>
                                 </h6>
-
-                                {% if total > free_delivery_threshold %}
+                                {% if total > FDT %}
                                 <p class="mb-1 text-success">
                                     You qualify for free delivery!
                                 </p>
