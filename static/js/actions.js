@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Update Book Quantity in Basket.
     const update_btns = document.getElementsByClassName('update-book');
+
     for (let button of update_btns){
         // Iterates over each update button visible in the template and executes styling code
         // + displays buttons for form handling.
@@ -14,12 +15,13 @@ document.addEventListener("DOMContentLoaded", () => {
             e.preventDefault();
             // Set quantity value to input field 'value'.
             const bookId = button.dataset.bookId;
-            const actualQTY = document.getElementById(`quantity_${bookId}`);
+            const counter = button.dataset.counter;
 
+            const actualQTY = document.getElementById(`quantity_${bookId}_${counter}`);
             // Styling
-            const inputFields = document.getElementById(`form_${bookId}`);
-            const cancel = document.getElementById(`cancel_${bookId}`);
-            const save = document.getElementById(`save_${bookId}`);
+            const inputFields = document.getElementById(`form_${bookId}_${counter}`);
+            const cancel = document.getElementById(`cancel_${bookId}_${counter}`);
+            const save = document.getElementById(`save_${bookId}_${counter}`);
 
             // Toggle form visibility instead of url redirect in template.
             cancelActions(cancel, button, save, inputFields, actualQTY);
@@ -28,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
             handleStyling(cancel, button, save, inputFields, actualQTY);
 
             // Submit the relevant form.
-            saveForm(save, bookId);
+            saveForm(save, bookId, counter);
         });
     }
 });
@@ -80,7 +82,7 @@ function handleStyling(cancelBtn, updateBtn, saveBtn, inputFields, actualQTY){
     saveBtn.classList.remove('d-none');
 }
 
-function saveForm(saveBtn, bookId){
+function saveForm(saveBtn, bookId, counter){
     /**
      * Handles manual input in quantity input field and saves the relevant quantity form accordingly.
      * 
@@ -90,16 +92,16 @@ function saveForm(saveBtn, bookId){
      */
     saveBtn.addEventListener('click', function(e){
 
-        const value = document.getElementById(`book_id_${bookId}`).value;
+        const value = document.getElementById(`book_id_${bookId}_${counter}`).value;
         
         if (value < 1){
             e.preventDefault();
-            displayError('Minimum quantity required: 1', bookId);
+            displayError('Minimum quantity required: 1', bookId, counter);
         } else if (value > 99){
             e.preventDefault();
-            displayError('Maximum quantity allowed: 99', bookId);
+            displayError('Maximum quantity allowed: 99', bookId, counter);
         } else {
-            document.getElementById(`update_form_${bookId}`).submit();
+            document.getElementById(`update_form_${bookId}_${counter}`).submit();
         }
     });
 }
