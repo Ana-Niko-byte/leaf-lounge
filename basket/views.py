@@ -78,10 +78,10 @@ def delete_basket(request, book_id):
     '''
     A view for deleting items from the basket.
     '''
-    if request.method == 'DELETE':
+    try:
         type = None
-        if 'book_type' in request.DELETE:
-            type = request.DELETE['book_type']
+        if 'book_type' in request.POST:
+            type = request.POST['book_type']
         basket = request.session.get('basket', {})
 
         if type:
@@ -91,5 +91,7 @@ def delete_basket(request, book_id):
         else:
             basket.pop(book_id)
 
-            request.session['basket'] = basket
-    return HttpResponseRedirect(reverse('basket'))
+        request.session['bag'] = basket
+        return HttpResponse(status=200)
+    except Exception as e:
+        return HttpResponse(status=500)

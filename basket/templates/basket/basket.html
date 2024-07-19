@@ -48,7 +48,7 @@
                                         <div class="input-group d-none align-items-center justify-content-center" id="form_{{ book.book_id }}_{{ forloop.counter }}">
                                             <!-- Delete Button -->
                                             <div class="input-group-prepend">
-                                                <a href="{% url 'delete_basket' book.book_id %}" class="basket-link btn delete-book my-1" data-book-id="{{ book.book_id }}" data-counter="{{ forloop.counter }}" id="delete_{{ book.book_id }}"><i class="fa-solid fa-trash"></i></a>
+                                                <a href="{% url 'delete_basket' book.book_id %}" class="basket-link btn delete-book my-1" data-book-id="{{ book.book_id }}" data-book-type="{{ book.type }}" data-counter="{{ forloop.counter }}" id="delete_{{ book.book_id }}_{{ forloop.counter }}"><i class="fa-solid fa-trash"></i></a>
                                             </div>
                                             <!-- /Delete Button -->
 
@@ -150,36 +150,54 @@
 {{ block.super }}
 <!-- !!!!! This needs amending to delete only id + type instead of just id -->
     <script type="text/javascript">
-    const delete_btns = document.getElementsByClassName('delete-book');
-    for (let button of delete_btns){
-        button.addEventListener('click', function(e){
-            const bookId = button.dataset.bookId;
-            
-            let csrftoken = getCookie('csrftoken');
-            let data = new FormData();
-            fetch(`delete/${bookId}`, {
-                method: 'DELETE',
-                body: JSON.stringify(data),
-                headers: { "X-CSRFToken": csrftoken },
-            });
+        const delete_btns = document.getElementsByClassName('delete-book');
 
-            // Taken from Django Documentation + Stack Overflow: 
-            // https://stackoverflow.com/questions/43606056/proper-django-csrf-validation-using-fetch-post-request
-            function getCookie(name) {
-                var cookieValue = null;
-                if (document.cookie && document.cookie !== '') {
-                var cookies = document.cookie.split(';');
-                for (var i = 0; i < cookies.length; i++) {
-                    var cookie = cookies[i].trim();
-                    // Does this cookie string begin with the name we want?
-                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                    break;
+        for (let button of delete_btns){
+            button.addEventListener('click', function(e){
+
+                e.preventDefault();
+
+                // Taken from Django Documentation + Stack Overflow: 
+                // https://stackoverflow.com/questions/43606056/proper-django-csrf-validation-using-fetch-post-request
+                function getCookie(name) {
+                    var cookieValue = null;
+                    if (document.cookie && document.cookie !== '') {
+                    var cookies = document.cookie.split(';');
+                    for (var i = 0; i < cookies.length; i++) {
+                        var cookie = cookies[i].trim();
+                        // Does this cookie string begin with the name we want?
+                        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                        }
+                    }}
+                return cookieValue;
+                }
+
+                const csrfToken = getCookie('csrftoken');
+
+                const bookId = button.dataset.bookId;
+                const bookType = button.dataset.bookType;
+                const url = `delete/${bookId}`;
+
+                let data = new URLSearchParams({
+                    'csrfmiddlewaretoken': csrfToken,
+                    'book_type': bookType
+                });
+
+                fetch(url, {
+                    method: 'POST',
+                    body: data,
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
                     }
-                }}
-            return cookieValue;
-            }
-        });
-    }
+                })
+                .then(response => {
+                    if (response.ok) {
+                        location.reload();
+                    }
+                });
+            });
+        }
 </script>
 {% endblock %}
