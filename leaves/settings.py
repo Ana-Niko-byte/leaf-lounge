@@ -65,8 +65,10 @@ INSTALLED_APPS = [
     'blurb',
     # Book Library app - 'library'
     'library',
-    # Basked app for checkout - 'basket'
+    # Basket app for checkout - 'basket'
     'basket',
+    # Checkout app - 'checkout'
+    'checkout',
 ]
 
 SITE_ID = 1
