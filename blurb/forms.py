@@ -14,7 +14,7 @@ SUBJECTS = (
 
 class ContactForm(forms.Form):
     """
-    A Contact form model for the Contact Page. 
+    A Contact form model for the Contact Page.
 
     Fields:
     name : textinput - the sender's name
@@ -45,6 +45,9 @@ class ContactForm(forms.Form):
         label='Message (max 400 characters): ',
         max_length=400,
         widget=forms.Textarea(
-            attrs={'placeholder': 'Please tell us your life story in 400 characters or less...'}
+            attrs={
+                'placeholder': '''Please tell us your life story in 400
+                characters or less...'''
+            }
         )
     )

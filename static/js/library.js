@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
             determineError(bookId, quantity);
 
             document.getElementById(`book_id_${bookId}`).value = quantity;
-        })
+        });
     }
 
     for (let d of dButtons){
@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
             determineError(bookId, quantity);
 
             document.getElementById(`book_id_${bookId}`).value = quantity;
-        })
+        });
     }
 
     function determineError(bookId, quantity){
@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
             decrement_btn.disabled = true;
         }
     }
-})
+});
 
 function displayError(string, bookId){
     /**

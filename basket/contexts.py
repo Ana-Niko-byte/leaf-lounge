@@ -21,7 +21,7 @@ def bag_content(request):
             book = get_object_or_404(Book, pk=book_id)
             total += book_data * book.price
             indiv_total = book_data * book.price
-            book_count += book_data 
+            book_count += book_data
             books_in_basket.append({
                 'book_id': book_id,
                 'quantity': book_data,
@@ -40,7 +40,7 @@ def bag_content(request):
                     'indiv_total': indiv_total,
                     'book': book,
                     'type': type,
-            })
+                })
 
     if total > FDT:
         delivery = 0
@@ -50,7 +50,6 @@ def bag_content(request):
         free_delivery_delta = FDT - total
 
     books_total = delivery + total
-    
 
     context = {
         'books_in_basket': books_in_basket,
@@ -59,7 +58,7 @@ def bag_content(request):
         'books_total': books_total,
         'delivery': delivery,
         'FDT' : FDT,
-        'free_delivery_threshold': free_delivery_delta  
+        'free_delivery_threshold': free_delivery_delta
     }
 
     return context

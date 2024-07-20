@@ -51,7 +51,7 @@ class Book(models.Model):
     rating : DecimalField - the book rating (out of 10).
     date_added : DateField - the date the book was added to the database.
     price : DecimalField - the book price.
-    image : ImageField - the book cover image. 
+    image : ImageField - the book cover image.
 
     Methods:
     def __str__():
@@ -80,7 +80,7 @@ class Book(models.Model):
         ('D', 'Epub'),
     ]
     title = models.CharField(max_length=100)
-    # Internation Standard Book Number - all books after 2007 are 13 digits long.
+    # Internation Standard Book Number - books after 2007 are 13 digits long.
     isbn = models.CharField(max_length=13)
     # SlugField can be blank as slug is saved following model instance save.
     slug = models.SlugField(
