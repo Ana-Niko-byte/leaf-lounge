@@ -74,6 +74,5 @@ function resetError(bookId, quantity){
      * Resets the styling and innerHTML of the error.
      */
     document.getElementById(`qty_warning_${bookId}`).innerHTML='';
-    console.log(document.getElementById(`qty_warning_${bookId}`).innerHTML);
     document.getElementsByClassName('qty_input')[0].value = quantity;
 }
