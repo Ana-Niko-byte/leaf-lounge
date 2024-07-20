@@ -6,5 +6,20 @@
     </div>
     <div class="toast-body">
       {{ message }}
+      <div class="row">
+        <div class="col">
+          <strong>
+            <p>Total {% if FDT > 0 %} (exc. delivery){% endif %}: ${{ total|floatformat:2 }}</p>
+          </strong>
+          {% if free_delivery_delta > 0 %}
+          <p class="mb-0 p-2 bg-warning shadow-sm text-black text-center">
+              Spend <strong>${{ free_delivery_delta }}</strong> more to get free next day delivery!
+          </p>
+          {% endif %}
+          <a href="{{ add_basket_url }}" class="btn btn-warning">Go To Secure Checkout
+            <i class="fas fa-lock ms-2"></i>
+          </a>
+        </div>
+      </div>
     </div>
   </div>

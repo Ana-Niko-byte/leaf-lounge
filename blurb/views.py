@@ -35,8 +35,8 @@ def contact(request):
                 recipient_list=recipient_list,
                 fail_silently=False,
             )
-            messages.add_message(
-                request, messages.SUCCESS,
+            messages.success(
+                request,
                 '''Your message has been forwarded onto our team! We
                 endeavour to respond within 2 business days :)'''
             )

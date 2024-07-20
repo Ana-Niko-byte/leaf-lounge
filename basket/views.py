@@ -35,7 +35,7 @@ def add_basket(request, book_id):
                 basket[f'{book_id}']['books_by_type'][type] += quantity
                 messages.success(
                     request,
-                    f'"{book.title}" has been added to your basket.'
+                    f'"{book.title}" has been updated in your basket.'
                 )
             else:
                 basket[f'{book_id}']['books_by_type'][type] = quantity
@@ -67,17 +67,16 @@ def amend_basket(request, book_id):
     if type:
         if quantity > 0:
             basket[book_id]['books_by_type'][type] = quantity
+            messages.success(
+                request,
+                f'Quantity has been updated!'
+            )
         else:
             # Form will not submit if quantity is less than 0 or greater
             # than 99 but as a fall back...
             del basket[book_id]['books_by_type'][type]
             if not basket[book_id]['books_by_type']:
                 basket.pop(book_id)
-    else:
-        if quantity > 0:
-            basket[book_id] = quantity
-        else:
-            basket.pop(book_id)
 
     request.session['basket'] = basket
     return redirect(reverse('basket'))
@@ -97,10 +96,17 @@ def delete_basket(request, book_id):
             del basket[book_id]['books_by_type'][type]
             if not basket[book_id]['books_by_type']:
                 basket.pop(book_id)
-        else:
-            basket.pop(book_id)
+        messages.success(
+            request,
+            f'Book has been removed.'
+        )
+        
 
         request.session['bag'] = basket
         return HttpResponse(status=200)
     except Exception as e:
+        messages.error(
+            request,
+            f'An error occurred while removing book from basket: {e}'
+        )
         return HttpResponse(status=500)
