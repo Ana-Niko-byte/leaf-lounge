@@ -6,6 +6,9 @@ from .models import *
 
 
 def library(request):
+    """
+    A view for displaying Book model instances in the library.
+    """
     books = Book.objects.all()
     query = None
 
@@ -35,6 +38,9 @@ def library(request):
 
 
 def book_detail(request, slug):
+    """
+    A view for displaying more information on each book.
+    """
     requested_book = get_object_or_404(Book, slug=slug)
     types = Book.COVERS
 
@@ -45,6 +51,6 @@ def book_detail(request, slug):
 
     return render(
         request,
-        "library/book_detail.html",
+        'library/book_detail.html',
         context
     )

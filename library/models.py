@@ -10,7 +10,7 @@ from ._covers import COVERS
 
 
 class Author(models.Model):
-    '''
+    """
     A class representing an author model.
 
     Attributes:
@@ -23,8 +23,8 @@ class Author(models.Model):
 
     Methods:
     def __str__():
-        returns (author's first name) (author's last name)
-    '''
+        Returns (author's first name) (author's last name).
+    """
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=20)
     d_o_b = models.DateField(default='unknown', verbose_name='BirthDate')
@@ -32,11 +32,14 @@ class Author(models.Model):
     bio = models.TextField(max_length=500)
 
     def __str__(self):
+        """
+        Returns : (str) : '(author's first name) (author's last name)'.
+        """
         return f'{self.first_name} {self.last_name}'
 
 
 class Book(models.Model):
-    '''
+    """
     A class representing a book model.
 
     Attributes:
@@ -49,13 +52,14 @@ class Book(models.Model):
     year_published : IntegerField - the year the book was published.
     publisher : CharField - the book publisher.
     rating : DecimalField - the book rating (out of 10).
+    type : CharField - the book cover type.
     date_added : DateField - the date the book was added to the database.
     price : DecimalField - the book price.
     image : ImageField - the book cover image.
 
     Methods:
     def __str__():
-        returns "(book title)" by (book author)
+        Returns : (str) : '"(book title)" by (book author)'.
 
     def save():
         try:
@@ -69,11 +73,11 @@ class Book(models.Model):
             instance.
 
     def get_absolute_url():
-        Returns the absolute url with the book 'slug' paramter (detail page).
+        Returns the absolute url with the book 'slug' parameter (detail page).
 
     Meta:
         orders by earliest date added.
-    '''
+    """
     COVERS = [
         ('SC', 'Softcover'),
         ('HB', 'Hardback'),
@@ -111,18 +115,28 @@ class Book(models.Model):
     )
     type = models.CharField(max_length=9, choices=COVERS, default='SC')
     date_added = models.DateField(auto_now_add=True)
-    # Add book type - softback/hardback/kindle after Stripe Payment completion.
     price = models.DecimalField(max_digits=5, decimal_places=2)
     # placeholder for Cloudinary.
     image = models.ImageField(null=True, blank=True)
 
     class Meta:
+        """
+        Orders books by last added.
+        """
         ordering = ['-date_added']
 
     def __str__(self):
+        """
+        Returns : (str) : '"(book title)" by (author)'.
+        """
         return f'"{self.title}" by {self.author}'
 
     def save(self, *args, **kwargs):
+        """
+        Saves a custom url to the (self.slug) parameter with (book title)-(author last name).
+
+        Note : Done so in case books from different authors have the same title, thus omitting probability of url clashes.
+        """
         try:
             # Slug is saved automatically.
             self.slug = slugify(self.title + '-' + self.author.last_name)
@@ -133,4 +147,7 @@ class Book(models.Model):
             super(Book, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
+        """
+        Returns : the book detail page with (self.slug) as url argument.
+        """
         return reverse('book-summary', args=[self.slug])

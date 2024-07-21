@@ -6,9 +6,9 @@ from library.models import *
 
 
 def basket(request):
-    '''
+    """
     The main basket view.
-    '''
+    """
     return render(
         request,
         'basket/basket.html'
@@ -16,9 +16,9 @@ def basket(request):
 
 
 def add_basket(request, book_id):
-    '''
+    """
     A view for adding items to the basket.
-    '''
+    """
     book = Book.objects.get(pk=book_id)
     quantity = int(request.POST.get('quantity'))
     redirect_url = request.POST.get('redirect_url')
@@ -55,9 +55,9 @@ def add_basket(request, book_id):
 
 
 def amend_basket(request, book_id):
-    '''
+    """
     A view for amending items in the basket.
-    '''
+    """
     quantity = int(request.POST.get('quantity'))
     type = None
     if 'book_type' in request.POST:
@@ -83,9 +83,9 @@ def amend_basket(request, book_id):
 
 
 def delete_basket(request, book_id):
-    '''
+    """
     A view for deleting items from the basket.
-    '''
+    """
     try:
         type = None
         if 'book_type' in request.POST:

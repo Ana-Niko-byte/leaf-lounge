@@ -16,9 +16,9 @@ def blurb(request):
 
 
 def contact(request):
-    '''
+    """
     A view for handling post requests from the Contact page.
-    '''
+    """
     if request.method == 'POST':
         contactForm = ContactForm(data=request.POST)
         if contactForm.is_valid():
