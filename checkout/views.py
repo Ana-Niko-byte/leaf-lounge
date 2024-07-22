@@ -1,7 +1,11 @@
 from django.shortcuts import render, redirect, reverse
 from django.contrib import messages
+from django.conf import settings
 
 from .forms import *
+from basket.contexts import bag_content
+
+import stripe
 
 
 def checkout(request):
@@ -13,6 +17,9 @@ def checkout(request):
         )
         return redirect(reverse('library'))
     
+    current_basket = bag_content(request)
+    basket_total = current_basket['books_total']
+    stripe_total = round(basket_total * 100)
     order_form = OrderForm()
 
     return render(
