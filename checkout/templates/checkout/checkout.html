@@ -12,11 +12,10 @@
     <div id="basket-banner" class="row text-center">
         <div class="col py-2">
             <h5 class="my-1 text-uppercase"><strong>Checkout Form</strong></h5>
-            <p>Please fill out the form below to complete your order.</p>
         </div>
     </div>
-    <div class="row mt-5 d-flex justify-content-center align-items-center">
-        <div class="col-12 col-lg-6 order-lg-first">
+    <div class="row mt-5 d-flex justify-content-around align-items-start">
+        <div class="col-12 col-lg-5 order-lg-last">
             <p>Order Summary ( x )</p>
             <div class="row">
                 <div class="col-7">
@@ -28,10 +27,12 @@
                 {% for book in books_in_basket %}
                 <div class="row">
                     <div class="col-2">
-                        <a href="{{ book.get_absolute_url }}"></a>
+                        <a href="{{ book.get_absolute_url }}">
+                            <img src="../../../static/images/1984_cover.jpg" style="width: 50px;" alt="">
+                        </a>
                     </div>
                     <div class="col-7">
-                        <p>{{ book.title }}</p>
+                        <p>{{ book.book.title }}</p>
                         <p>{{ book.type }}</p>
                         <p>{{ book.quantity }}</p>
                     </div>
@@ -57,16 +58,17 @@
             </div>
         </div>
         <div class="col-12 col-lg-6 col-md-12 col-sm-12">
+            <p class="my-4">Please fill out the form below to complete your order.</p>
             <form action="{{ checkout_url }}" id="book-payment-form" method="POST">
                 {% csrf_token %}
                 <fieldset class="px-3 mb-5">
-                    <legend class="fieldset-details small text-black">Details</legend>
+                    <legend class="fieldset-details fieldset-label small text-black">Details</legend>
                     {{ orderForm.full_name | as_crispy_field }}
                     {{ orderForm.email | as_crispy_field }}
                     {{ orderForm.phone_number | as_crispy_field }}
                 </fieldset>
                 <fieldset class="px-3 mb-5">
-                    <legend class="fieldset-delivery small text-black">Delivery</legend>
+                    <legend class="fieldset-delivery fieldset-label small text-black">Delivery</legend>
                     {{ orderForm.country | as_crispy_field }}
                     {{ orderForm.postcode | as_crispy_field }}
                     {{ orderForm.town_city | as_crispy_field }}
@@ -109,4 +111,11 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block extra_js %}
+    {{ block.super }}
+    {{ stripe_public_key|json_script:"id_stripe_public_key" }}
+    {{ client_secret|json_script:"id_client_secret_key" }}
+    <script src="{% static 'checkout/js/stripe_elements.js' %}"></script>
 {% endblock %}
