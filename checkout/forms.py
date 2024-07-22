@@ -16,6 +16,18 @@ class OrderForm(forms.ModelForm):
             'country',
             'county',
         }
+
+    field_order = [
+        'full_name',
+        'email',
+        'phone_number',
+        'street_1',
+        'street_2',
+        'town_city',
+        'postcode',
+        'country',
+        'county',
+    ]
     
     def __init__(self, *args, **kwargs):
         """
@@ -23,7 +35,7 @@ class OrderForm(forms.ModelForm):
         Remove labels from fields.
         Set first field with autofocus.
         """
-        super().__init__(*args, **kwarg)
+        super().__init__(*args, **kwargs)
         # Define placeholders to go in fields.
         placeholders = {
             'full_name' : 'Evie Woods',
@@ -41,7 +53,7 @@ class OrderForm(forms.ModelForm):
         self.fields['full_name'].widget.attrs['autofocus'] = True
         for field in self.fields:
             if self.fields[field].required:
-                placeholder = f'{placeholder} *'
+                placeholder = f'{placeholders[field]} *'
             else:
                 placeholder = placeholders[field]
             # Set defined placeholders to HTML 'placeholder' attribute.

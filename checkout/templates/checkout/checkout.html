@@ -1,0 +1,112 @@
+{% extends '_second_nav.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load crispy_forms_field %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div id="basket-banner" class="row text-center">
+        <div class="col py-2">
+            <h5 class="my-1 text-uppercase"><strong>Checkout Form</strong></h5>
+            <p>Please fill out the form below to complete your order.</p>
+        </div>
+    </div>
+    <div class="row mt-5 d-flex justify-content-center align-items-center">
+        <div class="col-12 col-lg-6 order-lg-first">
+            <p>Order Summary ( x )</p>
+            <div class="row">
+                <div class="col-7">
+                    <p>Item</p>
+                </div>
+                <div class="col-3">
+                    <p>Subtotal</p>
+                </div>
+                {% for book in books_in_basket %}
+                <div class="row">
+                    <div class="col-2">
+                        <a href="{{ book.get_absolute_url }}"></a>
+                    </div>
+                    <div class="col-7">
+                        <p>{{ book.title }}</p>
+                        <p>{{ book.type }}</p>
+                        <p>{{ book.quantity }}</p>
+                    </div>
+                    <div class="col-3">
+                        <p>€{{ book.indiv_total }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+                <div class="my-0">
+                    <div class="row">
+                        <div class="col-7">
+                            <p class="my-0">Order Total:</p>
+                            <p class="my-0">Delivery:</p>
+                            <p class="my-0">Grand Total:</p>
+                        </div>
+                        <div class="col-3">
+                            <p class="my-0">€{{ total|floatformat:2 }}</p>
+                            <p class="my-0">€{{ delivery|floatformat:2 }}</p>
+                            <p class="my-0">€{{ books_total|floatformat:2 }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6 col-md-12 col-sm-12">
+            <form action="{{ checkout_url }}" id="book-payment-form" method="POST">
+                {% csrf_token %}
+                <fieldset class="px-3 mb-5">
+                    <legend class="fieldset-details small text-black">Details</legend>
+                    {{ orderForm.full_name | as_crispy_field }}
+                    {{ orderForm.email | as_crispy_field }}
+                    {{ orderForm.phone_number | as_crispy_field }}
+                </fieldset>
+                <fieldset class="px-3 mb-5">
+                    <legend class="fieldset-delivery small text-black">Delivery</legend>
+                    {{ orderForm.country | as_crispy_field }}
+                    {{ orderForm.postcode | as_crispy_field }}
+                    {{ orderForm.town_city | as_crispy_field }}
+                    {{ orderForm.street_1 | as_crispy_field }}
+                    {{ orderForm.street_2 | as_crispy_field }}
+                    {{ orderForm.county | as_crispy_field }}
+                    <div class="form-check">
+                        {% if user.is_authenticated %}
+                            <label class="form-check-label" for="save-info">Save to My Profile for faster checkouts.</label>
+                            <input type="checkbox" id="save-info" class="form-check-input" name="save-info" checked>
+                        {% else %}
+                        <label class="form-check-label" for="save-info">Save to My Profile for faster checkouts
+                            <a href="{{ signup_url }}">Create an account</a>
+                            <p>or</p>
+                            <a href="{{ signin_url }}">login</a> to save this information for faster checkouts.
+                        </label>
+
+                        {% endif %}
+                    </div>
+                </fieldset>
+                <fieldset class="px-3">
+                    <legend class="fieldset-label small text-black px-2">Payment</legend>
+                    <!-- Stripe Card Element. -->
+                    <div class="mb-3" id="card-element"></div>
+                    <!-- /Stripe Card Element. -->
+
+                    <!-- Form Errors -->
+                    <div class="mb-3 text-danger" id="card-errors" role="alert"></div>
+                    <!-- /Form Errors -->
+                </fieldset>
+                <div class="submit-button">
+                    <a href="{{ library_url }}" class="btn btn-warning">
+                        <i class="fa-solid fa-sm fa-chevron-left me-2"></i>Return to Library
+                    </a>
+                    <a href="{% url 'basket' %}" class="btn btn-success">View Basket</a>
+                    <button id="submit-button" class="btn btn-warning">Complete Order</button>
+                    <p>You're about to be charged €{{ total|floatformat:2 }}</p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
