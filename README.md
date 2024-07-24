@@ -2,13 +2,15 @@
 The application is available for viewing [here](https://moment-canvas-68ed5e5eed98.herokuapp.com/).
 
 Also available for viewing here:
-[Facebook Page]().
+[Facebook Page](https://www.facebook.com/profile.php?id=61563390085042).
 
 ![Leaf Lounge Responsive Image]()
 ## Introduction
-Leaf Lounge is a full-stack Django-framework networking platform, offering book-lovers the unique opportunity to network, share impressions, reviews, and critiques of books. Visitors wishing to join one of Leaf Lounge's vast communities need only register for a Leaf Lounge account, and they immediately gain access to all Leaf Lounge has to offer.
+Leaf Lounge is built with `Django` - a high-level Python framework that encourages rapid development and clean code practices. As a book & networking platform, Leaf Lounge offers book lovers the unique opportunity to network and share impressions, reviews, and critiques of books. Visitors wishing to join one of Leaf Lounge's vast communities need only purchase a book and register a personal Leaf Lounge account, and they immediately gain access to all Leaf Lounge has to offer.
 
 ## Table of Contents
+- [Technology Stack](#technology-stack)
+- [Feature Sneak Peek](#feature-sneak-peek)
 - [Structure](#structure)
 - [Wireframes](#wireframes)
 - [User Stories](#user-stories)
@@ -25,7 +27,6 @@ Leaf Lounge is a full-stack Django-framework networking platform, offering book-
 - [Models](#models)
 - [Views & Templates](#views--templates)
 - [Aesthetics](#aesthetics)
-- [Technologies](#technologies)
 - [Testing & Debugging](#testing--debugging)
   - [Manual Testing](#manual-testing)
   - [Automated Testing](#automated-testing)
@@ -49,47 +50,135 @@ Leaf Lounge is a full-stack Django-framework networking platform, offering book-
 - [Credits](#credits)
 - [Acknowledgements](#acknowledgements)
 
-## Structure
-- Navigation Bar
-  - Logo
-  - Links
-  - Account Management Button
+## Technology Stack
+#### Backend
+- `Django Framework` - fullstack technology.
+- `Python` - Used for Django manipulation & interaction.
 
-- Home Page*
+#### Database
+- `PostgreSQL`
+
+#### Frontend
+- `HTML5/ Django Syntax` - Used for structuring and content.
+- `CSS3` - Used for adding styles to the content for legibility and aesthetic appeal.
+- `Javascript` - For adding basic interactivity and dynamically setting URLs.
+
+#### Additional Technologies
+- `FontAwesome/Bootstrap` icons - used for icons.
+- `Chrome Developer Tools` - used for debugging the website during production.
+- `Lighthouse` - For performance, accessibility, best practices and SEO checking.
+- `GitHub` - For code storage, version control and deployment.
+- `Git` - For commiting through the terminal and pushing to GitHub for storage.
+- `Gitpod` - The IDE I developed the project in.
+- `VSC` - For quick testing of allauth functionality due to Gitpod's limitations.
+- `Balsamiq` - For project wireframe design.
+- `Color Contrast Accessibility Validator` - for checking colour contrast ratios.
+- `W3C Markup Validation Service` - to validate my HTML for potential errors.
+- `W3C CSS Validation Service` - to validate my CSS code for potential errors.
+- `JSHint` - for checking and validating my JS code. 
+- `Pep8` - for Python code validation and best practices formatting.
+
+## Feature Sneak Peek
+-
+-
+-
+-
+-
+-
+-
+-
+-
+
+## Structure
+- Navigation
+  - Main Navigation Bar
+    - Logo
+    - Links
+      - `Home`
+      - `Contact`
+      - `Library`
+      - `My Communities` (if user is authenticated)
+      - Basket
+      - Authentication Links
+        - `Sign Up` Button (if user is not authenthicated)
+        - `Sign Out` Button (if user is authenticated)
+  - Secondary Navigation Bar (visible only on some pages)
+    - Breadcrumb Trail
+    - Links
+      - `My Books`
+      - `My Profile`
+      - `Become an Author`
+    - Search Bar
+
+- Home Page
+  - Jumbotron
+    - Welcoming Header
+    - `Sign In` Button
+  
+___TBD___
 
 - Contact Page
+  - Contact POIs (visible on large screens only)
   - Contact Form
     - Validation
-    - To-Email Queries
+    - Messages-to-email-address
     - Success Message
 
-_If user is not signed-in:_
-- Create Account (Dropdown button menu)
-  - Create Seller
-    - Seller Form
-    - Success Message
-    - Error Message
-    - Admin Approval
-  - Sign Up/ Sign In (allauth)
-    - Sign Up/ Sign In Form
-    - Mandatory Email Verification
-    - Confirmation Message
+- Library
+  - Secondary Navigation Bar
+  - All Books
+    - `Read More` Button
 
-_If user is signed in:_
-- Manage Account (Dropdown button menu)
-  - Create Seller (same functionality)
-    - Charity Form
-    - Success Message
-    - Error Message
-    - Admin Approval
-  - My Communities*
-  - My Payment*
-  - Sign Out (allauth)
-    - Sign Out Form
-    - Confirmation Message
+- Book Detail Pages
+  - Book View
+  - `About the Author` Text
+  - `Book Blurb`
+  - Book Type Selection Field
+    - Softcover
+    - Hardcover
+    - Epub
+  - Quantity Input Field
+    - Buttons
+    - Validation
+  - Buttons
+    - `Return to Library`
+    - `Add to Basket`
+    - `Read Reviews`
+
+- Basket
+  - Content Table
+    - Book
+    - Price
+    - Quantity
+      - `Update Quantity` Button
+        - Input Field
+          - Delete Button
+          - Increment Button
+        - `Cancel` Button
+        - `Save Changes` Button
+    - Subtotal
+  - Total Summary + Breakdown
+  - `Keep Shopping` Button
+  - `Secure Checkout` Button
+
+- Checkout
+  - Checkout Form
+    - Stripe Card Input
+  - Order Summary
+
+- Reviews
+- Community
 
 - Footer
   - Links
+    - `Home`
+    - `Contact`
+    - `Library`
+    - `My Communities` (if user is authenticated)
+    - Basket
+    - Authentication Links
+      - `Sign Up` Button (if user is not authenthicated)
+      - `Sign Out` Button (if user is authenticated)
   - Newsletter
   - Copyright
     - Dynamic Year
@@ -119,6 +208,7 @@ _If user is signed in:_
 | 30 | As a user, I would like the ability to search for a book so that I can quickly find the one I am looking for. | `should-have` | ----- |
 
 ## Strategy
+This application aims to create an engaging and interactive environment for readers and book enthusiasts to connect, network and, subsequently, broaden the outreach of new authors within the various book communities. Several intuitive features in the navigation bar at the top of the page and considerable consideration given to the overall design and feel of the website make the user's experience quick, efficient, and satisfying.
 
 ## Business/Social Goals
 - As a first time visitor, I would like to be taken directly to the 'Leaf Lounge' home page so that I have quick access to all relevant information to get started.
@@ -149,12 +239,14 @@ _If user is signed in:_
 
 ## Target Audience
 - Readers
+- Authors
+- Publishers
+- Book Critics
 - Book Enthusiasts
 - 15+ years of age (payment)
-- Publishers
 
 ## Key Information Deliverables
-For the purposes of navigation, the key information deliverables for this project have been split into three sections, each focusing on a different vital aspect of the project.
+For the purposes of document navigation, the key information deliverables for this project have been split into three sections, each focusing on a different vital aspect of the project.
 
 #### Client-Side
 - _Home page_ with all relevant information about the platform.
@@ -170,7 +262,7 @@ For the purposes of navigation, the key information deliverables for this projec
 - Testing files for all app views, urls, and models.
 
 #### Marketing
-- [Facebook Page]()
+- [Facebook Page](https://www.facebook.com/profile.php?id=61563390085042)
 - Clear and intuative branding
 - Legibility and responsiveness of all elements on all screen sizing
 
@@ -442,25 +534,6 @@ Fields: `order`, `book`, `type`, `quantity`, `book_order_cost`
 
 ## Views & Templates
 ## Aesthetics
-## Technologies
-1. Django Framework - fullstack technology
-2. HTML5/ Django Syntax - Used for structuring and content.
-3. CSS3 - Used for adding styles to the content for legibility and aesthetic appeal.
-4. Javascript - For adding basic interactivity and dynamically setting URLs.
-5. Python - Used for Django manipulation & interaction.
-6. FontAwesome/Bootstrap icons - used for icons.
-7. Chrome Developer Tools - used for debugging the website during production.
-8. Lighthouse - For performance, accessibility, best practices and SEO checking.
-9. GitHub - For code storage, version control and deployment.
-10. Git - For commiting through the terminal and pushing to GitHub for storage.
-11. Gitpod - The IDE I developed the project in.
-12. VSC - For quick testing of allauth functionality due to Gitpod's limitations.
-12. Balsamiq - For project wireframe design.
-13. Color Contrast Accessibility Validator - for checking colour contrast ratios.
-14. W3C Markup Validation Service - to validate my HTML for potential errors.
-15. W3C CSS Validation Service - to validate my CSS code for potential errors.
-16. JSHint - for checking and validating my JS code. 
-17. Pep8 - for Python code validation and best practices formatting.
 
 ## Testing & Debugging
 This section outlines procedures for manual testing. For automated testing, please see all files `test*.py`.
@@ -485,12 +558,13 @@ As it happened, the issue was down to a simple typo in the following line in `bl
 ### HTML Validation
 ### CSS Validation
 ### JSHint Validation
+All js files are regularly validated during development using [JSHint](https://jshint.com/).
 
 ### Pep8 Validation
-All python files are regularly validated during development.
+All python files are regularly validated during development using the [Code Institute PEP8 Linter](https://pep8ci.herokuapp.com/).
 
 ## Deployment
-The application is deployed on Heroku through Git Hub and is available for viewing in the link at the top of this README.md document. To deploy a Heroku project, please refer to the guide below.
+The application is deployed on Heroku via a GitHub  connection, and is available for viewing in the link at the top of this README.md document. To deploy a Heroku project, please refer to the guide below.
 
 ### Foreword
 There are some general requirements when it comes to setting up your application and its files: 
@@ -498,10 +572,7 @@ There are some general requirements when it comes to setting up your application
 - You must strictly adhere to the correct folder structure expected by Django's settings.
 - In Django's settings.py file, setting Debug = True in development will display a detailed errors page if the application comes across an error hindering template rendering. It will also allow the collection of static files (stylesheets, images, and javascript files automatically). Setting Debug = False will display standard error pages under the same conditions and will not update any changes to static files.
 
-In Heroku, this is configured under `Config Vars`, as `COLLECT_STATIC`, with the value of either:
-  - `0` for blocking automatic collection
-  - `1` for enabling automatic collection.
-
+In Heroku, this is configured under `Config Vars` in the `Settings` tab.
 _Note: Do not commit to GitHub with Debug = True. Always set Debug = False before committing to avoid exposing personal details._
 
 You will need two-factor verification set up to enable log in.
@@ -509,11 +580,17 @@ You will need two-factor verification set up to enable log in.
 ### Step 1: Create an App on Heroku
 Log onto your Heroku dashboard using your username and password, and confirm the access code in the two-factor verification app of your choosing.
 
+Login to Heroku:
+![Login to Heroku](static/images/00-login-heroku.png)
+
+Verify your Identity:
+![Login to Heroku](static/images/00-verify-heroku.png)
+
 Create a new Heroku app:
-![New Heroku App]()
+![New Heroku App](static/images/00-create-new-app-heroku.png)
 
 You will be asked to pick a name and region for your app before clicking `Create app` on the next page.
-![New App Options]()
+![New App Options](static/images/00-name-app-heroku.png)
 
 ### Step 2: Connect to GitHub
 Once you've created your app, go to the `Deploy` tab at the top.
@@ -522,7 +599,7 @@ Select the middle box with GitHub's logo to connect your Heroku app to a GitHub 
 
 If prompted, authorize Heroku to access your GitHub account.
 At the bottom, enter the name of the repository you wish to deploy to, and click Connect.
-![Connect GitHub to Heroku]()
+![Connect GitHub to Heroku](static/images/00-configure-github-heroku.png)
 
 ### Step 3: Automatic Deploy (Optional)
 Under `Automatic Deploys`, choose a branch from your GitHub repository that Heroku will watch for changes.
@@ -530,17 +607,20 @@ Under `Automatic Deploys`, choose a branch from your GitHub repository that Hero
 Enable automatic deploys by clicking `Enable Automatic Deploys`. With this, every push to the selected branch will automatically deploy a new version of your app.
 
 ### Step 4: Settings
-When you create the app, you will need to add the `heroku/python` buildpack in the Settings tab. 
+When you create the app, you will need to add the `heroku/python` buildpack in the `Settings` tab.
 
-### Step 5: Deploy Your Masterpiece
+Add Heroku/Python Buildpack:
+![Add Heroku/Python Buildpack](static/images/00-heroku-python-buildpack-heroku.png)
+
+### Step 5: Deploy Your App
 If you've enabled automatic deploys, any push to the selected branch will automatically deploy your application.
 
 If you prefer to deploy manually or want to deploy a branch without enabling automatic deploys, go to `Manual deploy`, select the branch, and click `Deploy Branch`.
 
-### Step 6: Where is my Application?
-Your application will have a similar look to the following Heroku URL configuration: (https://*.herokuapp.com) and can be found after clicking the `Open App` button on your dashboard in the top right corner.
+### Step 6: View The Application
+Your application will have a similar look to the following Heroku URL configuration: `https://*.herokuapp.com` and can be found after clicking the `Open App` button on your dashboard in the top right corner.
 
-![Open App]()
+![Open App](static/images/00-open-app-heroku.png)
 
 ## Forking a GitHub Repository
 To make changes to your repository without changing its original state, you can make a copy of it via `fork`. This ensures the original repository remains unchanged. 
