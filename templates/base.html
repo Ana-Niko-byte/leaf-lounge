@@ -44,38 +44,40 @@ https://github.com/Ana-Niko-byte/moment -->
     </head>
 
     <body class="d-flex flex-column">
-        <!-- Navigation -->
         <header class="container-fluid p-0">
+            <!-- Main Navigation Bar -->
             <nav class="navbar navbar-expand-lg flex justify-content-between align-items-center py-3">
                 <a href="{{ home_url }}"><img src="{% static 'images/logo.png' %}" alt="leaf lounge logo" style="width: 250px;"></a>
 
                 <div class="navigation-links">
-                    <button class="navbar-toggler me-3 me-md-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="navbar-toggler me-3 me-md-0" type="button" data-bs-toggle="collapse" data-bs-target="#leafLoungeLinks" aria-controls="leafLoungeLinks" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-    
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav">
-                            <li class="nav-item px-2 mx-1">
-                                <a href="{{ home_url }}"><i class="fa-solid fa-sm fa-house-chimney me-2"></i>Home</a>
-                            </li>
-                            <li class="nav-item px-2 mx-1">
-                                <a href="{{ contact_url }}"><i class="fa-solid fa-sm fa-paper-plane me-2"></i>Contact</a>
-                            </li>
-                            <li class="nav-item px-2 mx-1">
-                                <a href="{{ library_url }}"><i class="fa-solid fa-sm fa-book me-2"></i>Library</a>
-                            </li>
-                            {% if request.user.is_authenticated %}
-                            <li class="nav-item px-2 mx-1">
-                                <a href="">
-                                    <i class="fa-solid fa-book-open me-2"></i>My Communities</a>
-                                </a>
-                            </li>
-                            {% endif %}
-                        </ul>
-                    </div>
+
+                    <!-- Original Menu for Large Screens -->
+                    <ul class="navbar-nav d-none d-lg-flex">
+                        <li class="nav-item px-2 mx-1">
+                            <a href="{{ home_url }}"><i class="fa-solid fa-sm fa-house-chimney me-2"></i>Home</a>
+                        </li>
+                        <li class="nav-item px-2 mx-1">
+                            <a href="{{ contact_url }}"><i class="fa-solid fa-sm fa-paper-plane me-2"></i>Contact</a>
+                        </li>
+                        <li class="nav-item px-2 mx-1">
+                            <a href="{{ library_url }}"><i class="fa-solid fa-sm fa-book me-2"></i>Library</a>
+                        </li>
+                        {% if request.user.is_authenticated %}
+                        <li class="nav-item px-2 mx-1">
+                            <a href="">
+                                <i class="fa-solid fa-book-open me-2"></i>My Communities</a>
+                            </a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                    <!-- /Original Menu for Large Screens -->
                 </div>
-                <ul class="navbar-nav me-3 d-flex align-items-center">
+
+                <!-- Basket + Sign Up -->
+                <ul class="navbar-nav me-3 d-none d-lg-flex flex-row align-items-center">
                     <li class="nav-item px-2 mx-1">
                         <a href="{{ basket_url }}">
                             <i class="fa-solid fa-basket-shopping {% if books_total %} basket-highlight {% endif %}"></i>
@@ -88,15 +90,11 @@ https://github.com/Ana-Niko-byte/moment -->
                             </span>
                         </a>
                     </li>
-                    <li class="nav-item px-2 mx-1 d-none d-lg-block">
+                    <li class="nav-item px-2 mx-1">
                         {% if not request.user.is_authenticated %}
                         <a href="{{ signup_url }}" class="btn btn-sm btn-warning">
                             <i class="fa-solid fa-user-plus me-2"></i>Sign Up
                         </a>
-                        <!-- Consider removing for optimum layout -->
-                        <!-- <a href="{{ signin_url }}" class="btn btn-sm btn-warning">
-                            <i class="fa-solid fa-arrow-right-to-bracket me-2"></i>Sign In
-                        </a> -->
                         {% else %}
                         <a href="{{ signout_url }}" class="btn btn-warning">
                             <i class="fa-solid fa-arrow-right-from-bracket me-2"></i>Sign Out
@@ -104,7 +102,63 @@ https://github.com/Ana-Niko-byte/moment -->
                         {% endif %}
                     </li>
                 </ul>
+                <!-- /Basket + Sign Up -->
             </nav>
+            <!-- /Main Navigation Bar -->
+
+            <!-- Mobile-Only Second Navigation Bar -->
+            <div class="container-fluid">
+                <!-- Original Menu for Medium/Small Screens -->
+                <div class="collapse navbar-collapse" id="leafLoungeLinks">
+                    <ul class="navbar-nav d-flex d-lg-none flex-column">
+                        <li class="nav-item py-3 ps-3">
+                            <a href="{{ home_url }}"><i class="fa-solid fa-sm fa-house-chimney me-2"></i>Home</a>
+                        </li>
+                        <li class="nav-item py-3 ps-3">
+                            <a href="{{ contact_url }}"><i class="fa-solid fa-sm fa-paper-plane me-2"></i>Contact</a>
+                        </li>
+                        <li class="nav-item py-3 ps-3">
+                            <a href="{{ library_url }}"><i class="fa-solid fa-sm fa-book me-2"></i>Library</a>
+                        </li>
+                        {% if request.user.is_authenticated %}
+                        <li class="nav-item py-3 ps-3">
+                            <a href=""><i class="fa-solid fa-book-open me-2"></i>My Communities</a>
+                        </li>
+                        <li class="nav-item py-3 ps-3">
+                            <a href="{{ signout_url }}" class="btn btn-warning">
+                                <i class="fa-solid fa-arrow-right-from-bracket me-2"></i>Sign Out
+                            </a>
+                        </li>
+                        {% else %}
+                        <li class="nav-item py-3 ps-3">
+                            <a href="{{ signup_url }}" class="btn btn-sm btn-warning">
+                                <i class="fa-solid fa-user-plus me-2"></i>Sign Up
+                            </a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+                <!-- Original Menu for Medium/Small Screens -->
+
+                <!-- Basket + Sign Up -->
+                <ul class="navbar-nav">
+                    <li class="nav-item px-2 mx-1 mb-3">
+                        <a href="{{ basket_url }}">
+                            <i class="fa-solid fa-basket-shopping {% if books_total %} basket-highlight {% endif %}"></i>
+                            <span class="{% if books_total %} basket-highlight {% endif %} text-sm">
+                                {% if total %}
+                                    €{{ total|floatformat:2 }}
+                                {% else %}
+                                    €0.00
+                                {% endif %}
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+                <!-- /Basket + Sign Up -->
+            </div>
+            <!-- /Mobile-Only Second Navigation Bar -->
+
             <!-- Library-specific secondary navigation -->
             {% block secondary_nav %}{% endblock %}
             <!-- /Library-specific secondary navigation -->
@@ -129,7 +183,6 @@ https://github.com/Ana-Niko-byte/moment -->
             {% endif %}
             <!-- /Django Messages -->
         </header>
-        <!-- /Navigation -->
 
         <!-- Main Content -->
         <main>

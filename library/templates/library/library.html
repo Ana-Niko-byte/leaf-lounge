@@ -3,27 +3,56 @@
 
 {% block content %}
 <div class="container">
-    <div class="row">
-        {% if 'q' in request.GET %}
-        <div class="button-container text-center my-5">
+    {% if 'q' in request.GET %}
+        <div class="button-container text-center my-3">
             <a href="{{ library_url }}" class="btn btn-lg btn-warning">Show All Books</a>
         </div>
-        {% endif %}
-        {% for book in books %}
-            <div class="col-lg-3 col-md-4 col-sm-12 mb-5">
-                <div class="book p-3 d-flex flex-column align-items-center justify-content-start" style="max-height: 550px;">
-                    <!-- <div class="picture" style="width: 250px; height: 300px; background-color: lightgrey;"></div> -->
-                    <img src="../../../static/images/1984_cover.jpg" alt="" style="width: 220px;">
-                    <div class="text-center mt-3 mb-1">
-                        <p class="h5">{{ book.title }}</p>
-                        <p class="text-secondary"><em>by {{ book.author }} | {{ book.year_published }}</em></p>
-                    </div>
-                    <p class="text-center text-sm">"{{ book.blurb | safe }}"</p>
-                    <a href="{{ book.get_absolute_url }}" class="btn btn-warning mb-5">Read More</a>
+    {% endif %}
+    <div class="row">
+        <!-- Sort By -->
+        <div class="col-2 col-lg-first">
+            <h5 class="mb-3">Sort by:</h5>
+            <div class="sort-container d-flex flex-column">
+                <button class="btn btn-success mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#authors" aria-expanded="false" aria-controls="authors">
+                <span class="small">Authors<i class="fa-solid fa-chevron-down fa-sm ms-2"></i></span>
+            </button>
+                <div class="collapse multi-collapse mb-3" id="authors">
+                    {% for author in authors %}
+                        <input type="checkbox" id="{{ author }}-author" name="{{ author }}" value="{{ author }}">
+                        <label for="{{ author }}-author"> {{ author }}</label><br>
+                    {% endfor %}
+                </div>
+                <button class="btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#genres" aria-expanded="false" aria-controls="genres">
+                <span class="small">Genres<i class="fa-solid fa-chevron-down fa-sm ms-2"></i></span>
+            </button>
+                <div class="collapse multi-collapse my-3" id="genres">
+                    {% for genre in genres %}
+                        <input type="checkbox" id="{{ genre }}-genre" name="{{ genre }}" value="{{ genre }}">
+                        <label for="{{ genre }}-genre"> {{ genre }}</label><br>
+                    {% endfor %}
                 </div>
             </div>
-        {% endfor %}
+        </div>
+        <!-- /Sort By -->
+        <!-- Books -->
+        <div class="col-10">
+            <div class="row">
+                {% for book in books %}
+                <div class="col-lg-3 col-md-4 col-sm-12 mb-5">
+                    <div class="book p-3 d-flex flex-column align-items-center justify-content-start" style="max-height: 550px;">
+                        <img src="../../../static/images/1984_cover.jpg" alt="" style="width: 220px;">
+                        <div class="text-center mt-3 mb-1">
+                            <p class="h5">{{ book.title }}</p>
+                            <p class="text-secondary"><em>by {{ book.author }} | {{ book.year_published }}</em></p>
+                        </div>
+                        <p class="text-center text-sm">"{{ book.blurb | safe }}"</p>
+                        <a href="{{ book.get_absolute_url }}" class="btn btn-warning mb-5">Read More</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <!-- /Books -->
     </div>
 </div>
-<!-- Would be nice to add a column to the left of the template with author names (alphabetical), so user can select and filter books shown -->
 {% endblock %}

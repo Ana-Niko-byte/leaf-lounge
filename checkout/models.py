@@ -22,7 +22,7 @@ class Order(models.Model):
     street_1 : CharField - the first address line on the order.
     street_2 : CharField - the second address line on the order.
     county : CharField - the county to which the order is to be posted.
-    date : DateTimeField - the date the order was placed.
+    date : DateTimeField - the time and date the order was placed.
     delivery_cost : DecimalField - the delivery cost associated with the order.
     order_total : DecimalField - the total associated with the price/book and quantity.
     grand_total : DecimalField - order_total + delivery_cost.

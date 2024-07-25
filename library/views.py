@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.db.models import Q
 
 from .models import *
+from ._genres import GENRES
 
 
 def library(request):
@@ -10,6 +11,10 @@ def library(request):
     A view for displaying Book model instances in the library.
     """
     books = Book.objects.all()
+    authors = Author.objects.all()
+    books_adventure = books.filter(genre='Adventure')
+    genres = [genre[1] for genre in GENRES]
+    print(authors)
     query = None
 
     if request.GET:
@@ -28,6 +33,8 @@ def library(request):
 
     context = {
         'books': books,
+        'genres': genres,
+        'authors': authors,
         'search_term' : query,
     }
     return render(

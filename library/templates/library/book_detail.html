@@ -4,73 +4,124 @@
 {% block content %}
 <div class="container">
     <div class="row d-flex flex-row align-items-start justify-content-between py-5">
-        <div class="col-6 d-flex justify-content-center">
-            <div class="col-6 mb-5">
-                <div class="book p-3 d-flex flex-column align-items-center justify-content-start" style="outline: 2px solid lightgrey; max-height: 550px;">
-                    <div class="picture" style="width: 250px; height: 300px; background-color: lightgrey;"></div>
-                    <div class="text-center mt-3 mb-1">
-                        <p class="h5">{{ book.title }}</p>
-                        <p class="text-secondary"><em>{{ book.author }} | {{ book.year_published }}</em></p>
-                    </div>
-                    <p class="text-center">"{{ book.blurb | safe }}"</p>
+        <!-- Book Details -->
+        <div class="col-8">
+            <div class="row d-flex justify-content-start">
+                <!-- Book -->
+                <div class="col-4" style="max-height: 550px;">
+                    <img src="../../../static/images/1984_cover.jpg" alt="" style="width: 300px;">
                 </div>
-            </div>
-        </div>
-        <div class="col-6">
-            <div>
-                <h4 class="mb-3">About the Author</h4>
-                <div>{{ book.author.bio }}</div>
-            </div>
-            <div>
-                <h4 class="mt-5 mb-3">Book Blurb</h4>
-                <div>{{ book.blurb }}</div>
-                <form action="{% url 'add_to_basket' book.id %}" method="POST" class="form">
-                    {% csrf_token %}
-                    <div class="form-row mt-5">
-                        <div class="col-4 my-3">
-                            <p><strong>Book Type:</strong></p>
-                            <select class="form-control" id='id_book_type' name="book_type">
-                                {% for value, type in types %}
-                                <option value="{{ value }}">{{ type }}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                        <div class="col-12">
-                            <p><strong>Quantity:</strong></p>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <button type="button" class="library-decrement btn" id="decrement_{{ book.id }}" data-book-id="{{ book.id }}">
-                                        <i class="fa-solid fa-minus"></i>
-                                    </button>
-                                </div>
-                                <div class="qty-container">
-                                    <input type="number" class="form-control qty_input" name="quantity" value="1" min="1" max="99" data-book-id="{{ book.id }}" id="book_id_{{ book.id }}">
-                                    <span class="small" id="qty_warning_{{ book.id }}"></span>
-                                </div>
-                                <div class="inut-group-append">
-                                    <button type="button" class="library-increment btn" id="increment_{{ book.id }}" data-book-id="{{ book.id }}">
-                                        <i class="fa-solid fa-plus"></i>
-                                    </button>
-                                </div>
+                <!-- /Book -->
+                <div class="col-8">
+                    <div class="content ms-5">
+                        <div>
+                            <h4 class="mb-3"><strong>{{ book.title }}</strong></h4>
+                            <p class="small">Author: {{ book.author }}</p>
+                            <p class="small">Rating: {{ book.rating }} / 10</p>
+                            <p class="small">Published: {{ book.year_published }}</p>
+                            <p class="small">Published by: {{ book.publisher }}</p>
+                            <h5 class="mt-5 mb-3">Book Blurb</h5>
+                            <div>{{ book.blurb | safe }}</div>
+                            <div>
+                                <h5 class="mt-5 mb-3">About the Author</h5>
+                                <div>{{ book.author.bio }}</div>
                             </div>
                         </div>
-                        <div class="col-12">
-                            <a href="{{ library_url }}" class="btn btn-warning">
-                                <i class="fas fa-chevron-left me-2"></i>Return to Library
-                            </a>
-                            <button type="submit" class="btn btn-success my-5"><i class="fa-solid fa-basket-shopping me-3"></i>Add to Basket</button>
+                    </div>
+                </div>
+            </div>
+            <div class="form-container">
+                <h4 class="mt-5"><strong>Add to Basket</strong></h4>
+                <form action="{% url 'add_to_basket' book.id %}" method="POST" class="form">
+                    {% csrf_token %}
+                    <div class="form-row">
+                        <div class="row d-flex">
+                            <div class="col-4 my-3">
+                                <p><strong>Book Type:</strong></p>
+                                <select class="form-control" id='id_book_type' name="book_type">
+                                    {% for value, type in types %}
+                                    <option value="{{ value }}">{{ type }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-8 my-3 ps-5">
+                                <p><strong>Quantity:</strong></p>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <button type="button" class="library-decrement btn" id="decrement_{{ book.id }}" data-book-id="{{ book.id }}">
+                                            <i class="fa-solid fa-minus"></i>
+                                        </button>
+                                    </div>
+                                    <div class="qty-container">
+                                        <input type="number" class="form-control qty_input" name="quantity" value="1" min="1" max="99" data-book-id="{{ book.id }}" id="book_id_{{ book.id }}">
+                                        <span class="small" id="qty_warning_{{ book.id }}"></span>
+                                    </div>
+                                    <div class="inut-group-append">
+                                        <button type="button" class="library-increment btn" id="increment_{{ book.id }}" data-book-id="{{ book.id }}">
+                                            <i class="fa-solid fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 d-flex justify-content-start mt-3">
+                                <button type="submit" class="btn btn-success me-3"><i class="fa-solid fa-basket-shopping me-3"></i>Add to Basket</button>
+                                <a href="{{ library_url }}" class="btn btn-warning">
+                                    <i class="fas fa-chevron-left me-2"></i>Return to Library
+                                </a>
+                            </div>
+                            <input type="hidden" name="redirect_url" value="{{ request.path }}">
                         </div>
-                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
                     </div>
                 </form>
             </div>
-
-            <div class="reviews mt-5">
-                <!-- Add functionality to this later -->
-                <button class="btn btn-lg btn-info">Read Reviews ></button>
-                <!-- /Add functionality to this later -->
+        </div>
+        <div class="col-4">
+            <div class="heading-container d-flex justify-content-between align-items-start mb-3">
+                <h4><strong>Reviews</strong></h4>
+                <button class="btn btn-warning">All Reviews ></button>
+            </div>
+            <div class="review-container mb-4">
+                <div class="review-header">
+                    <div class="review-heading d-flex m-0 p-0">
+                        <p>{{ review.heading }} Placeholder Title</p>
+                        <p class="my-0 ms-3">review rating {{ review.rating }}</p>
+                    </div>
+                    <p class="small m-0 review-author">Reviewed by {{ review.author }} author on {{ review.time }}</p>
+                </div>
+                <div class="review-body mt-3">
+                    <p>This is a placeholder review. The actual review will be displayed here once it is available. It will provide insights and feedback about the product or service.</p>
+                </div>
+            </div>
+            <div class="review-container mb-4">
+                <div class="review-header">
+                    <div class="review-heading d-flex m-0 p-0">
+                        <p>{{ review.heading }} Placeholder Title</p>
+                        <p class="my-0 ms-3">review rating {{ review.rating }}</p>
+                    </div>
+                    <p class="small m-0 review-author">Reviewed by {{ review.author }} author on {{ review.time }}</p>
+                </div>
+                <div class="review-body mt-3">
+                    <p>This is a placeholder review. The actual review will be displayed here once it is available. It will provide insights and feedback about the product or service.</p>
+                </div>
+            </div>
+            <div class="review-container mb-4">
+                <div class="review-header">
+                    <div class="review-heading d-flex m-0 p-0">
+                        <p>{{ review.heading }} Placeholder Title</p>
+                        <p class="my-0 ms-3">review rating {{ review.rating }}</p>
+                    </div>
+                    <p class="small m-0 review-author">Reviewed by {{ review.author }} author on {{ review.time }}</p>
+                </div>
+                <div class="review-body mt-3">
+                    <p>This is a placeholder review. The actual review will be displayed here once it is available. It will provide insights and feedback about the product or service.</p>
+                </div>
             </div>
         </div>
+        <!-- /Book Details -->
+    </div>
+    <div class="row more-by-author mt-5">
+        <h4><strong>More By {{ author }} Placeholder</strong></h4>
+        <!-- Add carousel from Library -->
     </div>
 </div>
 {% endblock %}
