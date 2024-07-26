@@ -3,28 +3,35 @@
 
 {% block content %}
 <div class="container">
-    {% if 'q' in request.GET %}
+    {% if 'q' in request.GET or 'author' in request.GET %}
         <div class="button-container text-center my-3">
             <a href="{{ library_url }}" class="btn btn-lg btn-warning">Show All Books</a>
         </div>
     {% endif %}
     <div class="row">
         <!-- Sort By -->
-        <div class="col-2 col-lg-first">
+        <div class="col-lg-2 col-md-6 col-sm-12 col-lg-first">
             <h5 class="mb-3">Sort by:</h5>
             <div class="sort-container d-flex flex-column">
                 <button class="btn btn-success mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#authors" aria-expanded="false" aria-controls="authors">
-                <span class="small">Authors<i class="fa-solid fa-chevron-down fa-sm ms-2"></i></span>
-            </button>
+                    <span class="small">Authors<i class="fa-solid fa-chevron-down fa-sm ms-2"></i></span>
+                </button>
                 <div class="collapse multi-collapse mb-3" id="authors">
-                    {% for author in authors %}
-                        <input type="checkbox" id="{{ author }}-author" name="{{ author }}" value="{{ author }}">
-                        <label for="{{ author }}-author"> {{ author }}</label><br>
-                    {% endfor %}
+                    <form method="GET" action="{% url 'library' %}">
+                        {% for author in authors %}
+                        <div class="input-group d-flex align-items-center">
+                            <input type="checkbox" id="{{ author.last_name | lower }}-author" name="author" value="{{ author.last_name }}" {%if author.last_name in authors_ln %} checked = "checked" {% endif %}>
+                            <label class="ms-3" for="{{ author.last_name | lower }}-author"> {{ author }}</label><br>
+                        </div>
+                        {% endfor %}
+                        <button class="form-control btn btn-warning" type="submit">
+                            <i class="fa-solid fa-check me-2"></i>Save Changes
+                        </button>
+                    </form>
                 </div>
                 <button class="btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#genres" aria-expanded="false" aria-controls="genres">
-                <span class="small">Genres<i class="fa-solid fa-chevron-down fa-sm ms-2"></i></span>
-            </button>
+                    <span class="small">Genres<i class="fa-solid fa-chevron-down fa-sm ms-2"></i></span>
+                </button>
                 <div class="collapse multi-collapse my-3" id="genres">
                     {% for genre in genres %}
                         <input type="checkbox" id="{{ genre }}-genre" name="{{ genre }}" value="{{ genre }}">
@@ -35,7 +42,7 @@
         </div>
         <!-- /Sort By -->
         <!-- Books -->
-        <div class="col-10">
+        <div class="col-lg-10 col-md-6 col-sm-12">
             <div class="row">
                 {% for book in books %}
                 <div class="col-lg-3 col-md-4 col-sm-12 mb-5">

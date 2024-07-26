@@ -23,6 +23,7 @@ class BookAdmin(SummernoteModelAdmin):
     search_fields = [
         'title',
         'author',
+        'author__last_name',
         'genre',
         'year_published',
         'publisher'
