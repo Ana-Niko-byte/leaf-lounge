@@ -44,7 +44,7 @@ def contact(request):
     else:
         contactForm = ContactForm()
         context = {
-            'contactForm' : contactForm
+            'contactForm': contactForm
         }
         return render(
             request,

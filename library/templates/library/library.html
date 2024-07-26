@@ -33,10 +33,17 @@
                     <span class="small">Genres<i class="fa-solid fa-chevron-down fa-sm ms-2"></i></span>
                 </button>
                 <div class="collapse multi-collapse my-3" id="genres">
-                    {% for genre in genres %}
-                        <input type="checkbox" id="{{ genre }}-genre" name="{{ genre }}" value="{{ genre }}">
-                        <label for="{{ genre }}-genre"> {{ genre }}</label><br>
-                    {% endfor %}
+                    <form method="GET" action="{% url 'library' %}">
+                        {% for genre in genres %}
+                        <div class="input-group d-flex align-items-center">
+                            <input type="checkbox" id="{{ genre }}-genre" name="genre" value="{{ genre }}" {% if genre in book_genres %} checked="checked" {% endif %}>
+                            <label class="ms-3" for="{{ genre }}-genre"> {{ genre }}</label><br>
+                        </div>
+                        {% endfor %}
+                        <button class="form-control btn btn-warning" type="submit">
+                            <i class="fa-solid fa-check me-2"></i>Save Changes
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>

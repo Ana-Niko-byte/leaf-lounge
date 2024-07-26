@@ -78,11 +78,11 @@ class Book(models.Model):
     Meta:
         orders by earliest date added.
     """
-    COVERS = [
-        ('SC', 'Softcover'),
-        ('HB', 'Hardback'),
-        ('D', 'Epub'),
-    ]
+    # COVERS = [
+    #     ('SC', 'Softcover'),
+    #     ('HB', 'Hardback'),
+    #     ('D', 'Epub'),
+    # ]
     title = models.CharField(max_length=100)
     # Internation Standard Book Number - books after 2007 are 13 digits long.
     isbn = models.CharField(max_length=13)
@@ -133,9 +133,11 @@ class Book(models.Model):
 
     def save(self, *args, **kwargs):
         """
-        Saves a custom url to the (self.slug) parameter with (book title)-(author last name).
+        Saves a custom url to the (self.slug) parameter with
+        (book title)-(author last name).
 
-        Note : Done so in case books from different authors have the same title, thus omitting probability of url clashes.
+        Note : Done so in case books from different authors
+        have the same title, thus omitting probability of url clashes.
         """
         try:
             # Slug is saved automatically.

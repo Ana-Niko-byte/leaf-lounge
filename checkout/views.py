@@ -19,7 +19,7 @@ def checkout(request):
             'There is nothing in your basket'
         )
         return redirect(reverse('library'))
-    
+
     current_basket = bag_content(request)
     basket_total = current_basket['books_total']
     stripe_total = round(basket_total * 100)
@@ -33,7 +33,11 @@ def checkout(request):
     order_form = OrderForm()
 
     if not stripe_public_key:
-        messages.warning(request, 'Stripe public key is missing. Did you forget to set it in your env.py?')
+        messages.warning(
+            request,
+            '''Stripe public key is missing.
+            Did you forget to set it in your env.py?'''
+        )
 
     return render(
         request,

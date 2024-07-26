@@ -42,13 +42,51 @@ def library(request):
                     # enabled in admin.py.
                     filter_query |= Q(author__last_name__icontains=item)
                 books = books.filter(filter_query)
+                # As authors_ln is not passed to context unless
+                # user always includes an author filter.
+                context = {
+                    'books': books,
+                    'genres': genres,
+                    'authors': authors,
+                    'search_term': query,
+                    'authors_ln': authors_ln,
+                }
+                return render(
+                    request,
+                    'library/library.html',
+                    context
+                )
+
+        elif 'genre' in request.GET:
+            book_genres = request.GET.getlist('genre')
+            if not book_genres:
+                messages.error(
+                    request,
+                    'Please select the genres you wish to filter by.'
+                )
+                return redirect(reverse('library'))
+            else:
+                for genre in book_genres:
+                    filter_query |= Q(genre__icontains=genre)
+                books = books.filter(filter_query)
+                context = {
+                    'books': books,
+                    'genres': genres,
+                    'authors': authors,
+                    'search_term': query,
+                    'book_genres': book_genres,
+                }
+                return render(
+                    request,
+                    'library/library.html',
+                    context
+                )
 
     context = {
         'books': books,
         'genres': genres,
         'authors': authors,
-        'search_term' : query,
-        'authors_ln': authors_ln,
+        'search_term': query,
     }
     return render(
         request,
@@ -66,7 +104,7 @@ def book_detail(request, slug):
 
     context = {
         'book': requested_book,
-        'types' : types,
+        'types': types,
     }
 
     return render(

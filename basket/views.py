@@ -44,7 +44,7 @@ def add_basket(request, book_id):
                     f'"{book.title}" has been added to your basket.'
                 )
         else:
-            basket[book_id] = {'books_by_type' : {type : quantity}}
+            basket[book_id] = {'books_by_type': {type: quantity}}
             messages.success(
                 request,
                 f'"{book.title}" has been added to your basket.'
@@ -100,7 +100,6 @@ def delete_basket(request, book_id):
             request,
             f'Book has been removed.'
         )
-        
 
         request.session['bag'] = basket
         return HttpResponse(status=200)
