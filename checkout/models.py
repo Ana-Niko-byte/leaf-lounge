@@ -145,12 +145,14 @@ class Order(models.Model):
         Updates 'order_total', 'delivery_cost', and 'grand_total'
         and saves the model.
         """
+        # Note: this doesnt work when admin is updated for order quantity - Stripe Part 7.
         SDT = settings.STANDARD_DELIVERY_PERCENTAGE
         FDT = settings.FREE_DELIVERY_THRESHOLD
         self.order_total = self.booklineitem.aggregate(
             Sum(
                 'book_order_cost'
-                ))['book_order_cost__sum']
+                ))['book_order_cost__sum'] or 0
+
         if self.order_total < FDT:
             self.delivery_cost = self.order_total * SDT / 100
         else:

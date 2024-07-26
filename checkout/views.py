@@ -79,17 +79,17 @@ def checkout(request):
             )
             return redirect(reverse('library'))
 
-    current_basket = bag_content(request)
-    basket_total = current_basket['books_total']
-    stripe_total = round(basket_total * 100)
+        current_basket = bag_content(request)
+        basket_total = current_basket['books_total']
+        stripe_total = round(basket_total * 100)
 
-    stripe.api_key = stripe_secret_key
-    intent = stripe.PaymentIntent.create(
-        amount=stripe_total,
-        currency=settings.STRIPE_CURRENCY,
-    )
+        stripe.api_key = stripe_secret_key
+        intent = stripe.PaymentIntent.create(
+            amount=stripe_total,
+            currency=settings.STRIPE_CURRENCY,
+        )
 
-    order_form = OrderForm()
+        order_form = OrderForm()
 
     if not stripe_public_key:
         messages.warning(

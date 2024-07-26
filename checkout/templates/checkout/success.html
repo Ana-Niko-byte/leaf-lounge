@@ -3,7 +3,13 @@
 {% block content %}
 <div class="container">
     <div class="row text-center mt-2 d-flex justify-content-center">
-        <h1>Success!</h1>
+        <div id="basket-banner" class="row text-center">
+            <div class="col py-2">
+                <h5 class="my-4 text-uppercase"><strong>Thank you!</strong></h5>
+                <p>Your order has been placed.<br>You should shortly receive a confirmation email to <strong>{{ book_order.email }}</strong></p>
+            </div>
+        </div>
+        <!-- <h1>Success!</h1> -->
         <div class="col-10">
             <h5 class="text-center mt-4">Order Summary</h5>
             <div class="mb-2 d-flex flex-row justify-content-center align-items-center">

@@ -9,6 +9,7 @@ def update_post_save(sender, instance, created, **kwargs):
     """
     Updates the order total when booklineitem is updated/created.
     """
+    # Signals are received but function does not appear to execute.
     instance.order.update_order_total()
 
 
