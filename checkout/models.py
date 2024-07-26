@@ -24,7 +24,8 @@ class Order(models.Model):
     county : CharField - the county to which the order is to be posted.
     date : DateTimeField - the time and date the order was placed.
     delivery_cost : DecimalField - the delivery cost associated with the order.
-    order_total : DecimalField - the total associated with the price/book and quantity.
+    order_total : DecimalField - the total associated with the price/book
+    and quantity.
     grand_total : DecimalField - order_total + delivery_cost.
 
     Methods:
@@ -40,8 +41,10 @@ class Order(models.Model):
             instance.
 
     def update_order_total():
-        Updates 'order_total', 'delivery_cost', and 'grand_total' based on order_total and quantity.
-        Asserts whether the 'order_total' is above the FREE_DELIVERY_THRESHOLD, as defined in settings.py.
+        Updates 'order_total', 'delivery_cost', and 'grand_total' based on
+        order_total and quantity.
+        Asserts whether the 'order_total' is above the FREE_DELIVERY_THRESHOLD,
+        as defined in settings.py.
         If above, assigns 0 to 'delivery_cost'.
         If below, assigns 10% of 'order_total' value as 'delivery_cost'.
         Assigns 'grand_total' the sum of 'order_total' + 'delivery_cost'.
@@ -49,8 +52,6 @@ class Order(models.Model):
     def __str__():
         Returns : (int) : order number.
     """
-    SDT = settings.STANDARD_DELIVERY_PERCENTAGE
-    FDT = settings.FREE_DELIVERY_THRESHOLD
 
     order_number = models.CharField(
         max_length=32,
@@ -144,6 +145,8 @@ class Order(models.Model):
         Updates 'order_total', 'delivery_cost', and 'grand_total'
         and saves the model.
         """
+        SDT = settings.STANDARD_DELIVERY_PERCENTAGE
+        FDT = settings.FREE_DELIVERY_THRESHOLD
         self.order_total = self.booklineitem.aggregate(
             Sum(
                 'book_order_cost'
@@ -171,11 +174,12 @@ class BookLineItem(models.Model):
     book : FK : Book - the book instance that was ordered.
     type : CharField - the book cover type.
     quantity : IntegerField - the quantity that was ordered.
-    book_order_cost : DecimalField - the total cost for the book order instance.
+    book_order_cost : DecimalField - the total cost for the book order.
 
     Methods:
     def save():
-        Assigns the total lineitem cost based on price/unit and quantity if not already assigned.
+        Assigns the total lineitem cost based on price/unit and quantity if not
+        already assigned.
 
     def __str__():
         Returns : (str) : 'ISBN: (book ISBN), order: (order number uuid)'.

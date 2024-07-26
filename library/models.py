@@ -78,11 +78,11 @@ class Book(models.Model):
     Meta:
         orders by earliest date added.
     """
-    # COVERS = [
-    #     ('SC', 'Softcover'),
-    #     ('HB', 'Hardback'),
-    #     ('D', 'Epub'),
-    # ]
+    COVERS = [
+        ('SC', 'Softcover'),
+        ('HB', 'Hardback'),
+        ('D', 'Epub'),
+    ]
     title = models.CharField(max_length=100)
     # Internation Standard Book Number - books after 2007 are 13 digits long.
     isbn = models.CharField(max_length=13)
