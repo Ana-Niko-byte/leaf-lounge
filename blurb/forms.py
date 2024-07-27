@@ -46,8 +46,7 @@ class ContactForm(forms.Form):
         max_length=400,
         widget=forms.Textarea(
             attrs={
-                'placeholder': '''Please tell us your life story in 400
-                characters or less...'''
+                'placeholder': '''Tell us your life story in 400 characters or less...'''
             }
         )
     )

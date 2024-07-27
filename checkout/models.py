@@ -145,7 +145,6 @@ class Order(models.Model):
         Updates 'order_total', 'delivery_cost', and 'grand_total'
         and saves the model.
         """
-        # Note: this doesnt work when admin is updated for order quantity - Stripe Part 7.
         SDT = settings.STANDARD_DELIVERY_PERCENTAGE
         FDT = settings.FREE_DELIVERY_THRESHOLD
         self.order_total = self.booklineitem.aggregate(
@@ -159,6 +158,7 @@ class Order(models.Model):
             self.delivery_cost = 0
         self.grand_total = self.order_total + self.delivery_cost
         self.save()
+        self.refresh_from_db()
 
     def __str__(self):
         """
@@ -222,7 +222,9 @@ class BookLineItem(models.Model):
         Assigns the total lineitem cost based on price/unit and quantity
         if not already assigned.
         """
-        if not self.book_order_cost:
+        # self.book_order_cost = self.book.price * self.quantity
+        # Change this to check for matching book_order_cost summing
+        if not self.book_order_cost or self.book_order_cost != self.book.price * self.quantity:
             self.book_order_cost = self.book.price * self.quantity
         super(BookLineItem, self).save(*args, **kwargs)
 
@@ -230,5 +232,4 @@ class BookLineItem(models.Model):
         """
         Returns : (str) : 'ISBN: (book ISBN), order: (order number uuid)'.
         """
-
         return f'ISBN : {self.book.isbn}, order: {self.order.order_number}'
