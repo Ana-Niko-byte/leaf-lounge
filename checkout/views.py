@@ -115,12 +115,6 @@ def success(request, order_number):
     """
     save_info = request.session.get('save_info')
     book_order = get_object_or_404(Order, order_number=order_number)
-    messages.success(
-        request,
-        f"""Your order has been placed!/ 
-        Order Number: {order_number}. A confirmation email will
-        be sent to the email address indicated on your order."""
-    )
     basket_books = []
     basket = request.session.get('basket', {})
     for book_id, book_data in basket.items():

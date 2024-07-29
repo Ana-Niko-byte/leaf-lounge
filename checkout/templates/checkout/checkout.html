@@ -8,6 +8,7 @@
 {% endblock %}
 
 {% block content %}
+<div class="overlay"></div>
 <div class="container-fluid">
     <div id="basket-banner" class="row text-center">
         <div class="col py-2">
@@ -110,6 +111,11 @@
             </form>
         </div>
     </div>
+</div>
+<div id="loading-overlay">
+    <h1 class="text-dark logo-font loading-spinner">
+        <i class="fas fa-2x fa-sync-alt fa-spin"></i>
+    </h1>
 </div>
 {% endblock %}
 
