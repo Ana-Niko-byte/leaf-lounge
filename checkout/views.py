@@ -128,6 +128,7 @@ def success(request, order_number):
         for type, quantity in book_data['books_by_type'].items():
             basket_books.append({
                 'book_id': book_id,
+                'book_order': book_order,
                 'quantity': quantity,
                 'book': book,
                 'type': type,

@@ -3,28 +3,66 @@
 {% block content %}
 <div class="container">
     <div class="row text-center mt-2 d-flex justify-content-center">
-        <div id="basket-banner" class="row text-center">
-            <div class="col py-2">
-                <h5 class="my-4 text-uppercase"><strong>Thank you!</strong></h5>
+        <div id="basket-banner" class="row">
+            <div class="py-2 text-start">
+                <h4 class="my-4 text-uppercase text-success"><strong><i class="fa-solid fa-circle-check me-2"></i>Thank you!</strong></h4>
                 <p>Your order has been placed.<br>You should shortly receive a confirmation email to <strong>{{ book_order.email }}</strong></p>
+                <h6 class="mt-4"><strong>Order Number</strong></h6>
+                <p><strong>#{{ book_order.order_number }}</strong></p>
+                <p class="small">Order Placed: {{ book_order.date }}</p>
             </div>
         </div>
-        <!-- <h1>Success!</h1> -->
-        <div class="col-10">
-            <h5 class="text-center mt-4">Order Summary</h5>
-            <div class="mb-2 d-flex flex-row justify-content-center align-items-center">
-            {% for book in basket_books %}
-                <div class="book p-3 d-flex flex-column align-items-center justify-content-start" style="max-height: 550px;">
-                    <img src="../../../static/images/1984_cover.jpg" alt="" style="width: 150px;">
-                    <div class="text-center mt-3 mb-1">
-                        <p class="h5">{{ book.book.title }}</p>
-                        <p class="text-secondary"><em>by {{ book.book.author }} | {{ book.book.year_published }}</em></p>
-                        <p>Type: {{ book.type }}</p>
+        <div class="row mt-4">
+            <!-- Delivery Details -->
+            <div class="card col-lg-4 col-sm-12">
+                <div class="card-body text-start">
+                    <h6 class="mb-3"><strong>Delivery Details</strong></h6>
+                    <p>Name: {{ book_order.full_name }}</p>
+                    <h6 class="mt-5 mb-3"><small><strong>Delivery Address</strong></small></h6>
+                    <p>{{ book_order.street_1 }}</p>
+                    {% if book_order.street_2 %}
+                        <p>{{ book_order.street_2 }}</p>
+                    {% endif %}
+                    <p>{{ book_order.town_city }}</p>
+                    {% if book_order.county %}
+                        <p>{{ book_order.county }}</p>
+                    {% endif %}
+                    {% if book_order.postcode %}
+                        <p>{{ book_order.postcode }}</p>
+                    {% endif %}
+                    <p>{{ book_order.country }}</p>
+                    <div class="billing">
+                        <h6 class="mt-5 mb-3"><strong>Billing Breakdown</strong></h6>
+                        <p>Subtotal: €{{ book_order.order_total|floatformat:2 }}</p>
+                        {% if book_order.order_total > FDT %}
+                        <p>Delivery: <span class="text-success text-uppercase"><strong>free</strong></span></p>
+                        {% else %}
+                        <p>Delivery: €{{ book_order.delivery_cost|floatformat:2 }}</h6>
+                        {% endif %}
+                        <p>Total Paid: €{{ book_order.grand_total|floatformat:2 }}</p>
                     </div>
                 </div>
-            {% endfor %}
             </div>
-            <a href="{{ home_url }}" class="btn btn-success mb-5"><i class="fa-solid fa-sm fa-house-chimney me-2"></i>Return Home</a>
+            <!-- /Delivery Details -->
+            <!-- Order Summary -->
+            <div class="card col-lg-8 col-sm-12 border-0">
+                <div class="card-body">
+                    <div class="mb-2">
+                        {% for book in basket_books %}
+                            <div class="book p-3 d-flex flex-column align-items-center justify-content-start" style="max-height: 550px;">
+                                <img src="../../../static/images/1984_cover.jpg" alt="" style="width: 150px;">
+                                <div class="text-center mt-3 mb-1">
+                                    <p class="h5">{{ book.book.title }}</p>
+                                    <p class="text-secondary"><em>by {{ book.book.author }} | {{ book.book.year_published }}</em></p>
+                                    <p>Type: {{ book.type }}</p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <a href="{{ home_url }}" class="btn btn-success"><i class="fa-solid fa-sm fa-house-chimney me-2"></i>Return Home</a>
+                </div>
+            </div>
+            <!-- /Order Summary -->
         </div>
     </div>
 </div>
