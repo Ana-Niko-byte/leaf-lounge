@@ -99,6 +99,10 @@
                     <!-- Form Errors -->
                     <div class="mb-3 text-danger" id="card-errors" role="alert"></div>
                     <!-- /Form Errors -->
+
+                    <!-- Client Secret passed to view for retrieving payment intent id. -->
+                    <input type="hidden" value="{{ client_secret }}" name="client_secret">
+                    <!-- /Client Secret passed to view for retrieving payment intent id. -->
                 </fieldset>
                 <div class="submit-button">
                     <a href="{{ library_url }}" class="btn btn-warning">

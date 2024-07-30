@@ -83,9 +83,20 @@ form.addEventListener('submit', function(e) {
                         country: $.trim(form.country.value),
                         state: $.trim(form.county.value),
                     }
-                },
-                // Shipping removed due to Error: Received unknown parameter: payment_method_data[shipping]
-            }
+                }
+            },
+            shipping:{
+                name: $.trim(form.full_name.value),
+                phone: $.trim(form.phone_number.value),
+                address:{
+                    line1: $.trim(form.street_1.value),
+                    line2: $.trim(form.street_2.value),
+                    city: $.trim(form.town_city.value),
+                    country: $.trim(form.country.value),
+                    postal_code: $.trim(form.postcode.value),
+                    state: $.trim(form.county.value),
+                }
+            },
         }).then(function(result) {
             // Handle Errors.
             if (result.error) {

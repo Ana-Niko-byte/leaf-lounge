@@ -122,6 +122,17 @@ class Order(models.Model):
         null=False,
         default=0
     )
+    original_basket = models.TextField(
+        null=False,
+        blank=False,
+        default=''
+    )
+    stripe_pid = models.CharField(
+        max_length=254,
+        null=False,
+        blank=False,
+        default=''
+    )
 
     def _generate_uuid_order_number(self):
         """
@@ -222,8 +233,6 @@ class BookLineItem(models.Model):
         Assigns the total lineitem cost based on price/unit and quantity
         if not already assigned.
         """
-        # self.book_order_cost = self.book.price * self.quantity
-        # Change this to check for matching book_order_cost summing
         if not self.book_order_cost or self.book_order_cost != self.book.price * self.quantity:
             self.book_order_cost = self.book.price * self.quantity
         super(BookLineItem, self).save(*args, **kwargs)
