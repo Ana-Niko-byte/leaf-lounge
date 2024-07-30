@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.shortcuts import HttpResponse
+from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
 
@@ -8,17 +10,53 @@ from library.models import Book
 from basket.contexts import bag_content
 
 import stripe
+import json
+
+
+@require_POST
+def cache_checkout_data(request):
+    """
+    A view for updating Stripe PaymentIntent Metadata to handle
+    'save_info'.
+    """
+    try:
+        pid = request.POST.get('client_secret').split('_secret')[0]
+        print(pid)
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+        print(stripe.api_key)
+        stripe.PaymentIntent.modify(pid, metadata={
+            'basket': json.dumps(request.session.get('basket', {})),
+            'save_info': request.POST.get('save_info'),
+            'username': request.user,
+        })
+        print('success')
+        return HttpResponse(status=200)
+    except Exception as e:
+        messages.error(
+            request,
+            '''
+            Sorry, your payment cannot be processed at this time.
+            Please try again later or contact our customer support team.
+            '''
+        )
+        return HttpResponse(content=e, status=400)
 
 
 def checkout(request):
     """
-
+    A view for users to checkout and proceed with payment.
     """
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
 
+    basket = request.session.get('basket', {})
+    order_list = []
+    for book_id, book_data in basket.items():
+        for type, quantity in book_data['books_by_type'].items():
+            order_list.append(quantity)
+    basket_items_count = sum(order_list)
+
     if request.method == 'POST':
-        basket = request.session.get('basket', {})
         form_data = {
             'full_name': request.POST['full_name'],
             'email': request.POST['email'],
@@ -33,6 +71,7 @@ def checkout(request):
         order_form = OrderForm(data=form_data)
         if order_form.is_valid():
             order = order_form.save()
+            order_list = []
             for book_id, book_data in basket.items():
                 try:
                     book = Book.objects.get(id=book_id)
@@ -45,7 +84,10 @@ def checkout(request):
                         book_line_item.save()
                     else:
                         book = get_object_or_404(Book, pk=book_id)
-                        for type, quantity in book_data['books_by_type'].items():
+                        # Indented in conformance with PEP8 line length.
+                        for type, quantity in book_data[
+                            'books_by_type'
+                        ].items():
                             book_line_item = BookLineItem(
                                 order=order,
                                 book=book,
@@ -71,7 +113,6 @@ def checkout(request):
                 'Please correct issues in the form below and re-submit.'
             )
     else:
-        basket = request.session.get('basket', {})
         if not basket:
             messages.error(
                 request,
@@ -105,6 +146,7 @@ def checkout(request):
             'orderForm': order_form,
             'stripe_public_key': stripe_public_key,
             'client_secret': intent.client_secret,
+            'basket_items_count': basket_items_count,
         }
     )
 

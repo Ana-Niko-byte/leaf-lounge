@@ -63,6 +63,7 @@ def amend_basket(request, book_id):
     if 'book_type' in request.POST:
         type = request.POST['book_type']
     basket = request.session.get('basket', {})
+    print(len(basket))
 
     if type:
         if quantity > 0:

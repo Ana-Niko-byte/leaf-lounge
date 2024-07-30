@@ -41,45 +41,80 @@ card.addEventListener('change', function(event){
 var form = document.getElementById('book-payment-form');
 
 form.addEventListener('submit', function(e) {
+    // Prevents automatic submission.
     e.preventDefault();
     
-    // Prevent multiple submissions.
+    // Prevents multiple submissions by disabling Stripe card element and submit button.
     card.update({ 'disabled': true});
     $('#submit-button').attr('disabled', true);
 
-    // Loading Symbol
+    // Triggers loading symbol.
     $('#book-payment-form').fadeToggle(100);
     $('#loading-overlay').fadeToggle(100);
 
-    stripe.confirmCardPayment(clientSecret, {
-        payment_method: {
-            card: card,
-        }
-    }).then(function(result) {
-        // Handle Errors.
-        if (result.error) {
-            // Define and set errors on form.
-            var errorDiv = document.getElementById('card-errors');
-            var html = `
-                <span class="icon" role="alert">
-                <i class="fas fa-times"></i>
-                </span>
-                <span>${result.error.message}</span>`;
-            $(errorDiv).html(html);
+    // Retrieves Boolean save info checkbox (as it cannot be put directly into Stripe's paymentIntent),
+    //csrf token (POST request), and gathers data for posting to URL.
+    var saveInfo = Boolean($('#save-info').attr('checked'));
+    var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
+    var postData = {
+        'csrfmiddlewaretoken': csrfToken,
+        'client_secret': clientSecret,
+        'save_info': saveInfo,
+    }
 
-            // Loading Symbol
-            $('#book-payment-form').fadeToggle(100);
-            $('#loading-overlay').fadeToggle(100);
+    // Creates URL to post to.
+    var url = 'cache_checkout_data/';
 
-            // Re-enable card element and submit button.
-            card.update({ 'disabled': false});
-            $('#submit-button').attr('disabled', false);
-
-        } else {
-        // Handle Successful Card Confirmation.
-            if (result.paymentIntent.status === 'succeeded') {
-                form.submit();
+    // Posts data to URL and updates PaymentIntent and returns 200 HttpResponse.
+    // After POST, confirms card using Stripe's ConfirmCardPayment method.
+    // If error, overlay hidden and form re-enabled with error display.
+    $.post(url, postData).done(function(){
+        stripe.confirmCardPayment(clientSecret, {
+            payment_method: {
+                card: card,
+                billing_details:{
+                    name: $.trim(form.full_name.value),
+                    phone: $.trim(form.phone_number.value),
+                    email: $.trim(form.email.value),
+                    address:{
+                        line1: $.trim(form.street_1.value),
+                        line2: $.trim(form.street_2.value),
+                        city: $.trim(form.town_city.value),
+                        country: $.trim(form.country.value),
+                        state: $.trim(form.county.value),
+                    }
+                },
+                // Shipping removed due to Error: Received unknown parameter: payment_method_data[shipping]
             }
-        }
+        }).then(function(result) {
+            // Handle Errors.
+            if (result.error) {
+                // Define and set errors on form.
+                var errorDiv = document.getElementById('card-errors');
+                var html = `
+                    <span class="icon" role="alert">
+                    <i class="fas fa-times"></i>
+                    </span>
+                    <span>${result.error.message}</span>`;
+                $(errorDiv).html(html);
+    
+                // Loading Symbol
+                $('#book-payment-form').fadeToggle(100);
+                $('#loading-overlay').fadeToggle(100);
+    
+                // Re-enable card element and submit button.
+                card.update({ 'disabled': false});
+                $('#submit-button').attr('disabled', false);
+    
+            } else {
+            // Handle Successful Card Confirmation.
+                if (result.paymentIntent.status === 'succeeded') {
+                    form.submit();
+                }
+            }
+        });
+    }).fail(function(){
+        // Reload page to display error message from .views.py.
+        location.reload();
     });
 });
