@@ -4,6 +4,7 @@ from django.conf import settings
 from django_countries.fields import CountryField
 
 from library.models import Book
+from reader.models import UserProfile
 
 import uuid
 
@@ -58,6 +59,13 @@ class Order(models.Model):
         max_length=32,
         null=False,
         editable=False
+    )
+    user_profile = models.ForeignKey(
+        UserProfile,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='orders'
     )
     full_name = models.CharField(
         max_length=50,
