@@ -17,10 +17,12 @@
                 {% csrf_token %}
                 {{ redirect_field }}
             {% endslot %}
-            <div class="button-container mt-5">
-                <a href="{{ home_url }}" class="btn btn-info"><i class="fa-solid fa-house-chimney me-2"></i>Home</a>
-                <button class="btn btn-warning mt-5" type="submit"><i class="fa-solid fa-arrow-right-from-bracket me-2"></i>Sign Out</button>
+            {% slot actions %}
+            <div class="button-container my-5">
+                <a href="{{ home_url }}" class="btn btn-warning"><i class="fa-solid fa-house-chimney me-2"></i>Home</a>
+                <button class="btn btn-warning" type="submit"><i class="fa-solid fa-arrow-right-from-bracket me-2"></i>Sign Out</button>
             </div>
+            {% endslot %}
         {% endelement %}
     </div>
 </div>
