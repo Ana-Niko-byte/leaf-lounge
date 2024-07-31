@@ -69,6 +69,8 @@ INSTALLED_APPS = [
     'basket',
     # Checkout app - 'checkout'
     'checkout',
+    # User Profiles + Books - 'profile'
+    'reader',
 ]
 
 SITE_ID = 1
