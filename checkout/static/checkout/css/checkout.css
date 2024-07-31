@@ -1,6 +1,7 @@
 :root{
   --black : #000;
   --light-grey : #ececec;
+  --placeholder-grey: #aab7c4;
 }
 
 .StripeElement,
@@ -26,18 +27,28 @@
   background-color: #fefde5 !important;
 }
 
-.stripe-style-input::placeholder {
-    color: #aab7c4;
+.stripe-style-input::placeholder,
+#id_country {
+  color: var(--placeholder-grey);
+}
+
+select, select option{
+  color: var(--black);
+}
+
+select:invalid,
+select option[value=""]{
+  color: var(--placeholder-grey) !important;
 }
 
 .fieldset-label{
-    position: relative;
-    right: .5rem;
+  position: relative;
+  right: .5rem;
 }
 
-.form-control, #card-element{
-    color: var(--black);
-    border: 1px solid var(--black);
+.form-control,.form-select, #card-element{
+  color: var(--black);
+  border: 1px solid var(--black);
 }
 
 #loading-overlay {

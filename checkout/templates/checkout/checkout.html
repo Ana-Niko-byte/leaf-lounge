@@ -70,12 +70,12 @@
                 </fieldset>
                 <fieldset class="px-3 mb-5">
                     <legend class="fieldset-delivery fieldset-label small text-black">Delivery</legend>
-                    {{ orderForm.country | as_crispy_field }}
-                    {{ orderForm.postcode | as_crispy_field }}
-                    {{ orderForm.town_city | as_crispy_field }}
                     {{ orderForm.street_1 | as_crispy_field }}
                     {{ orderForm.street_2 | as_crispy_field }}
+                    {{ orderForm.town_city | as_crispy_field }}
                     {{ orderForm.county | as_crispy_field }}
+                    {{ orderForm.postcode | as_crispy_field }}
+                    {{ orderForm.country | as_crispy_field }}
                     <div class="form-check">
                         {% if user.is_authenticated %}
                             <label class="form-check-label" for="save-info">Save to My Profile for faster checkouts.</label>

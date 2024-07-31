@@ -18,6 +18,10 @@ var style = {
         iconColor: '#dc3545'
     }
 };
+
+// Removes random class LazySelect from country select field.
+document.getElementById('id_country').classList.remove('lazyselect');
+
 var card = elements.create('card', {style: style});
 card.mount('#card-element');
 

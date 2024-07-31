@@ -44,19 +44,19 @@ class OrderForm(forms.ModelForm):
             'street_1' : 'Street Address 1',
             'street_2' : 'Street Address 2',
             'town_city' : 'Town/City',
-            'postcode' : 'xxx xxxx',
-            'country' : 'Country',
-            'county' : 'County',
+            'postcode' : 'xxxxx',
+            'county' : 'County/State/Region',
         }
 
         # Cursor in form on load.
         self.fields['full_name'].widget.attrs['autofocus'] = True
         for field in self.fields:
-            if self.fields[field].required:
-                placeholder = f'{placeholders[field]} *'
-            else:
-                placeholder = placeholders[field]
-            # Set defined placeholders to HTML 'placeholder' attribute.
-            self.fields[field].widget.attrs['placeholder'] = placeholder
+            if field != 'country':
+                if self.fields[field].required:
+                    placeholder = f'{placeholders[field]} *'
+                else:
+                    placeholder = placeholders[field]
+                # Set defined placeholders to HTML 'placeholder' attribute.
+                self.fields[field].widget.attrs['placeholder'] = placeholder
             self.fields[field].widget.attrs['class'] = 'stripe-style-input'
             self.fields[field].label = False
