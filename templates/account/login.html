@@ -1,48 +1,51 @@
-{% extends "account/base_entrance.html" %}
+{% extends "../base.html" %}
+{% load static %}
 {% load i18n %}
 {% load allauth account %}
-{% block head_title %}
-    {% trans "Sign In" %}
-{% endblock head_title %}
+{% load crispy_forms_tags %}
+
+{% block head_title %}{% trans "Sign In" %}{% endblock head_title %}
+
 {% block content %}
-    {% element h1 %}
-        {% trans "Sign In" %}
-    {% endelement %}
-    {% if not SOCIALACCOUNT_ONLY %}
-        {% setvar link %}
-            <a href="{{ signup_url }}">
+<div class="container">
+    <div class="row mt-5 text-center">
+        <h1>Sign In</h1>
+        <p>Already have an account? <a href="{{ signin_url }}">Sign In</a>.</p>
+    </div>
+    <div class="row d-flex justify-content-center">
+        <div class="col-lg-6 col-md-8 col-sm-12">
+            {% if not SOCIALACCOUNT_ONLY %}
+            {% setvar link %}
+                <a href="{{ signup_url }}">
+                {% endsetvar %}
+                {% setvar end_link %}
+                </a>
             {% endsetvar %}
-            {% setvar end_link %}
-            </a>
-        {% endsetvar %}
-        {% element p %}
-            {% blocktranslate %}If you have not created an account yet, then please {{ link }}sign up{{ end_link }} first.{% endblocktranslate %}
-        {% endelement %}
-        {% url 'account_login' as login_url %}
-        {% element form form=form method="post" action=login_url tags="entrance,login" %}
-            {% slot body %}
+            {% url 'account_login' as login_url %}
+            <form action="{% url 'account_login' %}" method="post" class="login">
                 {% csrf_token %}
-                {% element fields form=form unlabeled=True %}
+                {{ form | crispy }}
+                <div class="button-container text-center">
+                    <a href="{{ home_url }}" class="btn btn-info">Home</a>
+                    <button class="btn btn-warning" type="submit">
+                        <i class="fa-solid fa-arrow-right-to-bracket me-2"></i>Sign In
+                    </button>
+                </div>
+            </form>
+            {% endif %}
+            {% if LOGIN_BY_CODE_ENABLED %}
+                {% element hr %}
                 {% endelement %}
-                {{ redirect_field }}
-            {% endslot %}
-            {% slot actions %}
-                {% element button type="submit" tags="prominent,login" %}
-                    {% trans "Sign In" %}
+                {% element h2 %}
+                    {% element button href=request_login_code_url tags="prominent,login,secondary" %}
+                        {% trans "Mail me a sign-in code" %}
+                    {% endelement %}
                 {% endelement %}
-            {% endslot %}
-        {% endelement %}
-    {% endif %}
-    {% if LOGIN_BY_CODE_ENABLED %}
-        {% element hr %}
-        {% endelement %}
-        {% element h2 %}
-            {% element button href=request_login_code_url tags="prominent,login,secondary" %}
-                {% trans "Mail me a sign-in code" %}
-            {% endelement %}
-        {% endelement %}
-    {% endif %}
-    {% if SOCIALACCOUNT_ENABLED %}
-        {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
-    {% endif %}
+            {% endif %}
+            {% if SOCIALACCOUNT_ENABLED %}
+                {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+            {% endif %}
+        </div>
+    </div>
+</div>
 {% endblock content %}

@@ -15,7 +15,7 @@
         </li>
         <li class="mx-2">|</li>
         <li class="nav-item second-nav-link text-center">
-            <a href="{% url 'user_profile' user.id %}">My Profile</a>
+            <a href="{% if request.user.is_authenticated %}{% url 'user_profile' user.id %}{% else %}{{ signup_url }}{% endif %}">My Profile</a>
         </li>
         <li class="mx-2">|</li>
         {% endif %}
