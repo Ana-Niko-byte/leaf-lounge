@@ -1,4 +1,5 @@
 from django.http import HttpResponse
+from django.shortcuts import get_object_or_404
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.conf import settings
@@ -9,7 +10,6 @@ from .models import *
 
 import json
 import time
-import logging
 import stripe
 
 
@@ -19,9 +19,6 @@ class StripeWH_Handler():
     """
     def __init__(self, request):
         self.request = request
-        # logging.basicConfig(level=logging.DEBUG)
-        # does not log
-        logging.critical("This should get logged.")
 
     def handle_event(self, event):
         """
@@ -48,7 +45,6 @@ class StripeWH_Handler():
             'checkout/confirmation_email/confirmation_email_body.txt',
             {'book_order': order}
         )
-        print(email, subject, message)
         send_mail(
             subject=subject,
             message=message,
@@ -80,24 +76,20 @@ class StripeWH_Handler():
 
         # Update Profile Information.
         # Except it does not update so look over code later.
-        u_prof = None
+        user_profile = None
         username = intent.metadata.username
-        # does not print
-        print(f'username : {username}')
         if username != 'AnonymousUser':
             # user.username cannot be used directly with get() or filter()
-            u_prof = UserProfile.objects.get(user__username=username)
-            # does not print
-            print(f'retrieved user profile: {u_prof}')
+            user_profile = UserProfile.objects.get(user__username=username)
             if save_info:
-                u_prof.default_phone_number = shipping_details.phone
-                u_prof.default_street_1 = shipping_details.address.line1
-                u_prof.default_street_2 = shipping_details.address.line2
-                u_prof.default_town_city = shipping_details.address.city
-                u_prof.default_county = shipping_details.address.state
-                u_prof.default_postcode = shipping_details.address.postal_code
-                u_prof.default_country = shipping_details.address.country
-                u_prof.save()
+                user_profile.default_phone_number = shipping_details.phone
+                user_profile.default_street_1 = shipping_details.address.line1
+                user_profile.default_street_2 = shipping_details.address.line2
+                user_profile.default_town_city = shipping_details.address.city
+                user_profile.default_county = shipping_details.address.state
+                user_profile.default_postcode = shipping_details.address.postal_code
+                user_profile.default_country = shipping_details.address.country
+                user_profile.save()
 
         order_exists = False
         # Delay of 1 second each time.
@@ -136,7 +128,7 @@ class StripeWH_Handler():
             try:
                 order = Order.objects.create(
                     full_name=shipping_details.name,
-                    useu_prof=u_prof,
+                    user_profile=user_profile,
                     email=billing_details.email,
                     phone_number=shipping_details.phone,
                     country=shipping_details.address.country,

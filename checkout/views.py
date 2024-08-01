@@ -133,6 +133,7 @@ def checkout(request):
             currency=settings.STRIPE_CURRENCY,
         )
 
+        # Pre-fill fields with user's existing information.
         if request.user.is_authenticated:
             try:
                 user_profile = UserProfile.objects.get(user=request.user)
