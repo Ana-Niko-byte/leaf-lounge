@@ -67,7 +67,7 @@ form.addEventListener('submit', function(e) {
     }
 
     // Creates URL to post to.
-    var url = 'cache_checkout_data/';
+    var url = '/checkout/cache_checkout_data/';
 
     // Posts data to URL and updates PaymentIntent and returns 200 HttpResponse.
     // After POST, confirms card using Stripe's ConfirmCardPayment method.

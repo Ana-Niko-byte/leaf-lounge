@@ -3,6 +3,7 @@ from django.shortcuts import HttpResponse
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
+from django.core.mail import send_mail
 
 from basket.contexts import bag_content
 from reader.models import UserProfile
@@ -192,11 +193,29 @@ def success(request, order_number):
             'default_street_2': book_order.street_2,
             'default_county': book_order.county,
         }
-        print(reader_data)
 
         user_profile_form = UserProfileForm(reader_data, instance=user_profile)
         if user_profile_form.is_valid():
             user_profile_form.save()
+
+    # if request.user.is_authenticated:
+    #     email = user_profile.user.email
+    #     send_mail(
+    #         subject=f"Your Order Confirmation {order_number}",
+    #         message=f"Thank you for your order! Your order number is {order_number}",
+    #         from_email=settings.EMAIL_HOST_USER,
+    #         recipient_list=[f"{email}"],
+    #         fail_silently=False,
+    #     )
+    # else:
+    #     email = book_order.email
+    #     send_mail(
+    #         subject=f"Your Order Confirmation {order_number}",
+    #         message=f"Thank you for your order! Your order number is {order_number}",
+    #         from_email=settings.EMAIL_HOST_USER,
+    #         recipient_list=[f"{email}"],
+    #         fail_silently=False,
+    #     )
 
     basket_books = []
     basket = request.session.get('basket', {})
