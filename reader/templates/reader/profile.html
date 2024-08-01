@@ -1,10 +1,34 @@
 {% extends '_second_nav.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'reader/css/profile.css' %}">
+{% endblock %}
 
 {% block content %}
 <div class="container">
     <div class="row">
         <h1>This is your profile!</h1>
     </div>
+    <div class="row">
+        <div class="col-lg-6 col-md-8 col-sm-12">
+            <form action="{% url 'user_profile' %}" method="POST" id="userProfileForm">
+                {% csrf_token %}
+                {{ form | crispy }}
+                <div class="button-container mt-5">
+                    <button type="submit">Save Info</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-6">
+            {{ book_orders }}
+        </div>
+    </div>
 </div>
+{% endblock %}
+
+{% block extra_js %}
+{{ block.super }}
+<script type="text/javascript" src="{% static 'reader/js/profile.js' %}"></script>
 {% endblock %}

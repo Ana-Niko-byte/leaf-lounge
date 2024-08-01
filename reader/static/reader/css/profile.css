@@ -1,0 +1,18 @@
+:root{
+    --black : #000;
+    --light-grey : #ececec;
+    --placeholder-grey: #aab7c4;
+}
+
+#userProfileForm input::placeholder{
+    color: var(--placeholder-grey);
+}
+
+#id_default_country,
+#id_default_country option:not(:first-child){
+    color: var(--black);
+}
+
+#id_default_country option:first-child{
+    color: var(--placeholder-grey);
+}
