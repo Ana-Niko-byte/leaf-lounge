@@ -4,10 +4,12 @@ from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
 
+from basket.contexts import bag_content
+from reader.models import UserProfile
+from library.models import Book
+from reader.forms import UserProfileForm
 from .forms import *
 from .models import *
-from library.models import Book
-from basket.contexts import bag_content
 
 import stripe
 import json
@@ -130,7 +132,24 @@ def checkout(request):
             currency=settings.STRIPE_CURRENCY,
         )
 
-        order_form = OrderForm()
+        if request.user.is_authenticated:
+            try:
+                user_profile = UserProfile.objects.get(user=request.user)
+                order_form = OrderForm(initial={
+                    'full_name': user_profile.user.get_full_name(),
+                    'email': user_profile.user.email,
+                    'phone_number': user_profile.default_phone_number,
+                    'country': user_profile.default_country,
+                    'postcode': user_profile.default_postcode,
+                    'town_city': user_profile.default_town_city,
+                    'street_1': user_profile.default_street_1,
+                    'street_2': user_profile.default_street_2,
+                    'county': user_profile.default_county,
+                })
+            except UserProfile.DoesNotExist:
+                order_form = OrderForm()
+        else:
+            order_form = OrderForm()
 
     if not stripe_public_key:
         messages.warning(
@@ -153,10 +172,32 @@ def checkout(request):
 
 def success(request, order_number):
     """
-
+    A view for handling successful checkouts and displaying the order confirmation.
     """
     save_info = request.session.get('save_info')
     book_order = get_object_or_404(Order, order_number=order_number)
+
+    if request.user.is_authenticated:
+        user_profile = UserProfile.objects.get(user=request.user)
+        book_order.user_profile = user_profile
+        book_order.save()
+
+    if save_info:
+        reader_data = {
+            'default_phone_number': book_order.phone_number,
+            'default_country': book_order.country,
+            'default_postcode': book_order.postcode,
+            'default_town_city': book_order.town_city,
+            'default_street_1': book_order.street_1,
+            'default_street_2': book_order.street_2,
+            'default_county': book_order.county,
+        }
+        print(reader_data)
+
+        user_profile_form = UserProfileForm(reader_data, instance=user_profile)
+        if user_profile_form.is_valid():
+            user_profile_form.save()
+
     basket_books = []
     basket = request.session.get('basket', {})
     for book_id, book_data in basket.items():

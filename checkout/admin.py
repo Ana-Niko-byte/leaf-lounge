@@ -1,4 +1,6 @@
 from django.contrib import admin
+
+from reader.models import UserProfile
 from .models import *
 
 
@@ -20,6 +22,7 @@ class OrderAdmin(admin.ModelAdmin):
     )
     fields = (
         'order_number',
+        'user_profile',
         'date',
         'full_name',
         'email',
