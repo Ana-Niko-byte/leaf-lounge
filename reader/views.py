@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib import messages
 
+from checkout.models import Order
 from .models import UserProfile
 from .forms import UserProfileForm
 
@@ -23,6 +24,7 @@ def my_profile(request):
 
     form = UserProfileForm(instance=reader)
     book_orders = reader.orders.all()
+    print(book_orders)
 
     context={
         'reader': reader,
@@ -33,5 +35,23 @@ def my_profile(request):
     return render(
         request,
         'reader/profile.html',
+        context
+    )
+
+def order_detail(request, order_number):
+    book_order = get_object_or_404(Order, order_number=order_number)
+
+    messages.info(request, (
+        f'This is a past confirmation for order number {order_number}. '
+        'A confirmation email was sent on the order date.'
+    ))
+
+    context={
+        'book_order': book_order,
+        'is_profile': True,
+    }
+    return render(
+        request,
+        'checkout/success.html',
         context
     )

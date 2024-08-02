@@ -1,4 +1,4 @@
-Hey, {{ book_order.user.first_name }}!
+Hey, {{ book_order.user.full_name }}!
 
 Thanks for shopping with us. Below you'll find a summary of your order and your order number. 
 

@@ -7,6 +7,7 @@ https://github.com/Ana-Niko-byte/moment -->
 {% url 'contact' as contact_url %}
 {% url 'book-summary' as summary_url %}
 {% url 'user_profile' as profile_url %}
+{% url 'order_detail' as order_detail_url %}
 
 {% url 'basket' as basket_url %}
 {% url 'checkout' as checkout_url %}
@@ -214,16 +215,18 @@ https://github.com/Ana-Niko-byte/moment -->
                             <a href="{{ library_url }}">Library</a>
                         </li>
                         <li>|</li>
-                        {% if not request.user.is_authenticated %}
+                        {% if request.user.is_authenticated %}
+                        <li class="nav-item px-2 mx-1">
+                            <a href="">My Communities</a>
+                        </li>
+                        <li>|</li>
                         <li class="nav-item footer-nav-items px-2 mx-1">
-                            <a href="{{ signup_url }}">
-                                Sign Up
-                            </a>
+                            <a href="{{ signout_url }}">Sign Out</a>
                         </li>
                         {% else %}
                         <li class="nav-item footer-nav-items px-2 mx-1">
-                            <a href="{{ signout_url }}">
-                                Sign Out
+                            <a href="{{ signup_url }}">
+                                Sign Up
                             </a>
                         </li>
                         {% endif %}

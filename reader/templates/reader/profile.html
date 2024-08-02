@@ -9,20 +9,74 @@
 {% block content %}
 <div class="container">
     <div class="row">
-        <h1>This is your profile!</h1>
-    </div>
-    <div class="row">
-        <div class="col-lg-6 col-md-8 col-sm-12">
-            <form action="{% url 'user_profile' %}" method="POST" id="userProfileForm">
-                {% csrf_token %}
-                {{ form | crispy }}
-                <div class="button-container mt-5">
-                    <button type="submit">Save Info</button>
-                </div>
-            </form>
+        <div class="col-lg-3 col-md-4 col-sm-12">
+            <div class="menu-column">
+                <ul class="list-unstyled">
+                    <li class="menu-item">
+                        <button class="btn btn-md btn-warning mb-2 display-button" data-detail="billing">My Billing Details</button>
+                    </li>
+                    <li class="menu-item">
+                        <button class="btn btn-md btn-warning mb-2 display-button" data-detail="history">My Order History</button>
+                    </li>
+                    <!-- Change URL -->
+                    <li class="menu-item">
+                        <a href="{{ home_url }}" class="btn btn-md btn-warning mb-2">My Communities</a>
+                    </li>
+                    <li class="menu-item">
+                        <button class="btn btn-md btn-warning mb-2 display-button" data-detail="reviews">My Reviews</button>
+                    </li>
+                    <li class="menu-item">
+                        <a href="{{ contact_url }}" class="btn btn-md btn-warning mb-2">Need Help?</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class="col-lg-6">
-            {{ book_orders }}
+        <div class="col-lg-9 col-md-8 col-sm-12">
+            <ul class="list-unstyled">
+                <li class="profile-details" data-profile="billing-details">
+                    <div>
+                        <h5 class="mb-4"><strong>My Details</strong></h5>
+                        <form action="{% url 'user_profile' %}" method="POST" id="userProfileForm">
+                            {% csrf_token %}
+                            {{ form | crispy }}
+                            <div class="button-container mt-5">
+                                <button type="submit">Save Info</button>
+                            </div>
+                        </form>
+                    </div>
+                </li>
+                <li class="profile-details d-none" data-profile="history-details">
+                    <div>
+                        <h5 class="mb-4"><strong>My Order History</strong></h5>
+                        {% for book_order in book_orders %}
+                        <a href="{% url 'order_detail' book_order.order_number %}" class="order-container">
+                            <div class="row border">
+                                <div class="col-lg-6">
+                                    <p>Order Number : {{ book_order.order_number }}</p>
+                                    <p>Date placed: {{ book_order.date }}</p>
+                                    <div class="image-container">
+                                        {% for book in book_order.booklineitem.all %}
+                                        <!-- Add book image here -->
+                                        <p>{{ book.book.title }} x {{ book.quantity }}</p>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <p>Subtotal : {{ book_order.order_total }}</p>
+                                    <p>Shipping : {% if book_order.delivery_cost == 0.00 %}FREE{% else %}{{ book_order.delivery_cost }}{% endif %}</p>
+                                    <p>Total : {{ book_order.grand_total }}</p>
+                                </div>
+                            </div>
+                        </a href="">
+                        {% endfor %}
+                    </div>
+                </li>
+                <li class="profile-details d-none" data-profile="reviews-details">
+                    <div>
+                        <h5 class="mb-4"><strong>My Reviews</strong></h5>
+                    </div>
+                </li>
+            </ul>
         </div>
     </div>
 </div>

@@ -6,7 +6,11 @@
         <div id="basket-banner" class="row">
             <div class="py-2 text-start">
                 <h4 class="my-4 text-uppercase text-success"><strong><i class="fa-solid fa-circle-check me-2"></i>Thank you!</strong></h4>
+                {% if not is_profile %}
                 <p>Your order has been placed.<br>You should shortly receive a confirmation email to <strong>{{ book_order.email }}</strong></p>
+                {% else %}
+                <a href="{{ profile_url }}" class="btn btn-md btn-warning">Back to Profile</a>
+                {% endif %}
                 <h6 class="mt-4"><strong>Order Number</strong></h6>
                 <p><strong>#{{ book_order.order_number }}</strong></p>
                 <p class="small">Order Placed: {{ book_order.date }}</p>
@@ -59,7 +63,9 @@
                             </div>
                         {% endfor %}
                     </div>
+                    {% if not is_profile %}
                     <a href="{{ home_url }}" class="btn btn-success"><i class="fa-solid fa-sm fa-house-chimney me-2"></i>Return Home</a>
+                    {% endif %}
                 </div>
             </div>
             <!-- /Order Summary -->

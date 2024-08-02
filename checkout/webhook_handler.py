@@ -82,6 +82,7 @@ class StripeWH_Handler():
             # user.username cannot be used directly with get() or filter()
             user_profile = UserProfile.objects.get(user__username=username)
             if save_info:
+                user_profile.default_full_name = shipping_details.name
                 user_profile.default_phone_number = shipping_details.phone
                 user_profile.default_street_1 = shipping_details.address.line1
                 user_profile.default_street_2 = shipping_details.address.line2

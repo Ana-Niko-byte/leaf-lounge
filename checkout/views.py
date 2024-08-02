@@ -186,6 +186,7 @@ def success(request, order_number):
 
     if save_info:
         reader_data = {
+            'default_full_name': book_order.full_name,
             'default_phone_number': book_order.phone_number,
             'default_country': book_order.country,
             'default_postcode': book_order.postcode,
@@ -195,28 +196,12 @@ def success(request, order_number):
             'default_county': book_order.county,
         }
 
+        print('full name as in reader data:')
+        print(reader_data['default_full_name'])
+
         user_profile_form = UserProfileForm(reader_data, instance=user_profile)
         if user_profile_form.is_valid():
             user_profile_form.save()
-
-    # if request.user.is_authenticated:
-    #     email = user_profile.user.email
-    #     send_mail(
-    #         subject=f"Your Order Confirmation {order_number}",
-    #         message=f"Thank you for your order! Your order number is {order_number}",
-    #         from_email=settings.EMAIL_HOST_USER,
-    #         recipient_list=[f"{email}"],
-    #         fail_silently=False,
-    #     )
-    # else:
-    #     email = book_order.email
-    #     send_mail(
-    #         subject=f"Your Order Confirmation {order_number}",
-    #         message=f"Thank you for your order! Your order number is {order_number}",
-    #         from_email=settings.EMAIL_HOST_USER,
-    #         recipient_list=[f"{email}"],
-    #         fail_silently=False,
-    #     )
 
     basket_books = []
     basket = request.session.get('basket', {})
