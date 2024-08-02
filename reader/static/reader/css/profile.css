@@ -16,3 +16,8 @@
 #id_default_country option:first-child{
     color: var(--placeholder-grey);
 }
+
+.order-container{
+    text-decoration: none;
+    color: var(--black);
+}

@@ -38,20 +38,12 @@ def my_profile(request):
         context
     )
 
-def order_detail(request, order_number):
-    book_order = get_object_or_404(Order, order_number=order_number)
-
-    messages.info(request, (
-        f'This is a past confirmation for order number {order_number}. '
-        'A confirmation email was sent on the order date.'
-    ))
-
-    context={
-        'book_order': book_order,
-        'is_profile': True,
-    }
+def my_books(request):
+    """
+    A view for rendering the user's books.
+    """
+    
     return render(
         request,
-        'checkout/success.html',
-        context
+        'reader/profile_books.html'
     )

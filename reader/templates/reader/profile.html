@@ -33,14 +33,14 @@
         </div>
         <div class="col-lg-9 col-md-8 col-sm-12">
             <ul class="list-unstyled">
-                <li class="profile-details" data-profile="billing-details">
+                <li class="profile-details d-none" data-profile="billing-details">
                     <div>
                         <h5 class="mb-4"><strong>My Details</strong></h5>
                         <form action="{% url 'user_profile' %}" method="POST" id="userProfileForm">
                             {% csrf_token %}
                             {{ form | crispy }}
                             <div class="button-container mt-5">
-                                <button type="submit">Save Info</button>
+                                <button type="submit" class="btn btn-lg btn-warning"><small><i class="fa-solid fa-check me-2"></i>Save Info</small></button>
                             </div>
                         </form>
                     </div>
@@ -49,25 +49,54 @@
                     <div>
                         <h5 class="mb-4"><strong>My Order History</strong></h5>
                         {% for book_order in book_orders %}
-                        <a href="{% url 'order_detail' book_order.order_number %}" class="order-container">
-                            <div class="row border">
-                                <div class="col-lg-6">
-                                    <p>Order Number : {{ book_order.order_number }}</p>
-                                    <p>Date placed: {{ book_order.date }}</p>
-                                    <div class="image-container">
-                                        {% for book in book_order.booklineitem.all %}
-                                        <!-- Add book image here -->
-                                        <p>{{ book.book.title }} x {{ book.quantity }}</p>
-                                        {% endfor %}
-                                    </div>
+                        <div class="row accordion accordion-flush border my-2 px-3" id="accordion{{ forloop.counter }}">
+                            <div class="col-lg-9 accordion-item d-flex flex-column justify-content-between">
+                                <div class="info-container">
+                                    <h6 class="my-4"><strong>Order Details</strong></h6>
+                                    <p class="m-0 p-0"><strong>Order Number : {{ book_order.order_number }}</strong></p>
+                                    <p class="m-0 p-0"><small>Date placed: {{ book_order.date }}</small></p>
                                 </div>
-                                <div class="col-lg-6">
-                                    <p>Subtotal : {{ book_order.order_total }}</p>
-                                    <p>Shipping : {% if book_order.delivery_cost == 0.00 %}FREE{% else %}{{ book_order.delivery_cost }}{% endif %}</p>
-                                    <p>Total : {{ book_order.grand_total }}</p>
+                                <div class="image-container">
+                                    {% for book in book_order.booklineitem.all %}
+                                    <!-- Add book image here -->
+                                    <div style="max-width: 150px;">
+                                        <img src="../../../static/images/1984_cover.jpg" class="mt-4 mb-2" style="width: 100px;" alt="{{ book.book.title }} book cover">
+                                        <p class="m-0 p-0"><strong><small>{{ book.book.title }}</small></strong></p>
+                                        <p><small>x {{ book.quantity }}</small></p>
+                                    </div>
+                                    {% endfor %}
                                 </div>
                             </div>
-                        </a href="">
+                            <div class="col-lg-3 d-flex flex-column justify-content-between">
+                                <div class="info-container">
+                                    <h6 class="my-4"><strong>Billing Details</strong></h6>
+                                    <p class="m-0 p-0">Subtotal : €{{ book_order.order_total }}</p>
+                                    <p class="m-0 p-0">Shipping : {% if book_order.delivery_cost == 0.00 %}<strong>FREE</strong>{% else %}€{{ book_order.delivery_cost }}{% endif %}</p>
+                                    <p class="m-0 p-0">Total : €{{ book_order.grand_total }}</p>
+                                </div>
+                                <button class="btn btn-warning mb-4 accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse{{ forloop.counter }}" aria-expanded="false" aria-controls="flush-collapse{{ forloop.counter }}">
+                                    <i class="fa-solid fa-truck-fast me-2"></i>Shipping Details
+                                </button>
+                            </div>
+                            <div id="flush-collapse{{ forloop.counter }}" class="accordion-collapse collapse" aria-labelledby="flush-heading{{ forloop.counter }}" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <h6 class="my-4"><strong>Billing Details</strong></h6>
+                                    <p class="my-0 p-0">{{ book_order.full_name }}</p>
+                                    <p class="my-0 p-0">{{ book_order.street_1 }}</p>
+                                    {% if book_order.street_2 %}
+                                        <p class="my-0 p-0">{{ book_order.street_2 }}</p>
+                                    {% endif %}
+                                    <p class="my-0 p-0">{{ book_order.town_city }}</p>
+                                    {% if book_order.county %}
+                                        <p class="my-0 p-0">{{ book_order.county }}</p>
+                                    {% endif %}
+                                    {% if book_order.postcode %}
+                                        <p class="my-0 p-0">{{ book_order.postcode }}</p>
+                                    {% endif %}
+                                    <p class="my-0 p-0">{{ book_order.country }}</p>
+                                </div>
+                            </div>
+                        </div>
                         {% endfor %}
                     </div>
                 </li>
