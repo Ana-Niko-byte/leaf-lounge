@@ -3,9 +3,11 @@ from django.utils.text import slugify
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.shortcuts import reverse
 
+from community.models import Community
+
 # Model Tuples
 from ._nationalities import NATIONALITIES
-from ._genres import GENRES
+# from ._genres import GENRES
 from ._covers import COVERS
 
 
@@ -36,6 +38,21 @@ class Author(models.Model):
         Returns : (str) : '(author's first name) (author's last name)'.
         """
         return f'{self.first_name} {self.last_name}'
+
+
+class Genre(models.Model):
+    name = models.CharField(max_length=50, null=False, blank=False)
+    community = models.ForeignKey(
+        Community,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        help_text='This field will be auto-filled after save.',
+        related_name='genre_community'
+    )
+
+    def __str__(self):
+        return f'{self.name}'
 
 
 class Book(models.Model):
@@ -98,7 +115,13 @@ class Book(models.Model):
         on_delete=models.CASCADE,
         related_name='author_books'
     )
-    genre = models.CharField(choices=GENRES, max_length=50)
+    genre = models.ForeignKey(
+        Genre,
+        on_delete=models.SET_NULL,
+        related_name='book_genre',
+        null=True,
+        blank=False
+    )
     blurb = models.TextField(max_length=500)
     # Change to dynamic year later
     year_published = models.IntegerField(validators=[MaxValueValidator(2024)])

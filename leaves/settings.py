@@ -71,6 +71,8 @@ INSTALLED_APPS = [
     'checkout',
     # User Profiles + Books - 'profile'
     'reader',
+    # User Book Communities - 'community'
+    'community',
 ]
 
 SITE_ID = 1

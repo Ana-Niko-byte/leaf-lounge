@@ -11,6 +11,11 @@ class AuthorAdmin(SummernoteModelAdmin):
     ordering = ('last_name',)
 
 
+@admin.register(Genre)
+class GenreAdmin(SummernoteModelAdmin):
+    list_display = ('name', 'community')
+
+
 @admin.register(Book)
 class BookAdmin(SummernoteModelAdmin):
     list_display = (

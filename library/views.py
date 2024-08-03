@@ -3,7 +3,6 @@ from django.contrib import messages
 from django.db.models import Q
 
 from .models import *
-from ._genres import GENRES
 
 
 def library(request):
@@ -12,7 +11,7 @@ def library(request):
     """
     books = Book.objects.all()
     authors = Author.objects.all()
-    genres = [genre[1] for genre in GENRES]
+    genres = Genre.objects.all()
     query = None
     filter_query = Q()
 
