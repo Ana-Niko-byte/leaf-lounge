@@ -5,15 +5,29 @@
 {% block content %}
 <div class="container">
     <div class="row d-flex justify-content-center">
-        <a href="{% url 'user_books' %}" class="btn btn-warning col-2 p-2 text-center m-2">Show All</a>
-        <h5 class="mb-4"><strong>Your Genre Filter</strong></h5>
-        {% for genre in user_genres %}
-        <div class="col-2 border p-2 text-center m-2">
-            <span class="text-uppercase small"><strong>{{ genre.name }}</strong></span>
-        </div>
-        {% endfor %}
+        <a href="{% url 'user_books' %}" class="btn col-2 p-2 text-center {% if not chosen %}btn-warning{% else %}btn-success{% endif %} m-2">Show All</a>
+        <form action="{% url 'user_books' %}" class="d-flex justify-content-center" method="GET">
+            {% for genre in user_genres %}
+            <button type="submit" class="btn {% if genre.name == user_genre %}btn-warning{% else %}btn-success{% endif %} col-2 p-2 text-center m-2" name="genre" value="{{ genre.name }}">
+                <span class="text-uppercase small"><strong>{{ genre.name }}</strong></span>
+            </button>
+            {% endfor %}
+        </form>
     </div>
     <div class="row">
+        {% if filtered_books %}
+            {% for book in filtered_books %}
+                <div class="book col-2 d-flex flex-column align-items-center">
+                    <img src="../../../static/images/1984_cover.jpg" style="width: 150px;" alt="{{ book.book.title }} cover image">
+                    <div class="book-info-container mt-3 text-center">
+                        <p><strong>{{ book.title }}</strong></p>
+                    </div>
+                    <a href="{{ review_url }}" class="btn btn-sm btn-warning mb-3">Leave a Review</a>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+    <div class="row {% if not chosen %}d-block{% else %}d-none{% endif %}">
         {% for genre in user_genres %}
         <h6><strong>{{ genre.name }}</strong></h6>
         <hr>

@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.text import slugify
-from django.core.validators import MinValueValidator, MaxValueValidator
+from django.contrib.auth.models import User
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.shortcuts import reverse
 from django_countries.fields import CountryField
 
@@ -175,3 +176,22 @@ class Book(models.Model):
         Returns : the book detail page with (self.slug) as url argument.
         """
         return reverse('book-summary', args=[self.slug])
+
+class Review(models.Model):
+    """
+    A class for a book review.
+
+    Fields:
+    reviewer : FK : User - the user leaving the review.
+    book : FK : Book - the book being reviewed.
+    rating : IntegerField - the book rating out of 10.
+    comment : TextField - the user's verbal book rating.
+    reviewed_on : DateField - the date the review was left on.
+    approved : BooleanField - whether the comment is admin approved.
+    """
+    reviewer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reviewer')
+    book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='reviewed_book')
+    rating = models.IntegerField(validators=[MaxValueValidator(10), MinValueValidator(1)], null=False, blank=False)
+    comment = models.TextField(max_length=500, null=False, blank=False)
+    reviewed_on = models.DateField(auto_now_add=True, null=False, blank=False)
+    approved = models.BooleanField(default=False)

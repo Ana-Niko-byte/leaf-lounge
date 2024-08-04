@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.db.models import Q
 
 from library.models import Book, Genre
 from checkout.models import Order, BookLineItem
@@ -63,7 +64,33 @@ def my_books(request):
             user_books.append(item.book)
         if item.book.genre not in user_genres:
             user_genres.append(item.book.genre)
-    print(user_genres)
+
+    if 'genre' in request.GET:
+        # .../my_books/?genre=crime
+        user_genre = request.GET.getlist('genre')[0]
+        if not user_genre:
+            messages.error(
+                request,
+                'An error occurred. Please search for your book in the genre carousels below.'
+            )
+            return redirect(reverse('user_books'))
+        else:
+            filtered_books = []
+            for book in user_books:
+                if str(book.genre) == user_genre:
+                    filtered_books.append(book)
+            print(filtered_books)
+            context = {
+                'filtered_books': filtered_books,
+                'user_genre': user_genre,
+                'user_genres': user_genres,
+                'chosen': True,
+            }
+            return render(
+                request,
+                'reader/profile_books.html',
+                context
+            )
 
     context={
         'user_books': user_books,

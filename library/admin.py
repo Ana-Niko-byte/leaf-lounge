@@ -36,3 +36,9 @@ class BookAdmin(SummernoteModelAdmin):
     list_filter = ('genre', 'year_published', 'publisher')
     summernote_fields = ('blurb',)
     ordering = ('date_added',)
+
+
+@admin.register(Review)
+class ReviewAdmin(SummernoteModelAdmin):
+    fields = ('reviewer', 'book', 'rating', 'comment', 'approved')
+    readonly_fields = ('reviewed_on',)
