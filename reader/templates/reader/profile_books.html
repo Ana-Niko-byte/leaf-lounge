@@ -4,12 +4,32 @@
 
 {% block content %}
 <div class="container">
-    <div class="row">
-        <h1>These are your books!</h1>
+    <div class="row d-flex justify-content-center">
+        <a href="{% url 'user_books' %}" class="btn btn-warning col-2 p-2 text-center m-2">Show All</a>
+        <h5 class="mb-4"><strong>Your Genre Filter</strong></h5>
+        {% for genre in user_genres %}
+        <div class="col-2 border p-2 text-center m-2">
+            <span class="text-uppercase small"><strong>{{ genre.name }}</strong></span>
+        </div>
+        {% endfor %}
     </div>
     <div class="row">
-        {% for book in user_books %}
-        <p>{{ book.title }}</p>
+        {% for genre in user_genres %}
+        <h6><strong>{{ genre.name }}</strong></h6>
+        <hr>
+        <div class="genre-container col-12 my-2">
+            {% for book in user_books %}
+                {% if book.genre == genre %}
+                <div class="book col-2 d-flex flex-column align-items-center">
+                    <img src="../../../static/images/1984_cover.jpg" style="width: 150px;" alt="{{ book.book.title }} cover image">
+                    <div class="book-info-container mt-3 text-center">
+                        <p><strong>{{ book.title }}</strong></p>
+                    </div>
+                    <a href="" class="btn btn-sm btn-warning mb-3">Leave a Review</a>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
         {% endfor %}
     </div>
 </div>

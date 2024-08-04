@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib import messages
 
-from library.models import Book
+from library.models import Book, Genre
 from checkout.models import Order, BookLineItem
 from .models import UserProfile
 from .forms import UserProfileForm
@@ -57,12 +57,17 @@ def my_books(request):
 
     # Iterate over booklineitems and access book directly (1 instance per book).
     user_books = []
+    user_genres = []
     for item in user_booklineitems:
         if item.book not in user_books:
             user_books.append(item.book)
+        if item.book.genre not in user_genres:
+            user_genres.append(item.book.genre)
+    print(user_genres)
 
     context={
         'user_books': user_books,
+        'user_genres': user_genres,
     }
     
     return render(
