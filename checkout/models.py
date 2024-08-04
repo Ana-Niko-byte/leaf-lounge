@@ -60,6 +60,7 @@ class Order(models.Model):
         null=False,
         editable=False
     )
+    # Essentially implements a ManyToMany Relationship between Book and User.
     user_profile = models.ForeignKey(
         UserProfile,
         on_delete=models.SET_NULL,
@@ -217,7 +218,8 @@ class BookLineItem(models.Model):
         Book,
         null=False,
         blank=False,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE, 
+        related_name='bookdetails'
     )
     type = models.CharField(
         max_length=9,

@@ -2,12 +2,11 @@ from django.db import models
 from django.utils.text import slugify
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.shortcuts import reverse
+from django_countries.fields import CountryField
 
 from community.models import Community
 
 # Model Tuples
-from ._nationalities import NATIONALITIES
-# from ._genres import GENRES
 from ._covers import COVERS
 
 
@@ -30,7 +29,7 @@ class Author(models.Model):
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=20)
     d_o_b = models.DateField(default='unknown', verbose_name='BirthDate')
-    nationality = models.CharField(choices=NATIONALITIES, max_length=30)
+    nationality = CountryField(blank_label='Unknown', null=True, blank=True)
     bio = models.TextField(max_length=500)
 
     def __str__(self):

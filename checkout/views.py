@@ -203,23 +203,9 @@ def success(request, order_number):
         if user_profile_form.is_valid():
             user_profile_form.save()
 
-    basket_books = []
-    basket = request.session.get('basket', {})
-    for book_id, book_data in basket.items():
-        book = get_object_or_404(Book, pk=book_id)
-        for type, quantity in book_data['books_by_type'].items():
-            basket_books.append({
-                'book_id': book_id,
-                'book_order': book_order,
-                'quantity': quantity,
-                'book': book,
-                'type': type,
-            })
-
     context = {
         'book_order': book_order,
         'order_number': order_number,
-        'basket_books': basket_books,
     }
 
     if 'basket' in request.session:

@@ -2,7 +2,8 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib import messages
 
-from checkout.models import Order
+from library.models import Book
+from checkout.models import Order, BookLineItem
 from .models import UserProfile
 from .forms import UserProfileForm
 
@@ -42,8 +43,30 @@ def my_books(request):
     """
     A view for rendering the user's books.
     """
+    # Retrieve the user's profile (and user).
+    user_profile = UserProfile.objects.get(user=request.user)
+    # Retrieve their orders.
+    user_orders = Order.objects.filter(user_profile=user_profile)
+
+    # Iterate over orders and extend (merge) booklineitems into a list.
+    user_booklineitems = []
+    for order in user_orders:
+        books = order.booklineitem.all()
+        # .append() appends quersets to list.
+        user_booklineitems.extend(books)
+
+    # Iterate over booklineitems and access book directly (1 instance per book).
+    user_books = []
+    for item in user_booklineitems:
+        if item.book not in user_books:
+            user_books.append(item.book)
+
+    context={
+        'user_books': user_books,
+    }
     
     return render(
         request,
-        'reader/profile_books.html'
+        'reader/profile_books.html',
+        context
     )

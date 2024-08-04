@@ -7,5 +7,10 @@
     <div class="row">
         <h1>These are your books!</h1>
     </div>
+    <div class="row">
+        {% for book in user_books %}
+        <p>{{ book.title }}</p>
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}

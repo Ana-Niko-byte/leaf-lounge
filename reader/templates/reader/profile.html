@@ -56,10 +56,10 @@
                                     <p class="m-0 p-0"><strong>Order Number : {{ book_order.order_number }}</strong></p>
                                     <p class="m-0 p-0"><small>Date placed: {{ book_order.date }}</small></p>
                                 </div>
-                                <div class="image-container">
+                                <div class="image-container d-flex">
                                     {% for book in book_order.booklineitem.all %}
                                     <!-- Add book image here -->
-                                    <div style="max-width: 150px;">
+                                    <div style="max-width: 150px;" class="mx-3">
                                         <img src="../../../static/images/1984_cover.jpg" class="mt-4 mb-2" style="width: 100px;" alt="{{ book.book.title }} book cover">
                                         <p class="m-0 p-0"><strong><small>{{ book.book.title }}</small></strong></p>
                                         <p><small>x {{ book.quantity }}</small></p>
