@@ -1,10 +1,11 @@
 # `Leaf Lounge`
-The application is available for viewing [here](https://moment-canvas-68ed5e5eed98.herokuapp.com/).
+The application is available for viewing [here](https://leaf-a4f5da9d5073.herokuapp.com/).
 
 Also available for viewing here:
 [Facebook Page](https://www.facebook.com/profile.php?id=61563390085042).
 
 ![Leaf Lounge Responsive Image]()
+
 ## Introduction
 Leaf Lounge is built with `Django` - a high-level Python framework that encourages rapid development and clean code practices. As a book & networking platform, Leaf Lounge offers book lovers the unique opportunity to network and share impressions, reviews, and critiques of books. Visitors wishing to join one of Leaf Lounge's vast communities need only purchase a book and register a personal Leaf Lounge account, and they immediately gain access to all Leaf Lounge has to offer.
 
@@ -16,8 +17,8 @@ Leaf Lounge is built with `Django` - a high-level Python framework that encourag
 - [User Stories](#user-stories)
 - [Strategy](#strategy)
 - [Business/Social Goals](#businesssocial-goals)
+  - [Target Audience](#target-audience)
 - [UX Goals](#ux-goals)
-- [Target Audience](#target-audience)
 - [Key Information Deliverables](#key-information-deliverables)
   - [Client Side](#client-side)
   - [Technical](#technical)
@@ -79,109 +80,16 @@ Leaf Lounge is built with `Django` - a high-level Python framework that encourag
 - `Pep8` - for Python code validation and best practices formatting.
 
 ## Feature Sneak Peek
--
--
--
--
--
--
--
--
--
+- Comprehensive E-COMMERCE functionality.
+- Advanced book filtering and sorting capabilities.
+- Dedicated customer service contact page (emails sent directly to the company).
+- Custom user profiles featuring order history, billing information, and book storage.
+- Genre-specific community chatrooms.
+- Functionality to leave and read reviews.
+- Automated order confirmation emails.
 
 ## Structure
-- Navigation
-  - Main Navigation Bar
-    - Logo
-    - Links
-      - `Home`
-      - `Contact`
-      - `Library`
-      - `My Communities` (if user is authenticated)
-      - Basket
-      - Authentication Links
-        - `Sign Up` Button (if user is not authenthicated)
-        - `Sign Out` Button (if user is authenticated)
-  - Secondary Navigation Bar (visible only on some pages)
-    - Breadcrumb Trail
-    - Links
-      - `My Books`
-      - `My Profile`
-      - `Become an Author`
-    - Search Bar
-
-- Home Page
-  - Jumbotron
-    - Welcoming Header
-    - `Sign In` Button
-  
-___TBD___
-
-- Contact Page
-  - Contact POIs (visible on large screens only)
-  - Contact Form
-    - Validation
-    - Messages-to-email-address
-    - Success Message
-
-- Library
-  - Secondary Navigation Bar
-  - All Books
-    - `Read More` Button
-
-- Book Detail Pages
-  - Book View
-  - `About the Author` Text
-  - `Book Blurb`
-  - Book Type Selection Field
-    - Softcover
-    - Hardcover
-    - Epub
-  - Quantity Input Field
-    - Buttons
-    - Validation
-  - Buttons
-    - `Return to Library`
-    - `Add to Basket`
-    - `Read Reviews`
-
-- Basket
-  - Content Table
-    - Book
-    - Price
-    - Quantity
-      - `Update Quantity` Button
-        - Input Field
-          - Delete Button
-          - Increment Button
-        - `Cancel` Button
-        - `Save Changes` Button
-    - Subtotal
-  - Total Summary + Breakdown
-  - `Keep Shopping` Button
-  - `Secure Checkout` Button
-
-- Checkout
-  - Checkout Form
-    - Stripe Card Input
-  - Order Summary
-
-- Reviews
-- Community
-
-- Footer
-  - Links
-    - `Home`
-    - `Contact`
-    - `Library`
-    - `My Communities` (if user is authenticated)
-    - Basket
-    - Authentication Links
-      - `Sign Up` Button (if user is not authenthicated)
-      - `Sign Out` Button (if user is authenticated)
-  - Newsletter
-  - Copyright
-    - Dynamic Year
+[ARCHITECTURE.md](../leaf-lounge/ARCHITECTURE.md)
 
 ## Wireframes
 ![]()
@@ -211,6 +119,9 @@ ___TBD___
 This application aims to create an engaging and interactive environment for readers and book enthusiasts to connect, network and, subsequently, broaden the outreach of new authors within the various book communities. Several intuitive features in the navigation bar at the top of the page and considerable consideration given to the overall design and feel of the website make the user's experience quick, efficient, and satisfying.
 
 ## Business/Social Goals
+#### Target Audience
+`Readers` `Authors` `Publishers` `Book Critics` `Book Enthusiasts` `Users 15+ years of age (payment)`.
+
 - As a first time visitor, I would like to be taken directly to the 'Leaf Lounge' home page so that I have quick access to all relevant information to get started.
 - As a site user, I would like a custom profile with my personal information.
 - As a site user, I would like the option to read more information on the book before buying it.
@@ -237,14 +148,6 @@ This application aims to create an engaging and interactive environment for read
 - As a site visitor and/or potential reseller, I would like colours to convey the correct emotions to ensure the intended branding message and motives.
 - As a site user, I would like all pages to be responsive to ensure I have a good user experience. This includes best practices in legibility, colour contrast, font sizes, branding, and element visibility.
 
-## Target Audience
-- Readers
-- Authors
-- Publishers
-- Book Critics
-- Book Enthusiasts
-- 15+ years of age (payment)
-
 ## Key Information Deliverables
 For the purposes of document navigation, the key information deliverables for this project have been split into three sections, each focusing on a different vital aspect of the project.
 
@@ -268,300 +171,21 @@ For the purposes of document navigation, the key information deliverables for th
 
 ## Scope of Application
 ## Features
+[ROADMAP.md](../leaf-lounge/ROADMAP.md)
 
 ## Models
-Below is a simple ERD for `moment`'s models.
-
-![Leaf Lounge ERD]()
-
-#### The Author Model (library app)
-Fields: `first_name`, `last_name`, `d_o_b`, `nationality`, `bio`
-
-1. `first_name` : CharField - represents the author's firstname.
-- Constraints: 
-  - _max-length_ of 20 characters.
-
-2. `last_name` : CharField - represents the author's lastname.
-- Constraints: 
-  - _max-length_ of 20 characters.
-
-3. `d_o_b` : DateField - represents the author's date of birth.
-- Constraints: 
-  - _default_ value of 'unknown'.
-  - _verbose-name_ of 'BirthDate'.
-
-4. `nationality` : CharField : choices - represents a selection field for the author's nationality.
-- Constraints: 
-  - predefined _choices_ from `NATIONALITIES` tuple.
-  - _max-length_ of 30 characters.
-
-5. `bio` : TextField - represents the author's bio.
-- Constraints: 
-  - _max-length_ of 500 characters.
-
-###### Methods:
-`def __str__():` Returns : (str) : '(author's first name) (author's last name)'.
-
----
-
-#### The Book Model (library app)
-Fields: `title`, `isbn`, `slug`, `author`, `genre`, `blurb`, `year_published`, `publisher`, `rating`, `type`, `date_added`, `price`, `image`
-
-1. `title` : CharField - represents the book title.
-- Constraints:
-  - _max-length_ of 100 characters.
-
-2. `isbn` : CharField - represents the book's Internation Standard Book Number.
-- Constraints:
-  - _max-length_ of 13 characters (all books after 2007 are 13 digits long, all before are 10 digits long).
-
-3. `slug` : SlugField - represents the book slug (name-author fields).
-- Constraints:
-  - _max-length_ of 100 characters.
-  - Can be left _blank_.
-  - Can be _null_.
-  - Has _help text_ to explain why it can be left _blank_ and may be _null_.
-
-4. `author` : FK : Author - represents the author of the book.
-
-5. `genre` : CharField : choices - represents the book genre.
-- Constraints:
-  - predefined _choices_ from `GENRES` tuple.
-  - _max-length_ of 50 characters.
-
-6. `blurb` : TextField - represents the book blurb.
-- Constraints:
-  - _max-length_ of 500 characters.
-
-7. `year_published` : IntegerField - represents the year the book was published.
-- Constraints:
-  - _MaxValueValidator_ : 2024.
-
-8. `publisher` : CharField - represents the book publisher.
-- Constraints:
-  - _max-length_ of 100 characters.
-
-9. `rating` : DecimalField - represents the book rating (out of 10).
-- Constraints:
-  - _decimal-places_ : 2.
-  - _MinValueValidator_ of 0.01 with message.
-  - _max-digits_ : 3.
-
-10. `type` : CharField - represents the book cover type.
-
-11. `date_added` : DateField - represents the date the book was added to the database.
-- Constraints:
-  - Adds current date.
-
-12. `price` : DecimalField - represents the book price.
-- Constraints:
-  - _decimal-places_ : 2.
-  - _max-digits_ : 5.
-
-13. `image` : ImageField - represents the book cover image.
-- Constraints:
-  - Can be left _blank_.
-  - Can be _null_.
-
-###### Methods:
-`def __str__():` Returns "(book title)" by (book author).
-
-`def save():`
-  try:
-      Saves the concatenated `slug`.
-      Additionally checks if the title of the book has been changed (if it no longer matches the one in the db).
-      If true - re-saves the slug to match the new title-author concatenation.
-  except `Book.DoesNotExist`:
-      Catches the `DoesNotExist` error and saves the model as a new instance. This error was encountered when attempting to perform a similar action in a previous project.
-
-`def get_absolute_url():` returns the absolute url with the book 'slug' paramter (detail page).
-
-###### Meta:
-Orders by earliest date added.
-
----
-
-#### The Order Model (checkout app)
-Fields: `order_number`, `full_name`, `email`, `phone_number`, `country`, `postcode`, `town_city`, `street_1`, `street_2`, `county`, `date`, `delivery_cost`, `order_total`, `grand_total`
-
-1. `order_number` : CharField - represents the auto-generated uuid order number.
-- Constraints:
-  - _max-length_ of 32 characters.
-  - can not be _null_.
-  - non-editable.
-
-2. `full_name` : CharField - represents the full name associated with the order.
-- Constraints:
-  - _max-length_ of 50 characters.
-  - can not be _null_.
-  - can not be _blank_.
-
-3. `email` : EmailField - represents the email associated with the order.
-- Constraints:
-  - _max-length_ of 254 characters.
-  - can not be _null_.
-  - can not be _blank_.
-
-4. `phone_number` : CharField - represents the phone number associated with the order.
-- Constraints:
-  - _max-length_ of 20 characters.
-  - can not be _null_.
-  - can not be _blank_.
-
-5. `country` : CharField - represents the country to which the order is to be posted.
-- Constraints:
-  - _max-length_ of 40 characters.
-  - can not be _null_.
-  - can not be _blank_.
-
-6. `postcode` : CharField - represents the postcode associated with the order address.
-- Constraints:
-  - _max-length_ of 20 characters.
-  - can be _null_.
-  - can be _blank_.
-
-7. `town_city` : CharField - represents the town/city to which the order is to be posted.
-- Constraints:
-  - _max-length_ of 40 characters.
-  - can not be _null_.
-  - can not be _blank_.
-
-8. `street_1` : CharField - represents the first address line on the order.
-- Constraints:
-  - _max-length_ of 80 characters.
-  - can not be _null_.
-  - can not be _blank_.
-
-9. `street_2` : CharField - represents the second address line on the order.
-- Constraints:
-  - _max-length_ of 80 characters.
-  - can be _null_.
-  - can be _blank_.
-
-10. `county` : CharField - represents the county to which the order is to be posted.
-- Constraints:
-  - _max-length_ of 80 characters.
-  - can be _null_.
-  - can be _blank_.
-
-11. `date` : DateTimeField - represents the date the order was placed.
-- Constraints:
-  - Adds current date.
-
-12. `delivery_cost` : DecimalField - represents the delivery cost associated with the order.
-- Constraints:
-  - _max-digits_: 6.
-  - _decimal-places_: 2.
-  - can not be _null_.
-  - _default_: 0
-
-13. `order_total` : DecimalField - represents the total associated with the price/book and quantity.
-- Constraints:
-  - _max-digits_: 10.
-  - _decimal-places_: 2.
-  - can not be _null_.
-  - _default_: 0.
-
-14. `grand_total` : DecimalField - represents the order_total + delivery_cost.
-- Constraints:
-  - _max-digits_: 10.
-  - _decimal-places_: 2.
-  - can not be _null_.
-  - _default_: 0.
-
-###### Methods:
-`def _generate_uuid_order_number():` Generates a random, unique order number using UUID.
-
-`def save():`
-  try:
-      Asserts whether an order number exists.
-      Saves a new `order_number` from def _generate_uuid_order_number().
-  except Order.DoesNotExist:
-      Catches the DoesNotExist error and saves the model as a new
-      instance.
-
-`def update_order_total():`
-  Updates `order_total`, `delivery_cost`, and `grand_total` based on order_total and quantity.
-  Asserts whether the `order_total` is above the `FREE_DELIVERY_THRESHOLD`, as defined in settings.py.
-  If above, assigns 0 to `delivery_cost`.
-  If below, assigns 10% of `order_total` value as `delivery_cost`.
-  Assigns `grand_total` the sum of `order_total` + `delivery_cost`.
-
-`def __str__():` Returns : (int) : order number.
-
----
-
-#### The BookLineItem Model (checkout app)
-Fields: `order`, `book`, `type`, `quantity`, `book_order_cost`
-
-1. `order` : FK : Order - represents the book order.
-- Constraints:
-  - can not be _null_.
-  - can not be _blank_.
-  - _on-delete_: _models.CASCADE_.
-  - _related-name_: _'booklineitem'_.
-
-2. `book` : FK : Book - represents the book instance that was ordered.
-- Constraints:
-  - can not be _null_.
-  - can not be _blank_.
-  - _on-delete_: _models.CASCADE_.
-
-3. `type` : CharField - represents the book cover type.
-- Constraints:
-  - _max-length_ of 9 characters.
-  - can not be _null_.
-  - can not be _blank_.
-
-4. `quantity` : IntegerField - represents the quantity that was ordered.
-- Constraints:
-  - can not be _null_.
-  - can not be _blank_.
-  - _default_: 0.
-
-5. `book_order_cost` : DecimalField - represents the total cost for the book order instance.
-- Constraints:
-  - _max-digits_: 5.
-  - can not be _null_.
-  - can not be _blank_.
-  - _decimal-places_: 2.
-  - non-editable.
-
-###### Methods:
-  `def save():` Assigns the total lineitem cost based on price/unit and quantity if not already assigned.
-
-  `def __str__():` Returns : (str) : 'ISBN: (book ISBN), order: (order number uuid)'.
+[ARCHITECTURE.md](../leaf-lounge/ARCHITECTURE.md)
 
 ## Views & Templates
+[ARCHITECTURE.md](../leaf-lounge/ARCHITECTURE.md)
+
 ## Aesthetics
 
 ## Testing & Debugging
-This section outlines procedures for manual testing. For automated testing, please see all files `test*.py`.
-
-- ## Manual Testing
-| Feature | Expected Outcome | Testing Procedure | Result | Remark |
-|---|---|---|---|---|
-
-- ## Automated Testing
-
-## Issues
-1. ### Contact Page ConnectionRefusedError
-![Connection Refused Error](static/images/connectionrefusederror.png)
-The error was encountered when attempting to send emails from the contact page. Instead of redirecting users to the home page with a success message, the application would throw the 500 Server Error page, and the email wouldn't reach the recipients' addresses.
-
-###### Solution
-As it happened, the issue was down to a simple typo in the following line in `blurb/views.py`: `recipient_list=[settings.EMAIL_HOST_USER, f'{email}'],` - the misplaced comma at the end. This syntax rendered the `recipient_list` as an invalid value in the `send_mail()` method, thus throwing the method and redirecting users to the 500 server error page. Removing the comma and saving the file resolved this issue. Testing and eventual resolution were done in `VS Code` by cloning the repository and debugging the relevant code due to Gitpod permissions and limitations.
+[TESTING.md](../leaf-lounge/TESTING.md)
 
 ## Accessibility & Performance
-### Lighthouse
-### Colour Accessibility Validator
-### HTML Validation
-### CSS Validation
-### JSHint Validation
-All js files are regularly validated during development using [JSHint](https://jshint.com/).
-
-### Pep8 Validation
-All python files are regularly validated during development using the [Code Institute PEP8 Linter](https://pep8ci.herokuapp.com/).
+[TESTING.md](../leaf-lounge/TESTING.md)
 
 ## Deployment
 The application is deployed on Heroku via a GitHub  connection, and is available for viewing in the link at the top of this README.md document. To deploy a Heroku project, please refer to the guide below.
@@ -573,9 +197,9 @@ There are some general requirements when it comes to setting up your application
 - In Django's settings.py file, setting Debug = True in development will display a detailed errors page if the application comes across an error hindering template rendering. It will also allow the collection of static files (stylesheets, images, and javascript files automatically). Setting Debug = False will display standard error pages under the same conditions and will not update any changes to static files.
 
 In Heroku, this is configured under `Config Vars` in the `Settings` tab.
-_Note: Do not commit to GitHub with Debug = True. Always set Debug = False before committing to avoid exposing personal details._
+> Note: Do not commit to GitHub with Debug = True. Always set Debug = False before committing to avoid exposing personal details.
 
-You will need two-factor verification set up to enable log in.
+> You will need two-factor verification set up to enable log in.
 
 ### Step 1: Create an App on Heroku
 Log onto your Heroku dashboard using your username and password, and confirm the access code in the two-factor verification app of your choosing.

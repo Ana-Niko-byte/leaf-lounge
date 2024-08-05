@@ -1,4 +1,5 @@
 from django import forms
+from .widgets import CustomClearableFileInput
 from .models import Review
 
 class ReviewForm(forms.ModelForm):
@@ -12,6 +13,8 @@ class ReviewForm(forms.ModelForm):
             'rating',
             'comment',
         }
+
+    image = forms.ImageField(label='Image', required=False, widget=CustomClearableFileInput)
 
     field_order = [
         'book',
