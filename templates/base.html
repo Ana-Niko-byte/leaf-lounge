@@ -20,6 +20,8 @@ https://github.com/Ana-Niko-byte/moment -->
 {% url 'account_logout' as signout_url %}
 
 {% url 'leave_review' as review_url %}
+{% url 'communities' as community_general_url %}
+{% url 'community' as community_url %}
 
 <!DOCTYPE html>
     <html lang="en">
@@ -72,7 +74,7 @@ https://github.com/Ana-Niko-byte/moment -->
                         </li>
                         {% if request.user.is_authenticated %}
                         <li class="nav-item px-2 mx-1">
-                            <a href="">
+                            <a href="{{ community_general_url }}">
                                 <i class="fa-solid fa-book-open me-2"></i>My Communities</a>
                             </a>
                         </li>

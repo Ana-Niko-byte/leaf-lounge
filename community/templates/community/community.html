@@ -1,0 +1,22 @@
+{% extends '_second_nav.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container">
+    <div class="row d-flex justify-content-center">
+        <h3>Your Communities</h3>
+        {% for community in user_communities %}
+            <div class="card col-3 mx-2">
+                <div class="card-body">
+                    <p>This is the {{ community.name }} community!</p>
+                </div>
+                <div class="card-footer text-center">
+                    <a href="{% url 'community' community.slug %}" class="btn btn-info">
+                        Go to the {{ community.name }} Forum >
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

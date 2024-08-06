@@ -20,6 +20,7 @@ class GenreAdmin(SummernoteModelAdmin):
 class BookAdmin(SummernoteModelAdmin):
     list_display = (
         'title',
+        'genre',
         'author',
         'year_published',
         'publisher',
@@ -27,6 +28,7 @@ class BookAdmin(SummernoteModelAdmin):
     )
     search_fields = [
         'title',
+        'genre',
         'author',
         'author__last_name',
         'genre',
