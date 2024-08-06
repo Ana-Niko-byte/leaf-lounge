@@ -15,7 +15,14 @@
     - Breadcrumb Trail
     - Links
       - `My Books`
+        - User Purchased Books
+          - Filter By Genre
       - `My Profile`
+        - Billing Details
+        - Order History
+        - Communities (Link)
+        - User Reviews
+        - Help (Contact Page)
       - `Become an Author`
     - Search Bar
 
@@ -76,6 +83,7 @@ ___TBD___
   - Order Summary
 
 - Reviews
+  - Review Form
 - Community
 
 - Footer
@@ -102,11 +110,11 @@ Fields: `first_name`, `last_name`, `d_o_b`, `nationality`, `bio`
 
 1. `first_name` : CharField - represents the author's firstname.
 - Constraints: 
-  - _max-length_ of 20 characters.
+  - _max-length_ : 20 characters.
 
 2. `last_name` : CharField - represents the author's lastname.
 - Constraints: 
-  - _max-length_ of 20 characters.
+  - _max-length_ : 20 characters.
 
 3. `d_o_b` : DateField - represents the author's date of birth.
 - Constraints: 
@@ -116,15 +124,38 @@ Fields: `first_name`, `last_name`, `d_o_b`, `nationality`, `bio`
 4. `nationality` : CharField : choices - represents a selection field for the author's nationality.
 - Constraints: 
   - predefined _choices_ from `NATIONALITIES` tuple.
-  - _max-length_ of 30 characters.
+  - _max-length_ : 30 characters.
 
 5. `bio` : TextField - represents the author's bio.
 - Constraints: 
-  - _max-length_ of 500 characters.
+  - _max-length_ : 500 characters.
 
 ###### Methods:
 ```Python
-def __str__(): Returns : (str) : '(author's first name) (author's last name)'
+def __str__(): Returns : (str) : (author's first name) (author's last name)
+```
+
+---
+
+#### The Genre Model (library app)
+Fields: `name`, `community`
+1. `name` : CharField - represents the Genre name.
+- Constraints: 
+  - _max-length_ : 50 characters.
+  - can not be _null_.
+  - can not be _blank_.
+
+2. `community` : FK : Community - rerpresents the Community the Genre belongs to.
+- Constraints:
+  - _on-delete_: _models.CASCADE_.
+  - can be _null_.
+  - can be _blank_.
+  - help text : 'This field will be auto-filled after save.'
+  - _related-name_: _'genre-community'_.
+
+###### Methods:
+```Python
+def __str__(): Returns: (str) : (genre name)
 ```
 
 ---
@@ -134,16 +165,16 @@ Fields: `title`, `isbn`, `slug`, `author`, `genre`, `blurb`, `year_published`, `
 
 1. `title` : CharField - represents the book title.
 - Constraints:
-  - _max-length_ of 100 characters.
+  - _max-length_ : 100 characters.
 
 2. `isbn` : CharField - represents the book's Internation Standard Book Number.
 - Constraints:
-  - _max-length_ of 13 characters (all books after 2007 are 13 digits long, all before are 10 digits long).
+  - _max-length_ : 13 characters (all books after 2007 are 13 digits long, all before are 10 digits long).
 
 3. `slug` : SlugField - represents the book slug (name-author fields).
 - Constraints:
-  - _max-length_ of 100 characters.
-  - Can be left _blank_.
+  - _max-length_ : 100 characters.
+  - Can be _blank_.
   - Can be _null_.
   - Has _help text_ to explain why it can be left _blank_ and may be _null_.
 
@@ -152,11 +183,11 @@ Fields: `title`, `isbn`, `slug`, `author`, `genre`, `blurb`, `year_published`, `
 5. `genre` : CharField : choices - represents the book genre.
 - Constraints:
   - predefined _choices_ from `GENRES` tuple.
-  - _max-length_ of 50 characters.
+  - _max-length_ : 50 characters.
 
 6. `blurb` : TextField - represents the book blurb.
 - Constraints:
-  - _max-length_ of 500 characters.
+  - _max-length_ : 500 characters.
 
 7. `year_published` : IntegerField - represents the year the book was published.
 - Constraints:
@@ -164,7 +195,7 @@ Fields: `title`, `isbn`, `slug`, `author`, `genre`, `blurb`, `year_published`, `
 
 8. `publisher` : CharField - represents the book publisher.
 - Constraints:
-  - _max-length_ of 100 characters.
+  - _max-length_ : 100 characters.
 
 9. `rating` : DecimalField - represents the book rating (out of 10).
 - Constraints:
@@ -185,7 +216,7 @@ Fields: `title`, `isbn`, `slug`, `author`, `genre`, `blurb`, `year_published`, `
 
 13. `image` : ImageField - represents the book cover image.
 - Constraints:
-  - Can be left _blank_.
+  - Can be _blank_.
   - Can be _null_.
 
 ###### Methods:
@@ -212,88 +243,133 @@ Orders by earliest date added.
 
 ---
 
+#### The Review Model (library app)
+Fields: `reviewer`, `book`, `rating`, `comment`, `reviewed_on`, `approved`
+
+1. reviewer : FK : User - represents the user leaving the review.
+- Constraints:
+  - _on-delete_: _models.CASCADE_.
+  - _related-name_: _'reviewer'_.
+
+2. book : FK : Book - represents the book being reviewed.
+- Constraints:
+  - _on-delete_: _models.CASCADE_.
+  - _related-name_: _'reviewed-book'_.
+
+3. rating : IntegerField - represents the book rating out of 10.
+- Constraints:
+  - _MinValueValidator_ : 1
+  - _MaxValueValidator_ : 10
+  - can not be _null_.
+  - can not be _blank_.
+
+4. comment : TextField - represents the user's verbal book rating.
+- Constraints:
+  - can not be _null_.
+  - can not be _blank_.
+  - _max-length_ : 500 characters.
+
+5. reviewed_on : DateField - represents the date the review was left on.
+- Constraints:
+  - can not be _null_.
+  - can not be _blank_.
+  - _auto-now-add_ : `True`
+
+6. approved : BooleanField - represents whether the comment is admin approved.
+- Constraints:
+  - default : `False`
+
+---
+
 #### The Order Model (checkout app)
-Fields: `order_number`, `full_name`, `email`, `phone_number`, `country`, `postcode`, `town_city`, `street_1`, `street_2`, `county`, `date`, `delivery_cost`, `order_total`, `grand_total`
+Fields: `order_number`, `user_profile`, `full_name`, `email`, `phone_number`, `country`, `postcode`, `town_city`, `street_1`, `street_2`, `county`, `date`, `delivery_cost`, `order_total`, `grand_total`
 
 1. `order_number` : CharField - represents the auto-generated uuid order number.
 - Constraints:
-  - _max-length_ of 32 characters.
+  - _max-length_ : 32 characters.
   - can not be _null_.
   - non-editable.
 
-2. `full_name` : CharField - represents the full name associated with the order.
+2. `user_profile` : FK : UserProfile - represents the profile to which the order belongs.
+- Constraints: 
+  -_on-delete_ : _MODELS.SET-NULL_
+  - can be _null_.
+  - can be _blank_.
+  - _related-name_ : 'orders'
+
+3. `full_name` : CharField - represents the full name associated with the order.
 - Constraints:
-  - _max-length_ of 50 characters.
+  - _max-length_ : 50 characters.
   - can not be _null_.
   - can not be _blank_.
 
-3. `email` : EmailField - represents the email associated with the order.
+4. `email` : EmailField - represents the email associated with the order.
 - Constraints:
-  - _max-length_ of 254 characters.
+  - _max-length_ : 254 characters.
   - can not be _null_.
   - can not be _blank_.
 
-4. `phone_number` : CharField - represents the phone number associated with the order.
+5. `phone_number` : CharField - represents the phone number associated with the order.
 - Constraints:
-  - _max-length_ of 20 characters.
+  - _max-length_ : 20 characters.
   - can not be _null_.
   - can not be _blank_.
 
-5. `country` : CharField - represents the country to which the order is to be posted.
+6. `country` : CharField - represents the country to which the order is to be posted.
 - Constraints:
-  - _max-length_ of 40 characters.
+  - _max-length_ : 40 characters.
   - can not be _null_.
   - can not be _blank_.
 
-6. `postcode` : CharField - represents the postcode associated with the order address.
+7. `postcode` : CharField - represents the postcode associated with the order address.
 - Constraints:
-  - _max-length_ of 20 characters.
+  - _max-length_ : 20 characters.
   - can be _null_.
   - can be _blank_.
 
-7. `town_city` : CharField - represents the town/city to which the order is to be posted.
+8. `town_city` : CharField - represents the town/city to which the order is to be posted.
 - Constraints:
-  - _max-length_ of 40 characters.
+  - _max-length_ : 40 characters.
   - can not be _null_.
   - can not be _blank_.
 
-8. `street_1` : CharField - represents the first address line on the order.
+9. `street_1` : CharField - represents the first address line on the order.
 - Constraints:
-  - _max-length_ of 80 characters.
+  - _max-length_ : 80 characters.
   - can not be _null_.
   - can not be _blank_.
 
-9. `street_2` : CharField - represents the second address line on the order.
+10. `street_2` : CharField - represents the second address line on the order.
 - Constraints:
-  - _max-length_ of 80 characters.
+  - _max-length_ : 80 characters.
   - can be _null_.
   - can be _blank_.
 
-10. `county` : CharField - represents the county to which the order is to be posted.
+11. `county` : CharField - represents the county to which the order is to be posted.
 - Constraints:
-  - _max-length_ of 80 characters.
+  - _max-length_ : 80 characters.
   - can be _null_.
   - can be _blank_.
 
-11. `date` : DateTimeField - represents the date the order was placed.
+12. `date` : DateTimeField - represents the date the order was placed.
 - Constraints:
   - Adds current date.
 
-12. `delivery_cost` : DecimalField - represents the delivery cost associated with the order.
+13. `delivery_cost` : DecimalField - represents the delivery cost associated with the order.
 - Constraints:
   - _max-digits_: 6.
   - _decimal-places_: 2.
   - can not be _null_.
   - _default_: 0
 
-13. `order_total` : DecimalField - represents the total associated with the price/book and quantity.
+14. `order_total` : DecimalField - represents the total associated with the price/book and quantity.
 - Constraints:
   - _max-digits_: 10.
   - _decimal-places_: 2.
   - can not be _null_.
   - _default_: 0.
 
-14. `grand_total` : DecimalField - represents the order_total + delivery_cost.
+15. `grand_total` : DecimalField - represents the order_total + delivery_cost.
 - Constraints:
   - _max-digits_: 10.
   - _decimal-places_: 2.
@@ -348,7 +424,7 @@ Fields: `order`, `book`, `type`, `quantity`, `book_order_cost`
 
 3. `type` : CharField - represents the book cover type.
 - Constraints:
-  - _max-length_ of 9 characters.
+  - _max-length_ : 9 characters.
   - can not be _null_.
   - can not be _blank_.
 
@@ -373,6 +449,83 @@ def save(): Assigns the total lineitem cost based on price/unit and quantity if 
 
 ```Python
 def __str__(): Returns : (str) : 'ISBN: (book ISBN), order: (order number uuid)'.
+```
+
+---
+
+#### The Community Model (community app)
+Fields: `name`, `description`
+
+1. `name` : CharField - represents the name of the community. 
+- Constraints: 
+  - _max-length_ : 80 characters.
+  - can not be _null_.
+  - can not be _blank_.
+
+2. `description` : TextField - represents the community intro/description.
+  - _max-length_ : 500 characters.
+  - can be _null_.
+  - can be _blank_.
+
+```Python
+  def __str__(): Returns : (str) (community name)
+```
+
+---
+
+#### The UserProfile Model (reader app)
+Fields: `user`, `default_street_1`, `default_street_2`, `default_town_city`, `default_county`, `default_postcode`, `default_country`
+
+
+1. user : OneToOneField : User - represents the user to whom the profile belongs.
+  - Constraints:
+    - _on-delete_: _models.CASCADE_.
+
+2. default_phone_number - represents the user's saved phone number.
+- Constraints:
+  - _max-length_ : 20 characters.
+  - can be _null_.
+  - can be _blank_.
+
+3. default_street_1 : CharField - represents the saved default street address.
+- Constraints:
+  - _max-length_ : 80 characters.
+  - can be _null_.
+  - can be _blank_.
+
+4. default_street_2 : CharField - represents the saved default street address.
+- Constraints:
+  - _max-length_ : 80 characters.
+  - can be _null_.
+  - can be _blank_.
+
+5. default_town_city : CharField - represents the saved default town/city address.
+- Constraints:
+  - _max-length_ : 40 characters.
+  - can be _null_.
+  - can be _blank_.
+
+6. default_county : CharField - represents the saved default county address.
+- Constraints:
+  - _max-length_ : 80 characters.
+  - can be _null_.
+  - can be _blank_.
+
+7. default_postcode : CharField - represents the saved default postcode address.
+- Constraints:
+  - _max-length_ : 20 characters.
+  - can be _null_.
+  - can be _blank_.
+
+8. default_country : Field - represents the saved default country address.
+- Constraints:
+  - _blank-label_ : 'Country'.
+  - can be _null_.
+  - can be _blank_.
+
+###### Methods:
+```Python
+def __str__() : Returns : (str) : (user's username)
 ```
 
 ## Views & Templates

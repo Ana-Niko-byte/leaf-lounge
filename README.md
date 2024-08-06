@@ -89,7 +89,7 @@ Leaf Lounge is built with `Django` - a high-level Python framework that encourag
 - Automated order confirmation emails.
 
 ## Structure
-[ARCHITECTURE.md](../leaf-lounge/ARCHITECTURE.md)
+[ARCHITECTURE.md](https://github.com/Ana-Niko-byte/leaf-lounge/blob/main/ARCHITECTURE.md)
 
 ## Wireframes
 ![]()
@@ -171,21 +171,21 @@ For the purposes of document navigation, the key information deliverables for th
 
 ## Scope of Application
 ## Features
-[ROADMAP.md](../leaf-lounge/ROADMAP.md)
+[ROADMAP.md](https://github.com/Ana-Niko-byte/leaf-lounge/blob/main/ROADMAP.md)
 
 ## Models
-[ARCHITECTURE.md](../leaf-lounge/ARCHITECTURE.md)
+[ARCHITECTURE.md](https://github.com/Ana-Niko-byte/leaf-lounge/blob/main/ARCHITECTURE.md)
 
 ## Views & Templates
-[ARCHITECTURE.md](../leaf-lounge/ARCHITECTURE.md)
+[ARCHITECTURE.md](https://github.com/Ana-Niko-byte/leaf-lounge/blob/main/ARCHITECTURE.md)
 
 ## Aesthetics
 
 ## Testing & Debugging
-[TESTING.md](../leaf-lounge/TESTING.md)
+[TESTING.md](https://github.com/Ana-Niko-byte/leaf-lounge/blob/main/TESTING.md)
 
 ## Accessibility & Performance
-[TESTING.md](../leaf-lounge/TESTING.md)
+[TESTING.md](https://github.com/Ana-Niko-byte/leaf-lounge/blob/main/TESTING.md)
 
 ## Deployment
 The application is deployed on Heroku via a GitHub  connection, and is available for viewing in the link at the top of this README.md document. To deploy a Heroku project, please refer to the guide below.

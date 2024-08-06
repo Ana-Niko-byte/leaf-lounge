@@ -15,7 +15,7 @@ class Author(models.Model):
     """
     A class representing an author model.
 
-    Attributes:
+    Fields:
     first_name : CharField - represents the author's firstname.
     last_name : CharField - represents the author's lastname.
     d_o_b : DateField - represents the author's date of birth.
@@ -59,7 +59,7 @@ class Book(models.Model):
     """
     A class representing a book model.
 
-    Attributes:
+    Fields:
     title : CharField - the book title.
     isbn : CharField - the book's Internation Standard Book Number.
     slug : SlugField - the book slug (name-author fields).

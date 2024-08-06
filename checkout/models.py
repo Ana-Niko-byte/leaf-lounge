@@ -13,8 +13,9 @@ class Order(models.Model):
     """
     A class representing a book order.
 
-    Attributes:
+    Fields:
     order_number : CharField - the auto-generated uuid order number.
+    user_profile : FK : UserProfile - the profile to which the order belongs.
     full_name : CharField - the full name associated with the order.
     email : EmailField - the email associated with the order.
     phone_number: CharField - the phone number associated with the order.
@@ -192,7 +193,7 @@ class BookLineItem(models.Model):
     """
     A class representing a book line item.
 
-    Attributes:
+    Fields:
     order : FK : Order - the book order.
     book : FK : Book - the book instance that was ordered.
     type : CharField - the book cover type.
