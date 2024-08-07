@@ -63,6 +63,7 @@ Leaf Lounge is built with `Django` - a high-level Python framework that encourag
 - `HTML5/ Django Syntax` - Used for structuring and content.
 - `CSS3` - Used for adding styles to the content for legibility and aesthetic appeal.
 - `Javascript` - For adding basic interactivity and dynamically setting URLs.
+- `jQuery` - For adding basic interactivity and dynamically setting URLs.
 
 #### Additional Technologies
 - `FontAwesome/Bootstrap` icons - used for icons.
@@ -271,5 +272,7 @@ Steps:
 - For help solving `unsupported operand type(s) for |=: 'NoneType' and 'Q'` : [stack overflow](https://stackoverflow.com/questions/28201400/typeerror-unsupported-operand-types-for-bool-and-q)
 
 - For initialising an `Q()` (wasn't sure on syntax): [stack overflow](https://stackoverflow.com/questions/44198266/django-how-to-check-if-q-object-is-empty)
+
+- For setting up [Mailchimp Marketing](https://testdriven.io/blog/django-mailchimp/)
 
 ## Acknowledgements
