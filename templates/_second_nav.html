@@ -2,8 +2,12 @@
 {% load static %}
 {% block secondary_nav %}
 <div id="delivery-banner" class="row text-center">
-    <div class="col bg-black text-white py-2">
+    <div class="col bg-black text-white">
+        {% if community_view %}
+        <h5 class="m-0 p-0 p-3">WELCOME TO THE {{ community.name|upper }}</h5>
+        {% else %}
         <h5 class="my-1 text-uppercase">Free delivery on orders over €{{ FDT }}</h5>
+        {% endif %}
     </div>
 </div>
 <div class="secondary-navigation py-3 d-flex flex-column flex-md-row justify-content-between align-items-center">

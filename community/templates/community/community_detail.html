@@ -3,8 +3,13 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<div class="container">
-    <div class="row d-flex justify-content-center">
-        <h1>This is the {{ community.name }} view!</h1>
+<div class="container-fluid">
+    <div class="row">
+        <p class="text-center">{{ community.description|safe }}</p>
+    </div>
+    <div class="row d-flex justify-content-around">
+        <div class="col-3 border text-center">Active Discussions</div>
+        <div class="col-5 border text-center">Latest News</div>
+        <div class="col-3 border text-center">More Books</div>
     </div>
 {% endblock %}

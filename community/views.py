@@ -46,6 +46,7 @@ def community(request, slug):
 
     context = {
         'community': community,
+        'community_view': True,
     }
 
     return render(
