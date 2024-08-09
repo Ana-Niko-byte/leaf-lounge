@@ -6,6 +6,7 @@ from django.shortcuts import reverse
 from django_countries.fields import CountryField
 
 from community.models import Community
+from reader.models import UserProfile
 
 # Model Tuples
 from ._covers import COVERS
@@ -16,6 +17,8 @@ class Author(models.Model):
     A class representing an author model.
 
     Fields:
+    user_profile : FK : UserProfile - represent's the author's account
+    if they have one.
     first_name : CharField - represents the author's firstname.
     last_name : CharField - represents the author's lastname.
     d_o_b : DateField - represents the author's date of birth.
@@ -27,6 +30,14 @@ class Author(models.Model):
     def __str__():
         Returns (author's first name) (author's last name).
     """
+    user_profile = models.ForeignKey(
+        UserProfile,
+        on_delete=models.SET_NULL,
+        # Not all authors need to have an account!
+        null=True,
+        blank=True,
+        related_name='author_profile'
+    )
     first_name = models.CharField(max_length=20, null=False, blank=False)
     last_name = models.CharField(max_length=20, null=False, blank=False)
     d_o_b = models.DateField(

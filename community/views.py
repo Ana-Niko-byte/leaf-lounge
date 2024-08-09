@@ -3,7 +3,7 @@ from django.contrib import messages
 
 from .forms import AuthorForm
 from .models import Community
-from library.models import Genre
+from library.models import Genre, Author
 from reader.models import UserProfile
 from checkout.models import Order
 
@@ -61,12 +61,38 @@ def community(request, slug):
 def sell_books(request):
 
     if request.method == 'POST':
-        print('POST')
         author_form = AuthorForm(data=request.POST)
         if author_form.is_valid():
-            print('VALID')
+            user = UserProfile.objects.get(user=request.user)
+            firstname = author_form.cleaned_data['first_name']
+            lastname = author_form.cleaned_data['last_name']
+            d_o_b = author_form.cleaned_data['d_o_b']
+            nationality = author_form.cleaned_data['nationality']
+            bio = author_form.cleaned_data['bio']
+            if request.user.username != 'AnonymousUser':
+                Author.objects.create(
+                    user_profile=user,
+                    first_name=f'{firstname}',
+                    last_name=f'{lastname}',
+                    d_o_b=f'{d_o_b}',
+                    nationality=f'{nationality}',
+                    bio=f'{bio}'
+                )
+            else:
+                # For authors that don't have an account - loaded.
+                Author.objects.create(
+                    user_profile=None,
+                    first_name=f'{firstname}',
+                    last_name=f'{lastname}',
+                    d_o_b=f'{d_o_b}',
+                    nationality=f'{nationality}',
+                    bio=f'{bio}'
+                )
+            messages.success(
+                request,
+                'Successfully created Author!'
+            )
         else:
-            print('NOT VALID')
             author_form = AuthorForm()
             messages.error(
                 request,
@@ -74,7 +100,6 @@ def sell_books(request):
             )
         return redirect('sell_books')
     else:
-        print('NOT POST')
         author_form = AuthorForm()
         context = {
             'authorForm': author_form,
