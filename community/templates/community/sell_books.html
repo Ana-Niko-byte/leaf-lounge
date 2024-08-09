@@ -1,0 +1,31 @@
+{% extends '_second_nav.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container">
+    <div class="row d-flex justify-content-center">
+        <div class="col-lg-10 col-sm-12 d-flex justify-content-between">
+            <div class="col-5 border">
+                <p>placeholder content is currently here</p>
+                <p>placeholder content is currently here</p>
+                <p>placeholder content is currently here</p>
+                <p>placeholder content is currently here</p>
+            </div>
+            <div class="col-5">
+                <div class="card">
+                    <div class="card-body">
+                        <form action="" id="authorForm" method="POST">
+                            {% csrf_token %}
+                            {{ authorForm|crispy }}
+                            <div class="button-container text-center">
+                                <button type="submit" class="btn btn-warning">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

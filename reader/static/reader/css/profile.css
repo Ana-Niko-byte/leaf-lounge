@@ -4,6 +4,11 @@
     --placeholder-grey: #aab7c4;
 }
 
+p{
+    margin: 0;
+    padding: 0;
+}
+
 #userProfileForm input::placeholder{
     color: var(--placeholder-grey);
 }

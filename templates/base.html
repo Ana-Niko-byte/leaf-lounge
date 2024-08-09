@@ -1,6 +1,5 @@
-<!-- This template was partially copied from the first iteration of this project, which can be found at the following URL: 
-https://github.com/Ana-Niko-byte/moment -->
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% url 'home' as home_url %}
 {% url 'library' as library_url %}
@@ -22,6 +21,7 @@ https://github.com/Ana-Niko-byte/moment -->
 {% url 'leave_review' as review_url %}
 {% url 'communities' as community_general_url %}
 {% url 'community' as community_url %}
+{% url 'sell_books' as sell_books_url %}
 
 <!DOCTYPE html>
     <html lang="en">
@@ -238,7 +238,14 @@ https://github.com/Ana-Niko-byte/moment -->
                 </ul>
             </div>
             <div class="n-container d-flex justify-content-center">
-                <div class="text-center" style="background-color: grey; width:200px; height: 100px;">Newsletter Box</div>
+                <div class="newsletter-container">
+                    <p>Subscribe to our Leaf Lounge Newsletter</p>
+                    <img src="../static/images/mailchimp.webp" alt="Mailchimp Newsletter Logo" width="125">
+                    <form method="post">
+                        <!-- Add input field here -->
+                        <button type="submit" class="btn btn-primary">Subscribe</button>
+                    </form>
+                </div>
             </div>
             <div class="socials text-center my-3">
                 <a class="mx-1" href="" target="_blank"><i class="fa-brands fa-facebook"></i></a>

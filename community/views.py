@@ -1,9 +1,11 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib import messages
+
+from .forms import AuthorForm
 from .models import Community
 from library.models import Genre
 from reader.models import UserProfile
 from checkout.models import Order
-
 
 
 def community_general(request):
@@ -54,3 +56,31 @@ def community(request, slug):
         'community/community_detail.html',
         context
     )
+
+
+def sell_books(request):
+
+    if request.method == 'POST':
+        print('POST')
+        author_form = AuthorForm(data=request.POST)
+        if author_form.is_valid():
+            print('VALID')
+        else:
+            print('NOT VALID')
+            author_form = AuthorForm()
+            messages.error(
+                request,
+                'Please double check your information and try again'
+            )
+        return redirect('sell_books')
+    else:
+        print('NOT POST')
+        author_form = AuthorForm()
+        context = {
+            'authorForm': author_form,
+        }
+        return render(
+            request,
+            'community/sell_books.html',
+            context
+        )

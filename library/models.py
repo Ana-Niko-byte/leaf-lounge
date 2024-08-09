@@ -27,11 +27,15 @@ class Author(models.Model):
     def __str__():
         Returns (author's first name) (author's last name).
     """
-    first_name = models.CharField(max_length=20)
-    last_name = models.CharField(max_length=20)
-    d_o_b = models.DateField(default='unknown', verbose_name='BirthDate')
-    nationality = CountryField(blank_label='Unknown', null=True, blank=True)
-    bio = models.TextField(max_length=500)
+    first_name = models.CharField(max_length=20, null=False, blank=False)
+    last_name = models.CharField(max_length=20, null=False, blank=False)
+    d_o_b = models.DateField(
+        verbose_name='Birth Date',
+        null=False,
+        blank=False
+    )
+    nationality = CountryField(blank_label='Unknown Nationality', null=True, blank=True)
+    bio = models.TextField(max_length=500, null=False, blank=False)
 
     def __str__(self):
         """
@@ -41,6 +45,8 @@ class Author(models.Model):
 
 
 class Genre(models.Model):
+    """
+    """
     name = models.CharField(max_length=50, null=False, blank=False)
     community = models.ForeignKey(
         Community,
@@ -177,6 +183,7 @@ class Book(models.Model):
         """
         return reverse('book-summary', args=[self.slug])
 
+
 class Review(models.Model):
     """
     A class for a book review.
@@ -189,9 +196,22 @@ class Review(models.Model):
     reviewed_on : DateField - the date the review was left on.
     approved : BooleanField - whether the comment is admin approved.
     """
-    reviewer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reviewer')
-    book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='reviewed_book')
-    rating = models.IntegerField(validators=[MaxValueValidator(10), MinValueValidator(1)], null=False, blank=False)
+    reviewer = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='reviewer'
+    )
+    book = models.ForeignKey(
+        Book,
+        on_delete=models.CASCADE,
+        related_name='reviewed_book'
+    )
+    rating = models.IntegerField(
+        validators=[
+            MaxValueValidator(10), MinValueValidator(1)],
+        null=False,
+        blank=False
+    )
     comment = models.TextField(max_length=500, null=False, blank=False)
     reviewed_on = models.DateField(auto_now_add=True, null=False, blank=False)
     approved = models.BooleanField(default=False)
