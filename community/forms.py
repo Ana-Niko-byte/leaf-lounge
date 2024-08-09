@@ -46,3 +46,12 @@ class AuthorForm(forms.ModelForm):
         for field in self.fields:
             self.fields[field].widget.attrs['placeholder'] = placeholders.get(field, '')
             self.fields[field].label = False
+
+
+class BookForm(forms.ModelForm):
+    """
+    A class for registering a Book.
+    """
+    class Meta:
+        model=Book
+        exclude={'slug', 'rating'}

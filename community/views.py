@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 
-from .forms import AuthorForm
 from .models import Community
 from library.models import Genre, Author
 from reader.models import UserProfile
 from checkout.models import Order
+
+from .forms import AuthorForm, BookForm
 
 
 def community_general(request):
@@ -58,7 +59,7 @@ def community(request, slug):
     )
 
 
-def sell_books(request):
+def create_author(request):
 
     if request.method == 'POST':
         author_form = AuthorForm(data=request.POST)
@@ -92,6 +93,7 @@ def sell_books(request):
                 request,
                 'Successfully created Author!'
             )
+            return redirect('upload_book')
         else:
             author_form = AuthorForm()
             messages.error(
@@ -106,6 +108,26 @@ def sell_books(request):
         }
         return render(
             request,
-            'community/sell_books.html',
+            'community/create_author.html',
             context
         )
+
+def upload_book(request):
+    if request.method == 'POST':
+        book_form = BookForm(data=request.POST)
+        if book_form.is_valid():
+            print('VALID')
+        else:
+            print('INVALID')
+    else:
+        print('NOT POST')
+    book_form = BookForm()
+
+    context={
+        'bookForm': book_form,
+    }
+    return render(
+        request,
+        'community/upload_book.html',
+        context
+    )

@@ -32,7 +32,7 @@
         {% endif %}
         <li class="nav-item second-nav-link text-center">
             <!-- Add correct url here -->
-            <a href="{% if request.user.is_authenticated %}{{ sell_books_url }}{% else %}{{ signup_url }}{% endif %}">Become an Author</a>
+            <a href="{% if request.user.is_authenticated %}{{ create_author_url }}{% else %}{{ signup_url }}{% endif %}">Become an Author</a>
         </li>
     </ul>
     <div class="form-container col-lg-2 col-md-4 col-sm-12 me-0 me-md-4">
