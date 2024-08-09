@@ -7,7 +7,6 @@ django-crispy-forms==2.2
 django-summernote==0.8.20.0
 gunicorn==22.0.0
 mailchimp-marketing==3.0.75
-mailchimp-transactional==1.0.47
 pillow==10.4.0
 pytz==2024.1
 sqlparse==0.5.0
