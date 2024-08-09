@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Newsletter
     'marketing.apps.MarketingConfig',
+    'transactional.apps.TransactionalConfig',
     # Allauth apps
     'django.contrib.sites',
     # Crispy Forms
@@ -214,3 +215,5 @@ STRIPE_WH_SECRET = os.environ.get("STRIPE_WH_SECRET", "")
 MAILCHIMP_API_KEY = os.environ.get("MAILCHIMP_API_KEY", "")
 MAILCHIMP_REGION = os.environ.get("MAILCHIMP_REGION", "")
 MAILCHIMP_MARKETING_AUDIENCE_ID = os.environ.get("MAILCHIMP_MARKETING_AUDIENCE_ID", "")
+
+MAILCHIMP_TRANSACTIONAL_API_KEY = os.environ.get("MAILCHIMP_TRANSACTIONAL_API_KEY", "")
