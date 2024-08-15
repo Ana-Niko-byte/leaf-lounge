@@ -11,36 +11,39 @@
     <div class="row">
         <!-- Sort By -->
         <div class="col-lg-3 col-md-6 col-sm-12 col-lg-first">
-            <h5 class="mb-3">Sort by:</h5>
+            <!-- <h5 class="mb-3">Sort by:</h5> -->
             <div class="sort-container d-flex flex-column">
-                <button class="btn btn-success mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#authors" aria-expanded="false" aria-controls="authors">
-                    <span class="small">Authors<i class="fa-solid fa-chevron-down fa-sm ms-2"></i></span>
+                <button class="btn btn-success mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#filters" aria-expanded="false" aria-controls="filters">
+                    <span class="small">Filters<i class="fa-solid fa-chevron-down fa-sm ms-2"></i></span>
                 </button>
-                <div class="collapse multi-collapse mb-3" id="authors">
+                <div class="collapse multi-collapse mb-3" id="filters">
                     <form method="GET" action="{% url 'library' %}">
-                        {% for author in authors %}
-                        <div class="input-group d-flex align-items-center">
-                            <input type="checkbox" id="{{ author.last_name | lower }}-author" name="author" value="{{ author.last_name }}" {%if author.last_name in authors_ln %} checked = "checked" {% endif %}>
-                            <label class="ms-3" for="{{ author.last_name | lower }}-author"> {{ author }}</label><br>
-                        </div>
-                        {% endfor %}
-                        <button class="form-control btn btn-warning" type="submit">
-                            <i class="fa-solid fa-check me-2"></i>Save Changes
+
+                        <button class="btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#authors" aria-expanded="false" aria-controls="authors">
+                            <span class="small">Authors<i class="fa-solid fa-chevron-down fa-sm ms-2"></i></span>
                         </button>
-                    </form>
-                </div>
-                <button class="btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#genres" aria-expanded="false" aria-controls="genres">
-                    <span class="small">Genres<i class="fa-solid fa-chevron-down fa-sm ms-2"></i></span>
-                </button>
-                <div class="collapse multi-collapse my-3" id="genres">
-                    <form method="GET" action="{% url 'library' %}">
-                        {% for genre in genres %}
-                        <div class="input-group d-flex align-items-center">
-                            <input type="checkbox" id="{{ genre }}-genre" name="genre" value="{{ genre }}" {% if genre in book_genres %} checked="checked" {% endif %}>
-                            <label class="ms-3" for="{{ genre }}-genre"> {{ genre }}</label><br>
+                        <div class="collapse multi-collapse mb-3" id="authors">
+                            {% for author in authors %}
+                            <div class="input-group d-flex align-items-center">
+                                <input type="checkbox" id="{{ author.last_name | lower }}-author" name="author" value="{{ author.last_name }}" {%if author.last_name in authors_ln %} checked = "checked" {% endif %}>
+                                <label class="ms-3" for="{{ author.last_name | lower }}-author"> {{ author }}</label><br>
+                            </div>
+                            {% endfor %}
                         </div>
-                        {% endfor %}
-                        <button class="form-control btn btn-warning mt-3" type="submit">
+
+                        <button class="btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#genres" aria-expanded="false" aria-controls="genres">
+                            <span class="small">Genres<i class="fa-solid fa-chevron-down fa-sm ms-2"></i></span>
+                        </button>
+                        <div class="collapse multi-collapse my-3" id="genres">
+                            {% for genre in genres %}
+                            <div class="input-group d-flex align-items-center">
+                                <input type="checkbox" id="{{ genre }}-genre" name="genre" value="{{ genre }}" {% if genre in book_genres %} checked="checked" {% endif %}>
+                                <label class="ms-3" for="{{ genre }}-genre"> {{ genre }}</label><br>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        
+                        <button class="form-control btn btn-warning" type="submit">
                             <i class="fa-solid fa-check me-2"></i>Save Changes
                         </button>
                     </form>
@@ -50,23 +53,27 @@
         <!-- /Sort By -->
         <!-- Books -->
         <div class="col-lg-9 col-md-6 col-sm-12">
-            <div class="row">
-                {% for book in books %}
-                <div class="col-lg-3 col-md-4 col-sm-12 mb-5">
-                    <div class="book d-flex flex-column align-items-center justify-content-start" style="max-height: 550px;">
-                        <a href="{{ book.get_absolute_url }}">
-                            <img src="../../../static/images/1984_cover.jpg" alt="" style="width: 220px;">
-                        </a>
-                        <div class="text-center mt-3 mb-1">
-                            <p class="h5">{{ book.title }}</p>
-                            <p class="text-secondary"><em>by {{ book.author }} | {{ book.year_published }}</em></p>
+            {% for genre in genres %}
+                <div class="row">
+                    {% for book in books %}
+                        {% if book.genre == genre %}
+                        <div class="col-lg-3 col-md-4 col-sm-12 mb-5">
+                            <div class="book d-flex flex-column align-items-center justify-content-start" style="max-height: 550px;">
+                                <a href="{{ book.get_absolute_url }}">
+                                    <img src="../../../static/images/1984_cover.jpg" alt="" style="width: 220px;">
+                                </a>
+                                <div class="text-center mt-3 mb-1">
+                                    <p class="h5">{{ book.title }}</p>
+                                    <p class="text-secondary"><em>by {{ book.author }} | {{ book.year_published }}</em></p>
+                                </div>
+                                <p class="text-center text-sm">"{{ book.blurb | safe }}"</p>
+                                <a href="{{ book.get_absolute_url }}" class="btn btn-warning mb-5 mt-3">Read More</a>
+                            </div>
                         </div>
-                        <p class="text-center text-sm">"{{ book.blurb | safe }}"</p>
-                        <a href="{{ book.get_absolute_url }}" class="btn btn-warning mb-5">Read More</a>
-                    </div>
+                        {% endif %}
+                    {% endfor %}
                 </div>
-                {% endfor %}
-            </div>
+            {% endfor %}
         </div>
         <!-- /Books -->
     </div>

@@ -6,6 +6,8 @@ from .models import *
 from reader.models import UserProfile
 from .forms import ReviewForm
 
+from itertools import product
+
 
 def library(request):
     """
@@ -29,59 +31,79 @@ def library(request):
             queries = Q(title__icontains=query)
             books = books.filter(queries)
 
-        elif 'author' in request.GET:
+        elif 'author' and 'genre' in request.GET:
             authors_ln = request.GET.getlist('author')
-            if not authors_ln:
-                messages.error(
-                    request,
-                    'Please select the authors you wish to filter by.'
-                )
-                return redirect(reverse('library'))
-            else:
-                for item in authors_ln:
-                    # |= OR Query, searching author__last_name
-                    # enabled in admin.py.
-                    filter_query |= Q(author__last_name__icontains=item)
-                books = books.filter(filter_query)
-                # As authors_ln is not passed to context unless
-                # user always includes an author filter.
-                context = {
-                    'books': books,
-                    'genres': genres,
-                    'authors': authors,
-                    'search_term': query,
-                    'authors_ln': authors_ln,
-                }
-                return render(
-                    request,
-                    'library/library.html',
-                    context
-                )
-
-        elif 'genre' in request.GET:
             book_genres = request.GET.getlist('genre')
-            if not book_genres:
+            if not authors_ln and not book_genres:
                 messages.error(
                     request,
-                    'Please select the genres you wish to filter by.'
+                    'You didn\'t select any filters.'
                 )
                 return redirect(reverse('library'))
             else:
-                for genre in book_genres:
-                    filter_query |= Q(genre__icontains=genre)
-                books = books.filter(filter_query)
-                context = {
-                    'books': books,
-                    'genres': genres,
-                    'authors': authors,
-                    'search_term': query,
-                    'book_genres': book_genres,
-                }
-                return render(
-                    request,
-                    'library/library.html',
-                    context
-                )
+                merged_query = Q()
+                for author, genre in product(authors_ln, book_genres):
+                    merged_conditions = Q(
+                        author__last_name__icontains=author
+                    ) and Q(
+                        genre__name__icontains=genre
+                    )
+                    merged_query |= merged_conditions
+                books = books.filter(merged_query)
+
+            if 'author' in request.GET and 'genre' not in request.GET:
+                authors_ln = request.GET.getlist('author')
+                if not authors_ln:
+                    messages.error(
+                        request,
+                        'Please select the authors you wish to filter by.'
+                    )
+                    return redirect(reverse('library'))
+                else:
+                    for item in authors_ln:
+                        # |= OR Query, searching author__last_name
+                        # enabled in admin.py.
+                        filter_query |= Q(author__last_name__icontains=item)
+                    books = books.filter(filter_query)
+                    # As authors_ln is not passed to context unless
+                    # user always includes an author filter.
+                    context = {
+                        'books': books,
+                        'genres': genres,
+                        'authors': authors,
+                        'search_term': query,
+                        'authors_ln': authors_ln,
+                    }
+                    return render(
+                        request,
+                        'library/library.html',
+                        context
+                    )
+
+            elif 'genre' in request.GET and 'author' not in request.GET:
+                book_genres = request.GET.getlist('genre')
+                if not book_genres:
+                    messages.error(
+                        request,
+                        'Please select the genres you wish to filter by.'
+                    )
+                    return redirect(reverse('library'))
+                else:
+                    for genre in book_genres:
+                        filter_query |= Q(genre__name__icontains=genre)
+                    books = books.filter(filter_query)
+                    context = {
+                        'books': books,
+                        'genres': genres,
+                        'authors': authors,
+                        'search_term': query,
+                        'book_genres': book_genres,
+                    }
+                    return render(
+                        request,
+                        'library/library.html',
+                        context
+                    )
 
     context = {
         'books': books,
@@ -130,11 +152,11 @@ def leave_review(request):
                 'Please double check your fields and correct errors.'
             )
             reviewForm = ReviewForm()
-    
-    context ={
+
+    context = {
         'reviewForm': reviewForm,
     }
-    
+
     return render(
         request,
         'library/review.html',
