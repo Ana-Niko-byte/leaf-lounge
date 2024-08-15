@@ -6,10 +6,10 @@ Also available for viewing here:
 
 ![Leaf Lounge Responsive Image]()
 
-## Introduction
+>>> ## Introduction
 Leaf Lounge is built with `Django` - a high-level Python framework that encourages rapid development and clean code practices. As a book & networking platform, Leaf Lounge offers book lovers the unique opportunity to network and share impressions, reviews, and critiques of books. Visitors wishing to join one of Leaf Lounge's vast communities need only purchase a book and register a personal Leaf Lounge account, and they immediately gain access to all Leaf Lounge has to offer.
 
-## Table of Contents
+>>> ## Table of Contents
 - [Technology Stack](#technology-stack)
 - [Feature Sneak Peek](#feature-sneak-peek)
 - [Structure](#structure)
@@ -51,21 +51,21 @@ Leaf Lounge is built with `Django` - a high-level Python framework that encourag
 - [Credits](#credits)
 - [Acknowledgements](#acknowledgements)
 
-## Technology Stack
-#### Backend
+>>> ## Technology Stack
+>> #### Backend
 - `Django Framework` - fullstack technology.
 - `Python` - Used for Django manipulation & interaction.
 
-#### Database
+>> #### Database
 - `PostgreSQL`
 
-#### Frontend
+>> #### Frontend
 - `HTML5/ Django Syntax` - Used for structuring and content.
 - `CSS3` - Used for adding styles to the content for legibility and aesthetic appeal.
 - `Javascript` - For adding basic interactivity and dynamically setting URLs.
 - `jQuery` - For adding basic interactivity and dynamically setting URLs.
 
-#### Additional Technologies
+>> #### Additional Technologies
 - `FontAwesome/Bootstrap` icons - used for icons.
 - `Chrome Developer Tools` - used for debugging the website during production.
 - `Lighthouse` - For performance, accessibility, best practices and SEO checking.
@@ -80,22 +80,21 @@ Leaf Lounge is built with `Django` - a high-level Python framework that encourag
 - `JSHint` - for checking and validating my JS code. 
 - `Pep8` - for Python code validation and best practices formatting.
 
-## Feature Sneak Peek
-- Comprehensive E-COMMERCE functionality.
-- Advanced book filtering and sorting capabilities.
-- Dedicated customer service contact page (emails sent directly to the company).
-- Custom user profiles featuring order history, billing information, and book storage.
-- Genre-specific community chatrooms.
-- Functionality to leave and read reviews.
-- Automated order confirmation emails.
+>>> ## Feature Sneak Peek
+- Advanced Book Filtering and Sorting
+- Genre-Specific Communities and Forums
+- Leave & Read Reviews
+- Comprehensive E-COMMERCE
+- Custom User Profile
+- Dedicated Customer Service
 
-## Structure
+>>> ## Structure
 [ARCHITECTURE.md](https://github.com/Ana-Niko-byte/leaf-lounge/blob/main/ARCHITECTURE.md)
 
-## Wireframes
+>>> ## Wireframes
 ![]()
 
-## User Stories
+>>> ## User Stories
 | Id | User Story | Label | User Story Testing |
 | ----- | ----- | ----- | ----- |
 | 1 | As a first time visitor, I would like to be taken directly to the 'Leaf Lounge' home page so that I have quick access to all relevant information to get started. | `must-have` | ----- |
@@ -116,11 +115,11 @@ Leaf Lounge is built with `Django` - a high-level Python framework that encourag
 | 29 | As a site user, I would like the option of viewing the books I have bought and storing them in my profile. | `should-have` | ----- |
 | 30 | As a user, I would like the ability to search for a book so that I can quickly find the one I am looking for. | `should-have` | ----- |
 
-## Strategy
+>>> ## Strategy
 This application aims to create an engaging and interactive environment for readers and book enthusiasts to connect, network and, subsequently, broaden the outreach of new authors within the various book communities. Several intuitive features in the navigation bar at the top of the page and considerable consideration given to the overall design and feel of the website make the user's experience quick, efficient, and satisfying.
 
-## Business/Social Goals
-#### Target Audience
+>>> ## Business/Social Goals
+>> #### Target Audience
 `Readers` `Authors` `Publishers` `Book Critics` `Book Enthusiasts` `Users 15+ years of age (payment)`.
 
 - As a first time visitor, I would like to be taken directly to the 'Leaf Lounge' home page so that I have quick access to all relevant information to get started.
@@ -141,7 +140,7 @@ This application aims to create an engaging and interactive environment for read
 - As a site user, I would like the ability to search for a book so that I can quickly find the one I am looking for.
 - As a book lover, I would like the option of putting my old books up for sale or donating them.
 
-## UX Goals
+>>> ## UX Goals
 - As a site user, I would like fast access to only the pages that would benefit my experience.
   -  All pages should be displayed based on whether I am registered/logged in.
   - I should be redirected to relevant pages and without coming across site errors.
@@ -149,10 +148,10 @@ This application aims to create an engaging and interactive environment for read
 - As a site visitor and/or potential reseller, I would like colours to convey the correct emotions to ensure the intended branding message and motives.
 - As a site user, I would like all pages to be responsive to ensure I have a good user experience. This includes best practices in legibility, colour contrast, font sizes, branding, and element visibility.
 
-## Key Information Deliverables
+>>> ## Key Information Deliverables
 For the purposes of document navigation, the key information deliverables for this project have been split into three sections, each focusing on a different vital aspect of the project.
 
-#### Client-Side
+>> #### Client-Side
 - _Home page_ with all relevant information about the platform.
 - _Checkout page_ with _Stripe_ Payments.
 - Community Page
@@ -160,35 +159,36 @@ For the purposes of document navigation, the key information deliverables for th
   - _Reviews_
 - Creation of _Personal/Seller Profiles_ for audience expansion.
 
-#### Technical
+>> #### Technical
 - _Contact page_ queries reaching Leaf Lounge _Email_.
 - _Stripe_ Payments
 - Testing files for all app views, urls, and models.
 
-#### Marketing
+>> #### Marketing
 - [Facebook Page](https://www.facebook.com/profile.php?id=61563390085042)
 - Clear and intuative branding
 - Legibility and responsiveness of all elements on all screen sizing
 
-## Scope of Application
-## Features
+>>> ## Scope of Application
+
+>>> ## Features
 [ROADMAP.md](https://github.com/Ana-Niko-byte/leaf-lounge/blob/main/ROADMAP.md)
 
-## Models
+>>> ## Models
 [ARCHITECTURE.md](https://github.com/Ana-Niko-byte/leaf-lounge/blob/main/ARCHITECTURE.md)
 
-## Views & Templates
+>>> ## Views & Templates
 [ARCHITECTURE.md](https://github.com/Ana-Niko-byte/leaf-lounge/blob/main/ARCHITECTURE.md)
 
-## Aesthetics
+>>> ## Aesthetics
 
-## Testing & Debugging
+>>> ## Testing & Debugging
 [TESTING.md](https://github.com/Ana-Niko-byte/leaf-lounge/blob/main/TESTING.md)
 
-## Accessibility & Performance
+>>> ## Accessibility & Performance
 [TESTING.md](https://github.com/Ana-Niko-byte/leaf-lounge/blob/main/TESTING.md)
 
-## Deployment
+>>> ## Deployment
 The application is deployed on Heroku via a GitHub  connection, and is available for viewing in the link at the top of this README.md document. To deploy a Heroku project, please refer to the guide below.
 
 ### Foreword
@@ -247,7 +247,7 @@ Your application will have a similar look to the following Heroku URL configurat
 
 ![Open App](static/images/00-open-app-heroku.png)
 
-## Forking a GitHub Repository
+>>> ## Forking a GitHub Repository
 To make changes to your repository without changing its original state, you can make a copy of it via `fork`. This ensures the original repository remains unchanged. 
 
 Steps:
@@ -255,7 +255,7 @@ Steps:
 2. Click `Fork` in the top right-hand side of the top bar, and this should take you to a page titled `Create a new fork`.
 3. You can now work in this copy of your repository without making changes to the original.
 
-## Cloning a GitHub Repository
+>>> ## Cloning a GitHub Repository
 Cloning a repository essentially means downloading a copy of your repository that can be worked on locally. This method allows for version control and backup of code.
 
 Steps:
@@ -266,7 +266,7 @@ Steps:
 5. In the terminal type 'git clone' and paste the URL.
 6. Press Enter - you now have a cloned version of your GitHub repository.
 
-## Credits
+>>> ## Credits
 - For help solving `Unsupported lookup 'icontains' for ForeignKey or join on the field not permitted.`: [stack overflow](https://stackoverflow.com/questions/76406530/i-am-getting-this-error-django-core-exceptions-fielderror-unsupported-lookup-i)
 
 - For help solving `unsupported operand type(s) for |=: 'NoneType' and 'Q'` : [stack overflow](https://stackoverflow.com/questions/28201400/typeerror-unsupported-operand-types-for-bool-and-q)
@@ -275,4 +275,4 @@ Steps:
 
 - For setting up [Mailchimp Marketing](https://testdriven.io/blog/django-mailchimp/)
 
-## Acknowledgements
+>>> ## Acknowledgements

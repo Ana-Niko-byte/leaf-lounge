@@ -1,4 +1,4 @@
-## Structure
+>>> ## Structure
 - Navigation
   - Main Navigation Bar
     - Logo
@@ -100,33 +100,40 @@ ___TBD___
   - Copyright
     - Dynamic Year
 
-## Models
+>>> ## Models
 Below is a simple ERD for `moment`'s models.
 
 ![Leaf Lounge ERD]()
 
-#### The Author Model (library app)
-Fields: `first_name`, `last_name`, `d_o_b`, `nationality`, `bio`
+>> #### The Author Model (library app)
+Fields: `user_profile`, `first_name`, `last_name`, `d_o_b`, `nationality`, `bio`
 
-1. `first_name` : CharField - represents the author's firstname.
+1. `user_profile` : FK : Userprofile - represents the author's registered account. Authors without an account can be registered via admin only.
+- Contraints:
+  - _on-delete_: _models.SET-NULL_.
+  - can be _null_.
+  - can be _blank_.
+  - _related-name_: _'author-profile'_.
+
+2. `first_name` : CharField - represents the author's firstname.
 - Constraints: 
   - _max-length_ : 20 characters.
 
-2. `last_name` : CharField - represents the author's lastname.
+3. `last_name` : CharField - represents the author's lastname.
 - Constraints: 
   - _max-length_ : 20 characters.
 
-3. `d_o_b` : DateField - represents the author's date of birth.
+4. `d_o_b` : DateField - represents the author's date of birth.
 - Constraints: 
   - _default_ value of 'unknown'.
   - _verbose-name_ of 'BirthDate'.
 
-4. `nationality` : CharField : choices - represents a selection field for the author's nationality.
+5. `nationality` : CharField : choices - represents a selection field for the author's nationality.
 - Constraints: 
   - predefined _choices_ from `NATIONALITIES` tuple.
   - _max-length_ : 30 characters.
 
-5. `bio` : TextField - represents the author's bio.
+6. `bio` : TextField - represents the author's bio.
 - Constraints: 
   - _max-length_ : 500 characters.
 
@@ -137,7 +144,7 @@ def __str__(): Returns : (str) : (author's first name) (author's last name)
 
 ---
 
-#### The Genre Model (library app)
+>> #### The Genre Model (library app)
 Fields: `name`, `community`
 1. `name` : CharField - represents the Genre name.
 - Constraints: 
@@ -160,7 +167,7 @@ def __str__(): Returns: (str) : (genre name)
 
 ---
 
-#### The Book Model (library app)
+>> #### The Book Model (library app)
 Fields: `title`, `isbn`, `slug`, `author`, `genre`, `blurb`, `year_published`, `publisher`, `rating`, `type`, `date_added`, `price`, `image`
 
 1. `title` : CharField - represents the book title.
@@ -243,7 +250,7 @@ Orders by earliest date added.
 
 ---
 
-#### The Review Model (library app)
+>> #### The Review Model (library app)
 Fields: `reviewer`, `book`, `rating`, `comment`, `reviewed_on`, `approved`
 
 1. reviewer : FK : User - represents the user leaving the review.
@@ -281,7 +288,7 @@ Fields: `reviewer`, `book`, `rating`, `comment`, `reviewed_on`, `approved`
 
 ---
 
-#### The Order Model (checkout app)
+>> #### The Order Model (checkout app)
 Fields: `order_number`, `user_profile`, `full_name`, `email`, `phone_number`, `country`, `postcode`, `town_city`, `street_1`, `street_2`, `county`, `date`, `delivery_cost`, `order_total`, `grand_total`
 
 1. `order_number` : CharField - represents the auto-generated uuid order number.
@@ -406,7 +413,7 @@ def __str__():` Returns : (int) : order number.
 
 ---
 
-#### The BookLineItem Model (checkout app)
+>> #### The BookLineItem Model (checkout app)
 Fields: `order`, `book`, `type`, `quantity`, `book_order_cost`
 
 1. `order` : FK : Order - represents the book order.
@@ -453,7 +460,7 @@ def __str__(): Returns : (str) : 'ISBN: (book ISBN), order: (order number uuid)'
 
 ---
 
-#### The Community Model (community app)
+>> #### The Community Model (community app)
 Fields: `name`, `description`
 
 1. `name` : CharField - represents the name of the community. 
@@ -473,7 +480,7 @@ Fields: `name`, `description`
 
 ---
 
-#### The UserProfile Model (reader app)
+>> #### The UserProfile Model (reader app)
 Fields: `user`, `default_street_1`, `default_street_2`, `default_town_city`, `default_county`, `default_postcode`, `default_country`
 
 
@@ -528,4 +535,4 @@ Fields: `user`, `default_street_1`, `default_street_2`, `default_town_city`, `de
 def __str__() : Returns : (str) : (user's username)
 ```
 
-## Views & Templates
+>>> ## Views & Templates
