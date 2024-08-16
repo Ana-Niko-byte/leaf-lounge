@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 
 from .models import Community
-from library.models import Genre, Author
+from library.models import Genre, Author, Book
 from reader.models import UserProfile
 from checkout.models import Order
 
@@ -16,6 +16,7 @@ def community_general(request):
     user_profile = UserProfile.objects.get(user=request.user)
     user_orders = Order.objects.filter(user_profile=user_profile)
 
+    # Retrieve orders + communities.
     user_booklineitems = []
     for order in user_orders:
         books = order.booklineitem.all()
@@ -30,8 +31,9 @@ def community_general(request):
     for genre in user_genres:
         if genre.community not in user_communities:
             user_communities.append(genre.community)
+
+    # Handle registered user with no book orders.
     if not user_booklineitems:
-        print('the user has no orders but is signed in and can view their communities tab.')
         return render(
             request,
             'community/no_communities.html',
@@ -53,7 +55,13 @@ def community(request, slug):
     """
     community = Community.objects.get(slug=slug)
 
+    # Other Books in this Genre.
+    current_genre = Genre.objects.get(community=community)
+    books_in_genre = Book.objects.filter(genre=current_genre)
+    print(books_in_genre)
+
     context = {
+        'books_in_genre': books_in_genre,
         'community': community,
         'community_view': True,
     }

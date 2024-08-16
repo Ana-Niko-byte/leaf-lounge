@@ -1,15 +1,39 @@
 {% extends '_second_nav.html' %}
 {% load static %}
-{% load crispy_forms_tags %}
 
 {% block content %}
 <div class="container-fluid">
-    <div class="row">
-        <p class="text-center">{{ community.description|safe }}</p>
-    </div>
     <div class="row d-flex justify-content-around">
-        <div class="col-3 border text-center">Active Discussions</div>
-        <div class="col-5 border text-center">Latest News</div>
-        <div class="col-3 border text-center">More Books</div>
+        <!-- Forums -->
+        <div class="col-3 text-center">
+            <h5 class="mb-4"><strong>Forums</strong></h5>
+        </div>
+        <!-- /Forums -->
+
+        <!-- Latest Discussions -->
+        <div class="col-5 text-center">
+            <h5 class="mb-4"><strong>Latest Discussions</strong></h5>
+        </div>
+        <!-- /Latest Discussions -->
+
+        <!-- More Books -->
+        <div class="col-3 text-center">
+            <h5 class="mb-4"><strong>More Books in this Genre</strong></h5>
+            {% for book in books_in_genre %}
+            <div class="row">
+                <div class="book d-flex flex-column align-items-center justify-content-start" style="max-height: 550px;">
+                    <a href="{{ book.get_absolute_url }}">
+                        <img src="../../../static/images/1984_cover.jpg" alt="" style="width: 80px;">
+                    </a>
+                    <div class="text-center mt-3 mb-1">
+                        <p class="h5">{{ book.title }}</p>
+                        <p class="text-secondary"><em>by {{ book.author }} | {{ book.year_published }}</em></p>
+                    </div>
+                    <a href="{{ book.get_absolute_url }}" class="btn btn-warning mb-5 mt-3">Read More</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <!-- /More Books -->
     </div>
 {% endblock %}
