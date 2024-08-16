@@ -14,11 +14,10 @@ def library(request):
     A view for displaying Book model instances in the library.
     """
     books = Book.objects.all()
-    authors = Author.objects.all().order_by('first_name')
     # __gt >> greater than.
     # .distinct() >> unique values.
-    filtered_genres = Genre.objects.filter(book_genre__gt=0).order_by('name').distinct()
-    # Add book counts to filtered_genres - ANNOTATE()
+    filtered_genres = Genre.objects.filter(book_genre__gt=0).annotate(genre_count=Count('book_genre')).order_by('name').distinct()
+    book_count_authors = Author.objects.filter(author_books__gt=0).annotate(book_count=Count('author_books')).order_by('first_name')
 
     query = None
     filter_query = Q()
@@ -55,64 +54,64 @@ def library(request):
                     merged_query |= merged_conditions
                 books = books.filter(merged_query)
 
-            if 'author' in request.GET and 'genre' not in request.GET:
-                authors_ln = request.GET.getlist('author')
-                if not authors_ln:
-                    messages.error(
-                        request,
-                        'Please select the authors you wish to filter by.'
-                    )
-                    return redirect(reverse('library'))
-                else:
-                    for item in authors_ln:
-                        # |= OR Query, searching author__last_name
-                        # enabled in admin.py.
-                        filter_query |= Q(author__last_name__icontains=item)
-                    books = books.filter(filter_query)
-                    # As authors_ln is not passed to context unless
-                    # user always includes an author filter.
-                    context = {
-                        'books': books,
-                        'genres': genres,
-                        'authors': authors,
-                        'search_term': query,
-                        'authors_ln': authors_ln,
-                    }
-                    return render(
-                        request,
-                        'library/library.html',
-                        context
-                    )
+        elif 'author' in request.GET and 'genre' not in request.GET:
+            authors_ln = request.GET.getlist('author')
+            if not authors_ln:
+                messages.error(
+                    request,
+                    'Please select the authors you wish to filter by.'
+                )
+                return redirect(reverse('library'))
+            else:
+                for item in authors_ln:
+                    # |= OR Query, searching author__last_name
+                    # enabled in admin.py.
+                    filter_query |= Q(author__last_name__icontains=item)
+                books = books.filter(filter_query)
+                # As authors_ln is not passed to context unless
+                # user always includes an author filter.
+                context = {
+                    'books': books,
+                    'filtered_genres': filtered_genres,
+                    'book_count_authors': book_count_authors,
+                    'search_term': query,
+                    'authors_ln': authors_ln,
+                }
+                return render(
+                    request,
+                    'library/library.html',
+                    context
+                )
 
-            elif 'genre' in request.GET and 'author' not in request.GET:
-                book_genres = request.GET.getlist('genre')
-                if not book_genres:
-                    messages.error(
-                        request,
-                        'Please select the genres you wish to filter by.'
-                    )
-                    return redirect(reverse('library'))
-                else:
-                    for genre in book_genres:
-                        filter_query |= Q(genre__name__icontains=genre)
-                    books = books.filter(filter_query)
-                    context = {
-                        'books': books,
-                        'genres': genres,
-                        'authors': authors,
-                        'search_term': query,
-                        'book_genres': book_genres,
-                    }
-                    return render(
-                        request,
-                        'library/library.html',
-                        context
-                    )
+        elif 'genre' in request.GET and 'author' not in request.GET:
+            book_genres = request.GET.getlist('genre')
+            if not book_genres:
+                messages.error(
+                    request,
+                    'Please select the genres you wish to filter by.'
+                )
+                return redirect(reverse('library'))
+            else:
+                for genre in book_genres:
+                    filter_query |= Q(genre__name__icontains=genre)
+                books = books.filter(filter_query)
+                context = {
+                    'books': books,
+                    'filtered_genres': filtered_genres,
+                    'book_count_authors': book_count_authors,
+                    'search_term': query,
+                    'book_genres': book_genres,
+                }
+                return render(
+                    request,
+                    'library/library.html',
+                    context
+                )
 
     context = {
         'books': books,
         'filtered_genres': filtered_genres,
-        'authors': authors,
+        'book_count_authors': book_count_authors,
         'search_term': query,
     }
     return render(
