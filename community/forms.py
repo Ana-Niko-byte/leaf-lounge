@@ -72,7 +72,7 @@ class ForumForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
 
         self.fields['name'].widget.attrs['autofocus'] = True
-        self.fields['name'].label = 'Give your Forum a Descriptive Name: *'
+        self.fields['name'].label = 'Give your Forum a Descriptive Name: '
 
 
 class MessageForm(forms.ModelForm):

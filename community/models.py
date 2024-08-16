@@ -34,6 +34,10 @@ class Community(models.Model):
 class Forum(models.Model):
     name = models.CharField(max_length=50, blank=False, null=False)
     date_created = models.DateField(auto_now_add=True)
+    community = models.ForeignKey(Community, on_delete=models.CASCADE, related_name='community_forums')
+
+    def __str__(self):
+        return self.name
 
 class Message(models.Model):
     forum = models.ForeignKey(Forum, on_delete=models.CASCADE, related_name='forum_messages')

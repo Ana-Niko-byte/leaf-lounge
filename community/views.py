@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 
 from .models import Community
@@ -6,7 +6,7 @@ from library.models import Genre, Author, Book
 from reader.models import UserProfile
 from checkout.models import Order
 
-from .forms import AuthorForm, BookForm
+from .forms import *
 
 
 def community_general(request):
@@ -58,9 +58,28 @@ def community(request, slug):
     # Other Books in this Genre.
     current_genre = Genre.objects.get(community=community)
     books_in_genre = Book.objects.filter(genre=current_genre)
-    print(books_in_genre)
+
+    forums = Forum.objects.all()
+    
+    if request.method == 'POST':
+        forumForm = ForumForm(data=request.POST)
+        if forumForm.is_valid():
+            forumForm.save()
+            messages.success(
+                request,
+                'Successfully created your forum!'
+            )
+            return redirect(reverse('community', args=[slug]))
+        else:
+            messages.error(
+                request, 
+                'Please enter a valid name for your discussion.'
+            )
+    forumForm = ForumForm()
 
     context = {
+        'forums': forums,
+        'forumForm': forumForm,
         'books_in_genre': books_in_genre,
         'community': community,
         'community_view': True,
