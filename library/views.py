@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
-from django.db.models import Q
+from django.db.models import Q, Count
 
 from .models import *
 from reader.models import UserProfile
@@ -14,8 +14,12 @@ def library(request):
     A view for displaying Book model instances in the library.
     """
     books = Book.objects.all()
-    authors = Author.objects.all()
-    genres = Genre.objects.all()
+    authors = Author.objects.all().order_by('first_name')
+    # __gt >> greater than.
+    # .distinct() >> unique values.
+    filtered_genres = Genre.objects.filter(book_genre__gt=0).order_by('name').distinct()
+    # Add book counts to filtered_genres - ANNOTATE()
+
     query = None
     filter_query = Q()
 
@@ -107,7 +111,7 @@ def library(request):
 
     context = {
         'books': books,
-        'genres': genres,
+        'filtered_genres': filtered_genres,
         'authors': authors,
         'search_term': query,
     }

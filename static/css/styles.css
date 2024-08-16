@@ -73,6 +73,10 @@ p{
 .second-nav-link a{
     font-size: 1rem;
 }
+
+.book-genre-rows {
+    overflow-x: auto;
+}
 /* /UIUX */
 
 /* Slider from WS3 */

@@ -30,16 +30,22 @@ def community_general(request):
     for genre in user_genres:
         if genre.community not in user_communities:
             user_communities.append(genre.community)
+    if not user_booklineitems:
+        print('the user has no orders but is signed in and can view their communities tab.')
+        return render(
+            request,
+            'community/no_communities.html',
+        )
+    else:
+        context = {
+            'user_communities': user_communities,
+        }
 
-    context = {
-        'user_communities': user_communities,
-    }
-
-    return render(
-        request,
-        'community/community.html',
-        context
-    )
+        return render(
+            request,
+            'community/community.html',
+            context
+        )
 
 def community(request, slug):
     """
