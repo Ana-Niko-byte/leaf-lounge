@@ -11,28 +11,57 @@
     <div class="row">
         <!-- Books -->
         <div class="col-lg-9 col-md-6 col-sm-12">
-            {% for genre in filtered_genres %}
+            {% if genre_search %}
+            {% for genre in genres_called %}
             <h5 class="my-3">{{ genre.name }}</h5>
-                <div class="row book-genre-rows">
-                    {% for book in books %}
-                        {% if book.genre == genre %}
-                        <div class="col-lg-3 col-md-4 col-sm-12 mb-5">
-                            <div class="book d-flex flex-column align-items-center justify-content-start" style="max-height: 550px;">
-                                <a href="{{ book.get_absolute_url }}">
-                                    <img src="../../../static/images/1984_cover.jpg" alt="" style="width: 220px;">
-                                </a>
-                                <div class="text-center mt-3 mb-1">
-                                    <p class="h5">{{ book.title }} {{ book.genre }}</p>
-                                    <p class="text-secondary"><em>by {{ book.author }} | {{ book.year_published }}</em></p>
-                                </div>
-                                <p class="text-center text-sm">"{{ book.blurb | safe }}"</p>
-                                <a href="{{ book.get_absolute_url }}" class="btn btn-warning mb-5 mt-3">Read More</a>
+            <div class="row book-genre-rows">
+                {% for book in books %}
+                    {% if book.genre == genre %}
+                    <div class="col-lg-3 col-md-4 col-sm-12 mb-5">
+                        <div class="book d-flex flex-column align-items-center justify-content-start" style="max-height: 550px;">
+                            <a href="{{ book.get_absolute_url }}">
+                                <img src="../../../static/images/1984_cover.jpg" alt="" style="width: 220px;">
+                            </a>
+                            <div class="text-center mt-3 mb-1">
+                                <p class="h5">{{ book.title }}</p>
+                                <p class="text-secondary"><em>by {{ book.author }} | {{ book.year_published }}</em></p>
                             </div>
+                            <p class="text-center text-sm">"{{ book.blurb | safe }}"</p>
+                            <a href="{{ book.get_absolute_url }}" class="btn btn-warning mb-5 mt-3">Read More</a>
                         </div>
-                        {% endif %}
-                    {% endfor %}
-                </div>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
             {% endfor %}
+            {% else %}
+            {% for genre in filtered_genres %}
+            <h5 class="my-3">
+                {% if not author_search %}
+                    {{ genre.name }}
+                {% endif %}
+            </h5>
+            <div class="row book-genre-rows">
+                {% for book in books %}
+                    {% if book.genre == genre %}
+                    <div class="col-lg-3 col-md-4 col-sm-12 mb-5">
+                        <div class="book d-flex flex-column align-items-center justify-content-start" style="max-height: 550px;">
+                            <a href="{{ book.get_absolute_url }}">
+                                <img src="../../../static/images/1984_cover.jpg" alt="" style="width: 220px;">
+                            </a>
+                            <div class="text-center mt-3 mb-1">
+                                <p class="h5">{{ book.title }}</p>
+                                <p class="text-secondary"><em>by {{ book.author }} | {{ book.year_published }}</em></p>
+                            </div>
+                            <p class="text-center text-sm">"{{ book.blurb | safe }}"</p>
+                            <a href="{{ book.get_absolute_url }}" class="btn btn-warning mb-5 mt-3">Read More</a>
+                        </div>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            {% endfor %}
+            {% endif %}
         </div>
         <!-- /Books -->
         <!-- Sort By -->
@@ -51,7 +80,7 @@
                         <div class="collapse multi-collapse mb-3" id="authors">
                             {% for author in book_count_authors %}
                             <div class="input-group d-flex align-items-center">
-                                <input type="checkbox" id="{{ author.last_name | lower }}-author" name="author" value="{{ author.last_name }}" {%if author.last_name in authors_ln %} checked = "checked" {% endif %}>
+                                <input type="checkbox" id="{{ author.last_name | lower }}-author" name="author" value="{{ author.last_name }}" {% if author.last_name in authors_ln %} checked = "checked" {% endif %}>
                                 <label class="ms-3" for="{{ author.last_name | lower }}-author">
                                     {{ author }}
                                     <span class="small ms-2">({{ author.book_count }} book{% if author.book_count > 1 %}s{% endif %})</span>
@@ -66,7 +95,7 @@
                         <div class="collapse multi-collapse mt-3" id="genres">
                             {% for genre in filtered_genres %}
                             <div class="input-group d-flex align-items-center">
-                                <input type="checkbox" id="{{ genre }}-genre" name="genre" value="{{ genre }}" {% if genre in book_genres %} checked="checked" {% endif %}>
+                                <input type="checkbox" id="{{ genre }}-genre" name="genre" value="{{ genre }}" {% if genre in genres_called %} checked = "checked" {% endif %}>
                                 <label class="ms-3" for="{{ genre }}-genre">
                                     {{ genre }}
                                     <span class="small ms-2">({{ genre.genre_count }} book{% if genre.genre_count > 1 %}s{% endif %})</span>
