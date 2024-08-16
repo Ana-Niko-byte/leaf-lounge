@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.text import slugify
+from reader.models import UserProfile
 
 
 class Community(models.Model):
@@ -29,3 +30,13 @@ class Community(models.Model):
         except Community.DoesNotExist:
             super(Community, self).save(*args, **kwargs)
         
+
+class Forum(models.Model):
+    name = models.CharField(max_length=50, blank=False, null=False)
+    date_created = models.DateField(auto_now_add=True)
+
+class Message(models.Model):
+    forum = models.ForeignKey(Forum, on_delete=models.CASCADE, related_name='forum_messages')
+    content = models.CharField(max_length=1000, null=False, blank=False)
+    messenger = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='user_messenger')
+    date_sent = models.DateField(auto_now_add=True)

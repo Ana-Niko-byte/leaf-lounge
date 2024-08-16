@@ -1,5 +1,6 @@
 from django import forms
 from library.models import *
+from .models import *
 
 
 class DateInput(forms.DateInput):
@@ -55,3 +56,37 @@ class BookForm(forms.ModelForm):
     class Meta:
         model=Book
         exclude={'slug', 'rating'}
+
+
+class ForumForm(forms.ModelForm):
+    """
+    A class for registering a Forum.
+    """
+    class Meta:
+        model=Forum
+        fields = {
+            'name'
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.fields['name'].widget.attrs['autofocus'] = True
+        self.fields['name'].label = 'Give your Forum a Descriptive Name: *'
+
+
+class MessageForm(forms.ModelForm):
+    """
+    A class for creating a Message.
+    """
+    class Meta:
+        model=Message
+        fields = {
+           'content' 
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.fields['content'].widget.attrs['autofocus'] = True
+        self.fields['content'].label = False
