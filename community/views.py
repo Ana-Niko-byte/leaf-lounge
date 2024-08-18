@@ -64,12 +64,17 @@ def community(request, slug):
     if request.method == 'POST':
         forumForm = ForumForm(data=request.POST)
         if forumForm.is_valid():
-            forumForm.save()
-            messages.success(
-                request,
-                'Successfully created your forum!'
-            )
-            return redirect(reverse('community', args=[slug]))
+            try:
+                forum = forumForm.save(commit=False)
+                forum.community=community
+                forum.save()
+                messages.success(
+                    request,
+                    'Successfully created your forum!'
+                )
+                return redirect(reverse('community', args=[slug]))
+            except Forum.community.RelatedObjectDoesNotExist:
+                print('caught the exception!')
         else:
             messages.error(
                 request, 
@@ -92,8 +97,23 @@ def community(request, slug):
     )
 
 
-def create_author(request):
+def forum_detail(request, slug):
+    """
+    """
+    forum = Forum.objects.get(slug=slug)
 
+    context = {
+        'forum': forum
+    }
+    return render(
+        request,
+        'community/forum_detail.html',
+        context
+    )
+
+def create_author(request):
+    """
+    """
     if request.method == 'POST':
         author_form = AuthorForm(data=request.POST)
         if author_form.is_valid():
@@ -146,6 +166,8 @@ def create_author(request):
         )
 
 def upload_book(request):
+    """
+    """
     if request.method == 'POST':
         book_form = BookForm(data=request.POST)
         if book_form.is_valid():

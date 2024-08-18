@@ -173,7 +173,7 @@ class Book(models.Model):
 
     def save(self, *args, **kwargs):
         """
-        Saves a custom url to the (self.slug) parameter with
+        Saves a custom url to the (self.slug) parameter as
         (book title)-(author last name).
 
         Note : Done so in case books from different authors
