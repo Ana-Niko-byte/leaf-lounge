@@ -5,18 +5,17 @@ from .models import *
 
 class CommunityAdmin(admin.ModelAdmin):
     fields = '__all__'
-    readonly_fields = ('community')
+    readonly_fields = ('community',)
+
+
+class MessageAdminInline(admin.TabularInline):
+    model = Message
+    readonly_fields = ('messenger',)
 
 
 class ForumAdmin(admin.ModelAdmin):
-    fields = '__all__'
-
-
-class MessageAdmin(admin.ModelAdmin):
-    fields = '__all__'
-    readonly_fields = ('messenger')
+    inlines = (MessageAdminInline,)
 
 
 admin.site.register(Community)
-admin.site.register(Forum)
-admin.site.register(Message)
+admin.site.register(Forum, ForumAdmin)

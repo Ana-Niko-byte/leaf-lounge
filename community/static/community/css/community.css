@@ -1,0 +1,20 @@
+.message-container{
+    border-radius: 10px;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.message-box{
+    border-radius: 10px;
+    background-color: rgb(95, 95, 143);
+    color: white;
+}
+
+.member-container{
+    border-radius: 10px;
+    background-color: rgb(149, 177, 116);
+}
+
+.tickies{
+    color: rgb(147, 255, 52);
+}

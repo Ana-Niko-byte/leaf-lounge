@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponseRedirect
 from django.contrib import messages
 
 from .models import Community
@@ -7,6 +7,8 @@ from reader.models import UserProfile
 from checkout.models import Order
 
 from .forms import *
+
+import datetime
 
 
 def community_general(request):
@@ -49,6 +51,7 @@ def community_general(request):
             context
         )
 
+
 def community(request, slug):
     """
     A view for displaying each community.
@@ -60,13 +63,13 @@ def community(request, slug):
     books_in_genre = Book.objects.filter(genre=current_genre)
 
     forums = Forum.objects.all()
-    
+
     if request.method == 'POST':
         forumForm = ForumForm(data=request.POST)
         if forumForm.is_valid():
             try:
                 forum = forumForm.save(commit=False)
-                forum.community=community
+                forum.community = community
                 forum.save()
                 messages.success(
                     request,
@@ -74,10 +77,17 @@ def community(request, slug):
                 )
                 return redirect(reverse('community', args=[slug]))
             except Forum.community.RelatedObjectDoesNotExist:
-                print('caught the exception!')
+                messages.error(
+                    request,
+                    '''An error occurred while trying to create your
+                    discussion. Please try again in a later while or contact
+                    our customer service department.\n
+                    We apologise for any inconvenience caused.'''
+                )
+                return redirect(reverse('community', args=[slug]))
         else:
             messages.error(
-                request, 
+                request,
                 'Please enter a valid name for your discussion.'
             )
     forumForm = ForumForm()
@@ -101,15 +111,51 @@ def forum_detail(request, slug):
     """
     """
     forum = Forum.objects.get(slug=slug)
+    user_profile = UserProfile.objects.get(user=request.user)
+    forum_messages = Message.objects.filter(forum=forum)
+    todays_date = datetime.date.today()
+
+    forum_participants = []
+    for message in forum_messages:
+        if message.messenger not in forum_participants:
+            forum_participants.append(message.messenger)
+
+    if request.method == 'POST':
+        messageForm = MessageForm(data=request.POST)
+        if messageForm.is_valid():
+            try:
+                message = messageForm.save(commit=False)
+                message.forum = forum
+                message.messenger = user_profile
+                message.save()
+                messageForm.save()
+                messages.success(
+                    request,
+                    'Your message has been sent!'
+                )
+                # PRG Pattern.
+                return HttpResponseRedirect(reverse('forum_detail', args=[slug]))
+            except Exception as e:
+                print(f'an error occurred: {e}')
+                messages.error(
+                    request,
+                    'An error has occurred.'
+                )
+    messageForm = MessageForm()
 
     context = {
-        'forum': forum
+        'forum': forum,
+        'forum_participants': forum_participants,
+        'forum_messages': forum_messages,
+        'messageForm': messageForm,
+        'todays_date': todays_date
     }
     return render(
         request,
         'community/forum_detail.html',
         context
     )
+
 
 def create_author(request):
     """
@@ -165,6 +211,7 @@ def create_author(request):
             context
         )
 
+
 def upload_book(request):
     """
     """
@@ -178,7 +225,7 @@ def upload_book(request):
         print('NOT POST')
     book_form = BookForm()
 
-    context={
+    context = {
         'bookForm': book_form,
     }
     return render(

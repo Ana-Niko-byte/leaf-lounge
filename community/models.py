@@ -72,7 +72,7 @@ class Forum(models.Model):
         """
         :returns : the forum detail page with (self.slug) as url argument.
         """
-        return reverse('forum-detail', args=[self.slug])
+        return reverse('forum_detail', args=[self.slug])
 
 class Message(models.Model):
     """
@@ -87,4 +87,10 @@ class Message(models.Model):
     forum = models.ForeignKey(Forum, on_delete=models.CASCADE, related_name='forum_messages')
     content = models.CharField(max_length=1000, null=False, blank=False)
     messenger = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='user_messenger')
-    date_sent = models.DateField(auto_now_add=True)
+    date_sent = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        """
+        :returns : (str) : (messagename)
+        """
+        return f"Message in '{self.forum.name}'"

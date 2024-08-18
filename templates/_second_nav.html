@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
 {% block secondary_nav %}
-<div id="delivery-banner" class="row text-center">
+<div id="delivery-banner" class="row text-center p-0 m-0">
     <div class="col bg-black text-white">
         {% if community_view %}
-        <h5 class="m-0 p-0 p-3">WELCOME TO THE {{ community.name|upper }}</h5>
+        <h5>WELCOME TO THE {{ community.name|upper }}</h5>
         <div class="row">
             <p class="text-center pb-3">{{ community.description|safe }}</p>
         </div>
