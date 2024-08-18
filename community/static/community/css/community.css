@@ -18,3 +18,12 @@
 .tickies{
     color: rgb(147, 255, 52);
 }
+
+.message-buttons{
+    color: white;
+    transition: color 0.3s ease;
+}
+
+.message-buttons:hover{
+    color: rgb(255, 50, 50);
+}

@@ -157,6 +157,21 @@ def forum_detail(request, slug):
     )
 
 
+def delete_message(request, slug, id):
+    forum = Forum.objects.get(slug=slug)
+    slug = forum.slug
+    try:
+        message_delete = Message.objects.get(id=id)
+        message_delete.delete()
+        messages.success(
+            request,
+            'Your message was successfully deleted!'
+        )
+    except Exception as e:
+        print(f'{e}')
+    return redirect(reverse('forum_detail', args=[slug]))
+
+
 def create_author(request):
     """
     """

@@ -37,18 +37,31 @@
                     {% endif %} align-items-start">
                         <div class="message-box col-lg-6 mb-4 border">
                             <div class="message p-2">
-                                {% if message.messenger.id == request.user.id %}
-                                <p class="mb-2"><strong><small>me</small></strong></p>
-                                {% else %}
-                                <p class="mb-2"><strong><small>{{ message.messenger }}</small></strong></p>
-                                {% endif %}
+                                <div class="message-heading d-flex align-items-center justify-content-between">
+                                    {% if message.messenger.id == request.user.id %}
+                                    <p class="mb-2"><strong><small>me</small></strong></p>
+                                    {% else %}
+                                    <p class="mb-2"><strong><small>{{ message.messenger }}</small></strong></p>
+                                    {% endif %}
+                                    <span class="ps-3">
+                                        <i class="fa-solid fa-xs fa-chevron-down"></i>
+                                        <button class="message-buttons d-none">Edit</button>
+                                    </span>
+                                </div>
                                 <p>{{ message.content }}</p>
-                                <p class="text-end"><small>sent: {{ message.date_sent.time }}</small></p>
-                                {% if message.messenger.id == request.user.id %}
-                                <span class="tickies d-flex justify-content-end my-2">
-                                    <i class="fa-solid fa-xs fa-check"></i><i class="fa-solid fa-xs fa-check"></i>
-                                </span>
-                                {% endif %}
+                                <div class="message-footer d-flex justify-content-between align-items-end">
+                                    {% if message.messenger.id == request.user.id %}
+                                    <a href="{% url 'delete_message' message.forum.slug message.id %}" class="message-buttons btn p-0 mt-3 mx-0">
+                                        <i class="fa-solid fa-sm fa-trash me-2"></i><span><small>DELETE</small></span>
+                                    </a>
+                                    <div class="message-sent d-flex align-items-center justify-content-between">
+                                        <p class="text-end"><small>sent: {{ message.date_sent.time }}</small></p>
+                                        <span class="tickies d-flex justify-content-end my-2 ms-2">
+                                            <i class="fa-solid fa-xs fa-check"></i><i class="fa-solid fa-xs fa-check"></i>
+                                        </span>
+                                    </div>
+                                    {% endif %}
+                                </div>
                             </div>
                         </div>
                     </div>
