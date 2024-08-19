@@ -8,5 +8,6 @@ urlpatterns = [
     path('forum/<slug:slug>', forum_detail, name='forum_detail'),
     path('become/author/', create_author, name='create_author'),
     path('become/author/book', upload_book, name='upload_book'),
-    path('delete_message/<slug:slug>/<int:id>', delete_message, name='delete_message'),
+    path('delete/<slug:slug>/<int:id>', delete_message, name='delete_message'),
+    path('<slug:slug>/edit/<int:id>', edit_message, name='edit_message'),
 ]

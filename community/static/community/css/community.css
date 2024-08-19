@@ -1,6 +1,7 @@
 .message-container{
     border-radius: 10px;
     max-height: 500px;
+    min-height: 450px;
     overflow-y: auto;
 }
 

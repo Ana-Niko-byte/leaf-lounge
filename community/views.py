@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponseRedirect
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 from .models import Community
 from library.models import Genre, Author, Book
@@ -11,6 +12,7 @@ from .forms import *
 import datetime
 
 
+@login_required
 def community_general(request):
     """
     A view for displaying each community.
@@ -52,6 +54,7 @@ def community_general(request):
         )
 
 
+@login_required
 def community(request, slug):
     """
     A view for displaying each community.
@@ -107,6 +110,7 @@ def community(request, slug):
     )
 
 
+@login_required
 def forum_detail(request, slug):
     """
     """
@@ -158,18 +162,52 @@ def forum_detail(request, slug):
 
 
 def delete_message(request, slug, id):
-    forum = Forum.objects.get(slug=slug)
-    slug = forum.slug
+    """
+    A view for deleting messages.
+    """
     try:
         message_delete = Message.objects.get(id=id)
-        message_delete.delete()
-        messages.success(
-            request,
-            'Your message was successfully deleted!'
-        )
+        if message_delete.messenger.id == request.user.id:
+            message_delete.delete()
+            messages.success(
+                request,
+                'Your message was successfully deleted!'
+            )
     except Exception as e:
         print(f'{e}')
-    return redirect(reverse('forum_detail', args=[slug]))
+    return HttpResponseRedirect(reverse('forum_detail', args=[slug]))
+
+
+def edit_message(request, slug, id):
+    """
+    A view for editing messages.
+    """
+    print(f'Received slug: {slug}')
+    if request.method == 'POST':
+        try:
+            forum = get_object_or_404(Forum, slug=slug)
+            message_edit = get_object_or_404(Message, id=id)
+            messageFormEdit = MessageForm(data=request.POST, instance=message_edit)
+            if messageFormEdit.is_valid():
+                try:
+                    message = messageFormEdit.save(commit=False)
+                    message.forum = forum
+                    message.messenger = request.User
+                    message.date_sent = datetime.date.today()
+                    message.save()
+                    messages.success(
+                        request,
+                        'Your message has been saved successfully!'
+                    )
+                except Exception as e:
+                    print(f'an error occurred: {e}')
+                    messages.error(
+                        request,
+                        'An error occurred and your message couldn\'t be saved.'
+                    )
+        except Exception as e:
+            print(f'your new error: {e}')
+    return redirect('home')
 
 
 def create_author(request):

@@ -55,15 +55,17 @@ class Forum(models.Model):
 
     def save(self, *args, **kwargs):
         """
-        Saves a custom url to the (self.slug) parameter as
+        Saves the model.
+        Two-step saves a custom url to the (self.slug) parameter as
         (forum title)-(forum community)-(forum id).
 
         Note : Done so for the purposes of omitting probability of url clashes
         in case forums in the same community have the same name.
         """
         try:
-            if not self.slug or self.slug != slugify(self.name) + '-' + slugify(self.community) + '-' + str(self.id):
-                self.slug = slugify(self.name) + '-' + slugify(self.community) + '-' + str(self.id)
+            super(Forum, self).save(*args, **kwargs)
+            if not self.slug or self.slug != slugify(self.name) + '-' + slugify(self.community) + '-' + slugify(self.id):
+                self.slug = slugify(self.name) + '-' + slugify(self.community) + '-' + slugify(self.id)
             super(Forum, self).save(*args, **kwargs)
         except Forum.DoesNotExist:
             super(Forum, self).save(*args, **kwargs)

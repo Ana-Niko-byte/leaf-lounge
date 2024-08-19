@@ -60,3 +60,8 @@
         <!-- /More Books -->
     </div>
 {% endblock %}
+
+{% block extra_js %}
+    {{ block.super }}
+    <script src="{% static 'community/js/forums.js' %}" type="module"></script>
+{% endblock %}

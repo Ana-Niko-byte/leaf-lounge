@@ -24,6 +24,7 @@
 {% url 'create_author' as create_author_url %}
 
 {% url 'delete_message' as delete_message %}
+{% url 'edit_message' as edit_message %}
 
 <!DOCTYPE html>
     <html lang="en">
@@ -272,7 +273,6 @@
         <script src="{% static 'js/quantity.js' %}" type="module"></script>
         <script src="{% static 'js/actions.js' %}" type="module"></script>
         <script src="{% static 'js/library.js' %}" type="module"></script>
-        <script src="{% static 'js/forums.js' %}" type="module"></script>
         <!-- /Custom Scripts -->
         <!-- Stripe Payment JS -->
         <script src="https://js.stripe.com/v3/"></script>
