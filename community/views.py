@@ -110,7 +110,6 @@ def community(request, slug):
     )
 
 
-@login_required
 def forum_detail(request, slug):
     """
     """
@@ -176,38 +175,6 @@ def delete_message(request, slug, id):
     except Exception as e:
         print(f'{e}')
     return HttpResponseRedirect(reverse('forum_detail', args=[slug]))
-
-
-def edit_message(request, slug, id):
-    """
-    A view for editing messages.
-    """
-    print(f'Received slug: {slug}')
-    if request.method == 'POST':
-        try:
-            forum = get_object_or_404(Forum, slug=slug)
-            message_edit = get_object_or_404(Message, id=id)
-            messageFormEdit = MessageForm(data=request.POST, instance=message_edit)
-            if messageFormEdit.is_valid():
-                try:
-                    message = messageFormEdit.save(commit=False)
-                    message.forum = forum
-                    message.messenger = request.User
-                    message.date_sent = datetime.date.today()
-                    message.save()
-                    messages.success(
-                        request,
-                        'Your message has been saved successfully!'
-                    )
-                except Exception as e:
-                    print(f'an error occurred: {e}')
-                    messages.error(
-                        request,
-                        'An error occurred and your message couldn\'t be saved.'
-                    )
-        except Exception as e:
-            print(f'your new error: {e}')
-    return redirect('home')
 
 
 def create_author(request):
