@@ -15,8 +15,18 @@ def library(request):
     books = Book.objects.all()
     # __gt >> greater than.
     # .distinct() >> unique values.
-    filtered_genres = Genre.objects.filter(book_genre__gt=0).annotate(genre_count=Count('book_genre')).order_by('name').distinct()
-    book_count_authors = Author.objects.filter(author_books__gt=0).annotate(book_count=Count('author_books')).order_by('first_name')
+    filtered_genres = Genre.objects.filter(
+        book_genre__gt=0
+    ).annotate(
+        genre_count=Count(
+            'book_genre'
+        )).order_by('name').distinct()
+    book_count_authors = Author.objects.filter(
+        author_books__gt=0
+    ).annotate(
+        book_count=Count(
+            'author_books'
+        )).order_by('first_name')
 
     query = None
     filter_query = Q()
@@ -54,7 +64,7 @@ def library(request):
                 books = books.filter(merged_query)
                 if not books:
                     return render(
-                        request, 
+                        request,
                         'library/no_books.html'
                     )
 
@@ -103,7 +113,9 @@ def library(request):
                     filter_query |= Q(genre__name__icontains=genre)
                 books = books.filter(filter_query)
                 genres_called = []
-                [genres_called.append(book.genre) for book in books if book.genre not in genres_called]
+                [genres_called.append(
+                    book.genre
+                ) for book in books if book.genre not in genres_called]
                 context = {
                     'genre_search': True,
                     'genres_called': genres_called,
@@ -139,9 +151,15 @@ def book_detail(request, slug):
     requested_book = get_object_or_404(Book, slug=slug)
     types = Book.COVERS
 
+    author_books = Book.objects.filter(
+        author=requested_book.author
+    ).exclude(title=requested_book.title)
+
     context = {
         'book': requested_book,
         'types': types,
+        'detail': True,
+        'author_books': author_books,
     }
 
     return render(

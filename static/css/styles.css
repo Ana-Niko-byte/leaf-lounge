@@ -37,16 +37,31 @@ html, body{
 .basket-link{
     text-decoration: none;
 }
+
+.social-links{
+    color: var(--dark-text-color);
+    transition: all 0.3s;
+}
+
+.social-links:hover i{
+    transform: scale(1.20);
+}
 /* /Links */
 
 /* UIUX */
-p{
+*{
     margin: 0;
     padding: 0;
 }
 
-.nav-item:hover a, .nav-crumb:hover a{
-    color: var(--orange);
+p{
+    margin: 0;
+    padding: 0;
+    color: var(--dark-text-color);
+}
+
+.nav-item:hover, .nav-crumb:hover{
+    transform: scale(1.05);
 }
 
 .basket-highlight{
@@ -64,10 +79,7 @@ p{
 #contact-form{
     box-shadow: 8px 8px 8px 5px rgb(149, 149, 149);
     border-radius: 8px;
-}
-
-.footer-nav-items{
-    width: 120px;
+    max-width: 600px;
 }
 
 .second-nav-link a{
@@ -76,6 +88,31 @@ p{
 
 .book-genre-rows {
     overflow-x: auto;
+}
+
+.active-loader{
+    height: 3px;
+    width: 100%;
+    background-color: rgb(20, 20, 20);
+    border-radius: 2px;
+    transition: all 0.2s ease;
+}
+
+.search-button, .form-control{
+    border-radius: 0;
+}
+
+.search-button{
+    position: relative;
+    z-index: 20;
+    border: 2px solid var(--dark-text-color);
+}
+
+.custom-fields{
+    border-radius: 0;
+    height: 35px;
+    margin: 0;
+    padding-left: 10px;
 }
 /* /UIUX */
 
@@ -154,7 +191,13 @@ body {
     background-color: var(--mute-grey-color);
     background-size: contain;
     background-position: center;
-    height: 550px;
+    height: 520px;
+}
+
+#rating-box, #rating-bar{
+    height: 20px;
+    width: 200px;
+    border: 1px solid grey;
 }
 /* /General */
 

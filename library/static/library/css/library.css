@@ -1,0 +1,26 @@
+#rating-box{
+    height: 21px;
+    background-color: rgb(214, 214, 214);
+    border: none;
+    border-radius: 5px;
+}
+
+#rating-bar{
+    height: 20px;
+    background-color: rgb(0, 255, 166);
+    border: none;
+    border-radius: 5px;
+}
+
+.basket-highlight{
+    color: var(--orange);
+}
+
+.qty_input{
+    min-width: 200px;
+    height: 30px;
+}
+
+#qty_warning{
+    width: 200px;
+}

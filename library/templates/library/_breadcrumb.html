@@ -1,10 +1,11 @@
+{% load my_tags %}
 <div class="breadcrumb-container ms-0 ms-md-4">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="nav-crumb breadcrumb-item"><a href="{{ home_url }}">Home</a></li>
             <li class="nav-crumb breadcrumb-item" aria-current="page"><a href="{{ library_url }}">Library</a></li>
             <!-- If breadcrumb is to be kept on all pages, change this to reflect the current path -->
-            <li class="nav-crumb breadcrumb-item active"aria-current="page">{{ request.resolver_match.view_name }}</li>
+            <li class="nav-crumb breadcrumb-item active"aria-current="page">{{ book.title }}</li>
         </ol>
     </nav>
 </div>

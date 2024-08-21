@@ -75,6 +75,8 @@ INSTALLED_APPS = [
     'reader',
     # User Book Communities - 'community'
     'community',
+    # For custom tags.
+    'utils',
 ]
 
 SITE_ID = 1

@@ -25,20 +25,20 @@ class ContactForm(forms.Form):
     name = forms.CharField(
         label='Name: ',
         widget=forms.TextInput(
-            attrs={'placeholder': 'Emily Brontë', 'autofocus' : True}
+            attrs={'placeholder': 'Emily Brontë', 'autofocus' : True, 'class' : 'custom-fields'}
         )
     )
     email = forms.EmailField(
         label='Email Address: ',
         widget=forms.EmailInput(
-            attrs={'placeholder': 'e.bronte@example.com'}
+            attrs={'placeholder': 'e.bronte@example.com', 'class' : 'custom-fields'}
         )
     )
     subject = forms.ChoiceField(
         label='Subject: ',
         choices=SUBJECTS,
         widget=forms.Select(
-            attrs={'class': 'form-control'}
+            attrs={'class': 'form-control', 'class' : 'custom-fields'}
         )
     )
     message = forms.CharField(
@@ -46,7 +46,7 @@ class ContactForm(forms.Form):
         max_length=400,
         widget=forms.Textarea(
             attrs={
-                'placeholder': '''Tell us your life story in 400 characters or less...'''
+                'placeholder': '''Tell us your life story in 400 characters or less...''', 'class' : 'custom-fields'
             }
         )
     )
