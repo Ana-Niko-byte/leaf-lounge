@@ -10,6 +10,7 @@
             <form method="POST">
                 {% csrf_token %}
                 {{ reviewForm | crispy }}
+                <button type="submit">Submit</button>
             </form>
         </div>
     </div>

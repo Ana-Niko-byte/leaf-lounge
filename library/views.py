@@ -4,7 +4,6 @@ from django.db.models import Q, Count
 
 from .models import *
 from reader.models import UserProfile
-from .forms import ReviewForm
 
 from itertools import product
 
@@ -148,32 +147,5 @@ def book_detail(request, slug):
     return render(
         request,
         'library/book_detail.html',
-        context
-    )
-
-
-def leave_review(request):
-    """
-    """
-    user_profile = UserProfile.objects.get(user=request.user)
-
-    reviewForm = ReviewForm()
-    if request.method == 'POST':
-        if reviewForm.is_valid():
-            reviewForm.save()
-        else:
-            messages.error(
-                request,
-                'Please double check your fields and correct errors.'
-            )
-            reviewForm = ReviewForm()
-
-    context = {
-        'reviewForm': reviewForm,
-    }
-
-    return render(
-        request,
-        'library/review.html',
         context
     )

@@ -3,10 +3,10 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.db.models import Q
 
-from library.models import Book, Genre
+from library.models import Book, Genre, Review
 from checkout.models import Order, BookLineItem
 from .models import UserProfile
-from .forms import UserProfileForm
+from .forms import UserProfileForm, ReviewForm
 
 
 def my_profile(request):
@@ -100,5 +100,33 @@ def my_books(request):
     return render(
         request,
         'reader/profile_books.html',
+        context
+    )
+
+
+def leave_review(request):
+    """
+    A view for users to leave a book review.
+    """
+    user_profile = UserProfile.objects.get(user=request.user)
+
+    reviewForm = ReviewForm()
+    if request.method == 'POST':
+        if reviewForm.is_valid():
+            reviewForm.save()
+        else:
+            messages.error(
+                request,
+                'Please double check your fields and correct errors.'
+            )
+            reviewForm = ReviewForm()
+
+    context = {
+        'reviewForm': reviewForm,
+    }
+
+    return render(
+        request,
+        'reader/review.html',
         context
     )

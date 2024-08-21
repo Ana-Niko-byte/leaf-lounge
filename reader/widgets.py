@@ -9,4 +9,4 @@ class CustomClearableFileInput(ClearableFileInput):
     clear_checkbox_label = _('Remove')
     initial_text = _('Current Cover')
     input_text = _('')
-    template_name = 'library/custom_widget_templates/custom_clearable_file_input.html'
+    template_name = 'reader/custom_widget_templates/custom_clearable_file_input.html'

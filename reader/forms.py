@@ -1,5 +1,7 @@
 from django import forms
+from .widgets import CustomClearableFileInput
 
+from library.models import Review
 from .models import *
 
 class UserProfileForm(forms.ModelForm):
@@ -40,3 +42,24 @@ class UserProfileForm(forms.ModelForm):
                     placeholder = placeholders[field]
                 self.fields[field].widget.attrs['placeholder'] = placeholder
             self.fields[field].label = False
+
+
+class ReviewForm(forms.ModelForm):
+    """
+    A class for the book review form.
+    """
+    class Meta:
+        model = Review
+        fields = {
+            'book',
+            'rating',
+            'comment',
+        }
+
+    image = forms.ImageField(label='Image', required=False, widget=CustomClearableFileInput)
+
+    field_order = [
+        'book',
+        'rating',
+        'comment',
+    ]
