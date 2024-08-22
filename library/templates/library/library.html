@@ -16,6 +16,7 @@
                     {% if filtered_genres %}
                     <h6 class="m-0 p-0 text-uppercase my-3"><strong>{{ genre.name }}</strong></h6>
                     {% endif %}
+                    Fix - books of one genre should be in one line.
                     {% include 'library/_book_composition.html' %}
                 {% endfor %}
             {% endif %}
@@ -28,43 +29,39 @@
                 <a href="{{ library_url }}" class="btn btn-warning mt-4 mb-3"><i class="fa-solid fa-book me-2"></i>Show All Books</a>
             {% endif %}
             <div class="sort-container d-flex flex-column">
-                <button class="btn mb-3 border" type="button" data-bs-toggle="collapse" data-bs-target="#filters" aria-expanded="false" aria-controls="filters">
-                    <span class="small">
-                        <i class="fa-solid fa-filter me-2"></i>Filters<i class="fa-solid fa-chevron-down ms-2"></i>
-                    </span>
-                </button>
-                <div class="collapse multi-collapse mb-3" id="filters">
+                <div class="mb-3" id="filters">
                     <form method="GET" action="{% url 'library' %}">
-                        <p>Filter by:</p>
-                        <div class="row">
-                            <button class="btn col-6" type="button" data-bs-toggle="collapse" data-bs-target="#authors" aria-expanded="false" aria-controls="authors">
-                                <span class="small">Authors<i class="fa-solid fa-chevron-down fa-sm ms-2"></i></span>
-                            </button>
-                            <div class="collapse multi-collapse mb-3" id="authors">
-                                {% for author in book_count_authors %}
-                                <div class="input-group d-flex align-items-center">
-                                    <input type="checkbox" id="{{ author.last_name | lower }}-author" name="author" value="{{ author.last_name }}" {% if author.last_name in authors_ln %} checked = "checked" {% endif %}>
-                                    <label class="ms-3" for="{{ author.last_name | lower }}-author">
-                                        {{ author }}
-                                        <span class="small ms-2">({{ author.book_count }} book{% if author.book_count > 1 %}s{% endif %})</span>
-                                    </label><br>
+                        <div class="row mt-5">
+                            <p class="lead">Filters</p>
+                            <div class="button-container d-flex flex-column align-items-start justify-content-start">
+                                <button class="btn col-6" type="button" data-bs-toggle="collapse" data-bs-target="#authors" aria-expanded="false" aria-controls="authors">
+                                    <span class="small">Authors<i class="fa-solid fa-chevron-down fa-sm ms-2"></i></span>
+                                </button>
+                                <div class="collapse multi-collapse mb-3" id="authors">
+                                    {% for author in book_count_authors %}
+                                    <div class="input-group d-flex align-items-center">
+                                        <input type="checkbox" id="{{ author.last_name | lower }}-author" name="author" value="{{ author.last_name }}" {% if author.last_name in authors_ln %} checked = "checked" {% endif %}>
+                                        <label class="ms-3" for="{{ author.last_name | lower }}-author">
+                                            {{ author }}
+                                            <span class="small ms-2">({{ author.book_count }} book{% if author.book_count > 1 %}s{% endif %})</span>
+                                        </label><br>
+                                    </div>
+                                    {% endfor %}
                                 </div>
-                                {% endfor %}
-                            </div>
-    
-                            <button class="btn col-6" type="button" data-bs-toggle="collapse" data-bs-target="#genres" aria-expanded="false" aria-controls="genres">
-                                <span class="small">Genres<i class="fa-solid fa-chevron-down fa-sm ms-2"></i></span>
-                            </button>
-                            <div class="collapse multi-collapse mt-3" id="genres">
-                                {% for genre in filtered_genres %}
-                                <div class="input-group d-flex align-items-center">
-                                    <input type="checkbox" id="{{ genre }}-genre" name="genre" value="{{ genre }}" {% if genre in genres_called %} checked = "checked" {% endif %}>
-                                    <label class="ms-3" for="{{ genre }}-genre">
-                                        {{ genre }}
-                                        <span class="small ms-2">({{ genre.genre_count }} book{% if genre.genre_count > 1 %}s{% endif %})</span>
-                                    </label><br>
+                                <button class="btn col-6" type="button" data-bs-toggle="collapse" data-bs-target="#genres" aria-expanded="false" aria-controls="genres">
+                                    <span class="small">Genres<i class="fa-solid fa-chevron-down fa-sm ms-2"></i></span>
+                                </button>
+                                <div class="collapse multi-collapse mt-3" id="genres">
+                                    {% for genre in filtered_genres %}
+                                    <div class="input-group d-flex align-items-center">
+                                        <input type="checkbox" id="{{ genre }}-genre" name="genre" value="{{ genre }}" {% if genre in genres_called %} checked = "checked" {% endif %}>
+                                        <label class="ms-3" for="{{ genre }}-genre">
+                                            {{ genre }}
+                                            <span class="small ms-2">({{ genre.genre_count }} book{% if genre.genre_count > 1 %}s{% endif %})</span>
+                                        </label><br>
+                                    </div>
+                                    {% endfor %}
                                 </div>
-                                {% endfor %}
                             </div>
                         </div>
                         

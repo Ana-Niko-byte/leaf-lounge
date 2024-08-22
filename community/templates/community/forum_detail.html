@@ -10,22 +10,8 @@
 {% block content %}
 <div class="container">
     <div class="row d-flex align-items-start justify-content-between">
-        <div class="col-lg-3 m-0 p-0">
-            <h4 class="mb-4">Forum Participants</h4>
-            {% if not forum_participants %}
-                <p class="text-secondary h6">Looks like there are no participants yet!</p>
-                <p class="text-secondary h6">Send a message to join the forum.</p>
-            {% else %}
-                {% for member in forum_participants %}
-                <div class="member-container col-12 p-2 mb-3">
-                    <p><strong>{{ member }}</strong></p>
-                    <p><small>Member since: {{ member.date_joined }}</small></p>
-                </div>
-                {% endfor %}
-            {% endif %}
-        </div>
         <div class="discussion-container col-lg-9 m-0 p-0">
-            <div class="border p-2 d-flex flex-column justify-items-between align-items-center m-0 p-0">
+            <div class="p-2 d-flex flex-column justify-items-between align-items-center m-0 p-0">
                 <div class="message-container col-lg-12 d-flex flex-column justify-content-center">
                     <p class="text-center text-uppercase {% if todays_date %}d-block{% else %}d-none{% endif %}">
                         <strong><small>{% if todays_date and forum_messages %}Today{% endif %}</small></strong>
@@ -47,19 +33,19 @@
                                 <div class="message p-2">
                                     <div class="message-heading d-flex align-items-center justify-content-between">
                                         {% if message.messenger.id == request.user.id %}
-                                        <p class="mb-2"><strong><small>me</small></strong></p>
+                                        <p class="mb-2 text-white"><strong><small>me</small></strong></p>
                                         {% else %}
-                                        <p class="mb-2"><strong><small>{{ message.messenger }}</small></strong></p>
+                                        <p class="mb-2 text-white"><strong><small>{{ message.messenger }}</small></strong></p>
                                         {% endif %}
                                     </div>
-                                    <p id="message-content-{{ message.id }}">{{ message.content }}</p>
+                                    <p id="message-content-{{ message.id }}" class="text-white">{{ message.content }}</p>
                                     <div class="message-footer d-flex justify-content-between align-items-end">
                                         {% if message.messenger.id == request.user.id %}
                                         <a href="{% url 'delete_message' message.forum.slug message.id %}" class="message-buttons btn p-0 mt-3 mx-0">
                                             <i class="fa-solid fa-sm fa-trash me-2"></i><span><small>DELETE</small></span>
                                         </a>
                                         <div class="message-sent d-flex align-items-center justify-content-between">
-                                            <p class="text-end"><small>sent: {{ message.date_sent.time }}</small></p>
+                                            <p class="text-end text-white"><small>sent: {{ message.date_sent.time }}</small></p>
                                             <span class="tickies d-flex justify-content-end my-2 ms-2">
                                                 <i class="fa-solid fa-xs fa-check"></i><i class="fa-solid fa-xs fa-check"></i>
                                             </span>
@@ -73,7 +59,7 @@
                     {% endif %}
                 </div>
             </div>
-            <div class="col-lg-12 mt-3">
+            <div class="col-lg-12">
                 <form method="post" id="messageForm" action="">
                     {% csrf_token %}
                     <div class="row m-0 p-0">
@@ -87,6 +73,20 @@
                     </div>
                 </form>
             </div>
+        </div>
+        <div class="forum-user-container col-lg-3 m-0 p-0">
+            <h5 class="text-uppercase pt-4 pb-2"><small>Forum Participants</small></h5>
+            {% if not forum_participants %}
+                <p class="text-secondary h6">Looks like there are no participants yet!</p>
+                <p class="text-secondary h6">Send a message to join the forum.</p>
+            {% else %}
+                {% for member in forum_participants %}
+                <div class="{% if member == user_profile %}user-member{% else %}member-container{% endif %} col-10 p-2 ps-3 mb-3">
+                    <p><strong>{{ member }}</strong></p>
+                    <p><small>Member since: {{ member.date_joined }}</small></p>
+                </div>
+                {% endfor %}
+            {% endif %}
         </div>
     </div>
 </div>

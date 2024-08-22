@@ -143,16 +143,16 @@ class Book(models.Model):
     # Change to dynamic year later
     year_published = models.IntegerField(validators=[MaxValueValidator(2024)])
     publisher = models.CharField(max_length=100)
-    rating = models.DecimalField(
-        decimal_places=2,
-        validators=[
-            MinValueValidator(
-                0.01,
-                message='Rating cannot be lower than 0.01'
-            ),
-        ],
-        max_digits=3,
-    )
+    # rating = models.DecimalField(
+    #     decimal_places=2,
+    #     validators=[
+    #         MinValueValidator(
+    #             0.01,
+    #             message='Rating cannot be lower than 0.01'
+    #         ),
+    #     ],
+    #     max_digits=3,
+    # )
     type = models.CharField(max_length=9, choices=COVERS, default='SC')
     date_added = models.DateField(auto_now_add=True)
     price = models.DecimalField(max_digits=5, decimal_places=2)
@@ -226,3 +226,6 @@ class Review(models.Model):
     comment = models.TextField(max_length=500, null=False, blank=False)
     reviewed_on = models.DateField(auto_now_add=True, null=False, blank=False)
     approved = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f'Review for {self.book} : {self.rating}/10'

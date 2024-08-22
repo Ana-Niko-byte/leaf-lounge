@@ -8,7 +8,7 @@
 
 {% block content %}
 <div class="container">
-    <div class="row">
+    <div class="row mt-3">
         <div class="col-lg-3 col-md-4 col-sm-12">
             <div class="menu-column">
                 <ul class="list-unstyled">
@@ -20,7 +20,7 @@
                     </li>
                     <!-- Change URL -->
                     <li class="menu-item">
-                        <a href="{{ home_url }}" class="btn btn-md btn-warning mb-2">My Communities</a>
+                        <a href="{{ community_general_url }}" class="btn btn-md btn-warning mb-2">My Communities</a>
                     </li>
                     <li class="menu-item">
                         <button class="btn btn-md btn-warning mb-2 display-button" data-detail="reviews">My Reviews</button>
@@ -32,6 +32,10 @@
             </div>
         </div>
         <div class="col-lg-9 col-md-8 col-sm-12">
+            <div class="profile-starter">
+                <h5>Hey there! You've found your profile.</h5>
+                <p>Click on a button on the left handside to view, change, or delete your information.</p>
+            </div>
             <ul class="list-unstyled">
                 <li class="profile-details d-none" data-profile="billing-details">
                     <div>
@@ -39,7 +43,7 @@
                         <form action="{% url 'user_profile' %}" method="POST" id="userProfileForm">
                             {% csrf_token %}
                             {{ form | crispy }}
-                            <div class="button-container mt-5">
+                            <div class="button-container d-flex justify-content-end mt-3">
                                 <button type="submit" class="btn btn-lg btn-warning"><small><i class="fa-solid fa-check me-2"></i>Save Info</small></button>
                             </div>
                         </form>

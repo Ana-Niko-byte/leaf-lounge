@@ -24,7 +24,7 @@ class BookAdmin(SummernoteModelAdmin):
         'author',
         'year_published',
         'publisher',
-        'rating'
+        # 'rating'
     )
     search_fields = [
         'title',

@@ -12,10 +12,10 @@ function log_entry(){
         const form = document.getElementById('forumForm');
         if (form.classList.contains('d-none')){
             form.classList.remove('d-none');
-            form.classList.add('d-block');
+            form.classList.add('d-flex');
             button.innerHTML = '<i class="fa-solid fa-sm fa-x me-2"></i>Cancel';
-        } else if (form.classList.contains('d-block')){
-            form.classList.remove('d-block');
+        } else if (form.classList.contains('d-flex')){
+            form.classList.remove('d-flex');
             form.classList.add('d-none');
             button.innerHTML = '<i class="fa-solid fa-plus me-2"></i>Start a Discussion';
         }

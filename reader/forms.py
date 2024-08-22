@@ -56,10 +56,23 @@ class ReviewForm(forms.ModelForm):
             'comment',
         }
 
-    image = forms.ImageField(label='Image', required=False, widget=CustomClearableFileInput)
-
     field_order = [
         'book',
         'rating',
         'comment',
     ]
+
+    def __init__(self, *args, **kwargs):
+        """
+        Set placeholders to each form field.
+        Remove labels from fields.
+        Set first field with autofocus.
+        """
+        super().__init__(*args, **kwargs)
+        placeholders = {
+            'comment': 'Best book ever!',
+        }
+
+        for field in self.fields:
+            if field == 'comment':
+                self.fields[field].widget.attrs['placeholder'] = f'{placeholders[field]}'

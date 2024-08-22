@@ -57,15 +57,17 @@ def community_general(request):
 @login_required
 def community(request, slug):
     """
-    A view for displaying each community.
+    A view for each community.
     """
     community = Community.objects.get(slug=slug)
 
     # Other Books in this Genre.
     current_genre = Genre.objects.get(community=community)
     books_in_genre = Book.objects.filter(genre=current_genre)
+    forums = Forum.objects.filter(community=community)
 
-    forums = Forum.objects.all()
+    user_profile = UserProfile.objects.get(user=request.user)
+    user_orders = Order.objects.filter(user_profile=user_profile)
 
     if request.method == 'POST':
         forumForm = ForumForm(data=request.POST)
@@ -99,6 +101,7 @@ def community(request, slug):
         'forums': forums,
         'forumForm': forumForm,
         'books_in_genre': books_in_genre,
+        'current_genre': current_genre,
         'community': community,
         'community_view': True,
     }
@@ -112,6 +115,7 @@ def community(request, slug):
 
 def forum_detail(request, slug):
     """
+    A dedicated view for each forum.
     """
     forum = Forum.objects.get(slug=slug)
     user_profile = UserProfile.objects.get(user=request.user)
@@ -148,6 +152,7 @@ def forum_detail(request, slug):
 
     context = {
         'forum': forum,
+        'user_profile': user_profile,
         'forum_participants': forum_participants,
         'forum_messages': forum_messages,
         'messageForm': messageForm,

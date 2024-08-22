@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.db.models import Q
@@ -104,16 +104,25 @@ def my_books(request):
     )
 
 
-def leave_review(request):
+def leave_review(request, id):
     """
     A view for users to leave a book review.
     """
     user_profile = UserProfile.objects.get(user=request.user)
+    review_book = get_object_or_404(Book, id=id)
 
-    reviewForm = ReviewForm()
     if request.method == 'POST':
+        reviewForm = ReviewForm(request.POST)
         if reviewForm.is_valid():
-            reviewForm.save()
+            review = reviewForm.save(commit=False)
+            review.reviewer = request.user
+            review.approved = False
+            review.save()
+            messages.success(
+                request,
+                'Thank you for your review! It should be approved within 2 business days :)'
+            )
+            return redirect('user_books')
         else:
             messages.error(
                 request,
@@ -121,12 +130,13 @@ def leave_review(request):
             )
             reviewForm = ReviewForm()
 
-    context = {
-        'reviewForm': reviewForm,
-    }
+            context = {
+            'reviewForm': reviewForm,
+            'review_book': review_book,
+            }
 
-    return render(
-        request,
-        'reader/review.html',
-        context
-    )
+            return render(
+                request,
+                'reader/review.html',
+                context
+            )

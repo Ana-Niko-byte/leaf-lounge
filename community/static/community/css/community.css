@@ -1,7 +1,14 @@
 .message-container{
     border-radius: 10px;
-    max-height: 500px;
-    min-height: 450px;
+    border: 1px solid lightgrey;
+    max-height: 450px;
+    min-height: 400px;
+    overflow-y: auto;
+}
+
+.forum-user-container{
+    max-height: 450px;
+    min-height: 400px;
     overflow-y: auto;
 }
 
@@ -16,6 +23,11 @@
     background-color: rgb(149, 177, 116);
 }
 
+.user-member{
+    border-radius: 10px;
+    background-color: rgb(255, 197, 96);
+}
+
 .tickies{
     color: rgb(147, 255, 52);
 }
@@ -27,4 +39,15 @@
 
 .message-buttons:hover{
     color: rgb(255, 50, 50);
+}
+
+.book-link a {
+    text-decoration: none;
+    color: var(--dark-text-color);
+}
+
+.forum-container{
+    min-width: 400px;
+    max-width: 450px;
+    overflow-y: auto;
 }

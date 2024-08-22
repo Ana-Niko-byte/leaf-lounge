@@ -5,14 +5,24 @@
 {% block content %}
 <div class="container">
     <div class="row d-flex justify-content-center">
-        <h6>Posting as {{ request.user }}</h6>
-        <div class="col-6">
-            <form method="POST">
-                {% csrf_token %}
-                {{ reviewForm | crispy }}
-                <button type="submit">Submit</button>
+        <div class="col-lg-6 col-md-8 col-sm-12">
+            <form method="POST" class="card d-flex flex-column" id="reviewForm" data-book-title="{{ review_book.title }}">
+                <div class="card-header text-center">
+                    <h5>Time to Leave a Review!</h5>
+                    <h6 class="small">Posting as {{ request.user }}</h6>
+                </div>
+                <div class="card-body">
+                    {% csrf_token %}
+                    {{ reviewForm|crispy }}
+                </div>
+                <button type="submit" class="card-footer">Submit</button>
             </form>
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block extra_js %}
+    {{ block.super }}
+    <script type="module" src="{% static 'reader/js/review.js' %}"></script>
 {% endblock %}

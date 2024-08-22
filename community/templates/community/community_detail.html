@@ -4,57 +4,54 @@
 
 {% block content %}
 <div class="container-fluid">
-    <div class="row d-flex justify-content-around">
+    <div class="row d-flex justify-content-around mt-4">
+
         <!-- Forums -->
-        <div class="col-3 border d-flex flex-column">
-            <h5 class="mb-4"><strong>Forums</strong></h5>
-            <div class="forum-container col-12">
-                {% for forum in forums %}
-                {% if forum.community == community %}
-                <a href="{{ forum.get_absolute_url }}">
-                    <div class="card py-2 px-3 mb-2">
-                        {{ forum.name }}
-                    </div>
-                </a>
-                {% endif %}
-                {% endfor %}
+        <div class="card col-7 forum-container p-2">
+            <div class="card-body d-flex flex-column justify-content-start">
+                <h5 class="mb-4 text-center text-uppercase"><strong>Forums</strong></h5>
+                <div class="col-12 d-flex flex-column justify-content-center">
+                    {% if forums %}
+                        {% for forum in forums %}
+                            {% if forum.community == community %}
+                            <a href="{{ forum.get_absolute_url }}" class="forum-link">
+                                <div class="card py-2 px-3 mb-2">
+                                    {{ forum.name }}
+                                </div>
+                            </a>
+                            {% endif %}
+                        {% endfor %}
+                    {% else %}
+                    <p class="text-seconary text-center">Looks like there aren't any forums yet -</p>
+                    <p class="text-seconary text-center">Click the button below to start a chat :)</p>
+                    {% endif %}
+                </div>
             </div>
-            <form method="POST" class="d-none" id="forumForm">
+            <form method="POST" class="d-none justify-content-between align-items-center card-footer" id="forumForm">
                 {% csrf_token %}
                 {{ forumForm|crispy }}
 
                 <div class="button-container">
-                    <button type="submit" class="btn btn-sm btn-success">Create</button>
+                    <button type="submit" class="btn btn-success"><i class="fa-solid fa-plus me-2"></i>Create</button>
                 </div>
             </form>
-            <button class="btn btn-warning d-flex align-items-center justify-content-center" id="start-forum">
-                <i class="fa-solid fa-plus me-2"></i>Start a Discussion
+            <button class="card-footer btn d-flex align-items-center justify-content-center" id="start-forum">
+                <i class="fa-solid fa-comments me-2"></i>Start a Discussion
             </button>
         </div>
         <!-- /Forums -->
 
-        <!-- Latest Discussions -->
-        <div class="col-5 text-center">
-            <h5 class="mb-4"><strong>Latest Discussions</strong></h5>
-        </div>
-        <!-- /Latest Discussions -->
-
         <!-- More Books -->
-        <div class="col-3 text-center">
-            <h5 class="mb-4"><strong>More Books in this Genre</strong></h5>
+        <div class="col-4 card p-4">
+            <h5 class="mb-4 text-uppercase"><strong>{{ current_genre.name }} Books</strong></h5>
             {% for book in books_in_genre %}
-            <div class="row">
-                <div class="book d-flex flex-column align-items-center justify-content-start" style="max-height: 550px;">
-                    <a href="{{ book.get_absolute_url }}">
-                        <img src="../../../static/images/1984_cover.jpg" alt="" style="width: 80px;">
-                    </a>
-                    <div class="text-center mt-3 mb-1">
-                        <p class="h5">{{ book.title }}</p>
-                        <p class="text-secondary"><em>by {{ book.author }} | {{ book.year_published }}</em></p>
+                <a href="{{ book.get_absolute_url }}" class="book-link d-flex justify-content-start">
+                    <img src="../../../static/images/1984_cover.jpg" alt="" style="width: 100px;">
+                    <div class="text-start ms-2">
+                        <p class="h6">{{ book.title }}</p>
+                        <p class="m-0 p-0"> by {{ book.author }}</p>
                     </div>
-                    <a href="{{ book.get_absolute_url }}" class="btn btn-warning mb-5 mt-3">Read More</a>
-                </div>
-            </div>
+                </a>
             {% endfor %}
         </div>
         <!-- /More Books -->

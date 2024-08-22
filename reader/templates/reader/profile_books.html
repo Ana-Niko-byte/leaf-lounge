@@ -22,7 +22,7 @@
                     <div class="book-info-container mt-3 text-center">
                         <p><strong>{{ book.title }}</strong></p>
                     </div>
-                    <a href="{{ review_url }}" class="btn btn-sm btn-warning mb-3">Leave a Review</a>
+                    <a href="{% url 'leave_review' book.id %}" class="btn btn-sm btn-warning mb-3">Leave a Review</a>
                 </div>
             {% endfor %}
         {% endif %}
@@ -39,7 +39,7 @@
                     <div class="book-info-container mt-3 text-center">
                         <p><strong>{{ book.title }}</strong></p>
                     </div>
-                    <a href="" class="btn btn-sm btn-warning mb-3">Leave a Review</a>
+                    <a href="{% url 'leave_review' book.id %}" class="btn btn-sm btn-warning mb-3" data-book-title="{{ book.title }}">Leave a Review</a>
                 </div>
                 {% endif %}
             {% endfor %}

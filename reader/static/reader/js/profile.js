@@ -28,6 +28,14 @@ function handleChosenElement(element){
     }
 }
 
+function hideStarter(){
+    /**
+     * Retrieves the 'profile-starter' element and hides it.
+     */
+    const starter = document.getElementsByClassName('profile-starter')[0];
+    starter.classList.add('d-none');
+}
+
 function FilterAndDisplay(buttonDataValue){
     // Get list for filtering.
     let list = [...document.getElementsByClassName('profile-details')];
@@ -69,6 +77,7 @@ document.addEventListener('DOMContentLoaded', function(){
         (function(button){
             const buttonDataValue = button.dataset.detail;
             button.addEventListener('click', () => {
+                hideStarter();
                 FilterAndDisplay(buttonDataValue);
             });
         })(button);
