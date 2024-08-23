@@ -5,12 +5,12 @@
 <div class="jumbotron d-flex flex-column align-items-start">
     {% if not user.is_authenticated %}
         <h3 class="p-5">Join millions of readers on your next journey</h1>
-        <a href="{{ signin_url }}" class="ms-5 btn btn-lg btn-warning">
+        <a href="{{ signin_url }}" class="ms-5 custom-button custom-button-extended">
             <i class="fa-solid fa-arrow-right-to-bracket me-2"></i>Sign In
         </a>
     {% else %}
         <h3 class="p-5">Hey, {{ user }}!<br>Join in on the chatter in your communities :)</h1>
-          <a href="{{ community_general_url }}" class="ms-5 btn btn-lg btn-warning">
+          <a href="{{ community_general_url }}" class="ms-5 custom-button custom-button-extended">
             <i class="fa-solid fa-book-open me-2"></i>My Communities</a>
         </a>
     {% endif %}

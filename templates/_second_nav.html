@@ -12,10 +12,6 @@
         </li>
         <li class="mx-2">|</li>
         <li class="nav-item second-nav-link text-center">
-            <a href="{{ review_url }}">Leave a Review</a>
-        </li>
-        <li class="mx-2">|</li>
-        <li class="nav-item second-nav-link text-center">
             <!-- Add correct url here -->
             <a href="{% if request.user.is_authenticated %}{{ create_author_url }}{% else %}{{ signup_url }}{% endif %}">Become an Author</a>
         </li>

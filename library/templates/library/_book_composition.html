@@ -1,29 +1,29 @@
-<div class="row book-genre-rows">
+<div class="d-flex flex-row">
     {% for book in books %}
-        {% if book.genre == genre %}
-        <div class="card border-0">
-            <div class="card-body {% if 'q' in request.GET or 'author' in request.GET %} m-0 p-0 {% endif %}">
-                <div class="col-lg-3 col-md-4 col-sm-12">
-                    <div class="book d-flex flex-column align-items-center justify-content-start">
-                        <a href="{{ book.get_absolute_url }}">
-                            <img src="../../../static/images/1984_cover.jpg" alt="" style="width: 150px;">
-                        </a>
-                        <div class="text-center">
-                            <p class="h6 mt-2"><strong>{{ book.title }}</strong></p>
-                            <p class="text-secondary"><small><em>by {{ book.author }} | {{ book.year_published }}</em></small></p>
-                        </div>
-                    </div>
+    {% if book.genre == genre %}
+    <a href="{{ book.get_absolute_url }}">
+        <div class="card col-lg-3 col-md-4 col-sm-12 {% if 'q' in request.GET or 'author' in request.GET %} m-0 p-0 {% endif %}">
+            <div class="card-body book text-center">
+                <a href="{{ book.get_absolute_url }}">
+                    <img src="../../../static/images/1984_cover.jpg" alt="{{ book.title }} cover" style="width: 120px;">
+                </a>
+                <div class="text-center">
+                    <p class="h6 mt-2"><strong>{{ book.title }}</strong></p>
+                    <p class="text-secondary"><small><em>by {{ book.author }} | {{ book.year_published }}</em></small></p>
                 </div>
             </div>
-            <div class="card-footer">
-                <div class="col-lg-3 col-md-4 col-sm-12 text-center">
+            <div>
+                <div class="card-footer text-center">
                     <p>"{{ book.blurb | safe }}"</p>
-                    <a href="{{ book.get_absolute_url }}" class="btn btn-warning">
-                        Read More<i class="fa-solid fa-arrow-right ms-2"></i>
+                    <a href="{{ book.get_absolute_url }}">
+                        <button  class="custom-button mt-3">
+                            Read More<i class="fa-solid fa-arrow-right ms-2"></i>
+                        </button>
                     </a>
                 </div>
             </div>
         </div>
-        {% endif %}
-    {% endfor %}
+    </a>
+    {% endif %}
+{% endfor %}
 </div>

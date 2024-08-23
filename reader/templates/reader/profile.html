@@ -13,20 +13,28 @@
             <div class="menu-column">
                 <ul class="list-unstyled">
                     <li class="menu-item">
-                        <button class="btn btn-md btn-warning mb-2 display-button" data-detail="billing">My Billing Details</button>
+                        <button class="btn-md custom-button mb-2 display-button" data-detail="billing">My Billing Details</button>
                     </li>
                     <li class="menu-item">
-                        <button class="btn btn-md btn-warning mb-2 display-button" data-detail="history">My Order History</button>
+                        <button class="btn-md custom-button mb-2 display-button" data-detail="history">My Order History</button>
                     </li>
                     <!-- Change URL -->
                     <li class="menu-item">
-                        <a href="{{ community_general_url }}" class="btn btn-md btn-warning mb-2">My Communities</a>
+                        <a href="{{ community_general_url }}">
+                            <button class="btn-md custom-button mb-2">
+                                My Communities
+                            </button>
+                        </a>
                     </li>
                     <li class="menu-item">
-                        <button class="btn btn-md btn-warning mb-2 display-button" data-detail="reviews">My Reviews</button>
+                        <button class="btn-md custom-button mb-2 display-button" data-detail="reviews">My Reviews</button>
                     </li>
                     <li class="menu-item">
-                        <a href="{{ contact_url }}" class="btn btn-md btn-warning mb-2">Need Help?</a>
+                        <a href="{{ contact_url }}">
+                            <button class="btn-md custom-button mb-2">
+                                Need Help?
+                            </button>
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -44,7 +52,7 @@
                             {% csrf_token %}
                             {{ form | crispy }}
                             <div class="button-container d-flex justify-content-end mt-3">
-                                <button type="submit" class="btn btn-lg btn-warning"><small><i class="fa-solid fa-check me-2"></i>Save Info</small></button>
+                                <button type="submit" class="btn-lg custom-button"><small><i class="fa-solid fa-check me-2"></i>Save Info</small></button>
                             </div>
                         </form>
                     </div>
@@ -78,7 +86,7 @@
                                     <p class="m-0 p-0">Shipping : {% if book_order.delivery_cost == 0.00 %}<strong>FREE</strong>{% else %}€{{ book_order.delivery_cost }}{% endif %}</p>
                                     <p class="m-0 p-0">Total : €{{ book_order.grand_total }}</p>
                                 </div>
-                                <button class="btn btn-warning mb-4 accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse{{ forloop.counter }}" aria-expanded="false" aria-controls="flush-collapse{{ forloop.counter }}">
+                                <button class="custom-button mb-4 accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse{{ forloop.counter }}" aria-expanded="false" aria-controls="flush-collapse{{ forloop.counter }}">
                                     <i class="fa-solid fa-truck-fast me-2"></i>Shipping Details
                                 </button>
                             </div>
@@ -113,7 +121,7 @@
                                     <div class="col-lg-3 col-md-6 col-sm-12">
                                         <div class="card">
                                             <div class="card-header">
-                                                <h6 class="strong">"{{ review.title }}"</h6>
+                                                <h6 class="strong">{{ review.title }}</h6>
                                                 <p class="mt-3">{{ review.book.title }}</p>
                                                 <p class="small text-secondary">{{ review.reviewed_on }}</p>
                                             </div>

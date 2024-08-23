@@ -4,10 +4,21 @@
 
 {% block content %}
 <div class="container-fluid">
-    <div id="basket-banner" class="row text-center">
-        <div class="col py-2">
-            <h5 class="my-1 text-uppercase"><strong>Your Basket</strong></h5>
+    <div class="row mt-4 text-center">
+        <h5 class="text-uppercase"><strong>
+            {% if not books_in_basket %}<i class="fa-solid fa-wine-glass-empty me-3"></i>
+            {% else %}<i class="fa-solid fa-wine-glass me-3"></i>{% endif %}
+            Your Basket{% if not books_in_basket %} is empty  :({% endif %}
+        </strong></h5>
+        {% if not books_in_basket %}
+        <div class="button-container text-center mt-4">
+            <a href="{{ library_url }}">
+                <button class="custom-button">
+                    <i class="fa-solid fa-sm fa-chevron-left me-2"></i>Return to Library
+                </button>
+            </a>
         </div>
+        {% endif %}
     </div>
     <div class="row mt-5 d-flex flex-row justify-content-around align-items-start">
         {% if books_in_basket %}
@@ -83,11 +94,11 @@
                                         <!-- Handlers -->
                                         <div class="button-container d-flex flex-column justify-content-center">
                                             <!-- Manipulation (js) -->
-                                            <span class="d-none basket-link btn btn-sm btn-success cancel-update my-1" data-book-id="{{ book.book_id }}" id="cancel_{{ book.book_id }}_{{ forloop.counter }}">Cancel</span>
-                                            <span class="basket-link btn btn-sm btn-warning update-book my-1" data-book-id="{{ book.book_id }}" data-counter="{{ forloop.counter }}">Update</span>
+                                            <span class="d-none basket-link custom-button cancel-update my-1" data-book-id="{{ book.book_id }}" id="cancel_{{ book.book_id }}_{{ forloop.counter }}">Cancel</span>
+                                            <span class="basket-link custom-button update-book my-1" data-book-id="{{ book.book_id }}" data-counter="{{ forloop.counter }}">Update</span>
                                             <!-- /Manipulation (js) -->
                                             <!-- Button -->
-                                            <a class="d-none basket-link btn btn-sm btn-warning save-book my-1" data-book-id="{{ book.book_id }}" id="save_{{ book.book_id }}_{{ forloop.counter }}">Save Changes</a>
+                                            <a class="d-none basket-link custom-button save-book my-1" data-book-id="{{ book.book_id }}" id="save_{{ book.book_id }}_{{ forloop.counter }}">Save Changes</a>
                                             <!-- /Button -->
                                         </div>
                                         <!-- /Handlers -->
@@ -133,22 +144,15 @@
                     </h6>
                 </div>
                 <div class="card-footer d-flex flex-row align-items-start justify-content-between py-3" style="background-color: white;">
-                    <a href="{% url 'library' %}" class="btn btn-warning small">
+                    <a href="{% url 'library' %}" class="custom-button small">
                         <i class="fa-solid fa-sm fa-book me-2"></i>Keep Shopping
                     </a>
-                    <a href="{{ checkout_url }}" class="btn btn-success">
+                    <a href="{{ checkout_url }}" class="custom-button">
                         <i class="fas fa-lock me-2"></i>Secure Checkout
                     </a>
                 </div>
             </div>
             <!-- /Table -->
-        {% else %}
-        <p class="lead text-center">Your basket is empty.</p>
-        <div class="button-container text-center">
-            <a href="{{ library_url }}" class="btn btn-warning mt-2">
-                <i class="fa-solid fa-sm fa-chevron-left me-2"></i>Return to Library
-            </a>
-        </div>
         {% endif %}
     </div>
 </div>

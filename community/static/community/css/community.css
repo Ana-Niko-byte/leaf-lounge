@@ -41,11 +41,6 @@
     color: rgb(255, 50, 50);
 }
 
-.book-link a {
-    text-decoration: none;
-    color: var(--dark-text-color);
-}
-
 .forum-container{
     min-width: 400px;
     max-width: 450px;

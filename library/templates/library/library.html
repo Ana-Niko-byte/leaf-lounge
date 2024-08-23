@@ -8,17 +8,24 @@
         <!-- Books -->
         <div class="books col-lg-9 col-md-6 col-sm-12">
             {% if genre_search %}
+            <div class="row book-genre-rows card border-0" style="outline: 2px solid purple;">
                 {% for genre in genres_called %}
+                <div class="row border d-flex" style="outline: 2px solid orange;">
                     {% include 'library/_book_composition.html' %}
+                </div>
                 {% endfor %}
+            </div>
             {% else %}
+            <div class="row book-genre-rows card border-0">
                 {% for genre in filtered_genres %}
+                <div class="row book-genre-rows border-0">
                     {% if filtered_genres %}
                     <h6 class="m-0 p-0 text-uppercase my-3"><strong>{{ genre.name }}</strong></h6>
                     {% endif %}
-                    Fix - books of one genre should be in one line.
                     {% include 'library/_book_composition.html' %}
+                </div>
                 {% endfor %}
+            </div>
             {% endif %}
         </div>
         <!-- /Books -->
@@ -26,7 +33,7 @@
         <!-- Sort By -->
         <div class="sorting col-lg-3 col-md-6 col-sm-12 col-lg-first">
             {% if 'q' in request.GET or 'author' in request.GET or 'genre' in request.GET %}
-                <a href="{{ library_url }}" class="btn btn-warning mt-4 mb-3"><i class="fa-solid fa-book me-2"></i>Show All Books</a>
+                <a href="{{ library_url }}" class="custom-button custom-button-extended mt-4 mb-3"><i class="fa-solid fa-book me-2"></i>Show All Books</a>
             {% endif %}
             <div class="sort-container d-flex flex-column">
                 <div class="mb-3" id="filters">
@@ -34,10 +41,10 @@
                         <div class="row mt-5">
                             <p class="lead">Filters</p>
                             <div class="button-container d-flex flex-column align-items-start justify-content-start">
-                                <button class="btn col-6" type="button" data-bs-toggle="collapse" data-bs-target="#authors" aria-expanded="false" aria-controls="authors">
+                                <button class="custom-button" type="button" data-bs-toggle="collapse" data-bs-target="#authors" aria-expanded="false" aria-controls="authors">
                                     <span class="small">Authors<i class="fa-solid fa-chevron-down fa-sm ms-2"></i></span>
                                 </button>
-                                <div class="collapse multi-collapse mb-3" id="authors">
+                                <div class="collapse multi-collapse my-3" id="authors">
                                     {% for author in book_count_authors %}
                                     <div class="input-group d-flex align-items-center">
                                         <input type="checkbox" id="{{ author.last_name | lower }}-author" name="author" value="{{ author.last_name }}" {% if author.last_name in authors_ln %} checked = "checked" {% endif %}>
@@ -48,7 +55,7 @@
                                     </div>
                                     {% endfor %}
                                 </div>
-                                <button class="btn col-6" type="button" data-bs-toggle="collapse" data-bs-target="#genres" aria-expanded="false" aria-controls="genres">
+                                <button class="custom-button" type="button" data-bs-toggle="collapse" data-bs-target="#genres" aria-expanded="false" aria-controls="genres">
                                     <span class="small">Genres<i class="fa-solid fa-chevron-down fa-sm ms-2"></i></span>
                                 </button>
                                 <div class="collapse multi-collapse mt-3" id="genres">
@@ -65,7 +72,7 @@
                             </div>
                         </div>
                         
-                        <button class="form-control btn btn-warning mt-3" type="submit">
+                        <button class="form-control custom-button custom-button-extended mt-3" type="submit">
                             <i class="fa-solid fa-check me-2"></i>Find Books
                         </button>
                     </form>

@@ -142,3 +142,14 @@ def leave_review(request, id):
                 'reader/review.html',
                 context
             )
+    else:
+        reviewForm = ReviewForm()
+        context = {
+            'reviewForm': reviewForm,
+            'review_book': review_book,
+        }
+        return render(
+            request,
+            'reader/review.html',
+            context
+        )

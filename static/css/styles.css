@@ -116,14 +116,32 @@ body {
     background-position: center;
     height: 520px;
 }
+
+.custom-button{
+    text-decoration: none;
+    border-color: transparent;
+    min-width: 150px;
+    padding: 10px;
+    border-radius: 20px;
+    color: var(--dark-text-color);
+    transition: all 0.2s ease-in;
+    text-align: center;
+}
+
+.custom-button-extended{
+    background-color: darkorange;
+}
+
+.custom-button:hover{
+    background-color: darkorange;
+    outline: 4px solid rgb(255, 194, 80);
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 10px rgb(78, 78, 78);
+}
 /* /General */
 
 /* Media Queries */
 @media all and (min-width: 400px){
-    /* .jumbotron-container{
-        text-align: left;
-        outline: 3px solid red;
-
-    } */
 }
 /* /Media Queries */

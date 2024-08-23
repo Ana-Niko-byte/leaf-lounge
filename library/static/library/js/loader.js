@@ -9,5 +9,4 @@ function rating(){
     const box = document.getElementById("rating-box");
     const barWidth = parseFloat(box.dataset.rating) * 10;
     document.getElementById("rating-bar").style.width = `${barWidth}%`;
-    document.getElementById("rating-mark").innerHTML = box.dataset.rating;
 };

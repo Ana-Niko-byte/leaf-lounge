@@ -105,11 +105,11 @@
                     <!-- /Client Secret passed to view for retrieving payment intent id. -->
                 </fieldset>
                 <div class="submit-button">
-                    <a href="{{ library_url }}" class="btn btn-warning">
+                    <a href="{{ library_url }}" class="custom-button">
                         <i class="fa-solid fa-sm fa-chevron-left me-2"></i>Return to Library
                     </a>
-                    <a href="{% url 'basket' %}" class="btn btn-success">View Basket</a>
-                    <button id="submit-button" class="btn btn-warning">Complete Order</button>
+                    <a href="{% url 'basket' %}" class="custom-button">View Basket</a>
+                    <button id="submit-button" class="custom-button">Complete Order</button>
                     <p>You're about to be charged €{{ total|floatformat:2 }}</p>
                 </div>
             </form>

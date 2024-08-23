@@ -76,3 +76,6 @@ class ReviewForm(forms.ModelForm):
         for field in self.fields:
             if field == 'comment':
                 self.fields[field].widget.attrs['placeholder'] = f'{placeholders[field]}'
+            elif field == 'rating':
+                self.fields[field].widget.attrs['placeholder'] = '(Out of 10)'
+            self.fields[field].widget.attrs['class'] = 'custom-fields'
