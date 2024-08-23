@@ -13,7 +13,8 @@
         <div class="book-content col-6">
             <h3 class="mb-3"><strong>{{ book.title }}</strong></h3>
             <div class="rating-container">
-                <div id="rating-box" data-rating="{{ book.rating }}" class="d-flex align-items-center">
+                <div id="rating-box" data-rating="{{ book.rating }}" class="d-flex justify-content-start align-items-start">
+                    <img src="../../../static/images/stars.png" alt="" width="120" id="loader-image">
                     <div id="rating-bar">
                         <span id="rating-mark" class="small d-flex align-items-center justify-content-end me-2"></span>
                     </div>

@@ -107,6 +107,31 @@
                 <li class="profile-details d-none" data-profile="reviews-details">
                     <div>
                         <h5 class="mb-4"><strong>My Reviews</strong></h5>
+                        {% if user_reviews %}
+                            <div class="row d-flex flex-row justify-content-center align-items-center">
+                                {% for review in user_reviews %}
+                                    <div class="col-lg-3 col-md-6 col-sm-12">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h6 class="strong">"{{ review.title }}"</h6>
+                                                <p class="mt-3">{{ review.book.title }}</p>
+                                                <p class="small text-secondary">{{ review.reviewed_on }}</p>
+                                            </div>
+                                            <div class="card-body">
+                                                <p>{{ review.rating }}</p>
+                                                <p>{{ review.comment }}</p>
+                                            </div>
+                                            <div class="card-footer">
+                                                <p class="small">status: {% if review.approved %}Approved!{% else %}Pending{% endif %}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            <p>You can view any pending and approved reviews here!</p>
+                            <p>To leave a review go to <span><a href="{{ books_url }}">My Books</a></span></p>
+                        {% endif %}
                     </div>
                 </li>
             </ul>

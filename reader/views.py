@@ -26,12 +26,14 @@ def my_profile(request):
 
     form = UserProfileForm(instance=reader)
     book_orders = reader.orders.all()
-    print(book_orders)
+    user_reviews = Review.objects.filter(reviewer=reader)
+    print(user_reviews)
 
     context={
         'reader': reader,
         'form': form,
         'book_orders': book_orders,
+        'user_reviews': user_reviews,
         'profile_page': True
     }
     return render(
@@ -115,7 +117,7 @@ def leave_review(request, id):
         reviewForm = ReviewForm(request.POST)
         if reviewForm.is_valid():
             review = reviewForm.save(commit=False)
-            review.reviewer = request.user
+            review.reviewer = user_profile
             review.approved = False
             review.save()
             messages.success(

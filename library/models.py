@@ -208,8 +208,10 @@ class Review(models.Model):
     approved : BooleanField - whether the comment is admin approved.
     """
     reviewer = models.ForeignKey(
-        User,
-        on_delete=models.CASCADE,
+        UserProfile,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
         related_name='reviewer'
     )
     book = models.ForeignKey(
@@ -217,6 +219,7 @@ class Review(models.Model):
         on_delete=models.CASCADE,
         related_name='reviewed_book'
     )
+    title = models.CharField(max_length=80, null=False, blank=False)
     rating = models.IntegerField(
         validators=[
             MaxValueValidator(10), MinValueValidator(1)],
