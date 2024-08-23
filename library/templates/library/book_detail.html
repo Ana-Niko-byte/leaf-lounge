@@ -12,11 +12,12 @@
         <img src="../../../static/images/1984_cover.jpg" alt="" style="width: 250px;">
         <div class="book-content col-6">
             <h3 class="mb-3"><strong>{{ book.title }}</strong></h3>
-            <div class="rating-container">
-                <div id="rating-box" data-rating="{{ book.rating }}" class="d-flex justify-content-start align-items-start">
-                    <img src="../../../static/images/stars.png" alt="" width="120" id="loader-image">
+            <div class="rating-container d-flex">
+                <div id="rating-box" data-rating="{{ ratings }}" class="d-flex justify-content-start align-items-start">
+                    <img src="../../../static/images/stars.png" alt="{{ book.title }} cover" width="120" id="loader-image">
                     <div id="rating-bar"></div>
                 </div>
+                <span class="ms-2 small" id="full-rating-review">( <span id="rating-amount"></span> )</span>
             </div>
             <hr>
             <div class="general-info">

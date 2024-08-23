@@ -38,6 +38,18 @@ html, body{
     text-decoration: none;
 }
 
+/* Base code from https://codepen.io/nelledejones/pen/gOOPWrK */
+.gelatine {
+    animation: gelatine 0.7s infinite;
+}
+
+@keyframes gelatine {
+    from, to { transform: scale(1, 1); }
+    25% { transform: scale(0.7, 1.3); }
+    50% { transform: scale(1.3, 0.7); }
+    75% { transform: scale(0.9, 1.1); }
+}
+
 .social-links{
     color: var(--dark-text-color);
     transition: all 0.3s;
@@ -130,6 +142,7 @@ body {
 
 .custom-button-extended{
     background-color: darkorange;
+    color: white;
 }
 
 .custom-button:hover{

@@ -112,7 +112,7 @@
                 <ul class="navbar-nav me-3 d-none d-lg-flex flex-row align-items-center">
                     <li class="nav-item px-2 mx-1">
                         <a href="{{ basket_url }}">
-                            <i class="fa-solid fa-basket-shopping {% if books_total %} basket-highlight {% endif %}"></i>
+                            <i class="fa-solid fa-basket-shopping {% if books_total %} gelatine {% endif %}"></i>
                             <span class="{% if books_total %} basket-highlight {% endif %} text-sm">
                                 {% if total %}
                                     €{{ total|floatformat:2 }}

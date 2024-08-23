@@ -15,61 +15,28 @@
             <h5 class="my-1 text-uppercase"><strong>Checkout Form</strong></h5>
         </div>
     </div>
-    <div class="row mt-5 d-flex justify-content-around align-items-start">
-        <div class="col-12 col-lg-5 order-lg-last">
-            <p>Order Summary ( {{ basket_items_count }} )</p>
+    <div class="row my-3 d-flex justify-content-around align-items-start">
+        <div class="col-12 col-lg-5 order-lg-last bg-light rounded shadow-sm p-4">
+            <h6 class="text-uppercase"><strong>Order Summary ( {{ basket_items_count }} )</strong></h6>
+            <hr>
             <div class="row">
-                <div class="col-7">
-                    <p>Item</p>
-                </div>
-                <div class="col-3">
-                    <p>Subtotal</p>
-                </div>
-                {% for book in books_in_basket %}
-                <div class="row">
-                    <div class="col-2">
-                        <a href="{{ book.get_absolute_url }}">
-                            <img src="../../../static/images/1984_cover.jpg" style="width: 50px;" alt="{{ book.book.title }} cover image">
-                        </a>
-                    </div>
-                    <div class="col-7">
-                        <p>{{ book.book.title }}</p>
-                        <p>{{ book.type }}</p>
-                        <p>{{ book.quantity }}</p>
-                    </div>
-                    <div class="col-3">
-                        <p>€{{ book.indiv_total }}</p>
-                    </div>
-                </div>
-                {% endfor %}
-                <div class="my-0">
-                    <div class="row">
-                        <div class="col-7">
-                            <p class="my-0">Order Total:</p>
-                            <p class="my-0">Delivery:</p>
-                            <p class="my-0">Grand Total:</p>
-                        </div>
-                        <div class="col-3">
-                            <p class="my-0">€{{ total|floatformat:2 }}</p>
-                            <p class="my-0">€{{ delivery|floatformat:2 }}</p>
-                            <p class="my-0">€{{ books_total|floatformat:2 }}</p>
-                        </div>
-                    </div>
-                </div>
+                {% include 'basket/_table.html' %}
+            </div>
+            <div class="row">
+                {% include 'basket/_summary.html' %}
             </div>
         </div>
         <div class="col-12 col-lg-6 col-md-12 col-sm-12">
-            <p class="my-4">Please fill out the form below to complete your order.</p>
             <form action="{{ checkout_url }}" id="book-payment-form" method="POST">
                 {% csrf_token %}
-                <fieldset class="px-3 mb-5">
-                    <legend class="fieldset-details fieldset-label small text-black">Details</legend>
+                <fieldset class="px-3 mb-3">
+                    <legend class="fieldset-details fieldset-label small text-black text-uppercase"><strong>Details</strong></legend>
                     {{ orderForm.full_name | as_crispy_field }}
                     {{ orderForm.email | as_crispy_field }}
                     {{ orderForm.phone_number | as_crispy_field }}
                 </fieldset>
-                <fieldset class="px-3 mb-5">
-                    <legend class="fieldset-delivery fieldset-label small text-black">Delivery</legend>
+                <fieldset class="px-3 mb-3">
+                    <legend class="fieldset-delivery fieldset-label small text-black text-uppercase"><strong>Delivery</strong></legend>
                     {{ orderForm.street_1 | as_crispy_field }}
                     {{ orderForm.street_2 | as_crispy_field }}
                     {{ orderForm.town_city | as_crispy_field }}
@@ -78,7 +45,7 @@
                     {{ orderForm.country | as_crispy_field }}
                     <div class="form-check">
                         {% if user.is_authenticated %}
-                            <label class="form-check-label" for="save-info">Save to My Profile for faster checkouts.</label>
+                            <label class="form-check-label small" for="save-info">Save delivery information to 'My Profile' for faster checkouts.</label>
                             <input type="checkbox" id="save-info" class="form-check-input" name="save-info" checked>
                         {% else %}
                         <label class="form-check-label" for="save-info">Save to My Profile for faster checkouts
@@ -91,7 +58,7 @@
                     </div>
                 </fieldset>
                 <fieldset class="px-3">
-                    <legend class="fieldset-label small text-black px-2">Payment</legend>
+                    <legend class="fieldset-label small text-black px-2 text-uppercase"><strong>Payment</strong></legend>
                     <!-- Stripe Card Element. -->
                     <div class="mb-3" id="card-element"></div>
                     <!-- /Stripe Card Element. -->
@@ -103,15 +70,15 @@
                     <!-- Client Secret passed to view for retrieving payment intent id. -->
                     <input type="hidden" value="{{ client_secret }}" name="client_secret">
                     <!-- /Client Secret passed to view for retrieving payment intent id. -->
+                     <!-- Purely for demonstration purposes, links to LinkedIn. -->
+                    <div class="form-check">
+                        <label for="tc" class="form-check-label small">I agree to the <a href="https://www.linkedin.com/in/ana-nikolayenia-k/" target="_blank">terms and conditions</a></label>
+                        <input type="checkbox" name="tandc" id="tc" class="form-check-input" required>
+                    </div>
+                    <div class="button-container d-flex justify-content-end">
+                        <button id="submit-button" class="custom-button mt-2">Complete Order</button>
+                    </div>
                 </fieldset>
-                <div class="submit-button">
-                    <a href="{{ library_url }}" class="custom-button">
-                        <i class="fa-solid fa-sm fa-chevron-left me-2"></i>Return to Library
-                    </a>
-                    <a href="{% url 'basket' %}" class="custom-button">View Basket</a>
-                    <button id="submit-button" class="custom-button">Complete Order</button>
-                    <p>You're about to be charged €{{ total|floatformat:2 }}</p>
-                </div>
             </form>
         </div>
     </div>

@@ -62,12 +62,26 @@ def library(request):
                     )
                     merged_query |= merged_conditions
                 books = books.filter(merged_query)
+                query_books_genres = [book.genre for book in books]
                 if not books:
                     return render(
                         request,
                         'library/no_books.html'
                     )
-
+                context = {
+                    'both': True,
+                    'query_book_genres': query_books_genres,
+                    'books': books,
+                    'books': books,
+                    'filtered_genres': filtered_genres,
+                    'book_count_authors': book_count_authors,
+                    'search_term': query,
+                }
+                return render(
+                    request,
+                    'library/library.html',
+                    context
+                )
         if 'author' in request.GET and 'genre' not in request.GET:
             authors_ln = request.GET.getlist('author')
             if not authors_ln:
@@ -82,15 +96,13 @@ def library(request):
                     # enabled in admin.py.
                     filter_query |= Q(author__last_name__icontains=item)
                 books = books.filter(filter_query)
-                # As authors_ln is not passed to context unless
-                # user always includes an author filter.
                 context = {
                     'author_search': True,
                     'books': books,
-                    'filtered_genres': filtered_genres,
                     'book_count_authors': book_count_authors,
                     'search_term': query,
                     'authors_ln': authors_ln,
+                    'filtered_genres': filtered_genres,
                 }
                 return render(
                     request,
@@ -108,8 +120,6 @@ def library(request):
                 return redirect(reverse('library'))
             else:
                 for genre in book_genres:
-                    # print(book_genres)
-                    # print(genre)
                     filter_query |= Q(genre__name__icontains=genre)
                 books = books.filter(filter_query)
                 genres_called = []
@@ -151,12 +161,17 @@ def book_detail(request, slug):
     requested_book = get_object_or_404(Book, slug=slug)
     types = Book.COVERS
 
+    # Rating
+    book_reviews = Review.objects.filter(book=requested_book, approved=True)
+    ratings = [book.rating for book in book_reviews]
+
     author_books = Book.objects.filter(
         author=requested_book.author
     ).exclude(title=requested_book.title)
 
     context = {
         'book': requested_book,
+        'ratings': ratings,
         'types': types,
         'detail': True,
         'author_books': author_books,

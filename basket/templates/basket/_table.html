@@ -1,0 +1,95 @@
+<table class="table table-sm table-shadow">
+    <thead class="text-center">
+        <tr class="mb-5">
+            <th class="text-start small text-uppercase">Book</th>
+            <th class="small text-uppercase">Price/Book</th>
+            <th class="small text-uppercase">Quantity</th>
+            <th class="text-end small text-uppercase">Subtotal</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for book in books_in_basket %}
+        <tr class="bg-grey rounded shadow-sm">
+            <!-- Book -->
+            <td>
+                <div class="container-data d-flex flex-row justify-content-start align-items-start pt-3 p-2">
+                    <a href="{{ book.book.get_absolute_url }}">
+                        <img src="../../../static/images/1984_cover.jpg" style="width: 60px;" alt="{{ book.book.title }} book cover">
+                    </a>
+                    <div class="book-info ms-3">
+                        <h6 class="small m-0 p-0"><strong>{{ book.book.title }}</strong></h6>
+                        <p class="small text-muted">{{ book.book.author }}</p>
+                        <p class="small m-0 p-0"><strong>Type: </strong>{{ book.type|upper }}</p>
+                        <p class="small text-muted mt-4">ISBN: {{ book.book.isbn|upper }}</p>
+                    </div>
+                </div>
+            </td>
+            <!-- /Book -->
+
+            <!-- Price/Book -->
+            <td>
+                <p class="small text-center pt-3">€{{ book.book.price|floatformat:2 }}</p>
+            </td>
+            <!-- /Price/Book -->
+
+            <!-- Quantity -->
+            <td>
+                <p id="quantity_{{ book.book_id }}_{{ forloop.counter }}" class="text-center basket-book-quantity mt-3">{{ book.quantity }}</p>
+                <!-- Update Form -->
+                <div class="form-container d-flex align-items-center justify-content-center">
+                    <form action="{% url 'update_basket' book.book_id %}" method="POST" id="update_form_{{ book.book_id }}_{{forloop.counter}}">
+                        {% csrf_token %}
+
+                        <!-- Input Group -->
+                        <div class="input-group d-none align-items-center justify-content-center" id="form_{{ book.book_id }}_{{ forloop.counter }}">
+                            <!-- Delete Button -->
+                            <div class="input-group-prepend">
+                                <a href="{% url 'delete_basket' book.book_id %}" class="basket-link btn delete-book my-1" data-book-id="{{ book.book_id }}" data-book-type="{{ book.type }}" data-counter="{{ forloop.counter }}" id="delete_{{ book.book_id }}_{{ forloop.counter }}"><i class="fa-solid fa-trash"></i></a>
+                            </div>
+                            <!-- /Delete Button -->
+
+                            <div class="qty-container">
+                                <input type="number" class="form-control qty_input text-center" name="quantity" value="{{ book.quantity }}" min="1" max="99" data-book-id="{{ book.book_id }}" id="book_id_{{ book.book_id }}_{{ forloop.counter }}">
+                                <span class="small" id="qty_warning_{{ book.book_id }}_{{forloop.counter}}"></span>
+                            </div>
+
+                            <!-- Increment Quantity -->
+                            <div class="inut-group-append">
+                                <button type="button" class="increment btn" id="increment_{{ book.book_id }}_{{ forloop.counter }}" data-book-id="{{ book.book_id }}" data-counter="{{ forloop.counter }}">
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+                            </div>
+                            <!-- /Increment Quantity -->
+                            
+                                <input type="hidden" name="book_type" value="{{ book.type }}">
+                        </div>
+                        <!-- /Input Group -->
+
+
+                        <!-- Handlers -->
+                        <div class="button-container d-flex flex-column justify-content-center">
+                            <!-- Manipulation (js) -->
+                            <span class="d-none basket-link custom-button cancel-update my-1" data-book-id="{{ book.book_id }}" id="cancel_{{ book.book_id }}_{{ forloop.counter }}">Cancel</span>
+                            <span class="basket-link custom-button update-book my-1" data-book-id="{{ book.book_id }}" data-counter="{{ forloop.counter }}">Update</span>
+                            <!-- /Manipulation (js) -->
+                            <!-- Button -->
+                            <a class="d-none basket-link custom-button save-book my-1" data-book-id="{{ book.book_id }}" id="save_{{ book.book_id }}_{{ forloop.counter }}">Save Changes</a>
+                            <!-- /Button -->
+                        </div>
+                        <!-- /Handlers -->
+                    </form>
+                </div>
+                <!-- Update Form -->
+
+            </td>
+            <!-- /Quantity -->
+
+            <!-- Lineitem subtotal -->
+            <td class="text-center">
+                <p class="mt-3">€{{ book.indiv_total }}</p>
+            </td>
+            <!-- /Lineitem subtotal -->
+        </tr>
+        {% endfor %}
+    </tbody>  
+</table>

@@ -1,0 +1,23 @@
+<div>
+    <h5 class="text-uppercase"><strong>Summary</strong></h5>
+    <hr>
+    <p>Subtotal: €{{ total|floatformat:2 }}</p>
+    {% if total > FDT %}
+    <p class="mb-1 text-success">
+        You qualify for free delivery!
+    </p>
+    <p>
+        Shipping: <span class="text-success text-uppercase small"><strong>Free</strong></span>
+    </p>
+    {% else %}
+    <h6>Delivery: €{{ delivery|floatformat:2 }}</h6>
+        <p class="mb-1 text-danger small">
+            Spend just <strong>${{ free_delivery_threshold }}</strong> more to get free delivery!
+        </p>
+    {% endif %}
+    <h6 class="mt-4">
+        <strong>
+            Total: €{{ books_total|floatformat:2 }}
+        </strong>
+    </h6>
+</div>
