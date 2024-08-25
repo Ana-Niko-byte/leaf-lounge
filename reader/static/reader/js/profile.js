@@ -56,6 +56,20 @@ function FilterAndDisplay(buttonDataValue){
     handleChosenElement(filteredElement);
 }
 
+// Profile Ratings
+function profile_fill(){
+    /**
+     * Retrives the user's book rating and sets the rating bar's width to be the rating as a percentage out of 10.
+     */
+    const reviews = document.getElementsByClassName("review");
+    for (let review of reviews){
+        const forloop = review.dataset.forloop;
+        const box = document.getElementById(`profile-rating-box-${forloop}`);
+        const barWidth = (box.dataset.rating) * 10;
+        document.getElementById(`profile-rating-bar-${forloop}`).style.width = `${barWidth}%`;
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function(){
     // Change colour of placeholder in country field.
     let country = $('#id_default_country').val();
@@ -82,4 +96,7 @@ document.addEventListener('DOMContentLoaded', function(){
             });
         })(button);
     }
+
+    // Star Ratings
+    profile_fill();
 });

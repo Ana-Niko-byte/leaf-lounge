@@ -47,7 +47,7 @@
             <ul class="list-unstyled">
                 <li class="profile-details d-none" data-profile="billing-details">
                     <div>
-                        <h5 class="mb-4"><strong>My Details</strong></h5>
+                        <h4 class="mb-3 text-uppercase small"><strong><i class="fa-solid fa-book me-2"></i>My Details</strong></h4>
                         <form action="{% url 'user_profile' %}" method="POST" id="userProfileForm">
                             {% csrf_token %}
                             {{ form | crispy }}
@@ -59,29 +59,29 @@
                 </li>
                 <li class="profile-details d-none" data-profile="history-details">
                     <div>
-                        <h5 class="mb-4"><strong>My Order History</strong></h5>
+                        <h4 class="mb-3 text-uppercase small"><strong><i class="fa-solid fa-book me-2"></i>My Order History</strong></h4>
                         {% for book_order in book_orders %}
                         <div class="row accordion accordion-flush border my-2 px-3" id="accordion{{ forloop.counter }}">
                             <div class="col-lg-9 accordion-item d-flex flex-column justify-content-between">
-                                <div class="info-container">
-                                    <h6 class="my-4"><strong>Order Details</strong></h6>
+                                <div class="info-container mt-3">
                                     <p class="m-0 p-0"><strong>Order Number : {{ book_order.order_number }}</strong></p>
                                     <p class="m-0 p-0"><small>Date placed: {{ book_order.date }}</small></p>
                                 </div>
                                 <div class="image-container d-flex">
                                     {% for book in book_order.booklineitem.all %}
                                     <!-- Add book image here -->
-                                    <div style="max-width: 150px;" class="mx-3">
-                                        <img src="../../../static/images/1984_cover.jpg" class="mt-4 mb-2" style="width: 100px;" alt="{{ book.book.title }} book cover">
-                                        <p class="m-0 p-0"><strong><small>{{ book.book.title }}</small></strong></p>
-                                        <p><small>x {{ book.quantity }}</small></p>
+                                    <div style="max-width: 150px;" class="mx-3 mb-3 col-lg-2 d-flex flex-column justify-content-between">
+                                        <div class="book-info">
+                                            <img src="../../../static/images/1984_cover.jpg" class="mt-4 mb-2" style="width: 100px;" alt="{{ book.book.title }} book cover">
+                                            <p class="m-0 p-0"><small><strong>{{ book.book.title }}</strong></small></p>
+                                        </div>
+                                        <p><small>( x {{ book.quantity }} )</small></p>
                                     </div>
                                     {% endfor %}
                                 </div>
                             </div>
                             <div class="col-lg-3 d-flex flex-column justify-content-between">
-                                <div class="info-container">
-                                    <h6 class="my-4"><strong>Billing Details</strong></h6>
+                                <div class="info-container mt-3">
                                     <p class="m-0 p-0">Subtotal : €{{ book_order.order_total }}</p>
                                     <p class="m-0 p-0">Shipping : {% if book_order.delivery_cost == 0.00 %}<strong>FREE</strong>{% else %}€{{ book_order.delivery_cost }}{% endif %}</p>
                                     <p class="m-0 p-0">Total : €{{ book_order.grand_total }}</p>
@@ -92,7 +92,7 @@
                             </div>
                             <div id="flush-collapse{{ forloop.counter }}" class="accordion-collapse collapse" aria-labelledby="flush-heading{{ forloop.counter }}" data-bs-parent="#accordionFlushExample">
                                 <div class="accordion-body">
-                                    <h6 class="my-4"><strong>Billing Details</strong></h6>
+                                    <h6 class="my-3 text-uppercase"><strong>Shipping Address</strong></h6>
                                     <p class="my-0 p-0">{{ book_order.full_name }}</p>
                                     <p class="my-0 p-0">{{ book_order.street_1 }}</p>
                                     {% if book_order.street_2 %}
@@ -114,24 +114,40 @@
                 </li>
                 <li class="profile-details d-none" data-profile="reviews-details">
                     <div>
-                        <h5 class="mb-4"><strong>My Reviews</strong></h5>
+                        <h4 class="text-uppercase small"><strong><i class="fa-solid fa-book me-2"></i>My Reviews</strong></h4>
                         {% if user_reviews %}
                             <div class="row d-flex flex-row justify-content-center align-items-center">
                                 {% for review in user_reviews %}
-                                    <div class="col-lg-3 col-md-6 col-sm-12">
-                                        <div class="card">
-                                            <div class="card-header">
-                                                <h6 class="strong">{{ review.title }}</h6>
-                                                <p class="mt-3">{{ review.book.title }}</p>
-                                                <p class="small text-secondary">{{ review.reviewed_on }}</p>
+                                    <div class="outer-review d-flex flex-column justify-content-between col-lg-3 col-md-6 col-sm-12 bg-light shadow-sm p-2 rounded my-3">
+                                        <div class="header">
+                                            <p class="ms-2 small"><strong>{{ review.book.title }}</strong></p>
+                                            <p class="ms-2 small">{{ review.book.author }}</p>
+                                        </div>
+                                        <div class="inner-review bg-white shadow-sm p-2 rounded m-2">
+                                            <h6 class="strong"><small>{{ review.title }}</small></h6>
+                                            <div class="rating-container d-flex">
+                                                <div id="profile-rating-box-{{ forloop.counter }}" data-forloop="{{ forloop.counter }}" data-rating="{{ review.rating }}" class="review rating-box d-flex justify-content-start align-items-start mb-3">
+                                                    <img src="../../../static/images/stars.png" alt="{{ book.title }} cover" width="120" id="profile-loader-image-{{ forloop.counter }}" class="loader-image">
+                                                    <div id="profile-rating-bar-{{ forloop.counter }}" class="rating-bar"></div>
+                                                </div>
                                             </div>
-                                            <div class="card-body">
-                                                <p>{{ review.rating }}</p>
-                                                <p>{{ review.comment }}</p>
-                                            </div>
-                                            <div class="card-footer">
-                                                <p class="small">status: {% if review.approved %}Approved!{% else %}Pending{% endif %}</p>
-                                            </div>
+                                            <p>{{ review.comment }}</p>
+                                        </div>
+                                        <div class="footer">
+                                            <p class="ms-2 small text-secondary">{{ review.reviewed_on }}</p>
+                                            <p class="ms-2 mt-2 small {% if review.approved %}text-success{% endif %}">{% if review.approved %}<i class="fa-solid fa-circle-check fa-sm me-2"></i>Approved{% else %}<i class="fa-solid fa-hourglass-start fa-sm me-2"></i>Pending{% endif %}</p>
+                                            {% if not review.approved %}
+                                            <a href="">
+                                                <button class="custom-button">
+                                                    Edit
+                                                </button>
+                                            </a>
+                                            <a href="">
+                                                <button class="custom-button">
+                                                    Delete
+                                                </button>
+                                            </a>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 {% endfor %}
