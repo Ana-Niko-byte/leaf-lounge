@@ -46,3 +46,7 @@
     max-width: 450px;
     overflow-y: auto;
 }
+
+.bookmarks{
+    color: rgb(255, 166, 0);
+}

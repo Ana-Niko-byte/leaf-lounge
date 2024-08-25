@@ -47,6 +47,8 @@ class AuthorForm(forms.ModelForm):
         for field in self.fields:
             self.fields[field].widget.attrs['placeholder'] = placeholders.get(field, '')
             self.fields[field].label = False
+            if field != 'bio':
+                self.fields[field].widget.attrs['class'] = 'custom-fields'
 
 
 class BookForm(forms.ModelForm):
@@ -55,7 +57,27 @@ class BookForm(forms.ModelForm):
     """
     class Meta:
         model=Book
-        exclude={'slug', 'rating'}
+        exclude={'slug', 'rating', 'author'}
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        placeholders = {
+            'title' : 'Title',
+            'isbn' : 'ISBN',
+            'blurb' : 'Your Blurb',
+            'year_published' : 'Year Published',
+            'publisher' : 'Publisher',
+            'type' : 'Cover Type',
+            'price' : 'Price / Book',
+        }
+
+        self.fields['title'].widget.attrs['autofocus'] = True
+        for field in self.fields:
+            self.fields[field].widget.attrs['placeholder'] = placeholders.get(field, '')
+            self.fields[field].label = False
+            if field != 'blurb':
+                self.fields[field].widget.attrs['class'] = 'custom-fields'
 
 
 class ForumForm(forms.ModelForm):

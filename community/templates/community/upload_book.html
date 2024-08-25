@@ -4,28 +4,40 @@
 
 {% block content %}
 <div class="container">
-    <div class="row d-flex justify-content-center">
-        <div class="col-lg-10 col-sm-12 d-flex justify-content-between">
-            <div class="col-5 border">
-                <p>placeholder content is currently here</p>
-                <p>placeholder content is currently here</p>
-                <p>placeholder content is currently here</p>
-                <p>placeholder content is currently here</p>
-            </div>
-            <div class="col-5">
-                <div class="card">
-                    <div class="card-body">
-                        <form action="" id="bookForm" method="POST">
-                            {% csrf_token %}
-                            {{ bookForm|crispy }}
-                            <div class="button-container text-center">
-                                <button type="submit" class="btn btn-warning">Submit</button>
-                            </div>
-                        </form>
+    <div class="row d-flex justify-content-center my-3">
+        <form id="bookForm" method="post" class="col-lg-8 col-md-10 col-sm-12 bg-light p-4 rounded shadow-sm">
+            {% csrf_token %}
+            <div class="form-field-container d-flex flex-column">
+                <div class="book-details">
+                    <fieldset class="px-3 mb-3">
+                        <legend class="fieldset-details fieldset-label small text-black text-uppercase"><strong>Book Details</strong></legend>
+                        {{ bookForm.title | as_crispy_field }}
+                        {{ bookForm.isbn | as_crispy_field }}
+                        {{ bookForm.genre | as_crispy_field }}  
+                        {{ bookForm.type | as_crispy_field }}             
+                    </fieldset>
+                    <div class="book-logistics d-flex flex-column flex-lg-row">
+                        <fieldset class="px-3 mb-3">
+                            <legend class="fieldset-details fieldset-label small text-black text-uppercase"><strong>Book Publisher</strong></legend>
+                            {{ bookForm.year_published | as_crispy_field }}
+                            {{ bookForm.publisher | as_crispy_field }}              
+                        </fieldset>
+                        <fieldset class="px-3 mb-3">
+                            <legend class="fieldset-details fieldset-label small text-black text-uppercase"><strong>Book Pricing + Cover</strong></legend>
+                            {{ bookForm.price | as_crispy_field }}
+                            {{ bookForm.image | as_crispy_field }}
+                        </fieldset>
                     </div>
                 </div>
+                <fieldset class="px-3 mb-3">
+                    <legend class="fieldset-details fieldset-label small text-black text-uppercase"><strong>Book Blurb</strong></legend>
+                    {{ bookForm.blurb | as_crispy_field }}              
+                </fieldset>
             </div>
-        </div>
+            <div class="btn-container d-flex justify-content-center">
+                <button type="submit" class="custom-button custom-button-extended"><i class="fa-solid fa-book me-2"></i>Register Book</button>
+            </div>
+        </form>
     </div>
 </div>
 {% endblock %}

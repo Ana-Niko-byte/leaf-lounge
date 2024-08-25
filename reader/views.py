@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.db.models import Q
 
-from library.models import Book, Genre, Review
+from library.models import Book, Genre, Review, Author
 from checkout.models import Order, BookLineItem
 from .models import UserProfile
 from .forms import UserProfileForm, ReviewForm
@@ -48,6 +48,11 @@ def my_books(request):
     """
     # Retrieve the user's profile (and user).
     user_profile = UserProfile.objects.get(user=request.user)
+
+    # Check if the user is a registered author.
+    is_author = Author.objects.get(user_profile=user_profile)
+    my_books = Book.objects.filter(author=is_author)
+
     # Retrieve their orders.
     user_orders = Order.objects.filter(user_profile=user_profile)
 
@@ -97,6 +102,8 @@ def my_books(request):
     context={
         'user_books': user_books,
         'user_genres': user_genres,
+        'is_author': is_author,
+        'my_books': my_books,
     }
     
     return render(

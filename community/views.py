@@ -184,7 +184,23 @@ def delete_message(request, slug, id):
 
 def create_author(request):
     """
+    A view for users to register themselves as authors.
     """
+    if request.user.username != 'AnonymousUser':
+        # Check for existing profiles before creating new.
+        profile_exists = False
+        attempt = 1
+        while attempt <= 5:
+            try:
+                p = UserProfile.objects.get(
+                    user=request.user
+                )
+                profile_exists = True
+                break
+            except UserProfile.DoesNotExist:
+                attempt += 1
+                time.sleep(1)
+
     if request.method == 'POST':
         author_form = AuthorForm(data=request.POST)
         if author_form.is_valid():
@@ -194,41 +210,58 @@ def create_author(request):
             d_o_b = author_form.cleaned_data['d_o_b']
             nationality = author_form.cleaned_data['nationality']
             bio = author_form.cleaned_data['bio']
-            if request.user.username != 'AnonymousUser':
-                Author.objects.create(
+
+            today = datetime.date.today()
+            age = (today-d_o_b).days / 365.25
+            if age > 16 and age < 100:
+                if profile_exists:
+                    print('EXISTS')
+                    Author.objects.create(
                     user_profile=user,
                     first_name=f'{firstname}',
                     last_name=f'{lastname}',
                     d_o_b=f'{d_o_b}',
                     nationality=f'{nationality}',
                     bio=f'{bio}'
+                    )
+                else:
+                    print('trying to create new profile')
+                    new_profile = UserProfile.objects.create(
+                        user=request.user
+                    )
+                    print('created new profile!')
+                    Author.objects.create(
+                        user_profile=new_profile,
+                        first_name=f'{firstname}',
+                        last_name=f'{lastname}',
+                        d_o_b=f'{d_o_b}',
+                        nationality=f'{nationality}',
+                        bio=f'{bio}'
+                    )
+                    print('created author from new profile!')
+                messages.success(
+                    request,
+                    """Success! Now let's register your book :)"""
+                )
+                return redirect('upload_book')
+            elif age > 100:
+                messages.error(
+                    request,
+                    """We're sorry but our policy does not allow persons over 99 to register! :(
+                    If this is a mistake, please contact our team directly to verify
+                    your attempt and we'll get you set up :)\n We apologise for any inconvenience caused."""
                 )
             else:
-                # For authors that don't have an account - loaded.
-                Author.objects.create(
-                    user_profile=None,
-                    first_name=f'{firstname}',
-                    last_name=f'{lastname}',
-                    d_o_b=f'{d_o_b}',
-                    nationality=f'{nationality}',
-                    bio=f'{bio}'
+                messages.error(
+                    request,
+                    """We're sorry but our policy does not allow persons under 16 to register! :("""
                 )
-            messages.success(
-                request,
-                'Successfully created Author!'
-            )
-            return redirect('upload_book')
-        else:
-            author_form = AuthorForm()
-            messages.error(
-                request,
-                'Please double check your information and try again'
-            )
-        return redirect('sell_books')
+            return redirect('home')
     else:
         author_form = AuthorForm()
         context = {
             'authorForm': author_form,
+            'profile_exists': profile_exists,
         }
         return render(
             request,
@@ -239,11 +272,16 @@ def create_author(request):
 
 def upload_book(request):
     """
+    A view for registered authors to upload books.
     """
+    profile = UserProfile.objects.get(user=request.user)
+    author = Author.objects.get(user_profile=profile)
     if request.method == 'POST':
         book_form = BookForm(data=request.POST)
         if book_form.is_valid():
-            print('VALID')
+            book = book_form.save(commit=False)
+            book.author=author
+            book.save()
         else:
             print('INVALID')
     else:

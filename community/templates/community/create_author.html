@@ -2,29 +2,51 @@
 {% load static %}
 {% load crispy_forms_tags %}
 
+{% block extra_css %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'community/css/community.css' %}">
+{% endblock %}
+
 {% block content %}
-<div class="container">
-    <div class="row d-flex justify-content-center">
-        <div class="col-lg-10 col-sm-12 d-flex justify-content-between">
-            <div class="col-5 border">
-                <p>placeholder content is currently here</p>
-                <p>placeholder content is currently here</p>
-                <p>placeholder content is currently here</p>
-                <p>placeholder content is currently here</p>
-            </div>
-            <div class="col-5">
-                <div class="card">
-                    <div class="card-body">
-                        <form action="" id="authorForm" method="POST">
-                            {% csrf_token %}
-                            {{ authorForm|crispy }}
-                            <div class="button-container text-center">
-                                <button type="submit" class="btn btn-warning">Submit</button>
-                            </div>
-                        </form>
+<div class="container-fluid">
+    <div class="row m-0 p-0">
+        <div class="col-12 d-flex flex-column flex-lg-row justify-content-around align-items-center align-items-lg-start">
+            <!-- Author Form -->
+            <div class="col-lg-6 col-md-8 col-sm-12 my-3 order-sm-last">
+                <form id="authorForm" method="post" class="bg-light p-4 rounded shadow-sm">
+                    <h3 class="mb-3 text-uppercase small d-block d-lg-none"><strong>😉 Let's Get You Registered!</strong></h3>
+                    {% csrf_token %}
+                    <div class="form-field-container d-flex flex-column flex-md-row">
+                        <fieldset class="px-3 mb-3">
+                            {% if profile_exists %}<p class="small mb-3">Already a Leaf Lounge Author?  <a href="{{ upload_book }}">Find my profile</a></p>{% endif %}
+                            <legend class="fieldset-details fieldset-label small text-black text-uppercase"><strong>Author</strong></legend>
+                            <p class="text-muted small mb-2">This name will appear as the book author!</p>
+                            {{ authorForm.first_name | as_crispy_field }}
+                            {{ authorForm.last_name | as_crispy_field }}
+                            {{ authorForm.d_o_b | as_crispy_field }}
+                            {{ authorForm.nationality | as_crispy_field }}
+                        </fieldset>
+                        <fieldset class="px-3 mb-3">
+                            <legend class="fieldset-details fieldset-label small text-black text-uppercase"><strong>Bio</strong></legend>
+                            {{ authorForm.bio | as_crispy_field }}
+                        </fieldset>
                     </div>
-                </div>
+                    <div class="btn-container d-flex justify-content-center">
+                        <button type="submit" class="custom-button custom-button-extended"><i class="fa-solid fa-paper-plane me-2"></i>Submit</button>
+                    </div>
+                </form>
             </div>
+            <!-- /Author Form -->
+            <!-- Text -->
+            <div class="col-lg-5 contact-info d-none d-lg-block">
+                <h3 class="mt-4 text-uppercase"><strong>😉 Let's Get You Registered!</strong></h3>
+                <p class="mt-2 mb-5">We just need some information about our new author to get started!</p>
+
+                <p class="my-4"><span class="bookmarks"><i class="fa-solid fa-sm fa-bookmark me-2"></i></span>You can go by your <strong>real name or a pen name</strong> — it's up to you!</p>
+                <p class="my-4"><span class="bookmarks"><i class="fa-solid fa-sm fa-bookmark me-2"></i></span>Your books will automatically show up in <strong>Your Profile</strong>.</p>
+                <p class="my-4"><span class="bookmarks"><i class="fa-solid fa-sm fa-bookmark me-2"></i></span>Add a <strong>cool cover</strong> in the next section to make your book stand out!</p>
+            </div>
+            <!-- /Text -->
         </div>
     </div>
 </div>
