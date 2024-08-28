@@ -7,10 +7,10 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
-    <div class="row mt-3">
-        <div class="col-lg-3 col-md-4 col-sm-12">
-            <div class="menu-column">
+<div class="container-fluid">
+    <div class="row mt-3 d-flex justify-content-between align-items-start">
+        <div class="ps-5 col-lg-2 col-md-4 col-sm-12 border">
+            <div class="menu-column d-flex justify-content-center justify-content-lg-start align-items-start">
                 <ul class="list-unstyled">
                     <li class="menu-item">
                         <button class="btn-md custom-button mb-2 display-button" data-detail="billing">My Billing Details</button>
@@ -39,7 +39,7 @@
                 </ul>
             </div>
         </div>
-        <div class="col-lg-9 col-md-8 col-sm-12">
+        <div class="col-lg-10 col-md-8 col-sm-12 order-first order-md-last pt-3 text-center border">
             <div class="profile-starter">
                 <h5>Hey there! You've found your profile.</h5>
                 <p>Click on a button on the left handside to view, change, or delete your information.</p>
@@ -136,18 +136,22 @@
                                         <div class="footer">
                                             <p class="ms-2 small text-secondary">{{ review.reviewed_on }}</p>
                                             <p class="ms-2 mt-2 small {% if review.approved %}text-success{% endif %}">{% if review.approved %}<i class="fa-solid fa-circle-check fa-sm me-2"></i>Approved{% else %}<i class="fa-solid fa-hourglass-start fa-sm me-2"></i>Pending{% endif %}</p>
-                                            {% if not review.approved %}
-                                            <a href="">
-                                                <button class="custom-button">
-                                                    Edit
+                                            <div class="button-container d-flex justify-content-between align-items-end">
+                                                {% if not review.approved %}
+                                                <button class="btn btn-sm btn-warning m-2 d-flex justify-content-center align-items-center btn-edit"
+                                                data-review-id="{{ review.id }}" data-review-title="{{ review.title }}" data-review-comment="{{ review.comment }}" data-review-rating="{{ review.rating }}" data-book-title="{{ review.book }}">
+                                                    <i class="fa-solid fa-pencil fa-sm me-2"></i>Edit
                                                 </button>
-                                            </a>
-                                            <a href="">
-                                                <button class="custom-button">
-                                                    Delete
-                                                </button>
-                                            </a>
-                                            {% endif %}
+                                                {% else %}
+                                                <p class="ms-2 my-2 small text-muted">You can no longer edit this review.</p>
+                                                {% endif %}
+
+                                                <a href="{% url 'delete_review' review.id %}">
+                                                    <button class="btn btn-sm btn-danger m-2 d-flex justify-content-center align-items-center">
+                                                        <i class="fa-solid fa-trash fa-sm me-2"></i>Delete
+                                                    </button>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 {% endfor %}
@@ -160,6 +164,18 @@
                 </li>
             </ul>
         </div>
+        <div class="slider-review border position-absolute col-lg-6 col-md-8 col-sm-12 bg-light d-none" id="review-slide">
+            <form action="" method="post" id="re-review">
+                <p>REVIEW FORM HERE</p>
+                {% csrf_token %}
+                {{ reviewForm|crispy }}
+                <button id="submitButton" type="submit"
+                        class="btn btn-lg btn-warning authentication-button">
+                        Submit<i class="fa-solid fa-arrow-right ms-3"></i>
+                    </button>
+                <button id="btn-cancel-review">Cancel</button>
+            </form>
+        </div>
     </div>
 </div>
 {% endblock %}
@@ -167,4 +183,5 @@
 {% block extra_js %}
 {{ block.super }}
 <script type="text/javascript" src="{% static 'reader/js/profile.js' %}"></script>
+<script type="text/javascript" src="{% static 'reader/js/crud.js' %}"></script>
 {% endblock %}

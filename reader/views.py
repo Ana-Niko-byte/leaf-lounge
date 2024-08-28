@@ -1,13 +1,16 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.db.models import Q
+from django.utils import timezone
 
 from library.models import Book, Genre, Review, Author
 from checkout.models import Order, BookLineItem
 from .models import UserProfile
 from .forms import UserProfileForm, ReviewForm
 
+import logging
+logger = logging.getLogger("django")
 
 def my_profile(request):
     """
@@ -24,14 +27,15 @@ def my_profile(request):
                 'Your information has been saved!'
             )
 
+    reviewForm = ReviewForm(data=request.POST)
     form = UserProfileForm(instance=reader)
     book_orders = reader.orders.all()
     user_reviews = Review.objects.filter(reviewer=reader)
-    print(user_reviews)
 
     context={
         'reader': reader,
         'form': form,
+        'reviewForm': reviewForm,
         'book_orders': book_orders,
         'user_reviews': user_reviews,
         'profile_page': True
@@ -86,7 +90,6 @@ def my_books(request):
             for book in user_books:
                 if str(book.genre) == user_genre:
                     filtered_books.append(book)
-            print(filtered_books)
             context = {
                 'filtered_books': filtered_books,
                 'user_genre': user_genre,
@@ -160,3 +163,78 @@ def leave_review(request, id):
             'reader/review.html',
             context
         )
+
+
+def delete_review(request, id):
+    """
+    A view for users to delete their reviews.
+    """
+    try:
+        review_delete = get_object_or_404(Review, id=id)
+        user_profile = UserProfile.objects.get(user=request.user)
+        # Redundant but just in case.
+        if review_delete.reviewer == user_profile:
+            review_delete.delete()
+            messages.success(
+                request,
+                """Your review for successfully deleted!"""
+            )
+        else:
+            messages.error(
+                request,
+                """You don't have permission to delete this review.
+                If this is a mistake, please contact our customer support team for assistance."""
+            )
+    except Exception as e:
+        print(f'An error occurred while trying to delete a review: {e}')
+    finally:
+        return HttpResponseRedirect(reverse('user_profile'))
+
+
+def update_review(request, id):
+    """
+    A view for users to update their reviews and save them to the database.
+    """
+    try:
+        if request.method == 'POST':
+            review_to_update = get_object_or_404(Review, id=id)
+            user_profile = UserProfile.objects.get(user=request.user)
+            review_form = ReviewForm(request.POST, instance=review_to_update)
+
+            # Redundant but just in case.
+            if review_to_update.reviewer == user_profile:
+                if review_form.is_valid():
+                    review = review_form.save(commit=False)
+                    review.reviewer = user_profile
+                    review.reviewed_on = timezone.now().date()
+                    review.approved = False
+                    review.save()
+                    messages.success(
+                        request,
+                        """
+                        Your review was successfully updated!
+                        Our administrators aim to approve it within 2 business days :)
+                        """
+                    )
+                    return HttpResponseRedirect(reverse('user_profile'))
+                else:
+                    # Add context to keep the review-slider open for form error rendering.
+                    review_form = ReviewForm()
+                    messages.error(
+                        request,
+                        """There is an error in your form.
+                        Please fix it or click cancel to finish editing."""
+                    )
+                    
+            else:
+                messages.error(
+                    request,
+                    """You don't have permission to delete this review.
+                    If this is a mistake, please contact our customer support team for assistance."""
+                )
+        else:
+            return HttpResponseRedirect(reverse('user_profile'))
+
+    except Exception as e:
+        logger.error(f"An error occurred while trying to update a review: {e}")
+        return HttpResponseRedirect(reverse('user_profile'))

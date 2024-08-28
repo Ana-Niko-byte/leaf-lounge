@@ -10,10 +10,10 @@ function fill_review(){
      * Removes/Adds 'selected' attribute as appropriate.
      * Sets placeholders.
      */
-    const book_title = document.getElementById("reviewForm").dataset.bookTitle;
+    const bookTitle = document.getElementById("reviewForm").dataset.bookTitle;
 
     const option = [...document.getElementsByTagName("option")].filter(option => option.hasAttribute("selected"))[0];
-    const relevant_option = [...document.getElementsByTagName("option")].filter(option => option.innerText.includes(`${book_title}`))[0];
+    const relevant_option = [...document.getElementsByTagName("option")].filter(option => option.innerText.includes(`${bookTitle}`))[0];
 
     if (option.hasAttribute("selected")){
         option.removeAttribute("selected");

@@ -53,12 +53,14 @@ class ReviewForm(forms.ModelForm):
         model = Review
         fields = {
             'book',
+            'title',
             'rating',
             'comment',
         }
 
     field_order = [
         'book',
+        'title',
         'rating',
         'comment',
     ]

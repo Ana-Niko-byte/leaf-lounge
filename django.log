@@ -1,0 +1,49 @@
+INFO 2024-08-28 06:52:54,525 Watching for file changes with StatReloader
+INFO 2024-08-28 06:53:34,268 /workspace/leaf-lounge/reader/views.py changed, reloading.
+INFO 2024-08-28 06:53:34,851 Watching for file changes with StatReloader
+INFO 2024-08-28 06:54:40,007 /workspace/leaf-lounge/blurb/views.py changed, reloading.
+INFO 2024-08-28 06:54:40,599 Watching for file changes with StatReloader
+INFO 2024-08-28 06:55:02,070 /workspace/leaf-lounge/blurb/views.py changed, reloading.
+INFO 2024-08-28 06:55:02,661 Watching for file changes with StatReloader
+INFO 2024-08-28 06:55:10,025 Hi! This is coming from the home page
+INFO 2024-08-28 06:55:10,106 "GET / HTTP/1.1" 200 13647
+INFO 2024-08-28 06:55:12,257 Hi! This is coming from the home page
+INFO 2024-08-28 06:55:12,261 "GET / HTTP/1.1" 200 13647
+INFO 2024-08-28 06:55:12,658 Hi! This is coming from the home page
+INFO 2024-08-28 06:55:12,668 "GET /static/js/actions.js HTTP/1.1" 200 3988
+INFO 2024-08-28 06:55:12,669 "GET /static/css/styles.css HTTP/1.1" 200 3101
+INFO 2024-08-28 06:55:12,670 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+INFO 2024-08-28 06:55:12,670 "GET /static/images/mailchimp.webp HTTP/1.1" 200 19650
+INFO 2024-08-28 06:55:12,670 "GET /static/js/index.js HTTP/1.1" 200 470
+INFO 2024-08-28 06:55:12,671 "GET /static/js/library.js HTTP/1.1" 200 2656
+INFO 2024-08-28 06:55:12,673 "GET /static/images/logo.png HTTP/1.1" 200 58043
+INFO 2024-08-28 06:55:12,674 "GET / HTTP/1.1" 200 13647
+INFO 2024-08-28 06:55:12,808 Hi! This is coming from the home page
+INFO 2024-08-28 06:55:12,813 "GET / HTTP/1.1" 200 13647
+INFO 2024-08-28 06:55:13,064 Hi! This is coming from the home page
+INFO 2024-08-28 06:55:13,068 "GET / HTTP/1.1" 200 13647
+INFO 2024-08-28 06:55:13,136 Hi! This is coming from the home page
+INFO 2024-08-28 06:55:13,140 "GET / HTTP/1.1" 200 13647
+INFO 2024-08-28 06:55:13,298 Hi! This is coming from the home page
+INFO 2024-08-28 06:55:13,302 "GET / HTTP/1.1" 200 13647
+INFO 2024-08-28 06:55:13,496 Hi! This is coming from the home page
+INFO 2024-08-28 06:55:13,500 "GET / HTTP/1.1" 200 13647
+INFO 2024-08-28 06:55:13,658 Hi! This is coming from the home page
+INFO 2024-08-28 06:55:13,662 "GET / HTTP/1.1" 200 13647
+INFO 2024-08-28 06:55:13,858 Hi! This is coming from the home page
+INFO 2024-08-28 06:55:13,862 "GET / HTTP/1.1" 200 13647
+INFO 2024-08-28 06:55:14,566 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+INFO 2024-08-28 06:55:14,567 "GET /static/js/library.js HTTP/1.1" 200 2656
+INFO 2024-08-28 06:55:14,567 "GET /static/js/index.js HTTP/1.1" 200 470
+INFO 2024-08-28 06:55:14,569 "GET /static/css/styles.css HTTP/1.1" 200 3101
+INFO 2024-08-28 06:55:14,570 "GET /static/js/actions.js HTTP/1.1" 200 3988
+INFO 2024-08-28 06:55:14,570 "GET /static/images/mailchimp.webp HTTP/1.1" 200 19650
+INFO 2024-08-28 06:55:14,571 "GET /static/images/logo.png HTTP/1.1" 200 58043
+INFO 2024-08-28 06:55:15,557 "GET /static/js/module.js HTTP/1.1" 200 445
+INFO 2024-08-28 06:55:16,444 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2024-08-28 06:57:58,630 /workspace/leaf-lounge/blurb/views.py changed, reloading.
+INFO 2024-08-28 06:57:59,210 Watching for file changes with StatReloader
+INFO 2024-08-28 06:58:06,433 /workspace/leaf-lounge/leaves/settings.py changed, reloading.
+INFO 2024-08-28 06:58:07,023 Watching for file changes with StatReloader
+INFO 2024-08-28 07:00:34,691 /workspace/leaf-lounge/reader/views.py changed, reloading.
+INFO 2024-08-28 07:00:35,297 Watching for file changes with StatReloader

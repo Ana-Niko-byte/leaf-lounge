@@ -152,6 +152,14 @@ body {
     transform: translateY(-5px);
     box-shadow: 0 10px rgb(78, 78, 78);
 }
+
+.custom-button-small{
+    transform: scale(0.80);
+}
+
+.custom-button-small:hover{
+    transform: scale(0.80);
+}
 /* /General */
 
 /* Media Queries */

@@ -6,9 +6,7 @@ from django.conf import settings
 
 from .forms import *
 
-
 def blurb(request):
-    print(request.path)
     return render(
         request,
         'blurb/index.html'
@@ -19,7 +17,7 @@ def contact(request):
     """
     A view for handling post requests from the Contact page.
     """
-    print(request.path)
+    
     if request.method == 'POST':
         contactForm = ContactForm(data=request.POST)
         if contactForm.is_valid():
