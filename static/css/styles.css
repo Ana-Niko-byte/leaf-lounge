@@ -9,6 +9,11 @@
     --white-text : rgb(246, 246, 246);
     --light-grey : rgb(161, 161, 161);
     --orange : orange;
+    --dark-navy : #041421;
+    --dark-blue : #042630;
+    --green-grey: #4c7273;
+    --light-green-grey: #86b9b0;
+    --light-blue: #d0d6d6;
 }
 /* /Colour Specification */
 
@@ -16,6 +21,27 @@
 html, body{
     font-family: "Nunito Sans", sans-serif;
     color: var(--dark-text-color);
+}
+
+.typewriter{
+    max-width: 920px;
+    overflow: hidden;
+    border-right: .10em solid var(--dark-navy);
+    white-space: nowrap;
+    letter-spacing: .10em;
+    animation: 
+      typing 4s steps(50, end),
+      blink-caret 0.9s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: orange; }
 }
 /* /Branding */
 
@@ -30,7 +56,7 @@ html, body{
 .nav-crumb a{
     text-decoration: none;
     font-size: 1rem;
-    color: var(--dark-text-color);
+    color: var(--white-text);
     transition: all 0.2s ease;
 }
 
@@ -76,12 +102,6 @@ p{
     transform: scale(1.05);
 }
 
-#contact-form{
-    box-shadow: 8px 8px 8px 5px rgb(149, 149, 149);
-    border-radius: 8px;
-    max-width: 600px;
-}
-
 .second-nav-link a{
     font-size: 1rem;
 }
@@ -93,26 +113,65 @@ p{
 .active-loader{
     height: 3px;
     width: 100%;
-    background-color: rgb(20, 20, 20);
+    background-color: var(--green-grey);
     border-radius: 2px;
     transition: all 0.2s ease;
 }
 
 .search-button, .form-control{
-    border-radius: 0;
+    transition: all 0.4s ease;
+}
+
+.form-control{
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    caret-color: var(--dark-text-color);
 }
 
 .search-button{
     position: relative;
     z-index: 20;
-    border: 2px solid var(--dark-text-color);
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+
+.form-control-search:focus {
+    box-shadow: 5px 5px 5px var(--dark-navy);
+    transform: scale(1.08);
+    border: none;
+}
+
+.form-control-search:focus + .input-group-append .search-button{
+    transform: scale(1.08);
+    border: none;
 }
 
 .custom-fields{
-    border-radius: 0;
+    border-radius: 5px;
     height: 35px;
     margin: 0;
     padding-left: 10px;
+    max-width: 250px;
+}
+
+.custom-fields:focus, .custom-fields-large:focus{
+    box-shadow: none;
+    border: 1px solid var(--dark-blue);
+}
+
+.subscribe-input{
+    height: 35px;
+    margin: 0;
+    padding: 10px;
+}
+
+.subscribe-btn{
+    border: none;
+    height: 35px;
+    margin: 0;
+    padding: 10px;
 }
 /* /UIUX */
 
@@ -130,20 +189,23 @@ body {
 }
 
 .jumbotron{
-    /* background-image: url(../images/florian-klauer-mk7D-4UCfmg-unsplash.jpg); */
+    background-image: url(../images/author-type.png);
+    background-repeat: no-repeat;
     background-color: var(--mute-grey-color);
-    background-size: contain;
-    background-position: center;
-    height: 520px;
+    background-size: cover;
+    background-position: right;
+    height: 545px;
 }
 
 .custom-button{
     text-decoration: none;
     border-color: transparent;
+    background-color: #042630;
+    color: var(--white-text);
     min-width: 150px;
     padding: 10px;
     border-radius: 20px;
-    color: var(--dark-text-color);
+    /* color: var(--dark-text-color); */
     transition: all 0.2s ease-in;
     text-align: center;
 }
@@ -182,10 +244,10 @@ body {
     transform: scale(0.80);
 }
 
-.button-container{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+footer{
+    position: absolute;
+    width: 100%;
+    bottom: 0;
 }
 /* /General */
 

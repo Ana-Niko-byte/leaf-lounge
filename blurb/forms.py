@@ -2,13 +2,13 @@ from django import forms
 
 
 SUBJECTS = (
-    ('GE', 'General Enquiry'),
-    ('CS', 'Customer Support'),
-    ('TS', 'Technical Support'),
-    ('BP', 'Billing & Payments'),
-    ('CO', 'Career Opportunities'),
-    ('C', 'Complaint'),
-    ('O', 'Other'),
+    ('General Enquiry', 'General Enquiry'),
+    ('Customer Support', 'Customer Support'),
+    ('Technical Support', 'Technical Support'),
+    ('Billing & Payments', 'Billing & Payments'),
+    ('Career Opportunities', 'Career Opportunities'),
+    ('Complaint', 'Complaint'),
+    ('Other', 'Other'),
 )
 
 
@@ -23,30 +23,30 @@ class ContactForm(forms.Form):
     message : textarea - the sender's message.
     """
     name = forms.CharField(
-        label='Name: ',
+        label='',
         widget=forms.TextInput(
             attrs={'placeholder': 'Emily Brontë', 'autofocus' : True, 'class' : 'custom-fields'}
         )
     )
     email = forms.EmailField(
-        label='Email Address: ',
+        label='',
         widget=forms.EmailInput(
             attrs={'placeholder': 'e.bronte@example.com', 'class' : 'custom-fields'}
         )
     )
     subject = forms.ChoiceField(
-        label='Subject: ',
+        label='',
         choices=SUBJECTS,
         widget=forms.Select(
             attrs={'class': 'form-control', 'class' : 'custom-fields'}
         )
     )
     message = forms.CharField(
-        label='Message (max 400 characters): ',
+        label='',
         max_length=400,
         widget=forms.Textarea(
             attrs={
-                'placeholder': '''Tell us your life story in 400 characters or less...''', 'class' : 'custom-fields'
+                'placeholder': '''Your life story in 400 characters or less...''', 'class' : 'custom-fields-large'
             }
         )
     )

@@ -57,7 +57,7 @@
     </head>
 
     <body class="d-flex flex-column">
-        <header class="container-fluid">
+        <header class="container-fluid p-0 m-0">
             <!-- Main Navigation Bar -->
             <nav class="navbar navbar-expand-lg flex justify-content-between align-items-center">
                 <a href="{{ home_url }}"><img src="{% static 'images/logo.png' %}" alt="leaf-lounge logo" style="width: 250px;"></a>
@@ -87,6 +87,7 @@
                             </div>
                         </li>
                         {% if request.user.is_authenticated %}
+                        <!-- Communities -->
                         <li class="nav-item px-2 mx-1">
                             <div class="nav-item-container">
                                 <a href="{{ community_general_url }}">
@@ -95,25 +96,28 @@
                                 <div class="{% url_active 'communities' %} mt-1"></div>
                             </div>
                         </li>
+                        <!-- Communities -->
                         {% endif %}
-                            <li class="nav-item px-2 mx-1">
-                                <div class="nav-item-container">
-                                    <a href="{% if request.user.is_authenticated %}{% url 'user_profile' %}{% else %}{{ signup_url }}{% endif %}">
-                                        <i class="fa-solid fa-user me-2"></i>My Profile
-                                    </a>
-                                    <div class="{% url_active 'user_profile' %} mt-1"></div>
-                                </div>
-                            </li>
+                        <!-- Profile -->
+                        <li class="nav-item px-2 mx-1">
+                            <div class="nav-item-container">
+                                <a href="{% if request.user.is_authenticated %}{% url 'user_profile' %}{% else %}{{ signup_url }}{% endif %}">
+                                    <i class="fa-solid fa-user me-2"></i>My Profile
+                                </a>
+                                <div class="{% url_active 'user_profile' %} mt-1"></div>
+                            </div>
                         </li>
+                        <!-- Profile -->
                     </ul>
                     <!-- /Original Menu for Large Screens -->
                 </div>
 
                 <!-- Basket + Sign Up -->
                 <ul class="navbar-nav me-3 align-items-center basket-sign-up">
+                    <!-- Basket -->
                     <li class="nav-item px-2 mx-1">
                         <a href="{{ basket_url }}">
-                            <i class="fa-solid fa-basket-shopping {% if books_total %} gelatine {% endif %}"></i>
+                            <i class="fa-solid fa-basket-shopping me-1 {% if books_total %} gelatine {% endif %}"></i>
                             <span class="text-sm">
                                 {% if total %}
                                     €{{ total|floatformat:2 }}
@@ -123,6 +127,8 @@
                             </span>
                         </a>
                     </li>
+                    <!-- /Basket -->
+                    <!-- Authentication -->
                     <li class="nav-item px-2 mx-1">
                         {% if not request.user.is_authenticated %}
                         <a href="{{ signup_url }}" class="table-button">
@@ -134,6 +140,7 @@
                         </a>
                         {% endif %}
                     </li>
+                    <!-- /Authentication -->
                 </ul>
                 <!-- /Basket + Sign Up -->
             </nav>
@@ -174,72 +181,46 @@
         <!-- /Main Content -->
 
         <!-- Footer -->
-        <footer class="mt-auto py-3 mt-5 border" id="leaf-footer">
-            <div class="row m-0 p-0">
-                <div class="col-lg-3 d-flex justify-content-center align-items-center">
-                    <div class="newsletter-container text-center">
-                        <img src="../static/images/mailchimp.webp" alt="Mailchimp Newsletter Logo" width="120">
-                        <form method="post">
-                            <!-- This needs hooking up! -->
-                            <!-- <input type="email" name="newletter-email" id="newsletter-email"> -->
-                            <button type="submit" class="custom-button">Subscribe</button>
-                        </form>
-                        <p><strong><small>Subscribe to our Leaf Lounge Newsletter!</small></strong></p>
-                    </div>
-                </div>
-                <div class="col-lg-6 d-flex justify-content-center align-items-center">
-                    <ul class="half-ul navbar-nav d-flex flex-column justify-content-center align-items-center my-2">
-                        <div class="half d-flex justify-content-center align-items-center">
-                            <li class="nav-item text-center footer-nav-items">
-                                <a href="{{ home_url }}"><small>Home</small></a>
-                            </li>
-                            <li class="mx-2 mx-lg-4">|</li>
-                            <li class="nav-item text-center footer-nav-items">
-                                <a href="{{ contact_url }}"><small>Contact</small></a>
-                            </li>
-                            <li class="mx-2 mx-lg-4">|</li>
-                            <li class="nav-item text-center footer-nav-items">
-                                <a href="{{ library_url }}"><small>Library</small></a>
-                            </li>
-                            <li class="d-none d-md-block mx-2 mx-lg-4">|</li>
-                        </div>
-                        <div class="half d-flex justify-content-center align-items-center mt-1 mt-md-0">
-                            {% if request.user.is_authenticated %}
-                            <li class="nav-item text-center footer-nav-items">
-                                <a href="{{ community_general_url }}"><small>Communities</small></a>
-                            </li>
-                            <li class="mx-2 mx-lg-4">|</li>
-                            <li class="nav-item text-center footer-nav-items">
-                                <a href="{% if request.user.is_authenticated %}{% url 'user_profile' %}{% else %}{{ signup_url }}{% endif %}">
-                                    <small>My Profile</small>
-                                </a>
-                            </li>
-                            <li class="mx-2 mx-lg-4">|</li>
-                            <li class="nav-item text-center footer-nav-items">
-                                <a href="{{ signout_url }}"><small>Sign Out</small></a>
-                            </li>
-                            {% else %}
-                            <li class="nav-item text-center footer-nav-items">
-                                <a href="{{ signup_url }}">
-                                    <small>Sign Up</small>
-                                </a>
-                            </li>
-                            {% endif %}
-                        </div>
-                    </ul>
-                </div>
-                <div class="col-lg-3">
-                    <div class="socials">
-                        <div class="socials text-center my-3">
-                            <a class="mx-2 social-links" href="https://www.facebook.com/profile.php?id=61563390085042" target="_blank"><i class="fa-brands fa-lg fa-facebook"></i></a>
-                            <a class="mx-2 social-links" href="https://github.com/Ana-Niko-byte/leaf-lounge" target="_blank"><i class="fa-brands fa-lg fa-github"></i></a>               
-                            <a class="mx-2 social-links" href="https://www.linkedin.com/in/ana-nikolayenia-k/" target="_blank"><i class="fa-brands fa-lg fa-linkedin"></i></a>
-                            <p><strong>Check out our medias!</strong></p>
-                        </div>
-                    </div>
-                </div>
+        <footer class="py-3 row m-0 p-0 d-flex align-items-center" id="leaf-footer">
+            {% include 'marketing/subscribe.html' %}
+            <div class="col-lg-8">
+                <ul class="navbar-nav d-flex flex-row justify-content-end align-items-center me-4">
+                    <li class="nav-item text-center footer-nav-items">
+                        <a href="{{ home_url }}"><small>Home</small></a>
+                    </li>
+                    <li class="mx-2 mx-lg-4">|</li>
+                    <li class="nav-item text-center footer-nav-items">
+                        <a href="{{ contact_url }}"><small>Contact</small></a>
+                    </li>
+                    <li class="mx-2 mx-lg-4">|</li>
+                    <li class="nav-item text-center footer-nav-items">
+                        <a href="{{ library_url }}"><small>Library</small></a>
+                    </li>
+                    <li class="d-none d-md-block mx-2 mx-lg-4">|</li>
+                    {% if request.user.is_authenticated %}
+                    <li class="nav-item text-center footer-nav-items">
+                        <a href="{{ community_general_url }}"><small>Communities</small></a>
+                    </li>
+                    <li class="mx-2 mx-lg-4">|</li>
+                    <li class="nav-item text-center footer-nav-items">
+                        <a href="{% if request.user.is_authenticated %}{% url 'user_profile' %}{% else %}{{ signup_url }}{% endif %}">
+                            <small>My Profile</small>
+                        </a>
+                    </li>
+                    <li class="mx-2 mx-lg-4">|</li>
+                    <li class="nav-item text-center footer-nav-items">
+                        <a href="{{ signout_url }}"><small>Sign Out</small></a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item text-center footer-nav-items">
+                        <a href="{{ signup_url }}">
+                            <small>Sign Up</small>
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
             </div>
-            <p class="text-center">&copy; <span id="copyright-year"></span> Leaf Lounge. All rights reserved.</p>
+            <p class="text-center small">&copy; <span id="copyright-year"></span> Leaf Lounge. All rights reserved.</p>
         </footer>
         <!-- Footer -->
 

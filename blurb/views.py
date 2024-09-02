@@ -19,12 +19,12 @@ def contact(request):
     """
     
     if request.method == 'POST':
-        contactForm = ContactForm(data=request.POST)
-        if contactForm.is_valid():
-            name = contactForm.cleaned_data['name']
-            email = contactForm.cleaned_data['email']
-            subject = contactForm.cleaned_data['subject']
-            message = contactForm.cleaned_data['message']
+        contact_form = ContactForm(data=request.POST)
+        if contact_form.is_valid():
+            name = contact_form.cleaned_data['name']
+            email = contact_form.cleaned_data['email']
+            subject = contact_form.cleaned_data['subject']
+            message = contact_form.cleaned_data['message']
 
             recipient_list = [settings.EMAIL_HOST_USER, f'{email}']
             send_mail(
@@ -41,9 +41,9 @@ def contact(request):
             )
             return redirect('home')
     else:
-        contactForm = ContactForm()
+        contact_form = ContactForm()
         context = {
-            'contactForm': contactForm
+            'contact_form': contact_form
         }
         return render(
             request,

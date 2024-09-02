@@ -36,7 +36,7 @@ def subscribe_view(request):
                 logger.error(f'An exception occurred: {error.text}')
                 return redirect('subscribe-fail')
 
-    return render(request, 'marketing/subscribe.html', {
+    return render(request, 'templates/base.html', {
         'form': EmailForm(),
     })
 

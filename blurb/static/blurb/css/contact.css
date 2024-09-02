@@ -1,0 +1,24 @@
+#div_id_name, #div_id_email, #div_id_subject, #div_id_message{
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: start;
+    justify-content: start;
+}
+
+.contact-container{
+    background-color: var(--light-blue);
+    height: 545px;
+}
+
+#contact-form{
+    border-radius: 8px;
+    max-width: 600px;
+}
+
+.custom-fields-large{
+    border-radius: 5px;
+    max-height: 150px;
+    overflow-y: auto;
+    margin: 0;
+    padding-left: 10px;
+}
