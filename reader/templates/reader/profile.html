@@ -8,66 +8,78 @@
 
 {% block content %}
 <div class="container-fluid">
-    <div class="row mt-3 d-flex justify-content-between align-items-start">
-        <div class="ps-5 col-lg-2 col-md-4 col-sm-12 border">
-            <div class="menu-column d-flex justify-content-center justify-content-lg-start align-items-start">
-                <ul class="list-unstyled">
-                    <li class="menu-item">
-                        <button class="btn-md custom-button mb-2 display-button" data-detail="billing">My Billing Details</button>
-                    </li>
-                    <li class="menu-item">
-                        <button class="btn-md custom-button mb-2 display-button" data-detail="history">My Order History</button>
-                    </li>
-                    <!-- Change URL -->
-                    <li class="menu-item">
-                        <a href="{{ community_general_url }}">
-                            <button class="btn-md custom-button mb-2">
-                                My Communities
-                            </button>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <button class="btn-md custom-button mb-2 display-button" data-detail="reviews">My Reviews</button>
-                    </li>
-                    <li class="menu-item">
-                        <a href="{{ contact_url }}">
-                            <button class="btn-md custom-button mb-2">
-                                Need Help?
-                            </button>
-                        </a>
-                    </li>
-                </ul>
+    <div class="slider-review position-absolute row w-100 bg-white d-none" id="review-slide">
+        <form action="" method="post" id="re-review" class="p-4">
+            <h4 class="text-uppercase small"><strong><i class="fa-solid fa-book me-2"></i>Review Form</strong></h4>
+            {% csrf_token %}
+            {{ review_form | crispy }}
+            <div class="button-container">
+                <button id="submitButton" type="submit" class="custom-button">
+                    Update Review<i class="fa-solid fa-circle-check ms-2"></i>
+                </button>
+                <button id="cancelReview" class="custom-button" type="button">
+                    Cancel<i class="fa-solid fa-circle-xmark ms-2"></i>
+                </button>
             </div>
+        </form>
+    </div>
+    <div class="row mt-3">
+        <div class="col-lg-2 col-md-3 col-sm-12 order-first">
+            <ul class="list-unstyled ms-3">
+                <li class="menu-item">
+                    <button class="table-button mb-2 display-button" data-detail="billing">My Billing Details</button>
+                </li>
+                <li class="menu-item">
+                    <button class="table-button mb-2 display-button" data-detail="history">My Order History</button>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ community_general_url }}">
+                        <button class="table-button mb-2">
+                            My Communities
+                        </button>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <button class="table-button mb-2 display-button" data-detail="reviews">My Reviews</button>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ contact_url }}">
+                        <button class="table-button mb-2">
+                            Need Help?
+                        </button>
+                    </a>
+                </li>
+            </ul>
         </div>
-        <div class="col-lg-10 col-md-8 col-sm-12 order-first order-md-last pt-3 text-center border">
-            <div class="profile-starter">
+        <div class="col-lg-10 col-md-9 col-sm-12 order-first order-md-last text-center">
+            <div class="profile-starter me-5 pt-3">
                 <h5>Hey there! You've found your profile.</h5>
-                <p>Click on a button on the left handside to view, change, or delete your information.</p>
+                <p>To get started, click on a button on the left handside to view, change, or delete your information.</p>
             </div>
             <ul class="list-unstyled">
-                <li class="profile-details d-none" data-profile="billing-details">
-                    <div>
-                        <h4 class="mb-3 text-uppercase small"><strong><i class="fa-solid fa-book me-2"></i>My Details</strong></h4>
-                        <form action="{% url 'user_profile' %}" method="POST" id="userProfileForm">
+                <li class="d-none profile-details mx-0 mx-md-5" data-profile="billing-details">
+                    <div class="col-lg-8 col-md-12 col-sm-12 bg-light rounded shadow-sm p-4">
+                        <h4 class="mb-3 text-uppercase text-start small"><strong><i class="fa-solid fa-book me-2"></i>My Details</strong></h4>
+                        <form action="{% url 'user_profile' %}" method="post" id="userProfileForm">
                             {% csrf_token %}
                             {{ form | crispy }}
                             <div class="button-container d-flex justify-content-end mt-3">
-                                <button type="submit" class="btn-lg custom-button"><small><i class="fa-solid fa-check me-2"></i>Save Info</small></button>
+                                <button type="submit" class="btn-lg custom-button"><i class="fa-solid fa-circle-check me-2"></i>Update Information</button>
                             </div>
                         </form>
                     </div>
                 </li>
-                <li class="profile-details d-none" data-profile="history-details">
+                <li class="d-none profile-details me-5" data-profile="history-details">
                     <div>
-                        <h4 class="mb-3 text-uppercase small"><strong><i class="fa-solid fa-book me-2"></i>My Order History</strong></h4>
+                        <h4 class="mb-3 text-uppercase text-center text-md-start small"><strong><i class="fa-solid fa-list me-2"></i>My Order History</strong></h4>
                         {% for book_order in book_orders %}
-                        <div class="row accordion accordion-flush border my-2 px-3" id="accordion{{ forloop.counter }}">
-                            <div class="col-lg-9 accordion-item d-flex flex-column justify-content-between">
+                        <div class="row accordion accordion-flush my-2 px-3 bg-white shadow-sm p-3 rounded" id="accordion{{ forloop.counter }}">
+                            <div class="col-lg-9 accordion-item bg-light rounded">
                                 <div class="info-container mt-3">
-                                    <p class="m-0 p-0"><strong>Order Number : {{ book_order.order_number }}</strong></p>
+                                    <p class="m-0 p-0"><strong>Order Number : <span class="small">{{ book_order.order_number }}</span></strong></p>
                                     <p class="m-0 p-0"><small>Date placed: {{ book_order.date }}</small></p>
                                 </div>
-                                <div class="image-container d-flex">
+                                <div class="image-container d-flex flex-column flex-md-row justify-content-center align-items-center">
                                     {% for book in book_order.booklineitem.all %}
                                     <!-- Add book image here -->
                                     <div style="max-width: 150px;" class="mx-3 mb-3 col-lg-2 d-flex flex-column justify-content-between">
@@ -81,81 +93,113 @@
                                 </div>
                             </div>
                             <div class="col-lg-3 d-flex flex-column justify-content-between">
-                                <div class="info-container mt-3">
-                                    <p class="m-0 p-0">Subtotal : €{{ book_order.order_total }}</p>
-                                    <p class="m-0 p-0">Shipping : {% if book_order.delivery_cost == 0.00 %}<strong>FREE</strong>{% else %}€{{ book_order.delivery_cost }}{% endif %}</p>
-                                    <p class="m-0 p-0">Total : €{{ book_order.grand_total }}</p>
+                                <div class="info-container ms-4 mt-3">
+                                    <div class="row d-flex shadow-sm p-2">
+                                        <span class="col-3"><strong>Subtotal: </strong></span>
+                                        <span class="col-9"><p class="m-0 p-0">€{{ book_order.order_total }}</p></span>
+                                    </div>
+                                    <div class="row d-flex shadow-sm p-2">
+                                        <span class="col-3"><strong>Shipping: </strong></span>
+                                        <span class="col-9"><p class="m-0 p-0">{% if book_order.delivery_cost == 0.00 %}<strong>FREE</strong>{% else %}€{{ book_order.delivery_cost }}{% endif %}</p></span>
+                                    </div>
+                                    <div class="row d-flex shadow-sm p-2">
+                                        <span class="col-3"><strong>Total: </strong></span>
+                                        <span class="col-9"><p class="m-0 p-0">€{{ book_order.grand_total }}</p></span>
+                                    </div>
                                 </div>
                                 <button class="custom-button mb-4 accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse{{ forloop.counter }}" aria-expanded="false" aria-controls="flush-collapse{{ forloop.counter }}">
                                     <i class="fa-solid fa-truck-fast me-2"></i>Shipping Details
                                 </button>
                             </div>
                             <div id="flush-collapse{{ forloop.counter }}" class="accordion-collapse collapse" aria-labelledby="flush-heading{{ forloop.counter }}" data-bs-parent="#accordionFlushExample">
-                                <div class="accordion-body">
+                                <div class="accordion-body text-start">
                                     <h6 class="my-3 text-uppercase"><strong>Shipping Address</strong></h6>
-                                    <p class="my-0 p-0">{{ book_order.full_name }}</p>
-                                    <p class="my-0 p-0">{{ book_order.street_1 }}</p>
+                                    <div class="row d-flex shadow-sm p-2">
+                                        <span class="col-3"><strong>Full Name: </strong></span>
+                                        <span class="col-9"><p class="text-start my-0 p-0">{{ book_order.full_name }}</p></span>
+                                    </div>
+                                    <div class="row d-flex shadow-sm p-2">
+                                        <span class="col-3"><strong>Street 1: </strong></span>
+                                        <span class="col-9"><p class="my-0 p-0">{{ book_order.street_1 }}</p></span>
+                                    </div>
                                     {% if book_order.street_2 %}
-                                        <p class="my-0 p-0">{{ book_order.street_2 }}</p>
+                                    <div class="row d-flex shadow-sm p-2">
+                                        <span class="col-3"><strong>Street 2: </strong></span>
+                                        <span class="col-9"><p class="my-0 p-0">{{ book_order.street_2 }}</p></span>
+                                    </div>
                                     {% endif %}
-                                    <p class="my-0 p-0">{{ book_order.town_city }}</p>
+                                    <div class="row d-flex shadow-sm p-2">
+                                        <span class="col-3"><strong>Town / City: </strong></span>
+                                        <span class="col-9"><p class="my-0 p-0">{{ book_order.town_city }}</p></span>
+                                    </div>
                                     {% if book_order.county %}
-                                        <p class="my-0 p-0">{{ book_order.county }}</p>
+                                    <div class="row d-flex shadow-sm p-2">
+                                        <span class="col-3"><strong>County: </strong></span>
+                                        <span class="col-9"><p class="my-0 p-0">{{ book_order.county }}</p></span>
+                                    </div>
                                     {% endif %}
                                     {% if book_order.postcode %}
-                                        <p class="my-0 p-0">{{ book_order.postcode }}</p>
+                                    <div class="row d-flex shadow-sm p-2">
+                                        <span class="col-3"><strong>Postcode: </strong></span>
+                                        <span class="col-9"><p class="my-0 p-0">{{ book_order.postcode }}</p></span>
+                                    </div>
                                     {% endif %}
-                                    <p class="my-0 p-0">{{ book_order.country }}</p>
+                                    <div class="row d-flex shadow-sm p-2">
+                                        <span class="col-3"><strong>Country: </strong></span>
+                                        <span class="col-9"><p class="my-0 p-0">{{ book_order.country }}</p></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         {% endfor %}
                     </div>
                 </li>
-                <li class="profile-details d-none" data-profile="reviews-details">
+                <li class="d-none profile-details" data-profile="reviews-details">
                     <div>
-                        <h4 class="text-uppercase small"><strong><i class="fa-solid fa-book me-2"></i>My Reviews</strong></h4>
+                        <h4 class="text-uppercase text-center text-md-start small"><strong><i class="fa-solid fa-pencil me-2"></i>My Reviews</strong></h4>
                         {% if user_reviews %}
-                            <div class="row d-flex flex-row justify-content-center align-items-center">
-                                {% for review in user_reviews %}
-                                    <div class="outer-review d-flex flex-column justify-content-between col-lg-3 col-md-6 col-sm-12 bg-light shadow-sm p-2 rounded my-3">
-                                        <div class="header">
-                                            <p class="ms-2 small"><strong>{{ review.book.title }}</strong></p>
-                                            <p class="ms-2 small">{{ review.book.author }}</p>
-                                        </div>
-                                        <div class="inner-review bg-white shadow-sm p-2 rounded m-2">
-                                            <h6 class="strong"><small>{{ review.title }}</small></h6>
+                            {% for review in user_reviews %}
+                                <div class="row outer-review bg-white shadow-sm p-2 rounded m-3">
+                                    <div class="header row">
+                                        <div class="half col-6">
                                             <div class="rating-container d-flex">
                                                 <div id="profile-rating-box-{{ forloop.counter }}" data-forloop="{{ forloop.counter }}" data-rating="{{ review.rating }}" class="review rating-box d-flex justify-content-start align-items-start mb-3">
                                                     <img src="../../../static/images/stars.png" alt="{{ book.title }} cover" width="120" id="profile-loader-image-{{ forloop.counter }}" class="loader-image">
                                                     <div id="profile-rating-bar-{{ forloop.counter }}" class="rating-bar"></div>
                                                 </div>
                                             </div>
-                                            <p>{{ review.comment }}</p>
+                                            <h5 class="text-start">{{ review.title }}</h5>
                                         </div>
-                                        <div class="footer">
-                                            <p class="ms-2 small text-secondary">{{ review.reviewed_on }}</p>
-                                            <p class="ms-2 mt-2 small {% if review.approved %}text-success{% endif %}">{% if review.approved %}<i class="fa-solid fa-circle-check fa-sm me-2"></i>Approved{% else %}<i class="fa-solid fa-hourglass-start fa-sm me-2"></i>Pending{% endif %}</p>
-                                            <div class="button-container d-flex justify-content-between align-items-end">
-                                                {% if not review.approved %}
-                                                <button class="btn btn-sm btn-warning m-2 d-flex justify-content-center align-items-center btn-edit"
-                                                data-review-id="{{ review.id }}" data-review-title="{{ review.title }}" data-review-comment="{{ review.comment }}" data-review-rating="{{ review.rating }}" data-book-title="{{ review.book }}">
-                                                    <i class="fa-solid fa-pencil fa-sm me-2"></i>Edit
-                                                </button>
-                                                {% else %}
-                                                <p class="ms-2 my-2 small text-muted">You can no longer edit this review.</p>
-                                                {% endif %}
-
-                                                <a href="{% url 'delete_review' review.id %}">
-                                                    <button class="btn btn-sm btn-danger m-2 d-flex justify-content-center align-items-center">
-                                                        <i class="fa-solid fa-trash fa-sm me-2"></i>Delete
-                                                    </button>
-                                                </a>
-                                            </div>
+                                        <div class="half col-6 text-end">
+                                            <p class="ms-2 mt-2 {% if review.approved %}text-success{% endif %}">{% if review.approved %}<i class="fa-solid fa-circle-check fa-sm me-2"></i>Approved{% else %}<i class="fa-solid fa-hourglass-start fa-sm me-2"></i>Pending{% endif %}</p>
+                                            <p class="ms-2 small text-secondary">Reviewed on: {{ review.reviewed_on }}</p>
                                         </div>
                                     </div>
-                                {% endfor %}
-                            </div>
+                                    <div class="inner-review bg-light shadow-sm p-2 rounded m-2 d-flex flex-column justify-content-between">
+                                        <div class="general-info">
+                                            <p class="ms-2 small text-start"><strong>Book: {{ review.book.title }}</strong></p>
+                                            <p class="ms-2 small text-start">Author: {{ review.book.author }}</p>
+                                        </div>
+                                        <p class="pb-2 text-start">{{ review.comment }}</p>
+                                    </div>
+                                    <div class="button-container pb-2 d-flex justify-content-between align-items-end">
+                                        {% if not review.approved %}
+                                        <button class="btn btn-warning m-2 d-flex justify-content-center align-items-center btn-edit"
+                                        data-review-id="{{ review.id }}" data-review-title="{{ review.title }}" data-review-comment="{{ review.comment }}" data-review-rating="{{ review.rating }}" data-book-title="{{ review.book }}">
+                                            <i class="fa-solid fa-pencil fa-sm me-2"></i>Edit
+                                        </button>
+                                        {% else %}
+                                        <p class="ms-2 my-2 small text-muted">You can no longer edit this review.</p>
+                                        {% endif %}
+
+                                        <a href="{% url 'delete_review' review.id %}">
+                                            <button class="btn btn-danger m-2 d-flex justify-content-center align-items-center">
+                                                <i class="fa-solid fa-trash fa-sm me-2"></i>Delete
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            {% endfor %}
                         {% else %}
                             <p>You can view any pending and approved reviews here!</p>
                             <p>To leave a review go to <span><a href="{{ books_url }}">My Books</a></span></p>
@@ -163,18 +207,6 @@
                     </div>
                 </li>
             </ul>
-        </div>
-        <div class="slider-review border position-absolute col-lg-6 col-md-8 col-sm-12 bg-light d-none" id="review-slide">
-            <form action="" method="post" id="re-review">
-                <p>REVIEW FORM HERE</p>
-                {% csrf_token %}
-                {{ reviewForm|crispy }}
-                <button id="submitButton" type="submit"
-                        class="btn btn-lg btn-warning authentication-button">
-                        Submit<i class="fa-solid fa-arrow-right ms-3"></i>
-                    </button>
-                <button id="btn-cancel-review">Cancel</button>
-            </form>
         </div>
     </div>
 </div>

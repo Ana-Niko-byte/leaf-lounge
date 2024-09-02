@@ -121,6 +121,14 @@ body {
     min-height: 100vh;
 }
 
+.basket-sign-up{
+    display: flex;
+}
+
+.mid-basket-sign-up{
+    display: none;
+}
+
 .jumbotron{
     /* background-image: url(../images/florian-klauer-mk7D-4UCfmg-unsplash.jpg); */
     background-color: var(--mute-grey-color);
@@ -140,12 +148,25 @@ body {
     text-align: center;
 }
 
-.custom-button-extended{
+.custom-button:hover{
     background-color: darkorange;
+    outline: 4px solid rgb(255, 194, 80);
     color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 10px rgb(78, 78, 78);
 }
 
-.custom-button:hover{
+.table-button{
+    width: 100%;
+    padding: 10px;
+    text-decoration: none;
+    color: var(--dark-text-color);
+    border: none;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.table-button:hover{
     background-color: darkorange;
     outline: 4px solid rgb(255, 194, 80);
     color: white;
@@ -160,9 +181,27 @@ body {
 .custom-button-small:hover{
     transform: scale(0.80);
 }
+
+.button-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 /* /General */
 
 /* Media Queries */
 @media all and (min-width: 400px){
+}
+
+@media all and (max-width: 1375px){
+    .basket-sign-up{
+        display: none;
+    }
+
+    .mid-basket-sign-up{
+        outline: 3px solid red;
+        display: flex;
+        flex-direction: row;
+    }
 }
 /* /Media Queries */

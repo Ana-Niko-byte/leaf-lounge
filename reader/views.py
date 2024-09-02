@@ -27,7 +27,7 @@ def my_profile(request):
                 'Your information has been saved!'
             )
 
-    reviewForm = ReviewForm(data=request.POST)
+    review_form = ReviewForm()
     form = UserProfileForm(instance=reader)
     book_orders = reader.orders.all()
     user_reviews = Review.objects.filter(reviewer=reader)
@@ -35,7 +35,7 @@ def my_profile(request):
     context={
         'reader': reader,
         'form': form,
-        'reviewForm': reviewForm,
+        'review_form': review_form,
         'book_orders': book_orders,
         'user_reviews': user_reviews,
         'profile_page': True
@@ -225,6 +225,7 @@ def update_review(request, id):
                         """There is an error in your form.
                         Please fix it or click cancel to finish editing."""
                     )
+                    return HttpResponseRedirect(reverse('user_profile'))
                     
             else:
                 messages.error(
@@ -232,7 +233,9 @@ def update_review(request, id):
                     """You don't have permission to delete this review.
                     If this is a mistake, please contact our customer support team for assistance."""
                 )
+                return HttpResponseRedirect(reverse('user_profile'))
         else:
+            review_form = ReviewForm
             return HttpResponseRedirect(reverse('user_profile'))
 
     except Exception as e:

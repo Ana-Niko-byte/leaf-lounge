@@ -26,7 +26,7 @@
             <form action="{% url 'user_books' %}" class="d-flex flex-column align-items-center justify-content-center" method="get">
                 <h4 class="mb-4 text-uppercase small"><strong><i class="fa-solid fa-book me-2"></i>My Purchses</strong></h4>
                 {% for genre in user_genres %}
-                <button type="submit" class="custom-button {% if genre.name == user_genre %}custom-button-extended{% else %} custom-button-alternative {% endif %} text-center m-2" name="genre" value="{{ genre.name }}">
+                <button type="submit" class="table-button {% if genre.name == user_genre %}{% else %}{% endif %} text-center m-2" name="genre" value="{{ genre.name }}">
                     <span class="text-uppercase small"><strong>{{ genre.name }}</strong></span>
                 </button>
                 {% endfor %}

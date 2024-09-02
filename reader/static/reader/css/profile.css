@@ -57,6 +57,11 @@ p{
 }
 
 .inner-review{
-    height: 200px;
+    height: 120px;
     overflow-y: auto;
+}
+
+.slider-review{
+    z-index: 9999;
+    height: 500px;
 }

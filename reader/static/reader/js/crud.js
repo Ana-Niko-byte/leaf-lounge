@@ -1,29 +1,50 @@
 document.addEventListener("DOMContentLoaded", () => {
-    edit_review();
-})
-// Edit Reviews
-function edit_review(){
-    const editButtons = [...document.getElementsByClassName("btn-edit")];
     const slider = document.getElementById("review-slide");
+    displayForm(slider);
+    handleCancel(slider);
+})
 
+function displayForm(slider){
+    const editButtons = [...document.getElementsByClassName("btn-edit")];
     for (let button of editButtons){
         button.addEventListener('click', function(e){
             e.preventDefault();
+            const reviewId = button.dataset.reviewId;
 
+            // Display the form
             if (slider.classList.contains("d-none")){
                 slider.classList.remove("d-none");
-                slider.classList.add("d-block");
-                enterFormDetails(button);
-            } else if (slider.classList.contains("d-block")){
-                slider.classList.remove("d-block");
-                slider.classList.add("d-none");
+                slider.classList.add("d-flex");
             }
+
+            enterFormDetails(reviewId, button);
         })
     }
 }
 
-function enterFormDetails(button){
-    const reviewId = button.dataset.reviewId;
+function handleCancel(slider){
+    /**
+     * Handles the user clicking the cancel button.
+     * 
+     * Attaches a "click" event to the button with Id "cancelReview".
+     * If the slider is shown, removes Bootstrap "d-flex" class and adds "d-none" class.
+     */
+    document.getElementById("cancelReview").addEventListener("click", () => {
+        if (slider.classList.contains("d-flex")){
+            slider.classList.remove("d-flex");
+            slider.classList.add("d-none");
+        }
+    })
+}
+
+function enterFormDetails(reviewId, button){
+    /**
+     * Retrieves necessary values and sets them into the Review form for editing.
+     * 
+     * In dropdown, selects the appropriate book from the list and disables the input.
+     * Sets retrieved review values and puts them into the appropriate form fields.
+     * Dynamically sets the update_review URL.
+     */
     const form = document.getElementById("re-review");
     const book = button.dataset.bookTitle;
     const title = button.dataset.reviewTitle;
