@@ -1,27 +1,13 @@
-<div class="d-flex flex-row">
+<div class="d-flex flex-row align-items-end p-0 m-0">
     {% for book in books %}
     {% if book.genre == genre %}
     <a href="{{ book.get_absolute_url }}">
-        <div class="card col-lg-3 col-md-4 col-sm-12 {% if 'q' in request.GET or 'author' in request.GET %} m-0 p-0 {% endif %}">
-            <div class="card-body book text-center">
-                <a href="{{ book.get_absolute_url }}">
-                    <img src="../../../static/images/1984_cover.jpg" alt="{{ book.title }} cover" style="width: 120px;">
-                </a>
-                <div class="text-center">
-                    <p class="h6 mt-2"><strong>{{ book.title }}</strong></p>
-                    <p class="text-secondary"><small><em>by {{ book.author }} | {{ book.year_published }}</em></small></p>
-                </div>
-            </div>
-            <div>
-                <div class="card-footer text-center">
-                    <p>"{{ book.blurb | safe }}"</p>
-                    <a href="{{ book.get_absolute_url }}">
-                        <button  class="custom-button mt-3">
-                            Read More<i class="fa-solid fa-arrow-right ms-2"></i>
-                        </button>
-                    </a>
-                </div>
-            </div>
+        <div class="book d-flex me-1">
+            <div class="book-spine p-2 d-flex align-items-end">
+                <p class="text-white book-turned h6 text-uppercase small"><strong>{{ book.title }}</strong></p>
+                <p class="text-white book-turned my-2 small">{{ book.author }} | {{ book.year_published }}</p>
+            </div> 
+            <img src="../../../static/images/1984_cover.jpg" alt="{{ book.title }} cover" class="book-main">
         </div>
     </a>
     {% endif %}

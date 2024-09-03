@@ -1,67 +1,69 @@
 {% extends "_second_nav.html" %}
 {% load static %}
 
-{% block content %}
-<div class="container">
+{% block extra_css %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'library/css/library.css' %}">
+{% endblock %}
 
-    <div class="row">
+{% block content %}
+<div class="container-fluid p-0">
+    <div class="row p-0 m-0 mx-5">
         <!-- Books -->
         <div class="books col-lg-9 col-md-6 col-sm-12">
             {% if genre_search %}
-                <div class="row book-genre-rows card border-0">
-                    {% for genre in genres_called %}
-                    <h6 class="m-0 p-0 text-uppercase mt-5 mb-3"><strong>{{ genre.name }}</strong></h6>
-                    <div class="row d-flex">
-                        {% include 'library/_book_composition.html' %}
+                {% for genre in genres_called %}
+                <div class="row book-genre-rows my-2">
+                    <h6 class="m-0 p-0 mb-3 small text-black text-uppercase"><strong>{{ genre.name }}</strong></h6>
+                    <div class="d-flex flex-row align-items-end p-0 m-0">
+                        {% for book in books %}
+                        {% if book.genre.name == genre.name %}
+                        <a href="{{ book.get_absolute_url }}">
+                            <div class="book d-flex me-1">
+                                <div class="book-spine p-2 d-flex align-items-end">
+                                    <p class="text-white book-turned h6 text-uppercase small"><strong>{{ book.title }}</strong></p>
+                                    <p class="text-white book-turned my-2 small">{{ book.author }} | {{ book.year_published }}</p>
+                                </div> 
+                                <img src="../../../static/images/1984_cover.jpg" alt="{{ book.title }} cover" class="{% if book.genre in genres_search %}book-main d-flex{% else %}d-none{% endif %}">
+                            </div>
+                        </a>
+                        {% endif %}
+                        {% endfor %}
                     </div>
-                    {% endfor %}
                 </div>
+                {% endfor %}
 
             {% elif author_search %}
-                <div class="row book-genre-rows card border-0">
-                    {% for book in books %}
-                    <h6 class="m-0 p-0 text-uppercase mt-5 mb-3"><strong>{{ book.genre }}</strong></h6>
-                    <div class="row d-flex">
+                {% for book in books %}
+                <div class="row book-genre-rows my-2">
+                    <h6 class="m-0 p-0 mb-3 small text-black text-uppercase"><strong>{{ book.genre }}</strong></h6>
+                    <div class="d-flex flex-row align-items-end p-0 m-0">
                         <a href="{{ book.get_absolute_url }}">
-                            <div class="card col-lg-3 col-md-4 col-sm-12 {% if 'q' in request.GET or 'author' in request.GET %} m-0 p-0 {% endif %}">
-                                <div class="card-body book text-center">
-                                    <a href="{{ book.get_absolute_url }}">
-                                        <img src="../../../static/images/1984_cover.jpg" alt="{{ book.title }} cover" style="width: 120px;">
-                                    </a>
-                                    <div class="text-center">
-                                        <p class="h6 mt-2"><strong>{{ book.title }}</strong></p>
-                                        <p class="text-secondary"><small><em>by {{ book.author }} | {{ book.year_published }}</em></small></p>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="card-footer text-center">
-                                        <p>"{{ book.blurb | safe }}"</p>
-                                        <a href="{{ book.get_absolute_url }}">
-                                            <button  class="custom-button mt-3">
-                                                Read More<i class="fa-solid fa-arrow-right ms-2"></i>
-                                            </button>
-                                        </a>
-                                    </div>
-                                </div>
+                            <div class="book d-flex me-1">
+                                <div class="book-spine p-2 d-flex align-items-end">
+                                    <p class="text-white book-turned h6 text-uppercase small"><strong>{{ book.title }}</strong></p>
+                                    <p class="text-white book-turned my-2 small">{{ book.author }} | {{ book.year_published }}</p>
+                                </div> 
+                                <img src="../../../static/images/1984_cover.jpg" alt="{{ book.title }} cover" class="{% if book.author.last_name in authors_ln %}book-main d-flex{% else %}d-none{% endif %}">
                             </div>
                         </a>
                     </div>
-                    {% endfor %}
                 </div>
+                {% endfor %}
             {% else %}
-            <div class="row book-genre-rows card border-0">
+            <div class="row card border-0">
                 {% if both %}
                     {% for genre in query_book_genres %}
-                    <div class="row book-genre-rows border-0">
-                        <h6 class="m-0 p-0 text-uppercase mt-5 mb-3"><strong>{{ genre.name }}</strong></h6>
+                    <div class="row book-genre-rows my-2">
+                        <h6 class="m-0 p-0 mb-3 small text-black text-uppercase"><strong>{{ genre.name }}</strong></h6>
                         {% include 'library/_book_composition.html' %}
                     </div>
                     {% endfor %}
                 {% else %}
                     {% for genre in filtered_genres %}
-                    <div class="row book-genre-rows border-0">
+                    <div class="row book-genre-rows my-2">
                         {% if filtered_genres %}
-                            <h6 class="m-0 p-0 text-uppercase mt-5 mb-3"><strong>{{ genre.name }}</strong></h6>
+                            <h6 class="m-0 p-0 mb-3 small text-black text-uppercase"><strong>{{ genre.name }}</strong></h6>
                         {% endif %}
                         {% include 'library/_book_composition.html' %}
                     </div>
@@ -85,9 +87,9 @@
                 <div class="mb-3" id="filters">
                     <form method="GET" action="{% url 'library' %}">
                         <div class="row mt-3">
-                            <p class="lead">Filters</p>
+                            <p class="small text-black text-uppercase mb-3"><strong>Filters</strong></p>
                             <div class="button-container d-flex flex-column align-items-start justify-content-start">
-                                <button class="custom-button mb-2" type="button" data-bs-toggle="collapse" data-bs-target="#authors" aria-expanded="false" aria-controls="authors">
+                                <button class="table-button mb-2" type="button" data-bs-toggle="collapse" data-bs-target="#authors" aria-expanded="false" aria-controls="authors">
                                     <span>Authors<i class="fa-solid fa-chevron-down fa-sm ms-2"></i></span>
                                 </button>
                                 <div class="collapse multi-collapse my-3" id="authors">
@@ -101,13 +103,13 @@
                                     </div>
                                     {% endfor %}
                                 </div>
-                                <button class="custom-button" type="button" data-bs-toggle="collapse" data-bs-target="#genres" aria-expanded="false" aria-controls="genres">
+                                <button class="table-button" type="button" data-bs-toggle="collapse" data-bs-target="#genres" aria-expanded="false" aria-controls="genres">
                                     <span>Genres<i class="fa-solid fa-chevron-down fa-sm ms-2"></i></span>
                                 </button>
                                 <div class="collapse multi-collapse mt-3" id="genres">
                                     {% for genre in filtered_genres %}
                                     <div class="input-group d-flex align-items-center">
-                                        <input type="checkbox" id="{{ genre }}-genre" name="genre" value="{{ genre }}" {% if genre in genres_called %} checked = "checked" {% endif %}>
+                                        <input type="checkbox" id="{{ genre }}-genre" name="genre" value="{{ genre }}" {% if genre in genres_called %} checked = "checked" {% elif genre.name in book_genres %} checked = "checked" {% endif %}>
                                         <label class="ms-3" for="{{ genre }}-genre">
                                             {{ genre }}
                                             <span class="small ms-2">({{ genre.genre_count }} book{% if genre.genre_count > 1 %}s{% endif %})</span>
@@ -127,4 +129,9 @@
         <!-- /Sort By -->
     </div>
 </div>
+{% endblock %}
+
+{% block extra_js %}
+{{ block.super }}
+    <script src="{% static 'library/js/library.js' %}" type="module"></script>
 {% endblock %}

@@ -33,6 +33,7 @@ def library(request):
 
     if request.GET:
         if 'q' in request.GET:
+            print('by search')
             query = request.GET['q']
             if not query:
                 messages.error(
@@ -43,74 +44,76 @@ def library(request):
             queries = Q(title__icontains=query)
             books = books.filter(queries)
 
-        if 'author' and 'genre' in request.GET:
-            authors_ln = request.GET.getlist('author')
-            book_genres = request.GET.getlist('genre')
-            if not authors_ln and not book_genres:
-                messages.error(
-                    request,
-                    'You didn\'t select any filters.'
-                )
-                return redirect(reverse('library'))
-            else:
-                merged_query = Q()
-                for author, genre in product(authors_ln, book_genres):
-                    merged_conditions = Q(
-                        author__last_name__icontains=author
-                    ) & Q(
-                        genre__name__icontains=genre
+        if 'author' in request.GET:
+            if 'genre' in request.GET:
+                authors_ln = request.GET.getlist('author')
+                book_genres = request.GET.getlist('genre')
+                if not authors_ln and not book_genres:
+                    messages.error(
+                        request,
+                        'You didn\'t select any filters.'
                     )
-                    merged_query |= merged_conditions
-                books = books.filter(merged_query)
-                query_books_genres = [book.genre for book in books]
-                if not books:
+                    return redirect(reverse('library'))
+                else:
+                    merged_query = Q()
+                    for author, genre in product(authors_ln, book_genres):
+                        merged_conditions = Q(
+                            author__last_name__icontains=author
+                        ) & Q(
+                            genre__name__icontains=genre
+                        )
+                        merged_query |= merged_conditions
+                    books = books.filter(merged_query)
+                    query_books_genres = [book.genre for book in books]
+                    if not books:
+                        return render(
+                            request,
+                            'library/no_books.html'
+                        )
+                    context = {
+                        'both': True,
+                        'query_book_genres': query_books_genres,
+                        'books': books,
+                        'books': books,
+                        'filtered_genres': filtered_genres,
+                        'book_count_authors': book_count_authors,
+                        'search_term': query,
+                        'authors_ln': authors_ln,
+                        'book_genres': book_genres,
+                    }
                     return render(
                         request,
-                        'library/no_books.html'
+                        'library/library.html',
+                        context
                     )
-                context = {
-                    'both': True,
-                    'query_book_genres': query_books_genres,
-                    'books': books,
-                    'books': books,
-                    'filtered_genres': filtered_genres,
-                    'book_count_authors': book_count_authors,
-                    'search_term': query,
-                }
-                return render(
-                    request,
-                    'library/library.html',
-                    context
-                )
-        if 'author' in request.GET and 'genre' not in request.GET:
-            authors_ln = request.GET.getlist('author')
-            if not authors_ln:
-                messages.error(
-                    request,
-                    'Please select the authors you wish to filter by.'
-                )
-                return redirect(reverse('library'))
             else:
-                for item in authors_ln:
-                    # |= OR Query, searching author__last_name
-                    # enabled in admin.py.
-                    filter_query |= Q(author__last_name__icontains=item)
-                books = books.filter(filter_query)
-                context = {
-                    'author_search': True,
-                    'books': books,
-                    'book_count_authors': book_count_authors,
-                    'search_term': query,
-                    'authors_ln': authors_ln,
-                    'filtered_genres': filtered_genres,
-                }
-                return render(
-                    request,
-                    'library/library.html',
-                    context
-                )
-
-        if 'genre' in request.GET and 'author' not in request.GET:
+                authors_ln = request.GET.getlist('author')
+                if not authors_ln:
+                    messages.error(
+                        request,
+                        'Please select the authors you wish to filter by.'
+                    )
+                    return redirect(reverse('library'))
+                else:
+                    for item in authors_ln:
+                        # |= OR Query, searching author__last_name
+                        # enabled in admin.py.
+                        filter_query |= Q(author__last_name__icontains=item)
+                    books = books.filter(filter_query)
+                    context = {
+                        'author_search': True,
+                        'books': books,
+                        'book_count_authors': book_count_authors,
+                        'search_term': query,
+                        'authors_ln': authors_ln,
+                        'filtered_genres': filtered_genres,
+                    }
+                    return render(
+                        request,
+                        'library/library.html',
+                        context
+                    )
+        elif 'genre' in request.GET:
             book_genres = request.GET.getlist('genre')
             if not book_genres:
                 messages.error(
