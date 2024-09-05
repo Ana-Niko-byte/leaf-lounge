@@ -8,11 +8,12 @@
 
 {% block content %}
 <div class="container">
-    <div class="row d-flex justify-content-around align-items-start mt-3">
-        <img src="../../../static/images/1984_cover.jpg" alt="" style="width: 250px;">
-        <div class="book-content col-6">
-            <h3 class="mb-3"><strong>{{ book.title }}</strong></h3>
-            <div class="rating-container d-flex">
+    <!-- Book -->
+    <div class="row d-flex flex-column flex-md-row align-items-center align-items-md-start justify-content-start justify-content-md-between mt-3">
+        <img src="../../../static/images/1984_cover.jpg" alt="{{ book.title }} cover image" class="me-2" style="max-width: 250px;">
+        <div class="book-content col-lg-4 col-md-6 col-sm-11">
+            <h3 class="mt-3 mt-md-0 mb-3"><strong>{{ book.title }}</strong></h3>
+            <div class="rating-container d-flex flex-column flex-md-row">
                 <div id="rating-box" data-rating="{{ ratings }}" class="d-flex justify-content-start align-items-start">
                     <img src="../../../static/images/stars.png" alt="{{ book.title }} cover" width="120" id="loader-image">
                     <div id="rating-bar"></div>
@@ -34,14 +35,14 @@
                 <div>{{ book.author.bio }}</div>
             </div>
         </div>
-        <div class="form-container col-3">
-            <h5 class="mt-2"><strong>Add to Basket</strong></h5>
-            <form action="{% url 'add_to_basket' book.id %}" method="POST" class="form">
+        <div class="form-container col-lg-5 col-md-6 col-sm-11">
+            <h5 class="mt-5 mt-md-2 text-uppercase"><strong><small>Add to Basket</small></strong></h5>
+            <form action="{% url 'add_to_basket' book.id %}" method="post" class="form">
                 {% csrf_token %}
                 <div class="row d-flex">
                     <div class="my-3">
                         <p class="mb-1"><strong>Book Type:</strong></p>
-                        <select class="form-control" id='id_book_type' name="book_type">
+                        <select class="form-control book-type-form-control" id='id_book_type' name="book_type">
                             {% for value, type in types %}
                             <option value="{{ value }}">{{ type }}</option>
                             {% endfor %}
@@ -66,38 +67,52 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 d-flex justify-content-start mt-3">
-                        <button type="submit" class="btn btn-sm border me-3"><i class="fa-solid fa-basket-shopping me-3"></i>Add to Basket</button>
-                        <a href="{{ library_url }}" class="btn btn-sm border">
-                            <i class="fas fa-chevron-left me-2"></i>Return to Library
+                    <div class="col-12 d-flex justify-content-around justify-content-md-start align-items-start mt-3 mb-3 mb-md-0">
+                        <a href="{{ library_url }}" class="btn-link">
+                            <button class="custom-button">
+                                <i class="fas fa-chevron-left me-2"></i>Return to Library
+                            </button>
                         </a>
+                        <button type="submit" class="me-3 custom-button">
+                            <i class="fa-solid fa-basket-shopping me-2"></i>Add to Basket
+                        </button>
                     </div>
                     <input type="hidden" name="redirect_url" value="{{ request.path }}">
                 </div>
             </form>
         </div>
     </div>
+    <!-- /Book -->
 
-    {% if reviews %}
+    <!-- Reviews -->
+    {% if book_reviews %}
     <div class="row mt-3">
-        <h5 class="mb-3"><strong>Reviews</strong></h5>
+        <h5 class="mt-5 mt-md-2 mb-3 text-uppercase"><strong><small>Reviews</small></strong></h5>
         {% for review in book_reviews %}
-        <div class="review-container mb-4">
+        <div class="review-container col-lg-4 col-md-6 col-sm-12 bg-light shadow-sm rounded p-3 mb-4" data-review-rating="{{ review.rating }}" data-count="{{ forloop.counter }}">
             <div class="review-header">
-                <div class="review-heading d-flex m-0 p-0">
-                    <p>{{ review.heading }} Placeholder Title</p>
-                    <p class="my-0 ms-3">review rating {{ review.rating }}</p>
+                <div class="review-heading m-0 p-0">
+                    <h5 class="small"><strong>{{ review.title }}</strong></h5>
+                    <div class="rating-container d-flex flex-column flex-md-row my-3">
+                        <div class="d-flex justify-content-start align-items-start rating-box">
+                            <img src="../../../static/images/stars.png" alt="{{ book.title }} cover" width="120" class="loader-image">
+                            <div id="rating-bar-detail-{{ forloop.counter }}" class="rating-bar"></div>
+                        </div>
+                    </div>
                 </div>
-                <p class="small m-0 review-author">Reviewed by {{ review.author }} author on {{ review.time }}</p>
+                <p class="small m-0 review-author">Reviewed by {{ review.reviewer }}</p>
+                <p class="p-0 m-0 small">{{ review.reviewed_on }}</p>
             </div>
             <div class="review-body mt-3">
-                <p>This is a placeholder review. The actual review will be displayed here once it is available. It will provide insights and feedback about the product or service.</p>
+                <p>{{ review.comment }}</p>
             </div>
         </div>
         {% endfor %}
     </div>
     {% endif %}
+    <!-- /Reviews -->
     
+    <!-- More books from Author -->
     {% if author_books %}
     <div class="row more-by-author mt-5">
         <h5><strong>More By {{ book.author }}</strong></h5>
@@ -128,10 +143,12 @@
         {% endfor %}
     </div>
     {% endif %}
+    <!-- /More books from Author -->
 </div>
 {% endblock %}
 
 {% block extra_js %}
     {{ block.super }}
     <script src="{% static 'library/js/loader.js' %}" type="module"></script>
+    <script src="{% static 'library/js/book_detail.js' %}" type="module"></script>
 {% endblock %}

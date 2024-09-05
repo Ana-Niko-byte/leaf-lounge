@@ -189,6 +189,7 @@ def book_detail(request, slug):
         'types': types,
         'detail': True,
         'author_books': author_books,
+        'book_reviews': book_reviews,
     }
 
     return render(
