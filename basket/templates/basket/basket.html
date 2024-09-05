@@ -31,7 +31,7 @@
             <div class="col-lg-4 col-md-6 col-sm-12 bg-light p-4 rounded shadow-sm">
                 {% include 'basket/_summary.html' %}
                 <div class="d-flex flex-row align-items-start justify-content-between py-3">
-                    <a href="{{ checkout_url }}">
+                    <a href="{% if user.is_authenticated %}{{ checkout_url }}{% else %}{{ signin_url }}{% endif %}">
                         <button class="custom-button">
                             <i class="fas fa-lock me-2"></i>Secure Checkout
                         </button>
