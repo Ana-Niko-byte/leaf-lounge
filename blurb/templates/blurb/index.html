@@ -2,11 +2,11 @@
 {% load static %}
 
 {% block content %}
-<div class="jumbotron d-flex flex-column align-items-start justify-content-between">
+<div class="jumbotron flex-fill d-flex flex-column align-items-start justify-content-between">
     <div class="greeting-container">
         {% if not user.is_authenticated %}
-            <div class="welcome-container ps-5 pt-5">
-                <h1 class="typewriter h2 mt-3 mb-4">Join millions of readers on your next journey</h1>
+            <div class="welcome-container ps-4 ps-md-5 pt-4 pt-md-5">
+                <h1 class="typewriter typewriter-blurb h2 mt-3 mb-4">Join millions of readers on your next journey</h1>
                 <div class="secondary-container d-flex align-items-start justify-content-between">
                     <div class="motivation-container order-last me-5 pe-5">
                         <p class="mb-4">
@@ -22,47 +22,64 @@
                             <strong>Create a custom profile</strong> for your books, reviews, orders, and more!
                         </p>
                     </div>
-                    <a href="{{ signin_url }}" class="custom-button">
-                        <i class="fa-solid fa-arrow-right-to-bracket me-2"></i>Log In
-                    </a>
+                    <div class="button-container d-flex justify-content-start">
+                        <a href="{{ signin_url }}" class="btn-link">
+                            <button class="custom-button">
+                                <i class="fa-solid fa-arrow-right-to-bracket me-2"></i>Log In
+                            </button>
+                        </a>
+                    </div>
                 </div>
             </div>
         {% else %}
-            <div class="welcome-container ps-5 pt-5">
+            <div class="welcome-container ps-4 ps-md-5 pt-4 pt-md-5">
                 <p class="h4">Hey, {{ user }}!</p>
-                <h1 class="typewriter h2 mt-3 mb-4">Don't miss out on the chatter in your communities :)</h1>
-                <a href="{{ community_general_url }}" class="btn-link">
-                    <button class="custom-button mt-3">
-                        <i class="fa-solid fa-book-open me-2"></i>My Communities</a>
-                    </button>
-                </a>
+                <h1 class="typewriter typewriter-blurb h2 mt-3 mb-4">Don't miss out on the chatter in your communities :)</h1>
+                <div class="button-container d-flex justify-content-start">
+                    <a href="{{ community_general_url }}" class="btn-link">
+                        <button class="custom-button mt-1 mt-md-3">
+                            <i class="fa-solid fa-book-open me-2"></i>My Communities
+                        </button>
+                    </a>
+                </div>
             </div>
         {% endif %}
     </div>
-    <div class="form-container col-lg-3 col-md-6 col-sm-12 m-5">
-        <!-- Search Form -->
-        <form method="GET" action="{% url 'library' %}">
-            <p class="ps-2 small mb-2"><strong>Let's find a book :)</strong></p>
-            <div class="input-group input-group-search mb-lg-5">
-                <input class="form-control form-control-search search-input p-2 ps-3" type="text" name="q" placeholder="Book Name" autofocus>
-                <div class="input-group-append">
-                    <button class="form-control form-control-search search-button p-2" type="submit">
-                        <span class="icon">
-                            <i class="fas fa-search mx-2"></i>
-                        </span>
-                    </button>
+    <div class="search-form-container w-100 p-0 m-0">
+        <div class="m-5">
+            <!-- Search Form -->
+            <form method="GET" action="{% url 'library' %}">
+                <p class="ps-2 small mb-2"><strong>Let's find a book :)</strong></p>
+                <div class="input-group input-group-search mb-lg-5">
+                    <input class="form-control form-control-search search-input p-2 ps-3" type="text" name="q" placeholder="Book Name" autofocus>
+                    <div class="input-group-append">
+                        <button class="form-control form-control-search search-button p-2" type="submit">
+                            <span class="icon">
+                                <i class="fas fa-search mx-2"></i>
+                            </span>
+                        </button>
+                    </div>
                 </div>
-            </div>
-        </form>
-        <!-- /Search Form -->
-        <div class="socials">
-            <div class="socials mt-3">
-                <a class="mx-2 social-links" href="https://www.facebook.com/profile.php?id=61563390085042" target="_blank"><i class="fa-brands fa-lg fa-facebook"></i></a>
-                <a class="mx-2 social-links" href="https://github.com/Ana-Niko-byte/leaf-lounge" target="_blank"><i class="fa-brands fa-lg fa-github"></i></a>               
-                <a class="mx-2 social-links" href="https://www.linkedin.com/in/ana-nikolayenia-k/" target="_blank"><i class="fa-brands fa-lg fa-linkedin"></i></a>
-                <p class="small"><strong>Check out our medias!</strong></p>
+            </form>
+            <!-- /Search Form -->
+            <div class="socials">
+                <div class="socials mt-3">
+                    <a class="mx-2 social-links" href="https://www.facebook.com/profile.php?id=61563390085042" target="_blank"><i class="fa-brands fa-lg fa-facebook"></i></a>
+                    <a class="mx-2 social-links" href="https://github.com/Ana-Niko-byte/leaf-lounge" target="_blank"><i class="fa-brands fa-lg fa-github"></i></a>               
+                    <a class="mx-2 social-links" href="https://www.linkedin.com/in/ana-nikolayenia-k/" target="_blank"><i class="fa-brands fa-lg fa-linkedin"></i></a>
+                    <p class="small"><strong>Check out our medias!</strong></p>
+                </div>
             </div>
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block extra_js %}
+{{ block_super }}
+<script>
+    if (window.innerWidth < 450) {
+        document.querySelector("h1.typewriter-blurb").textContent = "Check your communities and messages! :)";
+    };
+</script>
 {% endblock %}

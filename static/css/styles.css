@@ -14,6 +14,8 @@
     --green-grey: #4c7273;
     --light-green-grey: #86b9b0;
     --light-blue: #d0d6d6;
+    --search-bg: rgb(250, 250, 250);
+    --book-outline: #041421;
 }
 /* /Colour Specification */
 
@@ -118,30 +120,67 @@ p{
     transition: all 0.4s ease;
 }
 
-.form-control{
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
+.form-control-search{
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
     caret-color: var(--dark-text-color);
+    border: 7px solid var(--book-outline);
+    border-right: none;
 }
 
-.search-button{
+.search-button, .search-button-nav{
     position: relative;
     z-index: 20;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
+    border: 7px solid var(--book-outline);
+    border-left: none;
+    border-right: none;
+}
+
+.search-button-nav{
+    border-radius: 3px;
+}
+
+.search-nav{
+    border-radius: 10px;
+}
+
+.search-button-nav, .search-nav{
+    border: 5px solid var(--book-outline);
+    background-color: var(--search-bg);
+}
+
+.search-button-nav, .search-nav{
+    border-right: none;
+}
+
+.search-button-nav{
+    border-left: none;
+}
+
+.search-nav:focus{
+    box-shadow: none;
+    border-color: var(--book-outline);
+    background-color: var(--search-bg);
+    transform: scale(1.05);
+}
+
+.search-nav:focus + .input-group-append .search-button-nav{
+    transform: scale(1.04);
 }
 
 .form-control-search:focus {
     box-shadow: 5px 5px 5px var(--dark-navy);
     transform: scale(1.08);
-    border: none;
+    border: 7px solid var(--book-outline);
 }
 
 .form-control-search:focus + .input-group-append .search-button{
     transform: scale(1.08);
-    border: none;
+    border: 7px solid var(--book-outline);
+    border-left: none;
+    border-right: none;
 }
 
 .custom-fields{
@@ -244,6 +283,14 @@ body {
     text-decoration: none;
     color: var(--white-text);
 }
+
+.search-form-container{
+    background-color: rgba(116, 116, 116, 0.5);
+}
+
+.search-input, .search-input-nav{
+    max-width: 400px;
+}
 /* /General */
 
 /* Toasts */
@@ -257,7 +304,11 @@ body {
 /* /Toasts */
 
 /* Media Queries */
-@media all and (min-width: 400px){
+@media all and (max-width: 450px){
+    .typewriter{
+        font-size: 0.95rem;
+        max-width: 350px;
+    }
 }
 
 @media all and (max-width: 1375px){
