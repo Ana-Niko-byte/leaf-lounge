@@ -10,7 +10,16 @@ from itertools import product
 
 def library(request):
     """
-    A view for displaying Book model instances in the library.
+    This view is responsible for retrieving and displaying all books in the
+    dedicated library page, along with filtering 'by author' and 'by genre',
+    and search functionality. This view handles the display of books in genre
+    carousels, and displays only those genres which have at least one book
+    associated with them. Each book is a link to a dedicated book detail page.
+
+    Users do not need to be registered to view the library.
+
+    Returns:
+    Renders: Renders the library page with the relevant context.
     """
     books = Book.objects.all()
     # __gt >> greater than.
@@ -38,7 +47,7 @@ def library(request):
             if not query:
                 messages.error(
                     request,
-                    'Please enter the title of the book you are searching for.'
+                    "Please enter the title of the book you are searching for."
                 )
                 return redirect(reverse('library'))
             queries = Q(title__icontains=query)
@@ -51,7 +60,7 @@ def library(request):
                 if not authors_ln and not book_genres:
                     messages.error(
                         request,
-                        'You didn\'t select any filters.'
+                        "You haven\'t select any filters."
                     )
                     return redirect(reverse('library'))
                 else:
@@ -91,7 +100,7 @@ def library(request):
                 if not authors_ln:
                     messages.error(
                         request,
-                        'Please select the authors you wish to filter by.'
+                        "Please select the authors you wish to filter by."
                     )
                     return redirect(reverse('library'))
                 else:
@@ -118,7 +127,7 @@ def library(request):
             if not book_genres:
                 messages.error(
                     request,
-                    'Please select the genres you wish to filter by.'
+                    "Please select the genres you wish to filter by."
                 )
                 return redirect(reverse('library'))
             else:
@@ -159,7 +168,9 @@ def library(request):
 
 def book_detail(request, slug):
     """
-    A view for displaying more information on each book.
+    This view handles the display of individual book details
+    in a dedicated detail page. If the requested book is not
+    found, the view displays a 404 page.
     """
     requested_book = get_object_or_404(Book, slug=slug)
     types = Book.COVERS

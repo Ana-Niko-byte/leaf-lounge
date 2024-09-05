@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponseRedirect
+from django.shortcuts import render, redirect, reverse
+from django.shortcuts import get_object_or_404, HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.db.models import Q
@@ -9,12 +10,22 @@ from checkout.models import Order, BookLineItem
 from .models import UserProfile
 from .forms import UserProfileForm, ReviewForm
 
-import logging
-logger = logging.getLogger("django")
 
 def my_profile(request):
     """
-    A view for accessing the user's profile.
+    This view handles user access and amendments to their user
+    profile. If the relevant user profile is not found, the view
+    displays a 404 page.
+
+    This view acceps a POST request method and validates the
+    UserProfile form for saving user information to their profile.
+    This streamlines the checkout process by pre-filling the checkout
+    form on the checkout page.
+
+    Returns:
+    Redirect: If POST, redirects to the user profile page.
+    Render: Renders the user's profile page with the appropriate
+    context object.
     """
     reader = get_object_or_404(UserProfile, user=request.user)
 
@@ -24,15 +35,27 @@ def my_profile(request):
             form.save()
             messages.success(
                 request,
-                'Your information has been saved!'
+                "Your information has been saved!"
             )
+        else:
+            messages.error(
+                request,
+                """
+                Please double check your information and try again.
+                If the error persists, please get in touch with our
+                dedicated customer support team to resolve
+                this issue.
+                Thank you for your understanding!
+                """
+            )
+        return redirect('user_profile')
 
     review_form = ReviewForm()
     form = UserProfileForm(instance=reader)
     book_orders = reader.orders.all()
     user_reviews = Review.objects.filter(reviewer=reader)
 
-    context={
+    context = {
         'reader': reader,
         'form': form,
         'review_form': review_form,
@@ -46,12 +69,15 @@ def my_profile(request):
         context
     )
 
+
 def my_books(request):
     """
-    A view for rendering the user's books.
+    This view handles the retrieval and display of the user's
+    registered (authored) and purchased books. If the relevant profile
+    isn't found, the view renders a 404 page.
     """
-    # Retrieve the user's profile (and user).
-    user_profile = UserProfile.objects.get(user=request.user)
+    # Retrieve the user's profile.
+    user_profile = get_object_or_404(UserProfile, user=request.user)
 
     # Check if the user is a registered author.
     is_author = Author.objects.get(user_profile=user_profile)
@@ -67,7 +93,7 @@ def my_books(request):
         # .append() appends quersets to list.
         user_booklineitems.extend(books)
 
-    # Iterate over booklineitems and access book directly (1 instance per book).
+    # Iterate over booklineitems and access book instances directly.
     user_books = []
     user_genres = []
     for item in user_booklineitems:
@@ -77,12 +103,14 @@ def my_books(request):
             user_genres.append(item.book.genre)
 
     if 'genre' in request.GET:
-        # .../my_books/?genre=crime
         user_genre = request.GET.getlist('genre')[0]
         if not user_genre:
             messages.error(
                 request,
-                'An error occurred. Please search for your book in the genre carousels below.'
+                """Something\'s gone wrong - please try again. If the error
+                persists, please get in touch with our dedicated customer
+                support team to resolve this issue.
+                Thank you for your understanding!"""
             )
             return redirect(reverse('user_books'))
         else:
@@ -102,13 +130,13 @@ def my_books(request):
                 context
             )
 
-    context={
+    context = {
         'user_books': user_books,
         'user_genres': user_genres,
         'is_author': is_author,
         'my_books': my_books,
     }
-    
+
     return render(
         request,
         'reader/profile_books.html',
@@ -132,19 +160,26 @@ def leave_review(request, id):
             review.save()
             messages.success(
                 request,
-                'Thank you for your review! It should be approved within 2 business days :)'
+                """Thank you for your review! It should be approved within 2
+                business days :)
+                You can view any pending reviews in 'My Profile', under the
+                'My Reviews' tab."""
             )
             return redirect('user_books')
         else:
             messages.error(
                 request,
-                'Please double check your fields and correct errors.'
+                """Please double check your information and correct any errors.
+                If the error persists, please get in touch with our dedicated
+                customer support team to resolve this issue.
+                Thank you for your understanding!
+                """
             )
             reviewForm = ReviewForm()
 
             context = {
-            'reviewForm': reviewForm,
-            'review_book': review_book,
+                'reviewForm': reviewForm,
+                'review_book': review_book,
             }
 
             return render(
@@ -169,26 +204,23 @@ def delete_review(request, id):
     """
     A view for users to delete their reviews.
     """
-    try:
-        review_delete = get_object_or_404(Review, id=id)
-        user_profile = UserProfile.objects.get(user=request.user)
-        # Redundant but just in case.
-        if review_delete.reviewer == user_profile:
-            review_delete.delete()
-            messages.success(
-                request,
-                """Your review for successfully deleted!"""
-            )
-        else:
-            messages.error(
-                request,
-                """You don't have permission to delete this review.
-                If this is a mistake, please contact our customer support team for assistance."""
-            )
-    except Exception as e:
-        print(f'An error occurred while trying to delete a review: {e}')
-    finally:
-        return HttpResponseRedirect(reverse('user_profile'))
+    review_delete = get_object_or_404(Review, id=id)
+    user_profile = UserProfile.objects.get(user=request.user)
+    # Redundant but just in case.
+    if review_delete.reviewer == user_profile:
+        review_delete.delete()
+        messages.success(
+            request,
+            """Your review for successfully deleted!"""
+        )
+    else:
+        messages.error(
+            request,
+            """You don't have permission to delete this review. If this is a
+            mistake, please contact our customer support team for
+            assistance."""
+        )
+    return HttpResponseRedirect(reverse('user_profile'))
 
 
 def update_review(request, id):
@@ -213,25 +245,33 @@ def update_review(request, id):
                         request,
                         """
                         Your review was successfully updated!
-                        Our administrators aim to approve it within 2 business days :)
+                        Our administrators aim to approve it within 2 business
+                        days :)
+                        You can view any pending reviews in 'My Profile',
+                        under the 'My Reviews' tab.
                         """
                     )
                     return HttpResponseRedirect(reverse('user_profile'))
                 else:
-                    # Add context to keep the review-slider open for form error rendering.
+                    # Add context to keep review-slider open for form errors.
                     review_form = ReviewForm()
                     messages.error(
                         request,
-                        """There is an error in your form.
-                        Please fix it or click cancel to finish editing."""
+                        """Please double check your information and correct any
+                        errors.
+                        If the error persists, please get in touch with our
+                        dedicated customer support team to resolve
+                        this issue.
+                        Thank you for your understanding!
+                        """
                     )
                     return HttpResponseRedirect(reverse('user_profile'))
-                    
             else:
                 messages.error(
                     request,
                     """You don't have permission to delete this review.
-                    If this is a mistake, please contact our customer support team for assistance."""
+                    If this is a mistake, please contact our customer support
+                    team for assistance."""
                 )
                 return HttpResponseRedirect(reverse('user_profile'))
         else:
@@ -239,5 +279,4 @@ def update_review(request, id):
             return HttpResponseRedirect(reverse('user_profile'))
 
     except Exception as e:
-        logger.error(f"An error occurred while trying to update a review: {e}")
         return HttpResponseRedirect(reverse('user_profile'))

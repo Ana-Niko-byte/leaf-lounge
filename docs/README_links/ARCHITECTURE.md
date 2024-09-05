@@ -7,105 +7,176 @@
       - `Contact`
       - `Library`
       - `My Communities` (if user is authenticated)
+      - `My Profile` (if user is authenticated)
+        - Billing Details
+        - Order History
+        - Communities (Community Page)
+        - User Reviews
+        - Help (Contact Page)
       - Basket
       - Authentication Links
         - `Sign Up` Button (if user is not authenthicated)
         - `Sign Out` Button (if user is authenticated)
   - Secondary Navigation Bar (visible only on some pages)
-    - Breadcrumb Trail
+    - Breadcrumb Trail (visible only inside a book detail view)
     - Links
       - `My Books`
-        - User Purchased Books
+        - Registered Books
+        - Purchased Books
           - Filter By Genre
-      - `My Profile`
-        - Billing Details
-        - Order History
-        - Communities (Link)
-        - User Reviews
-        - Help (Contact Page)
       - `Become an Author`
-    - Search Bar
+        - Form for registering as a Leaf Lounge author
+        - Form for registering books
+    - Search Field
 
 - Home Page
   - Jumbotron
     - Welcoming Header
-    - `Sign In` Button
-  
-___TBD___
+    - `Sign In` Button (if user is not authenticated)
+    - `My Communities` Button (if user is authenticated)
+    - Search Field
+    - Social Media Links
+      - Facebook Page
+      - Instagram (Personal)
+      - Linkedin (Personal)
 
 - Contact Page
-  - Contact POIs (visible on large screens only)
+  - Contact POIs
   - Contact Form
     - Validation
-    - Messages-to-email-address
+    - Messages-to-email
     - Success Message
 
 - Library
   - Secondary Navigation Bar
-  - All Books
-    - `Read More` Button
+    - `My Books` (as defined)
+    - `Become an Author` (as defined)
+  - Library Shelves
+    - Books (links) Filtered by Genre (default)
+  - Filtering Functionality
+    - Authors
+    - Genres
+    - Both
 
-- Book Detail Pages
-  - Book View
-  - `About the Author` Text
-  - `Book Blurb`
-  - Book Type Selection Field
-    - Softcover
-    - Hardcover
-    - Epub
-  - Quantity Input Field
+- Book Detail
+  - Breadcrumb Trail
+  - Book Cover
+  - Book Information
+    - `Book Title`
+    - `Dynamic Reviews`
+    - General author information
+    - `Book Blurb`
+    - `About the Author` Text
+  - `Add to Basket`
+    - Book Type Selection Field
+      - Softcover
+      - Hardcover
+      - Epub
+    - Quantity Input Field
+      - Buttons
+      - Validation
     - Buttons
-    - Validation
-  - Buttons
-    - `Return to Library`
-    - `Add to Basket`
-    - `Read Reviews`
+      - `Return to Library`
+      - `Add to Basket`
+  - `Reviews` (only visible if there are reviews)
 
 - Basket
   - Content Table
-    - Book
-    - Price
-    - Quantity
-      - `Update Quantity` Button
+    - `Book`
+    - `Price/Book`
+    - `Quantity`
+      - `Update` Button
         - Input Field
           - Delete Button
           - Increment Button
-        - `Cancel` Button
-        - `Save Changes` Button
+        - Buttons
+          - `Cancel`
+          - `Save Changes`
+    - `Subtotal`
+  - Summary Breakdown
     - Subtotal
-  - Total Summary + Breakdown
-  - `Keep Shopping` Button
-  - `Secure Checkout` Button
+    - Delivery
+    - Total
+    - Buttons
+      - `Secure Checkout`
+      - `Keep Shopping`
 
 - Checkout
   - Checkout Form
     - Stripe Card Input
-  - Order Summary
+    - T&Cs
+  - Order Summary (same as basket)
+
+- My Books
+  - `My Books`
+  - `My Purchases`
+    - `Leave a Review` Button
+  - Genre Buttons (filtering)
 
 - Reviews
   - Review Form
-- Community
+  - Dynamic Rating Fill
+  - Status Messages
+
+- Become an Author
+  - Author Registration Page
+    - `Find My Profile`
+  - Book Registration Page
+
+- My Profile
+  - `My Billing Details`
+    - Billing Details Form
+  - `My Order History`
+    - Order Instance Accordion
+      - Order Number
+      - Date Placed
+      - Books Ordered
+      - Subtotal
+      - Shipping
+      - Total
+      - Shipping Details (accordion)
+  - `My Communities` (Community Page)
+  - `My Reviews`
+    - All user reviews
+    - Buttons
+      - `Edit` (if not admin approved)
+      - `Delete`
+  - `Need Help?` (Contact Page)
+
+- Communities
+  - User Community Tabs (Links)
+
+- Community Detail
+  - Forums
+    - Forum Links
+  - Other Books in the Genre
+
+- Forum
+  - Forum Chat
+  - Forum Participants
 
 - Footer
+  - Newsletter
   - Links
     - `Home`
     - `Contact`
     - `Library`
     - `My Communities` (if user is authenticated)
-    - Basket
+    - `My Profile` (if user is authenticated)
     - Authentication Links
       - `Sign Up` Button (if user is not authenthicated)
       - `Sign Out` Button (if user is authenticated)
-  - Newsletter
   - Copyright
     - Dynamic Year
 
 >>> ## Models
-Below is a simple ERD for `moment`'s models.
+Below is an ERD for `Leaf Lounge`'s db models.
 
-![Leaf Lounge ERD]()
+![Leaf Lounge ERD](static/images/quickdbdiagrams.png)
 
 >> #### The Author Model (library app)
+Represents a Leaf Lounge author. Authors can register new books on the website, with new books being saved under their UserProfile.
+
 Fields: `user_profile`, `first_name`, `last_name`, `d_o_b`, `nationality`, `bio`
 
 1. `user_profile` : FK : Userprofile - represents the author's registered account. Authors without an account can be registered via admin only.
@@ -139,13 +210,16 @@ Fields: `user_profile`, `first_name`, `last_name`, `d_o_b`, `nationality`, `bio`
 
 ###### Methods:
 ```Python
-def __str__(): Returns : (str) : (author's first name) (author's last name)
+def __str__() -> str : (author's first name) (author's last name)
 ```
 
 ---
 
 >> #### The Genre Model (library app)
+Represents the breakdown of a book Genre. Each genre has an associated community, which is created at the same time as a new Genre is created. Each book registered on the app is given an associated Genre. After purchasing the book, the user gets access to the community associated with the genre.
+
 Fields: `name`, `community`
+
 1. `name` : CharField - represents the Genre name.
 - Constraints: 
   - _max-length_ : 50 characters.
@@ -162,13 +236,15 @@ Fields: `name`, `community`
 
 ###### Methods:
 ```Python
-def __str__(): Returns: (str) : (genre name)
+def __str__() -> str : (genre name)
 ```
 
 ---
 
 >> #### The Book Model (library app)
-Fields: `title`, `isbn`, `slug`, `author`, `genre`, `blurb`, `year_published`, `publisher`, `rating`, `type`, `date_added`, `price`, `image`
+Represents a Book on Leaf Lounge. Books can be uploaded directly by admin, or registered on the website by registered Leaf Lounge authors. After selecting (clicking) on a book on the 'Library' page, users are taken into a detail view of that book. All books have associated reviews, genres, authors, and communities.
+
+Fields: `title`, `isbn`, `slug`, `author`, `genre`, `blurb`, `year_published`, `publisher`, `type`, `date_added`, `price`, `image`
 
 1. `title` : CharField - represents the book title.
 - Constraints:
@@ -204,31 +280,25 @@ Fields: `title`, `isbn`, `slug`, `author`, `genre`, `blurb`, `year_published`, `
 - Constraints:
   - _max-length_ : 100 characters.
 
-9. `rating` : DecimalField - represents the book rating (out of 10).
-- Constraints:
-  - _decimal-places_ : 2.
-  - _MinValueValidator_ of 0.01 with message.
-  - _max-digits_ : 3.
+9. `type` : CharField - represents the book cover type.
 
-10. `type` : CharField - represents the book cover type.
-
-11. `date_added` : DateField - represents the date the book was added to the database.
+10. `date_added` : DateField - represents the date the book was added to the database.
 - Constraints:
   - Adds current date.
 
-12. `price` : DecimalField - represents the book price.
+11. `price` : DecimalField - represents the book price.
 - Constraints:
   - _decimal-places_ : 2.
   - _max-digits_ : 5.
 
-13. `image` : ImageField - represents the book cover image.
+12. `image` : ImageField - represents the book cover image.
 - Constraints:
   - Can be _blank_.
   - Can be _null_.
 
 ###### Methods:
 ```Python
-def __str__(): Returns "(book title)" by (book author).
+def __str__() -> str : "(book title)" by (book author).
 ```
 
 ```Python
@@ -251,7 +321,9 @@ Orders by earliest date added.
 ---
 
 >> #### The Review Model (library app)
-Fields: `reviewer`, `book`, `rating`, `comment`, `reviewed_on`, `approved`
+Represents a book review. Reviews can be left by registered users, who have purchased at least one book. The link for this is under the 'My Books' tab in the secondary navigation bar. Reviews can be edited prior to approval, and deleted at any stage. Approved reviews are displayed on the relevant book detail page. Reviews are displayed as star fillings on all relevant pages.
+
+Fields: `reviewer`, `book`, `title`, `rating`, `comment`, `reviewed_on`, `approved`
 
 1. reviewer : FK : User - represents the user leaving the review.
 - Constraints:
@@ -263,33 +335,41 @@ Fields: `reviewer`, `book`, `rating`, `comment`, `reviewed_on`, `approved`
   - _on-delete_: _models.CASCADE_.
   - _related-name_: _'reviewed-book'_.
 
-3. rating : IntegerField - represents the book rating out of 10.
+3. title : CharField - represents the review title.
+- Constraints:
+  - _max-length_ : 80 characters.
+  - can not be _null_.
+  - can not be _blank_.
+
+4. rating : IntegerField - represents the book rating out of 10.
 - Constraints:
   - _MinValueValidator_ : 1
   - _MaxValueValidator_ : 10
   - can not be _null_.
   - can not be _blank_.
 
-4. comment : TextField - represents the user's verbal book rating.
+5. comment : TextField - represents the user's verbal book rating.
 - Constraints:
   - can not be _null_.
   - can not be _blank_.
   - _max-length_ : 500 characters.
 
-5. reviewed_on : DateField - represents the date the review was left on.
+6. reviewed_on : DateField - represents the date the review was left on.
 - Constraints:
   - can not be _null_.
   - can not be _blank_.
   - _auto-now-add_ : `True`
 
-6. approved : BooleanField - represents whether the comment is admin approved.
+7. approved : BooleanField - represents whether the comment is admin approved.
 - Constraints:
   - default : `False`
 
 ---
 
 >> #### The Order Model (checkout app)
-Fields: `order_number`, `user_profile`, `full_name`, `email`, `phone_number`, `country`, `postcode`, `town_city`, `street_1`, `street_2`, `county`, `date`, `delivery_cost`, `order_total`, `grand_total`
+Represents a user's book Order. Orders are placed via the checkout page. Order histories can be viewed under the 'My Profile' tab.
+
+Fields: `order_number`, `user_profile`, `full_name`, `email`, `phone_number`, `country`, `postcode`, `town_city`, `street_1`, `street_2`, `county`, `date`, `delivery_cost`, `order_total`, `grand_total`, `original_basket`, `stripe_pid`
 
 1. `order_number` : CharField - represents the auto-generated uuid order number.
 - Constraints:
@@ -383,6 +463,19 @@ Fields: `order_number`, `user_profile`, `full_name`, `email`, `phone_number`, `c
   - can not be _null_.
   - _default_: 0.
 
+16. `original_basket` : TextField - represents the order basket's original basket.
+- Constraints:
+  - can not be _null_.
+  - can not be _blank_.
+  - _default_: ''.
+
+17. `stripe_pid` : CharField - represents the Stripe order pid.
+- Constraints:
+  - _max-length_ : 254 characters.
+  - can not be _null_.
+  - can not be _blank_.
+  - _default_: ''.
+
 ###### Methods:
 ```Python
 def _generate_uuid_order_number(): Generates a random, unique order number using UUID.
@@ -408,12 +501,14 @@ def update_order_total():
 ```
 
 ```Python
-def __str__():` Returns : (int) : order number.
+def __str__() -> int : order number.
 ```
 
 ---
 
 >> #### The BookLineItem Model (checkout app)
+Represents a book lineitem for each book inside an order.
+
 Fields: `order`, `book`, `type`, `quantity`, `book_order_cost`
 
 1. `order` : FK : Order - represents the book order.
@@ -455,13 +550,15 @@ def save(): Assigns the total lineitem cost based on price/unit and quantity if 
 ```
 
 ```Python
-def __str__(): Returns : (str) : 'ISBN: (book ISBN), order: (order number uuid)'.
+def __str__() -> str : 'ISBN: (book ISBN), order: (order number uuid)'.
 ```
 
 ---
 
 >> #### The Community Model (community app)
-Fields: `name`, `description`
+Represents a genre community where users can access forums, chats and messages. Users are granted access to the community matching the book genre after making purchasing a book in that genre.
+
+Fields: `name`, `description`, `slug`, `image`
 
 1. `name` : CharField - represents the name of the community. 
 - Constraints: 
@@ -470,17 +567,108 @@ Fields: `name`, `description`
   - can not be _blank_.
 
 2. `description` : TextField - represents the community intro/description.
+- Constraints: 
   - _max-length_ : 500 characters.
   - can be _null_.
   - can be _blank_.
 
+3. `slug` : SlugField - represents the community slug.
+- Constraints:
+  - can be _blank_.
+  - can not be _null_.
+
+4. `image` : ImageField - represents the community header image.
+- Constraints: 
+  - can be _null_.
+  - can be _blank_.
+
 ```Python
-  def __str__(): Returns : (str) (community name)
+def __str__() -> str : (community name)
+```
+
+---
+
+
+>> #### The Forum Model (community app)
+Represents a community forum. Each community can have multiple forums. All users inside the community have full access to forums in the community, and users may create new forums inside the community for chats and networking.
+
+Fields: `name`, `slug`, `date_created`, `community`
+
+`name` : CharField - represents the forum name.
+- Constraints:
+  - _max-length_ : 50 characters.
+  - can not be _null_.
+  - can not be _blank_.
+
+`slug` : SlugField - represents the forum slug as name-community-id.
+- Constraints:
+  - _max-length_ : 50 characters.
+  - can be _null_.
+  - can be _blank_.
+
+`date_created` : DateField - represents the date the forum was created on.
+- Constraints:
+  - _auto-now-add_ : `True`
+
+`community` : FK : Community - represents the forum community.
+- Constraints:
+  - _on-delete_: _models.CASCADE_.
+  - _related-name_: _'community-forums'_.
+
+###### Methods:
+```Python
+def __str__(): Returns -> (str) (forum name)
+```
+
+```Python
+def save():
+  try:
+    Saves the model.
+    Two-step saves a custom url to the (self.slug) parameter as (forum title)-(forum community)-(forum id).
+  except `Forum.DoesNotExist`:
+    Catches the `DoesNotExist` error and saves the model as a new instance.
+```
+```Python
+def get_absolute_url(): Returns -> the forum detail page with (self.slug) as url argument.
+```
+
+---
+
+>> #### The Message Model (community app)
+Represents a message within a community forum. Messages can be viewed by all members of the forum, but can only be deleted by the user who sent the message.
+
+Fields: `forum`, `content`, `messenger`, `date_sent`
+
+1. `forum`: FK : Forum - represents the forum to which the message belongs.
+- Constraints:
+  - _on-delete_: _models.CASCADE_.
+  - _related-name_: _'forum-messages'_.
+
+2. `content` : CharField - represents the message content.
+- Constraints:
+  - _max-length_ : 1000 characters.
+  - can not be _null_.
+  - can not be _blank_.
+
+3. `messenger` : FK : UserProfile - represents the user author of the message.
+- Constraints:
+  - _on-delete_: _models.CASCADE_.
+  - _related-name_: _'user-messenger'_. 
+
+4. `date_sent` : DateField - represents the date the message was sent on.
+- Constraints:
+  - _auto-now-add_ : `True`
+
+###### Methods:
+```Python
+def __str__() -> str : "Message in '(forum name)'"
 ```
 
 ---
 
 >> #### The UserProfile Model (reader app)
+A user profile for maintaining default delivery information, order history, and saved books.
+
 Fields: `user`, `default_street_1`, `default_street_2`, `default_town_city`, `default_county`, `default_postcode`, `default_country`
 
 
@@ -532,7 +720,5 @@ Fields: `user`, `default_street_1`, `default_street_2`, `default_town_city`, `de
 
 ###### Methods:
 ```Python
-def __str__() : Returns : (str) : (user's username)
+def __str__() -> str : (user's username)
 ```
-
->>> ## Views & Templates

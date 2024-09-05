@@ -7,6 +7,6 @@ class ReaderConfig(AppConfig):
 
     def ready(self):
         """
-        Imports signals.
+        Imports the relevant signals.
         """
         import reader.signals

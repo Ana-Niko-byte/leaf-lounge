@@ -14,7 +14,10 @@ SUBJECTS = (
 
 class ContactForm(forms.Form):
     """
-    A Contact form model for the Contact Page.
+    A form for users to send queries to the Leaf Lounge team.
+
+    This form is accessible under the `Contact` tab in the main navigation bar,
+    as well as under the 'My Profile' > 'Need Help?' tabs.
 
     Fields:
     name : textinput - the sender's name
@@ -25,20 +28,30 @@ class ContactForm(forms.Form):
     name = forms.CharField(
         label='',
         widget=forms.TextInput(
-            attrs={'placeholder': 'Emily Brontë', 'autofocus' : True, 'class' : 'custom-fields'}
+            attrs={
+                'placeholder': 'Emily Brontë',
+                'autofocus': True,
+                'class': 'custom-fields'
+            }
         )
     )
     email = forms.EmailField(
         label='',
         widget=forms.EmailInput(
-            attrs={'placeholder': 'e.bronte@example.com', 'class' : 'custom-fields'}
+            attrs={
+                'placeholder': 'e.bronte@example.com',
+                'class': 'custom-fields'
+            }
         )
     )
     subject = forms.ChoiceField(
         label='',
         choices=SUBJECTS,
         widget=forms.Select(
-            attrs={'class': 'form-control', 'class' : 'custom-fields'}
+            attrs={
+                'class': 'form-control',
+                'class': 'custom-fields'
+            }
         )
     )
     message = forms.CharField(
@@ -46,7 +59,8 @@ class ContactForm(forms.Form):
         max_length=400,
         widget=forms.Textarea(
             attrs={
-                'placeholder': '''Your life story in 400 characters or less...''', 'class' : 'custom-fields-large'
+                'placeholder': '''Your query in 400 characters or less...''',
+                'class': 'custom-fields-large'
             }
         )
     )

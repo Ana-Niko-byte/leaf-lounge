@@ -7,7 +7,23 @@ from library.models import Book
 
 
 def bag_content(request):
+    """
+    Site-wide context variables for controlling the display and behaviour of
+    elements based on the user's basket contents.
 
+    Context:
+    'books_in_basket' (list) : a list of all the books in a user's basket.
+    'total': (int) : the total cost of a book instance * book amount.
+    'book_count': (int) : the amount of a specific book instance.
+    'books_total': (int) : the total cost including book prices and delivery if
+    applicable.
+    'delivery': (int) : The delivery cost based on the total.
+    'FDT': (int) : FREE DELIVERY THRESHOLD (30).
+    'free_delivery_threshold': (int) : how much more the user needs to
+    accumulate in total for the FREE DELIVERY THRESHOLD.
+
+    Returns: context object.
+    """
     FDT = settings.FREE_DELIVERY_THRESHOLD
     basket = request.session.get('basket', {})
 
@@ -57,7 +73,7 @@ def bag_content(request):
         'book_count': book_count,
         'books_total': books_total,
         'delivery': delivery,
-        'FDT' : FDT,
+        'FDT': FDT,
         'free_delivery_threshold': free_delivery_delta
     }
 

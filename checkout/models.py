@@ -11,7 +11,8 @@ import uuid
 
 class Order(models.Model):
     """
-    A class representing a book order.
+    Represents a user's book Order. Orders are placed via the checkout page.
+    Order histories can be viewed under the 'My Profile' tab.
 
     Fields:
     order_number : CharField - the auto-generated uuid order number.
@@ -30,6 +31,8 @@ class Order(models.Model):
     order_total : DecimalField - the total associated with the price/book
     and quantity.
     grand_total : DecimalField - order_total + delivery_cost.
+    original_basket : TextField - the order basket's original basket.
+    stripe_pid : CharField - the Stripe order pid.
 
     Methods:
     def _generate_uuid_order_number():
@@ -52,8 +55,7 @@ class Order(models.Model):
         If below, assigns 10% of 'order_total' value as 'delivery_cost'.
         Assigns 'grand_total' the sum of 'order_total' + 'delivery_cost'.
 
-    def __str__():
-        Returns : (int) : order number.
+    def __str__() -> int : order number.
     """
 
     order_number = models.CharField(
@@ -61,7 +63,6 @@ class Order(models.Model):
         null=False,
         editable=False
     )
-    # Essentially implements a ManyToMany Relationship between Book and User.
     user_profile = models.ForeignKey(
         UserProfile,
         on_delete=models.SET_NULL,
@@ -153,7 +154,7 @@ class Order(models.Model):
 
     def save(self, *args, **kwargs):
         """
-        Assign an order number to each Order if one not assigned already.
+        Assigns an order number to each Order if one is not already assigned.
         """
         try:
             if not self.order_number:
@@ -164,8 +165,8 @@ class Order(models.Model):
 
     def update_order_total(self):
         """
-        Updates 'order_total', 'delivery_cost', and 'grand_total'
-        and saves the model.
+        Updates the 'order_total', 'delivery_cost', and 'grand_total' for each
+        order and saves the instance.
         """
         SDT = settings.STANDARD_DELIVERY_PERCENTAGE
         FDT = settings.FREE_DELIVERY_THRESHOLD
@@ -184,14 +185,14 @@ class Order(models.Model):
 
     def __str__(self):
         """
-        Returns : (int) : order number.
+        Returns -> int : order number.
         """
         return self.order_number
 
 
 class BookLineItem(models.Model):
     """
-    A class representing a book line item.
+    Represents a book lineitem for each book inside an order.
 
     Fields:
     order : FK : Order - the book order.
@@ -205,8 +206,7 @@ class BookLineItem(models.Model):
         Assigns the total lineitem cost based on price/unit and quantity if not
         already assigned.
 
-    def __str__():
-        Returns : (str) : 'ISBN: (book ISBN), order: (order number uuid)'.
+    def __str__() -> str : 'ISBN: (book ISBN), order: (order number uuid)'.
     """
     order = models.ForeignKey(
         Order,
@@ -219,7 +219,7 @@ class BookLineItem(models.Model):
         Book,
         null=False,
         blank=False,
-        on_delete=models.CASCADE, 
+        on_delete=models.CASCADE,
         related_name='bookdetails'
     )
     type = models.CharField(
@@ -245,12 +245,13 @@ class BookLineItem(models.Model):
         Assigns the total lineitem cost based on price/unit and quantity
         if not already assigned.
         """
+        # Line breaks PEP8 standards but no way to shorten it without renaming.
         if not self.book_order_cost or self.book_order_cost != self.book.price * self.quantity:
             self.book_order_cost = self.book.price * self.quantity
         super(BookLineItem, self).save(*args, **kwargs)
 
     def __str__(self):
         """
-        Returns : (str) : 'ISBN: (book ISBN), order: (order number uuid)'.
+        Returns -> str : 'ISBN: (book ISBN), order: (order number uuid)'.
         """
         return f'ISBN : {self.book.isbn}, order: {self.order.order_number}'

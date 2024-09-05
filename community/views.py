@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponseRedirect
+from django.shortcuts import render, redirect, reverse
+from django.shortcuts import get_object_or_404, HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
@@ -15,7 +16,19 @@ import datetime
 @login_required
 def community_general(request):
     """
-    A view for displaying each community.
+    This view retrieves and displays a user's communities. Each community in
+    this view links to a dedicated community view.
+
+    The user's communities' access is defined by the genres from previously
+    purchased booklinitems. If there are no booklineitems in the user's order
+    history, the view renders the same template with a dedicated context and
+    relevant, relevant information header, and redirection links.
+
+    Returns:
+    Render: If there are booklineitems, renders the communities page with the
+    relevant list of communities for iteration within the template.
+    Render: If there are no booklineitems, renders the communities page with a
+    template variable.
     """
     user_profile = UserProfile.objects.get(user=request.user)
     user_orders = Order.objects.filter(user_profile=user_profile)
@@ -38,9 +51,13 @@ def community_general(request):
 
     # Handle registered user with no book orders.
     if not user_booklineitems:
+        context = {
+            'no_user_booklineitems': True
+        }
         return render(
             request,
-            'community/no_communities.html',
+            'community/community.html',
+            context
         )
     else:
         context = {
@@ -57,12 +74,40 @@ def community_general(request):
 @login_required
 def community(request, slug):
     """
-    A view for each community.
+    This view is responsible for retrieving and displaying the details of a
+    specific community, including related forums and books within this genre,
+    and allows users to create new forums within that community. If the
+    appropriate community is not found, the view displays a 404 page.
+
+    This view retrieves and displays the details of a community based on the
+    provided slug. Users may create new forums within the community, or
+    participate in the existing. If the request method is POST, the view
+    processes the submitted forum creation form and, if valid, saves the forum
+    to the community. Following successful forum creation, the user is
+    redirected inside the new forum. Error messages are displayed if the forum
+    creation fails or if any form fields are invalid.
+
+    Only authenticated users can access this view, as indicated by the
+    @login_required decorator.
+
+    Additional Parameters:
+    slug (str): The slug of the community to be retrieved and displayed.
+
+    Returns:
+    Renders: Renders the community detail page.
+    Redirect: Following successful forum creation, redirects to the forum
+    detail view with a success message.
+    Redirect: Following unsuccessful forum creation, redirects to the community
+    detail view with an informative error message.
+
+    Decorators:
+    @login_required: Ensures only authenticated users can access the view.
     """
-    community = Community.objects.get(slug=slug)
+    community = get_object_or_404(Community, slug=slug)
 
     # Other Books in this Genre.
-    current_genre = Genre.objects.get(community=community)
+    current_genre = get_object_or_404(Genre, community=community)
+    # Add .exclude to filter out books user already owns?
     books_in_genre = Book.objects.filter(genre=current_genre)
     forums = Forum.objects.filter(community=community)
 
@@ -78,22 +123,24 @@ def community(request, slug):
                 forum.save()
                 messages.success(
                     request,
-                    'Successfully created your forum!'
+                    "Successfully created your forum!"
                 )
-                return redirect(reverse('community', args=[slug]))
+                return redirect(reverse('forum_detail', args=[forum.slug]))
             except Forum.community.RelatedObjectDoesNotExist:
                 messages.error(
                     request,
-                    '''An error occurred while trying to create your
-                    discussion. Please try again in a later while or contact
-                    our customer service department.\n
-                    We apologise for any inconvenience caused.'''
+                    """An error occurred while trying to create your
+                    discussion. If the error persists, please get in
+                    touch with our dedicated customer support team to
+                    resolve this issue.
+                    Thank you for your understanding!
+                    """
                 )
                 return redirect(reverse('community', args=[slug]))
         else:
             messages.error(
                 request,
-                'Please enter a valid name for your discussion.'
+                "Please enter a valid name for your forum."
             )
     forumForm = ForumForm()
 
@@ -115,9 +162,23 @@ def community(request, slug):
 
 def forum_detail(request, slug):
     """
-    A dedicated view for each forum.
+    This view is responsible for retrieving and displaying the details of a
+    user-created community forum, including the message form, and active
+    participants. If the appropriate forum is not found, the view displays a
+    404 page.
+
+    If the request method is POST, the view processes the submitted message
+    form, and, if valid, redirects the user to the form and saves the message
+    to the forum. Error messages are displayed if the message does not send.
+
+    Additional Parameters:
+    slug (str): The slug of the forum to be retrieved and displayed.
+
+    Returns:
+    HttpResponseRedirect: Redirects to the forum detail page.
+    Render: Renders the forum detail page.
     """
-    forum = Forum.objects.get(slug=slug)
+    forum = get_object_or_404(Forum, slug=slug)
     user_profile = UserProfile.objects.get(user=request.user)
     forum_messages = Message.objects.filter(forum=forum)
     todays_date = datetime.date.today()
@@ -128,34 +189,55 @@ def forum_detail(request, slug):
             forum_participants.append(message.messenger)
 
     if request.method == 'POST':
-        messageForm = MessageForm(data=request.POST)
-        if messageForm.is_valid():
+        message_form = MessageForm(data=request.POST)
+        if message_form.is_valid():
             try:
-                message = messageForm.save(commit=False)
+                message = message_form.save(commit=False)
                 message.forum = forum
                 message.messenger = user_profile
                 message.save()
-                messageForm.save()
+                message_form.save()
                 messages.success(
                     request,
-                    'Your message has been sent!'
+                    "Your message has been sent!"
                 )
                 # PRG Pattern.
-                return HttpResponseRedirect(reverse('forum_detail', args=[slug]))
+                return HttpResponseRedirect(
+                    reverse('forum_detail', args=[slug])
+                )
             except Exception as e:
-                print(f'an error occurred: {e}')
                 messages.error(
                     request,
-                    'An error has occurred.'
+                    """An error occurred while trying to send your message.
+                    If the error persists, please get in touch with our
+                    dedicated customer support team to resolve
+                    this issue.
+                    Thank you for your understanding!"""
                 )
-    messageForm = MessageForm()
+                return HttpResponseRedirect(
+                    reverse('forum_detail', args=[slug])
+                )
+        else:
+            messages.error(
+                request,
+                """
+                Please double check your message for errors and try again.
+                If the error persists, please get in touch with our
+                dedicated customer support team to resolve this issue.
+                Thank you for your understanding!
+                """
+            )
+            return HttpResponseRedirect(
+                reverse('forum_detail', args=[slug])
+            )
+    message_form = MessageForm()
 
     context = {
         'forum': forum,
         'user_profile': user_profile,
         'forum_participants': forum_participants,
         'forum_messages': forum_messages,
-        'messageForm': messageForm,
+        'message_form': message_form,
         'todays_date': todays_date
     }
     return render(
@@ -167,24 +249,60 @@ def forum_detail(request, slug):
 
 def delete_message(request, slug, id):
     """
-    A view for deleting messages.
+    This view handles the deletion of messages from community forums.
+
+    Prior to deleting the message, the view checks whether the
+    message author id matches that of the user requesting deletion.
+    If the IDs match, the message is deleted from the forum and database,
+    and the user is redirected back to the forum_detail page with an
+    informative success message. If not, the user is redirected to the
+    forum_detail with an error message.
     """
-    try:
-        message_delete = Message.objects.get(id=id)
-        if message_delete.messenger.id == request.user.id:
-            message_delete.delete()
-            messages.success(
-                request,
-                'Your message was successfully deleted!'
-            )
-    except Exception as e:
-        print(f'{e}')
+    message_delete = get_object_or_404(Message, id=id)
+    if message_delete.messenger.id == request.user.id:
+        message_delete.delete()
+        messages.success(
+            request,
+            "Your message was successfully deleted!"
+        )
+    else:
+        messages.error(
+            request,
+            """You do not have permission to delete this message.
+            If this is a mistake, please contact our dedicated support team
+            to get this issue resolved."""
+        )
     return HttpResponseRedirect(reverse('forum_detail', args=[slug]))
 
 
 def create_author(request):
     """
-    A view for users to register themselves as authors.
+    This view is responsible for allowing users to register as Leaf
+    Lounge authors. After registration, users are redirected to the
+    book registration page.
+
+    The view checks for a UserProfile belonging to the user. If the
+    profile is found, it associates the author information with their
+    existing profile; otherwise, it creates a new profile. Author
+    registry needs to be completed once only, and users wishing to
+    register several books can click 'find my profile' at the top of
+    the author_form displayed in the view.
+
+    This view handles logic for the author's age during registery.
+    If the user's age is outside the allowed range (under 16 or
+    over 99), an appropriate error message is displayed, and
+    they are redirected back to the homepage. The form is
+    re-rendered if there are any validation errors or if
+    the request is a GET request.
+
+    POST Data:
+    Fields for author details: first_name, last_name, d_o_b, nationality,
+    and bio.
+
+    Returns:
+    HttpResponse: Renders the author registration page with the author_form.
+    HttpResponseRedirect: Redirects to the book registration page
+    upon successful registration or back to the homepage on age restriction.
     """
     if request.user.username != 'AnonymousUser':
         # Check for existing profiles before creating new.
@@ -217,12 +335,12 @@ def create_author(request):
                 if profile_exists:
                     print('EXISTS')
                     Author.objects.create(
-                    user_profile=user,
-                    first_name=f'{firstname}',
-                    last_name=f'{lastname}',
-                    d_o_b=f'{d_o_b}',
-                    nationality=f'{nationality}',
-                    bio=f'{bio}'
+                        user_profile=user,
+                        first_name=f'{firstname}',
+                        last_name=f'{lastname}',
+                        d_o_b=f'{d_o_b}',
+                        nationality=f'{nationality}',
+                        bio=f'{bio}',
                     )
                 else:
                     print('trying to create new profile')
@@ -247,14 +365,20 @@ def create_author(request):
             elif age > 100:
                 messages.error(
                     request,
-                    """We're sorry but our policy does not allow persons over 99 to register! :(
-                    If this is a mistake, please contact our team directly to verify
-                    your attempt and we'll get you set up :)\n We apologise for any inconvenience caused."""
+                    """Our policy does not allow persons over 99 to register!
+                    :(
+                    If this is a mistake, please contact our team directly to
+                    verify your attempt and we'll get you set up :)\n We
+                    apologise for any inconvenience caused."""
                 )
             else:
                 messages.error(
                     request,
-                    """We're sorry but our policy does not allow persons under 16 to register! :("""
+                    """Our policy does not allow persons under 16 to register!
+                    :(
+                    If this is a mistake, please contact our team directly to
+                    verify your attempt and we'll get you set up :)\n We
+                    apologise for any inconvenience caused."""
                 )
             return redirect('home')
     else:
@@ -272,21 +396,39 @@ def create_author(request):
 
 def upload_book(request):
     """
-    A view for registered authors to upload books.
+    This view handles the book registration process performed
+    by registered Leaf Lounge authors. Following successful
+    registration, the user is redirected to their books page,
+    where they may view the new addition. If the registration
+    is unsuccessful, the user is redirected home with an error
+    message.
     """
     profile = UserProfile.objects.get(user=request.user)
-    author = Author.objects.get(user_profile=profile)
+    author = get_object_or_404(Author, user_profile=profile)
     if request.method == 'POST':
         book_form = BookForm(data=request.POST)
         if book_form.is_valid():
             book = book_form.save(commit=False)
-            book.author=author
+            book.author = author
             book.save()
+            messages.success(
+                request,
+                """Your book has been registered successfully!
+                You may view it under 'My Books' :)"""
+            )
+            return redirect('user_books')
         else:
-            print('INVALID')
+            messages.error(
+                request,
+                """We are unable to register your book at this
+                time. If the error persists, please get in touch
+                with our dedicated customer support team to resolve
+                this issue.
+                Thank you for your understanding!"""
+            )
+            return redirect('home')
     else:
-        print('NOT POST')
-    book_form = BookForm()
+        book_form = BookForm()
 
     context = {
         'bookForm': book_form,

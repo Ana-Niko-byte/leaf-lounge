@@ -19,8 +19,7 @@ class UserProfile(models.Model):
     default_country : Field - the saved default country address.
 
     Methods:
-    def __str__() : Returns : (str) : (user's username)
-
+    def __str__() -> str : (user's username).
     """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     default_phone_number = models.CharField(
@@ -60,4 +59,7 @@ class UserProfile(models.Model):
     )
 
     def __str__(self):
+        """
+        Returns -> str : (user's username).
+        """
         return f'{self.user.username}'

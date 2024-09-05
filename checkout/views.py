@@ -19,8 +19,31 @@ import json
 @require_POST
 def cache_checkout_data(request):
     """
-    A view for updating Stripe PaymentIntent Metadata to handle
-    'save_info'.
+    Handles the caching of checkout data in the Stripe PaymentIntent metadata.
+
+    This view is responsible for updating the metadata of a Stripe
+    PaymentIntent with information from the user's session and POST data.
+    It extracts the PaymentIntent ID from the client secret and updates the
+    PaymentIntent with details about the user's basket. Additionally, it checks
+    whether the user has opted to save their billing information to their
+    profile under the 'My Profile' tab for faster future checkouts.
+
+    The view requires a POST request and will return a 200 HTTP status code if
+    the metadata update is successful. If an error occurs during the process,
+    the view will display an error message to the user and return a 400 HTTP
+    status code.
+
+    POST Data:
+    client_secret (str): The client secret from the Stripe PaymentIntent.
+    save_info (str, optional): A boolean checkbox indicating the user's intent
+    to save their billing information to their profile.
+
+    Returns:
+    HttpResponse: An HTTP response with a status code of 200 if the update is
+    successful, or 400 with an error message if an exception occurs.
+
+    Decorators:
+    @require_POST: Ensures that the view only accepts POST requests.
     """
     try:
         pid = request.POST.get('client_secret').split('_secret')[0]
@@ -34,17 +57,47 @@ def cache_checkout_data(request):
     except Exception as e:
         messages.error(
             request,
-            '''
+            """
             Sorry, your payment cannot be processed at this time.
-            Please try again later or contact our customer support team.
-            '''
+            Please try again - If the error persists, please get
+            in touch with our dedicated customer support team to
+            resolve this issue.
+            Thank you for your understanding!
+            """
         )
         return HttpResponse(content=e, status=400)
 
 
 def checkout(request):
     """
-    A view for users to checkout and proceed with payment.
+    Handles the checkout process for users, including collecting order details,
+    processing payment, and saving order information.
+
+    This view manages the checkout workflow for users who wish to place a book
+    order. It displays a checkout form and processes form submissions.
+
+    A GET request will initialise a Stripe payment intent, and display the
+    checkout form with pre-filled user information if the user is authenticated
+    and has opted to save their billing information to their profile in a
+    previous order.
+
+    A POST request will validate the submitted form data, process the order and
+    redirect the user to a success page upon successful payment.
+
+    If any item in the user's basket is no longer available, an error message
+    is displayed, and the user is redirected back to their basket.
+
+    POST Data:
+    OrderForm values: e.g., full_name, email, phone_number, etc.
+    client_secret (str): The client secret from the Stripe PaymentIntent.
+
+    Returns:
+    HttpResponse: Renders the checkout page with the order form and Stripe
+    payment intent.
+    HttpResponseRedirect: Redirects to the basket page if the basket is empty
+    or a book is no longer available.
+    HttpResponseRedirect: Redirects to the order success page after successful
+    payment.
     """
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
@@ -113,13 +166,17 @@ def checkout(request):
         else:
             messages.error(
                 request,
-                'Please correct issues in the form below and re-submit.'
+                """Please correct issues in the form below and re-submit.
+                If the error persists, please get in touch with our
+                dedicated customer support team to resolve
+                this issue.
+                Thank you for your understanding!"""
             )
     else:
         if not basket:
             messages.error(
                 request,
-                'There is nothing in your basket'
+                "There is nothing in your basket"
             )
             return redirect(reverse('library'))
 
@@ -154,10 +211,15 @@ def checkout(request):
             order_form = OrderForm()
 
     if not stripe_public_key:
-        messages.warning(
+        messages.error(
             request,
-            '''Stripe public key is missing.
-            Did you forget to set it in your env.py?'''
+            """
+            It seems our payments system is temporarily down.
+            Please contact our dedicated customer support team
+            directly to place your order and we'll throw in an extra
+            10% off for the inconvenience.
+            Thank you for your understanding!
+            """
         )
 
     return render(
@@ -174,7 +236,8 @@ def checkout(request):
 
 def success(request, order_number):
     """
-    A view for handling successful checkouts and displaying the order confirmation.
+    This view handles the display of an order summary table and key order
+    information after a successful checkout process.
     """
     save_info = request.session.get('save_info')
     book_order = get_object_or_404(Order, order_number=order_number)
@@ -195,9 +258,6 @@ def success(request, order_number):
             'default_street_2': book_order.street_2,
             'default_county': book_order.county,
         }
-
-        print('full name as in reader data:')
-        print(reader_data['default_full_name'])
 
         user_profile_form = UserProfileForm(reader_data, instance=user_profile)
         if user_profile_form.is_valid():

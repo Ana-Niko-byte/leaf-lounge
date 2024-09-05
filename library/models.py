@@ -14,7 +14,8 @@ from ._covers import COVERS
 
 class Author(models.Model):
     """
-    A class representing an author model.
+    Represents a Leaf Lounge author. Authors can register new books on the
+    website, with new books being saved under their UserProfile.
 
     Fields:
     user_profile : FK : UserProfile - represent's the author's account
@@ -27,8 +28,7 @@ class Author(models.Model):
     bio : TextField - represents the author's bio.
 
     Methods:
-    def __str__():
-        Returns (author's first name) (author's last name).
+    def __str__() -> str : Returns (author's first name) (author's last name).
     """
     user_profile = models.ForeignKey(
         UserProfile,
@@ -38,15 +38,31 @@ class Author(models.Model):
         blank=True,
         related_name='author_profile'
     )
-    first_name = models.CharField(max_length=20, null=False, blank=False)
-    last_name = models.CharField(max_length=20, null=False, blank=False)
+    first_name = models.CharField(
+        max_length=20,
+        null=False,
+        blank=False
+    )
+    last_name = models.CharField(
+        max_length=20,
+        null=False,
+        blank=False
+    )
     d_o_b = models.DateField(
         verbose_name='Birth Date',
         null=False,
         blank=False
     )
-    nationality = CountryField(blank_label='Unknown Nationality', null=True, blank=True)
-    bio = models.TextField(max_length=500, null=False, blank=False)
+    nationality = CountryField(
+        blank_label='Unknown Nationality',
+        null=True,
+        blank=True
+    )
+    bio = models.TextField(
+        max_length=500,
+        null=False,
+        blank=False
+    )
 
     def __str__(self):
         """
@@ -57,8 +73,24 @@ class Author(models.Model):
 
 class Genre(models.Model):
     """
+    Represents the breakdown of a book Genre. Each genre has an associated
+    community, which is created at the same time as a new Genre is created.
+    Each book registered on the app is given an associated Genre. After
+    purchasing the book, the user gets access to the community associated with
+    the genre.
+
+    Fields:
+    name : CharField - the genre name.
+    community : FK : Community - the community belonging to the genre.
+
+    Methods:
+    def __str__() -> str : (genre name)
     """
-    name = models.CharField(max_length=50, null=False, blank=False)
+    name = models.CharField(
+        max_length=50,
+        null=False,
+        blank=False
+    )
     community = models.ForeignKey(
         Community,
         on_delete=models.CASCADE,
@@ -74,7 +106,11 @@ class Genre(models.Model):
 
 class Book(models.Model):
     """
-    A class representing a book model.
+    Represents a Book on Leaf Lounge. Books can be uploaded directly by admin,
+    or registered on the website by registered Leaf Lounge authors.
+    After selecting (clicking) on a book on the 'Library' page, users are taken
+    into a detail view of that book. All books have associated reviews,
+    genres, authors, and communities.
 
     Fields:
     title : CharField - the book title.
@@ -85,15 +121,14 @@ class Book(models.Model):
     blurb : TextField - the book blurb.
     year_published : IntegerField - the year the book was published.
     publisher : CharField - the book publisher.
-    rating : DecimalField - the book rating (out of 10).
     type : CharField - the book cover type.
     date_added : DateField - the date the book was added to the database.
     price : DecimalField - the book price.
     image : ImageField - the book cover image.
 
     Methods:
-    def __str__():
-        Returns : (str) : '"(book title)" by (book author)'.
+    def __str__() -> str :
+    (author's firstname) (author's lastname) '"(book title)" by (book author)'.
 
     def save():
         try:
@@ -106,20 +141,24 @@ class Book(models.Model):
             Catches the DoesNotExist error and saves the model as a new
             instance.
 
-    def get_absolute_url():
-        Returns the absolute url with the book 'slug' parameter (detail page).
+    def get_absolute_url() :
+    Returns the absolute url with the book 'slug' parameter (detail page).
 
     Meta:
-        orders by earliest date added.
+        Orders by earliest date added.
     """
     COVERS = [
         ('SC', 'Softcover'),
         ('HB', 'Hardback'),
         ('D', 'Epub'),
     ]
-    title = models.CharField(max_length=100)
+    title = models.CharField(
+        max_length=100
+    )
     # Internation Standard Book Number - books after 2007 are 13 digits long.
-    isbn = models.CharField(max_length=13)
+    isbn = models.CharField(
+        max_length=13
+    )
     # SlugField can be blank as slug is saved following model instance save.
     slug = models.SlugField(
         max_length=100,
@@ -139,25 +178,39 @@ class Book(models.Model):
         null=True,
         blank=False
     )
-    blurb = models.TextField(max_length=500)
-    # Change to dynamic year later
-    year_published = models.IntegerField(validators=[MaxValueValidator(2024)])
-    publisher = models.CharField(max_length=100)
-    type = models.CharField(max_length=9, choices=COVERS, default='SC')
-    date_added = models.DateField(auto_now_add=True)
-    price = models.DecimalField(max_digits=5, decimal_places=2)
+    blurb = models.TextField(
+        max_length=500
+    )
+    year_published = models.IntegerField(
+        validators=[MaxValueValidator(2024)]
+    )
+    publisher = models.CharField(
+        max_length=100
+    )
+    type = models.CharField(
+        max_length=9,
+        choices=COVERS,
+        default='SC'
+    )
+    date_added = models.DateField(
+        auto_now_add=True
+    )
+    price = models.DecimalField(
+        max_digits=5,
+        decimal_places=2
+    )
     # placeholder for Cloudinary.
-    image = models.ImageField(null=True, blank=True)
+    image = models.ImageField(
+        null=True,
+        blank=True
+    )
 
     class Meta:
-        """
-        Orders books by last added.
-        """
         ordering = ['-date_added']
 
     def __str__(self):
         """
-        Returns : (str) : '"(book title)" by (author)'.
+        Returns -> str : '"(book title)" by (author)'.
         """
         return f'"{self.title}" by {self.author}'
 
@@ -187,11 +240,17 @@ class Book(models.Model):
 
 class Review(models.Model):
     """
-    A class for a book review.
+    Represents a book review. Reviews can be left by registered users, who have
+    purchased at least one book. The link for this is under the 'My Books' tab
+    in the secondary navigation bar. Reviews can be edited prior to approval,
+    and deleted at any stage. Approved reviews are displayed on the relevant
+    book detail page. Reviews are displayed as star fillings on all relevant
+    pages.
 
     Fields:
     reviewer : FK : User - the user leaving the review.
     book : FK : Book - the book being reviewed.
+    title : CharField - the review title.
     rating : IntegerField - the book rating out of 10.
     comment : TextField - the user's verbal book rating.
     reviewed_on : DateField - the date the review was left on.
@@ -209,16 +268,33 @@ class Review(models.Model):
         on_delete=models.CASCADE,
         related_name='reviewed_book'
     )
-    title = models.CharField(max_length=80, null=False, blank=False)
+    title = models.CharField(
+        max_length=80,
+        null=False,
+        blank=False
+    )
     rating = models.IntegerField(
         validators=[
             MaxValueValidator(10), MinValueValidator(1)],
         null=False,
         blank=False
     )
-    comment = models.TextField(max_length=500, null=False, blank=False)
-    reviewed_on = models.DateField(auto_now_add=True, null=False, blank=False)
-    approved = models.BooleanField(default=False)
+    comment = models.TextField(
+        max_length=500,
+        null=False,
+        blank=False
+    )
+    reviewed_on = models.DateField(
+        auto_now_add=True,
+        null=False,
+        blank=False
+    )
+    approved = models.BooleanField(
+        default=False
+    )
 
     def __str__(self):
+        """
+        Returns -> str : '(book title) : (book rating)'.
+        """
         return f'Review for {self.book} : {self.rating}/10'

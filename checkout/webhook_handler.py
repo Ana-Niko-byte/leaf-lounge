@@ -15,7 +15,7 @@ import stripe
 
 class StripeWH_Handler():
     """
-    A class for handling Stripe Webhooks.
+    Handles various Stripe Webhooks.
     """
     def __init__(self, request):
         self.request = request
@@ -33,7 +33,7 @@ class StripeWH_Handler():
         """
         Sends a confirmation email to users following successful payment.
 
-        Arguments:
+        Parameters:
         order : the user's order.
         """
         email = order.email
@@ -57,7 +57,7 @@ class StripeWH_Handler():
         """
         Handles the payment_intent.succeeded webhook from Stripe.
 
-        Arguments:
+        Parameters:
         event : JSON object : event data sent by Stripe with all details
         relating to the payment.
         """
@@ -86,12 +86,12 @@ class StripeWH_Handler():
                 user_profile.default_street_2 = shipping_details.address.line2
                 user_profile.default_town_city = shipping_details.address.city
                 user_profile.default_county = shipping_details.address.state
+                # Line breaks PEP8 but no way to shorten without renaming.
                 user_profile.default_postcode = shipping_details.address.postal_code
                 user_profile.default_country = shipping_details.address.country
                 user_profile.save()
 
         order_exists = False
-        # Delay of 1 second each time.
         attempt = 1
         while attempt <= 5:
             try:
@@ -112,9 +112,9 @@ class StripeWH_Handler():
                 order_exists = True
                 break
             except Order.DoesNotExist:
-                # Increment attempt and sleep for 1 second.
                 attempt += 1
                 time.sleep(1)
+
         if order_exists:
             self._send_email(order)
             return HttpResponse(
@@ -166,12 +166,10 @@ class StripeWH_Handler():
             except Exception as e:
                 if order:
                     order.delete()
-                    # Does not show up in Stripe but status matches.
                     return HttpResponse(
                         content=f'WH: {event['type']} | ERROR: {e}.',
                         status=500
                     )
-        # Does not show up in Stripe but status is 200.
         self._send_email(order)
         return HttpResponse(
             content=f'WH: {event['type']} | SUCCESS: ORDER CREATED',
@@ -183,11 +181,10 @@ class StripeWH_Handler():
         """
         Handles the payment_intent.payment_failed webhook from Stripe.
 
-        Arguments:
+        Parameters:
         event : JSON object : event data sent by Stripe with all details
         relating to the payment.
         """
-        # Does not show up in Stripe but status is 200.
         return HttpResponse(
             content=f'WH: {event['type']}',
             status=200,

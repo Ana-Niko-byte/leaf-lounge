@@ -13,8 +13,7 @@
                         <legend class="fieldset-details fieldset-label small text-black text-uppercase"><strong>Book Details</strong></legend>
                         {{ bookForm.title | as_crispy_field }}
                         {{ bookForm.isbn | as_crispy_field }}
-                        {{ bookForm.genre | as_crispy_field }}  
-                        {{ bookForm.type | as_crispy_field }}             
+                        {{ bookForm.genre | as_crispy_field }}            
                     </fieldset>
                     <div class="book-logistics d-flex flex-column flex-lg-row">
                         <fieldset class="px-3 mb-3">
@@ -25,6 +24,7 @@
                         <fieldset class="px-3 mb-3">
                             <legend class="fieldset-details fieldset-label small text-black text-uppercase"><strong>Book Pricing + Cover</strong></legend>
                             {{ bookForm.price | as_crispy_field }}
+                            {{ bookForm.type | as_crispy_field }}
                             {{ bookForm.image | as_crispy_field }}
                         </fieldset>
                     </div>

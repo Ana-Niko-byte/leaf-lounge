@@ -11,7 +11,6 @@
             "blurb": "A novel about the American dream, set in the 1920s.",
             "year_published": 1925,
             "publisher": "Charles Scribner's Sons",
-            "rating": 9.5,
             "date_added": "2024-07-11",
             "price": 10.99,
             "image": "tgg.jpg"
@@ -29,7 +28,6 @@
             "blurb": "A novel about racial injustice in the Deep South.",
             "year_published": 1960,
             "publisher": "J.B. Lippincott & Co.",
-            "rating": 9.8,
             "date_added": "2024-07-11",
             "price": 7.99,
             "image": "to_kill_a_mockingbird_cover.jpg"
@@ -47,7 +45,6 @@
             "blurb": "A novel about a dystopian future under totalitarian rule.",
             "year_published": 1949,
             "publisher": "Secker & Warburg",
-            "rating": 9.6,
             "date_added": "2024-07-11",
             "price": 8.99,
             "image": "1984_cover.jpg"
@@ -65,7 +62,6 @@
             "blurb": "A classic novel about love and society in Georgian England.",
             "year_published": 1813,
             "publisher": "T. Egerton",
-            "rating": 9.7,
             "date_added": "2024-07-11",
             "price": 6.99,
             "image": "pride_and_prejudice_cover.jpg"
@@ -83,7 +79,6 @@
             "blurb": "A novel about teenage rebellion and angst.",
             "year_published": 1951,
             "publisher": "Little, Brown and Company",
-            "rating": 9.4,
             "date_added": "2024-07-11",
             "price": 9.99,
             "image": "catcher_in_the_rye_cover.jpg"
@@ -101,7 +96,6 @@
             "blurb": "A fantasy novel about the adventures of Bilbo Baggins.",
             "year_published": 1937,
             "publisher": "George Allen & Unwin",
-            "rating": 9.9,
             "date_added": "2024-07-11",
             "price": 11.99,
             "image": "the_hobbit_cover.jpg"
@@ -119,7 +113,6 @@
             "blurb": "A novel about the quest to capture a giant white whale.",
             "year_published": 1851,
             "publisher": "Harper & Brothers",
-            "rating": 8.5,
             "date_added": "2024-07-11",
             "price": 12.99,
             "image": "moby_dick_cover.jpg"
@@ -137,7 +130,6 @@
             "blurb": "A novel about the French invasion of Russia.",
             "year_published": 1869,
             "publisher": "The Russian Messenger",
-            "rating": 9.3,
             "date_added": "2024-07-11",
             "price": 15.99,
             "image": "war_and_peace_cover.jpg"
@@ -155,7 +147,6 @@
             "blurb": "A novel about a future society driven by technology and control.",
             "year_published": 1932,
             "publisher": "Chatto & Windus",
-            "rating": 9.1,
             "date_added": "2024-07-11",
             "price": 9.49,
             "image": "brave_new_world_cover.jpg"
@@ -173,7 +164,6 @@
             "blurb": "An epic fantasy novel about the journey to destroy a powerful ring.",
             "year_published": 1954,
             "publisher": "George Allen & Unwin",
-            "rating": 9.8,
             "date_added": "2024-07-11",
             "price": 25.99,
             "image": "the_lord_of_the_rings_cover.jpg"

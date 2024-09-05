@@ -189,6 +189,7 @@ DATABASES = {
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
+    # Lines break PEP8 standards but no way of shortening.
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
@@ -238,4 +239,6 @@ STRIPE_WH_SECRET = os.environ.get("STRIPE_WH_SECRET", "")
 
 MAILCHIMP_API_KEY = os.environ.get("MAILCHIMP_API_KEY", "")
 MAILCHIMP_REGION = os.environ.get("MAILCHIMP_REGION", "")
-MAILCHIMP_MARKETING_AUDIENCE_ID = os.environ.get("MAILCHIMP_MARKETING_AUDIENCE_ID", "")
+MAILCHIMP_MARKETING_AUDIENCE_ID = os.environ.get(
+    "MAILCHIMP_MARKETING_AUDIENCE_ID", ""
+)

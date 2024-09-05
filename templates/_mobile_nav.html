@@ -14,7 +14,12 @@
             </li>
             {% if request.user.is_authenticated %}
             <li class="nav-item py-3 ps-3">
-                <a href=""><i class="fa-solid fa-book-open me-2"></i>My Communities</a>
+                <a href="{{ community_general_url }}"><i class="fa-solid fa-book-open me-2"></i>My Communities</a>
+            </li>
+            <li class="nav-item py-3 ps-3">
+                <a href="{% if request.user.is_authenticated %}{% url 'user_profile' %}{% else %}{{ signup_url }}{% endif %}">
+                    <i class="fa-solid fa-user me-2"></i>My Profile
+                </a>
             </li>
             <li class="nav-item py-3 ps-3">
                 <a href="{{ signout_url }}" class="custom-button">

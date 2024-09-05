@@ -7,6 +7,9 @@ from community.models import Community
 
 @receiver(post_save, sender=Genre)
 def create_community_on_genre_save(sender, instance, created, **kwargs):
+    """
+    Creates an associated community when a new Genre is added to the DB.
+    """
     if created:
         community = Community.objects.create(
             name=f'{instance.name} Community',
@@ -15,9 +18,10 @@ def create_community_on_genre_save(sender, instance, created, **kwargs):
         instance.community = community
         instance.save()
 
+
 @receiver(post_delete, sender=Genre)
 def delete_community_post_genre_deletion(sender, instance, **kwargs):
     """
-    Deletes the relevant community instance when a genre is deleted from the DB.
+    Deletes the associated community when a genre is deleted from the DB.
     """
     instance.community.delete()
