@@ -6,17 +6,35 @@
     <div class="greeting-container">
         {% if not user.is_authenticated %}
             <div class="welcome-container ps-5 pt-5">
-                <h1 class="typewriter h2 mt-3 mb-5">Join millions of readers on your next journey</h1>
-                <a href="{{ signin_url }}" class="custom-button">
-                    <i class="fa-solid fa-arrow-right-to-bracket me-2"></i>Sign In
-                </a>
+                <h1 class="typewriter h2 mt-3 mb-4">Join millions of readers on your next journey</h1>
+                <div class="secondary-container d-flex align-items-start justify-content-between">
+                    <div class="motivation-container order-last me-5 pe-5">
+                        <p class="mb-4">
+                            <i class="fa-solid fa-bookmark me-2"></i>
+                            <strong>Join our communities</strong> and connect with like-minded individuals!
+                        </p>
+                        <p class="mb-4">
+                            <i class="fa-solid fa-bookmark me-2"></i>
+                            <strong>Become a Leaf Lounge author</strong> and launch your writing career!
+                        </p>
+                        <p class="mb-4">
+                            <i class="fa-solid fa-bookmark me-2"></i>
+                            <strong>Create a custom profile</strong> for your books, reviews, orders, and more!
+                        </p>
+                    </div>
+                    <a href="{{ signin_url }}" class="custom-button">
+                        <i class="fa-solid fa-arrow-right-to-bracket me-2"></i>Log In
+                    </a>
+                </div>
             </div>
         {% else %}
             <div class="welcome-container ps-5 pt-5">
                 <p class="h4">Hey, {{ user }}!</p>
-                <h1 class="typewriter h2 mt-3 mb-5">Don't miss out on the chatter in your communities :)</h1>
-                <a href="{{ community_general_url }}" class="custom-button px-3 py-2">
-                    <i class="fa-solid fa-book-open me-2"></i>My Communities</a>
+                <h1 class="typewriter h2 mt-3 mb-4">Don't miss out on the chatter in your communities :)</h1>
+                <a href="{{ community_general_url }}" class="btn-link">
+                    <button class="custom-button mt-3">
+                        <i class="fa-solid fa-book-open me-2"></i>My Communities</a>
+                    </button>
                 </a>
             </div>
         {% endif %}

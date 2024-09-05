@@ -58,17 +58,19 @@ def contact(request):
                 endeavour to respond within 2 business days :)"""
             )
             return redirect('home')
+        else:
+            messages.error(
+                request,
+                """
+                We were unable to send your message.Please double check
+                your information and try again. If the error persists,
+                please reach out to us directly via email and we will get
+                back to you within two business days.
+                Thank you for your understanding!"""
+            )
+            return redirect('contact')
     else:
         contact_form = ContactForm()
-        messages.error(
-            request,
-            """
-            We were unable to send your message.Please double check
-            your information and try again. If the error persists,
-            please reach out to us directly via email and we will get
-            back to you within two business days.
-            Thank you for your understanding!"""
-        )
         context = {
             'contact_form': contact_form
         }

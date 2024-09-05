@@ -56,7 +56,7 @@
         <title>Leaf Lounge {% block extra_title %}{% endblock %}</title>
     </head>
 
-    <body class="d-flex flex-column">
+    <body class="d-flex flex-column justify-content-between">
         <header class="container-fluid p-0 m-0">
             <!-- Main Navigation Bar -->
             <nav class="navbar navbar-expand-lg flex justify-content-between align-items-center">
@@ -97,7 +97,6 @@
                             </div>
                         </li>
                         <!-- Communities -->
-                        {% endif %}
                         <!-- Profile -->
                         <li class="nav-item px-2 mx-1">
                             <div class="nav-item-container">
@@ -108,6 +107,7 @@
                             </div>
                         </li>
                         <!-- Profile -->
+                        {% endif %}
                     </ul>
                     <!-- /Original Menu for Large Screens -->
                 </div>
@@ -181,7 +181,7 @@
         <!-- /Main Content -->
 
         <!-- Footer -->
-        <footer class="py-3 row m-0 p-0 d-flex align-items-center" id="leaf-footer">
+        <footer class="bg-white py-3 row m-0 p-0 d-flex align-items-center" id="leaf-footer">
             {% include 'marketing/subscribe.html' %}
             <div class="col-lg-8">
                 <ul class="navbar-nav d-flex flex-row justify-content-end align-items-center me-4">

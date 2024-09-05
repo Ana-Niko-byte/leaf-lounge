@@ -1,782 +1,803 @@
-INFO 2024-09-03 18:41:28,518 Watching for file changes with StatReloader
-INFO 2024-09-03 18:41:37,129 "GET / HTTP/1.1" 200 13719
-INFO 2024-09-03 18:41:37,320 "GET /static/css/styles.css HTTP/1.1" 200 4999
-INFO 2024-09-03 18:41:37,320 "GET /static/js/index.js HTTP/1.1" 200 470
-INFO 2024-09-03 18:41:37,346 "GET /static/js/actions.js HTTP/1.1" 200 3988
-INFO 2024-09-03 18:41:37,347 "GET /static/js/quantity.js HTTP/1.1" 200 3055
-INFO 2024-09-03 18:41:37,347 "GET /static/js/library.js HTTP/1.1" 200 2656
-INFO 2024-09-03 18:41:37,348 "GET /static/images/mailchimp.webp HTTP/1.1" 200 19650
-INFO 2024-09-03 18:41:37,348 "GET /static/images/logo.png HTTP/1.1" 200 58043
-INFO 2024-09-03 18:41:37,651 "GET /static/images/author-type.png HTTP/1.1" 200 152492
-INFO 2024-09-03 18:41:37,986 "GET /static/js/module.js HTTP/1.1" 200 445
-INFO 2024-09-03 18:47:00,321 "GET / HTTP/1.1" 200 13931
-INFO 2024-09-03 18:47:01,235 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
-INFO 2024-09-03 18:47:33,489 "GET /library/ HTTP/1.1" 200 36219
-INFO 2024-09-03 18:47:33,698 "GET /static/library/css/library.css HTTP/1.1" 200 1412
-INFO 2024-09-03 18:47:33,744 "GET /static/images/1984_cover.jpg HTTP/1.1" 200 47735
-INFO 2024-09-03 18:47:34,252 "GET /static/library/js/library.js HTTP/1.1" 200 530
-INFO 2024-09-03 18:47:56,228 "GET /library/book/moby-dick-melville/ HTTP/1.1" 200 17913
-INFO 2024-09-03 18:47:56,388 "GET /static/library/js/loader.js HTTP/1.1" 200 976
-INFO 2024-09-03 18:47:56,457 "GET /static/images/stars.png HTTP/1.1" 200 4330
-WARNING 2024-09-03 18:47:56,461 Not Found: /library/book/static/images/mailchimp.webp
-WARNING 2024-09-03 18:47:56,461 "GET /library/book/static/images/mailchimp.webp HTTP/1.1" 404 3715
-INFO 2024-09-03 18:50:46,275 "GET / HTTP/1.1" 200 13931
-INFO 2024-09-03 18:54:10,763 "GET /contact/ HTTP/1.1" 200 17480
-INFO 2024-09-03 18:54:10,944 "GET /static/blurb/css/contact.css HTTP/1.1" 200 443
-INFO 2024-09-03 18:55:58,223 "GET /library/ HTTP/1.1" 200 36219
-INFO 2024-09-03 19:00:04,531 "GET /library/book/moby-dick-melville/ HTTP/1.1" 200 17913
-INFO 2024-09-03 19:00:04,723 "GET /static/images/stars.png HTTP/1.1" 200 4330
-WARNING 2024-09-03 19:00:04,726 Not Found: /library/book/static/images/mailchimp.webp
-WARNING 2024-09-03 19:00:04,726 "GET /library/book/static/images/mailchimp.webp HTTP/1.1" 404 3715
-INFO 2024-09-03 19:00:04,825 "GET /static/library/js/loader.js HTTP/1.1" 200 976
-INFO 2024-09-03 19:04:15,666 "GET /community/community/ HTTP/1.1" 200 19211
-INFO 2024-09-03 19:04:15,874 "GET /static/images/00-verify-heroku.png HTTP/1.1" 200 213042
-WARNING 2024-09-03 19:04:15,902 Not Found: /community/static/images/mailchimp.webp
-WARNING 2024-09-03 19:04:15,902 "GET /community/static/images/mailchimp.webp HTTP/1.1" 404 4531
-INFO 2024-09-03 19:04:20,103 "GET /basket/ HTTP/1.1" 200 21993
-INFO 2024-09-03 19:04:20,249 "GET /static/basket/css/basket.css HTTP/1.1" 200 121
-INFO 2024-09-03 19:06:50,519 "GET /checkout/ HTTP/1.1" 200 37673
-INFO 2024-09-03 19:06:50,756 "GET /static/checkout/css/checkout.css HTTP/1.1" 200 1322
-INFO 2024-09-03 19:06:50,793 "GET /static/checkout/js/stripe_elements.js HTTP/1.1" 200 4870
-INFO 2024-09-03 19:06:50,970 "POST /checkout/wh/ HTTP/1.1" 200 36
-INFO 2024-09-03 19:09:18,737 "GET /profile/my_books/ HTTP/1.1" 200 20045
-WARNING 2024-09-03 19:09:18,973 Not Found: /profile/static/images/mailchimp.webp
-WARNING 2024-09-03 19:09:18,973 "GET /profile/static/images/mailchimp.webp HTTP/1.1" 404 4305
-INFO 2024-09-03 19:10:38,487 "GET /profile/review/2/ HTTP/1.1" 200 17689
-INFO 2024-09-03 19:10:38,698 "GET /static/reader/css/review.css HTTP/1.1" 200 548
-INFO 2024-09-03 19:10:38,709 "GET /static/reader/js/review.js HTTP/1.1" 200 1249
-WARNING 2024-09-03 19:10:38,712 Not Found: /profile/review/static/images/mailchimp.webp
-WARNING 2024-09-03 19:10:38,712 "GET /profile/review/static/images/mailchimp.webp HTTP/1.1" 404 4326
-INFO 2024-09-03 19:11:16,657 "GET /community/become/author/ HTTP/1.1" 200 29598
-INFO 2024-09-03 19:11:16,934 "GET /static/community/css/community.css HTTP/1.1" 200 816
-WARNING 2024-09-03 19:11:16,937 Not Found: /community/become/static/images/mailchimp.webp
-WARNING 2024-09-03 19:11:16,937 "GET /community/become/static/images/mailchimp.webp HTTP/1.1" 404 4552
-INFO 2024-09-03 19:11:39,573 "GET /community/become/author/book HTTP/1.1" 200 21739
-WARNING 2024-09-03 19:11:39,769 Not Found: /community/become/static/images/mailchimp.webp
-WARNING 2024-09-03 19:11:39,769 "GET /community/become/static/images/mailchimp.webp HTTP/1.1" 404 4552
-INFO 2024-09-03 19:14:18,624 "GET /profile/me/ HTTP/1.1" 200 83255
-INFO 2024-09-03 19:14:18,951 "GET /static/reader/css/profile.css HTTP/1.1" 200 1002
-WARNING 2024-09-03 19:14:19,065 Not Found: /profile/static/images/mailchimp.webp
-WARNING 2024-09-03 19:14:19,066 "GET /profile/static/images/mailchimp.webp HTTP/1.1" 404 4305
-INFO 2024-09-03 19:14:19,091 "GET /static/reader/js/profile.js HTTP/1.1" 200 3354
-INFO 2024-09-03 19:14:19,092 "GET /static/reader/js/crud.js HTTP/1.1" 200 2580
-INFO 2024-09-03 19:17:09,275 "GET /community/community/ HTTP/1.1" 200 19211
-WARNING 2024-09-03 19:17:09,622 Not Found: /community/static/images/mailchimp.webp
-WARNING 2024-09-03 19:17:09,623 "GET /community/static/images/mailchimp.webp HTTP/1.1" 404 4531
-INFO 2024-09-03 19:19:20,329 "GET /community/community/ HTTP/1.1" 200 19211
-WARNING 2024-09-03 19:19:20,576 Not Found: /community/static/images/mailchimp.webp
-WARNING 2024-09-03 19:19:20,576 "GET /community/static/images/mailchimp.webp HTTP/1.1" 404 4531
-INFO 2024-09-03 19:19:53,015 "GET /community/community/crime-community-10 HTTP/1.1" 200 16982
-WARNING 2024-09-03 19:19:53,219 Not Found: /community/static/images/mailchimp.webp
-WARNING 2024-09-03 19:19:53,220 "GET /community/static/images/mailchimp.webp HTTP/1.1" 404 4531
-INFO 2024-09-03 19:19:53,225 "GET /static/community/js/forums.js HTTP/1.1" 200 834
-INFO 2024-09-03 19:20:45,046 "GET /community/forum/testing-url-2-crime-community-2 HTTP/1.1" 200 21564
-WARNING 2024-09-03 19:20:45,308 Not Found: /community/static/images/mailchimp.webp
-WARNING 2024-09-03 19:20:45,308 "GET /community/static/images/mailchimp.webp HTTP/1.1" 404 4531
-WARNING 2024-09-03 19:20:45,357 "GET /static/community/js/messages.js HTTP/1.1" 404 1881
-INFO 2024-09-03 19:31:50,926 /workspace/leaf-lounge/checkout/models.py changed, reloading.
-INFO 2024-09-03 19:31:51,487 Watching for file changes with StatReloader
-INFO 2024-09-03 19:39:51,158 /workspace/leaf-lounge/community/models.py changed, reloading.
-INFO 2024-09-03 19:39:51,720 Watching for file changes with StatReloader
-INFO 2024-09-04 08:42:40,122 Watching for file changes with StatReloader
-INFO 2024-09-04 08:42:43,062 "GET / HTTP/1.1" 200 13931
-INFO 2024-09-04 08:42:43,259 "GET /static/css/styles.css HTTP/1.1" 304 0
-INFO 2024-09-04 08:42:43,550 "GET /static/images/author-type.png HTTP/1.1" 304 0
-INFO 2024-09-04 08:42:45,123 "GET /basket/ HTTP/1.1" 200 21993
-INFO 2024-09-04 08:42:45,308 "GET /static/basket/css/basket.css HTTP/1.1" 200 121
-INFO 2024-09-04 08:42:47,867 "GET /library/ HTTP/1.1" 200 36219
-INFO 2024-09-04 08:42:48,021 "GET /static/library/css/library.css HTTP/1.1" 304 0
-INFO 2024-09-04 08:42:48,049 "GET /static/library/js/library.js HTTP/1.1" 304 0
-INFO 2024-09-04 08:42:49,811 "GET /library/book/moby-dick-melville/ HTTP/1.1" 200 17913
-WARNING 2024-09-04 08:42:49,980 Not Found: /library/book/static/images/mailchimp.webp
-WARNING 2024-09-04 08:42:49,980 "GET /library/book/static/images/mailchimp.webp HTTP/1.1" 404 3715
-INFO 2024-09-04 08:42:54,292 "POST /basket/add/7 HTTP/1.1" 302 0
-INFO 2024-09-04 08:42:54,394 "GET /library/book/moby-dick-melville/ HTTP/1.1" 200 18573
-WARNING 2024-09-04 08:42:54,574 Not Found: /library/book/moby-dick-melville/...
-WARNING 2024-09-04 08:42:54,575 "GET /library/book/moby-dick-melville/... HTTP/1.1" 404 3697
-WARNING 2024-09-04 08:42:54,593 Not Found: /library/book/static/images/mailchimp.webp
-WARNING 2024-09-04 08:42:54,593 "GET /library/book/static/images/mailchimp.webp HTTP/1.1" 404 3715
-INFO 2024-09-04 08:45:26,017 /workspace/leaf-lounge/basket/contexts.py changed, reloading.
-INFO 2024-09-04 08:45:26,505 Watching for file changes with StatReloader
-INFO 2024-09-04 08:45:57,053 /workspace/leaf-lounge/basket/contexts.py changed, reloading.
-INFO 2024-09-04 08:45:57,525 Watching for file changes with StatReloader
-INFO 2024-09-04 08:47:20,912 /workspace/leaf-lounge/blurb/views.py changed, reloading.
-INFO 2024-09-04 08:47:21,393 Watching for file changes with StatReloader
-INFO 2024-09-04 08:52:07,984 /workspace/leaf-lounge/blurb/views.py changed, reloading.
-INFO 2024-09-04 08:52:08,472 Watching for file changes with StatReloader
-INFO 2024-09-04 08:53:00,364 /workspace/leaf-lounge/blurb/views.py changed, reloading.
-INFO 2024-09-04 08:53:00,839 Watching for file changes with StatReloader
-INFO 2024-09-04 08:53:37,485 /workspace/leaf-lounge/blurb/views.py changed, reloading.
-INFO 2024-09-04 08:53:37,954 Watching for file changes with StatReloader
-INFO 2024-09-04 08:58:13,422 /workspace/leaf-lounge/blurb/forms.py changed, reloading.
-INFO 2024-09-04 08:58:13,898 Watching for file changes with StatReloader
-INFO 2024-09-04 08:58:22,088 /workspace/leaf-lounge/blurb/forms.py changed, reloading.
-INFO 2024-09-04 08:58:22,557 Watching for file changes with StatReloader
-INFO 2024-09-04 09:02:59,049 /workspace/leaf-lounge/checkout/forms.py changed, reloading.
-INFO 2024-09-04 09:02:59,528 Watching for file changes with StatReloader
-INFO 2024-09-04 09:04:00,631 /workspace/leaf-lounge/checkout/forms.py changed, reloading.
-INFO 2024-09-04 09:04:01,108 Watching for file changes with StatReloader
-INFO 2024-09-04 09:07:59,009 /workspace/leaf-lounge/checkout/models.py changed, reloading.
-INFO 2024-09-04 09:07:59,484 Watching for file changes with StatReloader
-INFO 2024-09-04 09:12:16,665 /workspace/leaf-lounge/checkout/models.py changed, reloading.
-INFO 2024-09-04 09:12:17,144 Watching for file changes with StatReloader
-INFO 2024-09-04 09:12:40,620 /workspace/leaf-lounge/checkout/signals.py changed, reloading.
-INFO 2024-09-04 09:12:41,096 Watching for file changes with StatReloader
-INFO 2024-09-04 09:14:12,628 /workspace/leaf-lounge/checkout/urls.py changed, reloading.
-INFO 2024-09-04 09:14:13,111 Watching for file changes with StatReloader
-INFO 2024-09-04 09:53:46,245 /workspace/leaf-lounge/checkout/views.py changed, reloading.
-INFO 2024-09-04 09:53:46,717 Watching for file changes with StatReloader
-INFO 2024-09-04 09:56:42,610 /workspace/leaf-lounge/checkout/webhook_handler.py changed, reloading.
-INFO 2024-09-04 09:56:43,084 Watching for file changes with StatReloader
-INFO 2024-09-04 09:56:51,219 /workspace/leaf-lounge/checkout/webhook_handler.py changed, reloading.
-INFO 2024-09-04 09:56:51,697 Watching for file changes with StatReloader
-INFO 2024-09-04 09:57:32,436 /workspace/leaf-lounge/checkout/webhooks.py changed, reloading.
-INFO 2024-09-04 09:57:32,916 Watching for file changes with StatReloader
-INFO 2024-09-04 09:59:39,013 /workspace/leaf-lounge/community/models.py changed, reloading.
-INFO 2024-09-04 09:59:39,502 Watching for file changes with StatReloader
-INFO 2024-09-04 10:00:13,092 /workspace/leaf-lounge/community/forms.py changed, reloading.
-INFO 2024-09-04 10:00:13,572 Watching for file changes with StatReloader
-INFO 2024-09-04 10:00:37,021 /workspace/leaf-lounge/community/forms.py changed, reloading.
-INFO 2024-09-04 10:00:37,483 Watching for file changes with StatReloader
-INFO 2024-09-04 10:00:50,717 /workspace/leaf-lounge/community/models.py changed, reloading.
-INFO 2024-09-04 10:00:51,191 Watching for file changes with StatReloader
-INFO 2024-09-04 19:14:47,240 Watching for file changes with StatReloader
-INFO 2024-09-04 19:14:49,531 "GET / HTTP/1.1" 200 13931
-INFO 2024-09-04 19:14:49,618 "GET /static/css/styles.css HTTP/1.1" 304 0
-INFO 2024-09-04 19:14:49,726 "GET /static/images/author-type.png HTTP/1.1" 304 0
-INFO 2024-09-04 19:14:51,365 "GET /accounts/logout/ HTTP/1.1" 200 12583
-WARNING 2024-09-04 19:14:51,448 Not Found: /accounts/static/images/mailchimp.webp
-WARNING 2024-09-04 19:14:51,448 "GET /accounts/static/images/mailchimp.webp HTTP/1.1" 404 7728
-INFO 2024-09-04 19:14:52,824 "POST /accounts/logout/ HTTP/1.1" 302 0
-INFO 2024-09-04 19:14:52,847 "GET / HTTP/1.1" 200 13014
-WARNING 2024-09-04 19:14:52,957 Not Found: /...
-WARNING 2024-09-04 19:14:52,957 "GET /... HTTP/1.1" 404 3339
-INFO 2024-09-04 19:15:20,002 "GET / HTTP/1.1" 200 12396
-INFO 2024-09-04 19:15:20,114 "GET /static/js/index.js HTTP/1.1" 200 470
-INFO 2024-09-04 19:15:20,114 "GET /static/images/mailchimp.webp HTTP/1.1" 200 19650
-INFO 2024-09-04 19:15:20,115 "GET /static/css/styles.css HTTP/1.1" 200 4999
-INFO 2024-09-04 19:15:20,115 "GET /static/images/logo.png HTTP/1.1" 200 58043
-INFO 2024-09-04 19:15:20,170 "GET /static/js/actions.js HTTP/1.1" 200 3988
-INFO 2024-09-04 19:15:20,170 "GET /static/js/quantity.js HTTP/1.1" 200 3055
-INFO 2024-09-04 19:15:20,171 "GET /static/js/library.js HTTP/1.1" 200 2656
-INFO 2024-09-04 19:15:20,179 "GET /static/images/author-type.png HTTP/1.1" 200 152492
-INFO 2024-09-04 19:15:20,217 "GET /static/js/module.js HTTP/1.1" 200 445
-INFO 2024-09-04 19:15:20,475 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
-INFO 2024-09-04 19:15:35,939 "GET / HTTP/1.1" 200 12406
-INFO 2024-09-04 19:15:36,011 "GET /static/css/styles.css HTTP/1.1" 200 4999
-INFO 2024-09-04 19:15:36,012 "GET /static/js/index.js HTTP/1.1" 200 470
-INFO 2024-09-04 19:15:36,014 "GET /static/js/actions.js HTTP/1.1" 200 3988
-INFO 2024-09-04 19:15:36,015 "GET /static/images/logo.png HTTP/1.1" 200 58043
-INFO 2024-09-04 19:15:36,015 "GET /static/js/quantity.js HTTP/1.1" 200 3055
-INFO 2024-09-04 19:15:36,015 "GET /static/js/library.js HTTP/1.1" 200 2656
-INFO 2024-09-04 19:15:36,015 "GET /static/images/mailchimp.webp HTTP/1.1" 200 19650
-INFO 2024-09-04 19:15:36,108 "GET /static/images/author-type.png HTTP/1.1" 200 152492
-INFO 2024-09-04 19:15:36,205 "GET /static/js/module.js HTTP/1.1" 200 445
-INFO 2024-09-04 19:15:36,243 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
-INFO 2024-09-04 19:15:40,356 "GET /accounts/signup/ HTTP/1.1" 200 14907
-WARNING 2024-09-04 19:15:40,435 Not Found: /accounts/static/images/mailchimp.webp
-WARNING 2024-09-04 19:15:40,435 "GET /accounts/static/images/mailchimp.webp HTTP/1.1" 404 7728
-INFO 2024-09-04 19:16:06,581 "POST /accounts/signup/ HTTP/1.1" 302 0
-INFO 2024-09-04 19:16:06,603 "GET /accounts/confirm-email/ HTTP/1.1" 200 11359
-WARNING 2024-09-04 19:16:06,641 Not Found: /accounts/confirm-email/...
-WARNING 2024-09-04 19:16:06,641 "GET /accounts/confirm-email/... HTTP/1.1" 404 7695
-WARNING 2024-09-04 19:16:06,689 Not Found: /accounts/static/images/mailchimp.webp
-WARNING 2024-09-04 19:16:06,689 "GET /accounts/static/images/mailchimp.webp HTTP/1.1" 404 7728
-INFO 2024-09-04 19:16:20,273 "GET /accounts/confirm-email/Mw:1slvU6:d__lrKoeSEUjqoTtFSwxOWv9olPooAJ9Q8cDW1o3oic/ HTTP/1.1" 200 1691
-WARNING 2024-09-04 19:16:20,544 Not Found: /favicon.ico
-WARNING 2024-09-04 19:16:20,545 "GET /favicon.ico HTTP/1.1" 404 3363
-INFO 2024-09-04 19:16:22,464 "POST /accounts/confirm-email/Mw:1slvUK:JMZfqbRSLMcaqTIeNWsmsQsH37YHAdYo0e4ST2cch2c/ HTTP/1.1" 302 0
-INFO 2024-09-04 19:16:22,493 "GET /accounts/login/ HTTP/1.1" 200 14050
-WARNING 2024-09-04 19:16:22,592 Not Found: /accounts/login/...
-WARNING 2024-09-04 19:16:22,592 "GET /accounts/login/... HTTP/1.1" 404 7671
-WARNING 2024-09-04 19:16:22,601 Not Found: /accounts/static/images/mailchimp.webp
-WARNING 2024-09-04 19:16:22,602 "GET /accounts/static/images/mailchimp.webp HTTP/1.1" 404 7728
-INFO 2024-09-04 19:16:33,419 "POST /accounts/login/ HTTP/1.1" 302 0
-INFO 2024-09-04 19:16:33,442 "GET / HTTP/1.1" 200 14533
-WARNING 2024-09-04 19:16:33,516 Not Found: /...
-WARNING 2024-09-04 19:16:33,516 "GET /... HTTP/1.1" 404 3339
-INFO 2024-09-04 19:16:38,625 "GET /community/community/ HTTP/1.1" 200 14036
-WARNING 2024-09-04 19:16:38,749 Not Found: /community/static/images/mailchimp.webp
-WARNING 2024-09-04 19:16:38,749 "GET /community/static/images/mailchimp.webp HTTP/1.1" 404 4531
-INFO 2024-09-04 19:18:48,616 /workspace/leaf-lounge/community/views.py changed, reloading.
-INFO 2024-09-04 19:18:49,223 Watching for file changes with StatReloader
-INFO 2024-09-04 19:18:54,495 "GET /community/community/ HTTP/1.1" 200 13705
-INFO 2024-09-04 19:18:54,683 "GET /static/js/index.js HTTP/1.1" 200 470
-INFO 2024-09-04 19:18:54,685 "GET /static/css/styles.css HTTP/1.1" 200 4999
-INFO 2024-09-04 19:18:54,685 "GET /static/js/library.js HTTP/1.1" 200 2656
-INFO 2024-09-04 19:18:54,685 "GET /static/js/quantity.js HTTP/1.1" 200 3055
-INFO 2024-09-04 19:18:54,686 "GET /static/images/logo.png HTTP/1.1" 200 58043
-INFO 2024-09-04 19:18:54,686 "GET /static/js/actions.js HTTP/1.1" 200 3988
-WARNING 2024-09-04 19:18:54,690 Not Found: /community/static/images/mailchimp.webp
-WARNING 2024-09-04 19:18:54,690 "GET /community/static/images/mailchimp.webp HTTP/1.1" 404 4531
-INFO 2024-09-04 19:18:54,855 "GET /static/js/module.js HTTP/1.1" 200 445
-INFO 2024-09-04 19:18:55,091 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
-INFO 2024-09-04 19:19:27,120 "GET /community/community/ HTTP/1.1" 200 13753
-INFO 2024-09-04 19:19:27,192 "GET /static/css/styles.css HTTP/1.1" 200 4999
-INFO 2024-09-04 19:19:27,194 "GET /static/js/index.js HTTP/1.1" 200 470
-INFO 2024-09-04 19:19:27,197 "GET /static/js/quantity.js HTTP/1.1" 200 3055
-INFO 2024-09-04 19:19:27,200 "GET /static/js/actions.js HTTP/1.1" 200 3988
-WARNING 2024-09-04 19:19:27,201 Not Found: /community/static/images/mailchimp.webp
-INFO 2024-09-04 19:19:27,202 "GET /static/js/library.js HTTP/1.1" 200 2656
-INFO 2024-09-04 19:19:27,202 "GET /static/images/logo.png HTTP/1.1" 200 58043
-WARNING 2024-09-04 19:19:27,202 "GET /community/static/images/mailchimp.webp HTTP/1.1" 404 4531
-INFO 2024-09-04 19:19:27,325 "GET /static/js/module.js HTTP/1.1" 200 445
-INFO 2024-09-04 19:19:27,369 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
-INFO 2024-09-04 19:20:34,728 "GET /community/community/ HTTP/1.1" 200 14171
-INFO 2024-09-04 19:20:34,836 "GET /static/js/index.js HTTP/1.1" 200 470
-INFO 2024-09-04 19:20:34,839 "GET /static/css/styles.css HTTP/1.1" 200 4999
-WARNING 2024-09-04 19:20:34,842 Not Found: /community/static/images/mailchimp.webp
-WARNING 2024-09-04 19:20:34,843 "GET /community/static/images/mailchimp.webp HTTP/1.1" 404 4531
-INFO 2024-09-04 19:20:34,843 "GET /static/js/library.js HTTP/1.1" 200 2656
-INFO 2024-09-04 19:20:34,843 "GET /static/js/actions.js HTTP/1.1" 200 3988
-INFO 2024-09-04 19:20:34,843 "GET /static/js/quantity.js HTTP/1.1" 200 3055
-INFO 2024-09-04 19:20:34,844 "GET /static/images/logo.png HTTP/1.1" 200 58043
-INFO 2024-09-04 19:20:35,421 "GET /static/js/module.js HTTP/1.1" 200 445
-INFO 2024-09-04 19:20:35,696 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
-INFO 2024-09-04 19:36:16,585 /workspace/leaf-lounge/community/views.py changed, reloading.
-INFO 2024-09-04 19:36:17,130 Watching for file changes with StatReloader
-INFO 2024-09-04 19:42:03,836 /workspace/leaf-lounge/community/views.py changed, reloading.
-INFO 2024-09-04 19:42:04,395 Watching for file changes with StatReloader
-INFO 2024-09-04 19:43:06,495 /workspace/leaf-lounge/community/views.py changed, reloading.
-INFO 2024-09-04 19:43:06,997 Watching for file changes with StatReloader
-INFO 2024-09-04 19:43:48,770 /workspace/leaf-lounge/community/views.py changed, reloading.
-INFO 2024-09-04 19:43:49,354 Watching for file changes with StatReloader
-INFO 2024-09-04 19:48:17,643 "GET /profile/me/ HTTP/1.1" 200 43433
-INFO 2024-09-04 19:48:17,721 "GET /static/reader/css/profile.css HTTP/1.1" 200 1002
-WARNING 2024-09-04 19:48:17,724 Not Found: /profile/static/images/mailchimp.webp
-WARNING 2024-09-04 19:48:17,725 "GET /profile/static/images/mailchimp.webp HTTP/1.1" 404 4305
-INFO 2024-09-04 19:48:17,826 "GET /static/reader/js/profile.js HTTP/1.1" 200 3354
-INFO 2024-09-04 19:48:17,826 "GET /static/reader/js/crud.js HTTP/1.1" 200 2580
-INFO 2024-09-04 19:48:33,643 "GET /community/community/ HTTP/1.1" 200 14171
-WARNING 2024-09-04 19:48:33,710 Not Found: /community/static/images/mailchimp.webp
-WARNING 2024-09-04 19:48:33,710 "GET /community/static/images/mailchimp.webp HTTP/1.1" 404 4531
-INFO 2024-09-04 19:52:05,593 /workspace/leaf-lounge/community/views.py changed, reloading.
-INFO 2024-09-04 19:52:06,104 Watching for file changes with StatReloader
-INFO 2024-09-04 19:57:16,217 /workspace/leaf-lounge/community/views.py changed, reloading.
-INFO 2024-09-04 19:57:16,746 Watching for file changes with StatReloader
-INFO 2024-09-04 20:03:27,873 /workspace/leaf-lounge/community/views.py changed, reloading.
-INFO 2024-09-04 20:03:28,447 Watching for file changes with StatReloader
-INFO 2024-09-04 20:15:28,076 /workspace/leaf-lounge/community/views.py changed, reloading.
-INFO 2024-09-04 20:15:28,569 Watching for file changes with StatReloader
-INFO 2024-09-04 20:19:02,146 /workspace/leaf-lounge/community/views.py changed, reloading.
-INFO 2024-09-04 20:19:02,686 Watching for file changes with StatReloader
-INFO 2024-09-04 20:29:00,385 /workspace/leaf-lounge/community/views.py changed, reloading.
-INFO 2024-09-04 20:29:00,956 Watching for file changes with StatReloader
-INFO 2024-09-04 20:29:12,174 /workspace/leaf-lounge/community/views.py changed, reloading.
-INFO 2024-09-04 20:29:12,697 Watching for file changes with StatReloader
-INFO 2024-09-04 20:40:09,559 /workspace/leaf-lounge/community/views.py changed, reloading.
-INFO 2024-09-04 20:40:10,149 Watching for file changes with StatReloader
-INFO 2024-09-04 21:02:28,191 "GET /community/community/ HTTP/1.1" 302 0
-INFO 2024-09-05 06:44:21,611 Watching for file changes with StatReloader
-INFO 2024-09-05 06:44:33,849 "GET / HTTP/1.1" 200 13883
-INFO 2024-09-05 06:44:34,097 "GET /static/css/styles.css HTTP/1.1" 304 0
-INFO 2024-09-05 06:44:34,407 "GET /static/images/author-type.png HTTP/1.1" 304 0
-INFO 2024-09-05 07:00:43,857 "GET / HTTP/1.1" 200 13883
-INFO 2024-09-05 07:01:07,244 "GET /accounts/logout/ HTTP/1.1" 200 12527
-WARNING 2024-09-05 07:01:07,346 Not Found: /accounts/static/images/mailchimp.webp
-WARNING 2024-09-05 07:01:07,346 "GET /accounts/static/images/mailchimp.webp HTTP/1.1" 404 7728
-INFO 2024-09-05 07:01:08,583 "POST /accounts/logout/ HTTP/1.1" 302 0
-INFO 2024-09-05 07:01:08,687 "GET / HTTP/1.1" 200 13034
-WARNING 2024-09-05 07:01:08,804 Not Found: /...
-WARNING 2024-09-05 07:01:08,804 "GET /... HTTP/1.1" 404 3339
-INFO 2024-09-05 07:01:25,297 "GET /library/?q=the HTTP/1.1" 200 31070
-INFO 2024-09-05 07:01:25,421 "GET /static/library/css/library.css HTTP/1.1" 304 0
-INFO 2024-09-05 07:01:25,429 "GET /static/library/js/library.js HTTP/1.1" 304 0
-INFO 2024-09-05 07:01:35,285 "GET /contact/ HTTP/1.1" 200 16015
-INFO 2024-09-05 07:01:35,418 "GET /static/blurb/css/contact.css HTTP/1.1" 200 443
-INFO 2024-09-05 07:01:53,484 "GET /library/ HTTP/1.1" 200 34726
-INFO 2024-09-05 07:02:04,044 "GET /library/book/to-kill-a-mockingbird-lee/ HTTP/1.1" 200 16471
-INFO 2024-09-05 07:02:04,169 "GET /static/images/stars.png HTTP/1.1" 304 0
-WARNING 2024-09-05 07:02:04,178 Not Found: /library/book/static/images/mailchimp.webp
-WARNING 2024-09-05 07:02:04,178 "GET /library/book/static/images/mailchimp.webp HTTP/1.1" 404 3715
-INFO 2024-09-05 07:02:04,187 "GET /static/library/js/loader.js HTTP/1.1" 304 0
-INFO 2024-09-05 07:03:20,908 "GET /library/?author=Huxley&author=TestingWhiles&author=Fitzgerald&author=Orwell&genre=Dystopian HTTP/1.1" 200 26393
-INFO 2024-09-05 07:03:27,483 "GET /library/ HTTP/1.1" 200 34726
-INFO 2024-09-05 07:03:31,910 "GET /library/book/moby-dick-melville/ HTTP/1.1" 200 16447
-WARNING 2024-09-05 07:03:32,009 Not Found: /library/book/static/images/mailchimp.webp
-WARNING 2024-09-05 07:03:32,010 "GET /library/book/static/images/mailchimp.webp HTTP/1.1" 404 3715
-INFO 2024-09-05 07:03:36,654 "GET /library/book/1984-orwell/ HTTP/1.1" 200 16432
-WARNING 2024-09-05 07:03:36,741 Not Found: /library/book/static/images/mailchimp.webp
-WARNING 2024-09-05 07:03:36,742 "GET /library/book/static/images/mailchimp.webp HTTP/1.1" 404 3715
-INFO 2024-09-05 07:04:10,700 "GET /accounts/signup/ HTTP/1.1" 200 14907
-WARNING 2024-09-05 07:04:10,829 Not Found: /accounts/static/images/mailchimp.webp
-WARNING 2024-09-05 07:04:10,829 "GET /accounts/static/images/mailchimp.webp HTTP/1.1" 404 7728
-INFO 2024-09-05 07:04:12,513 "GET /accounts/login/ HTTP/1.1" 200 13397
-WARNING 2024-09-05 07:04:12,622 Not Found: /accounts/static/images/mailchimp.webp
-WARNING 2024-09-05 07:04:12,622 "GET /accounts/static/images/mailchimp.webp HTTP/1.1" 404 7728
-INFO 2024-09-05 07:04:16,540 "GET /accounts/signup/ HTTP/1.1" 200 14907
-INFO 2024-09-05 07:07:10,890 "GET / HTTP/1.1" 200 12406
-INFO 2024-09-05 07:08:10,690 "GET /library/?q=jane HTTP/1.1" 200 28771
-INFO 2024-09-05 07:08:23,529 "GET /library/ HTTP/1.1" 200 34726
-INFO 2024-09-05 07:08:24,923 "GET /library/book/testbook-testingwhiles/ HTTP/1.1" 200 16357
-WARNING 2024-09-05 07:08:25,059 Not Found: /library/book/static/images/mailchimp.webp
-WARNING 2024-09-05 07:08:25,059 "GET /library/book/static/images/mailchimp.webp HTTP/1.1" 404 3715
-INFO 2024-09-05 07:08:40,678 "GET /accounts/signup/ HTTP/1.1" 200 14907
-WARNING 2024-09-05 07:08:40,792 Not Found: /accounts/static/images/mailchimp.webp
-WARNING 2024-09-05 07:08:40,792 "GET /accounts/static/images/mailchimp.webp HTTP/1.1" 404 7728
-INFO 2024-09-05 07:08:42,602 "GET /accounts/login/ HTTP/1.1" 200 13397
-WARNING 2024-09-05 07:08:42,676 Not Found: /accounts/static/images/mailchimp.webp
-WARNING 2024-09-05 07:08:42,676 "GET /accounts/static/images/mailchimp.webp HTTP/1.1" 404 7728
-INFO 2024-09-05 07:08:49,483 "POST /accounts/login/ HTTP/1.1" 302 0
-INFO 2024-09-05 07:08:49,509 "GET / HTTP/1.1" 200 14517
-WARNING 2024-09-05 07:08:49,587 Not Found: /...
-WARNING 2024-09-05 07:08:49,587 "GET /... HTTP/1.1" 404 3339
-INFO 2024-09-05 07:08:54,925 "GET /library/ HTTP/1.1" 200 36152
-INFO 2024-09-05 07:08:56,853 "GET /library/book/moby-dick-melville/ HTTP/1.1" 200 17857
-WARNING 2024-09-05 07:08:56,958 Not Found: /library/book/static/images/mailchimp.webp
-WARNING 2024-09-05 07:08:56,958 "GET /library/book/static/images/mailchimp.webp HTTP/1.1" 404 3715
-INFO 2024-09-05 07:09:01,684 "POST /basket/add/7 HTTP/1.1" 302 0
-INFO 2024-09-05 07:09:01,723 "GET /library/book/moby-dick-melville/ HTTP/1.1" 200 18573
-WARNING 2024-09-05 07:09:01,813 Not Found: /library/book/moby-dick-melville/...
-WARNING 2024-09-05 07:09:01,813 "GET /library/book/moby-dick-melville/... HTTP/1.1" 404 3697
-WARNING 2024-09-05 07:09:01,829 Not Found: /library/book/static/images/mailchimp.webp
-WARNING 2024-09-05 07:09:01,829 "GET /library/book/static/images/mailchimp.webp HTTP/1.1" 404 3715
-INFO 2024-09-05 07:09:05,330 "GET /basket/ HTTP/1.1" 200 21992
-INFO 2024-09-05 07:09:07,036 "GET /community/community/ HTTP/1.1" 200 19633
-WARNING 2024-09-05 07:09:07,215 Not Found: /community/static/images/mailchimp.webp
-WARNING 2024-09-05 07:09:07,215 "GET /community/static/images/mailchimp.webp HTTP/1.1" 404 4531
-INFO 2024-09-05 07:09:19,194 "GET /profile/me/ HTTP/1.1" 200 83255
-WARNING 2024-09-05 07:09:19,452 Not Found: /profile/static/images/mailchimp.webp
-WARNING 2024-09-05 07:09:19,452 "GET /profile/static/images/mailchimp.webp HTTP/1.1" 404 4305
-INFO 2024-09-05 07:09:22,144 "GET /library/ HTTP/1.1" 200 36219
-INFO 2024-09-05 07:09:23,216 "GET /basket/ HTTP/1.1" 200 21992
-INFO 2024-09-05 07:09:41,962 "POST /basket/delete/7 HTTP/1.1" 200 0
-INFO 2024-09-05 07:09:42,010 "GET /basket/ HTTP/1.1" 200 16937
-WARNING 2024-09-05 07:09:42,091 Not Found: /basket/...
-WARNING 2024-09-05 07:09:42,091 "GET /basket/... HTTP/1.1" 404 4017
-INFO 2024-09-05 07:09:46,232 "GET /library/ HTTP/1.1" 200 36152
-INFO 2024-09-05 07:09:47,822 "GET /library/book/testbook-testingwhiles/ HTTP/1.1" 200 17767
-WARNING 2024-09-05 07:09:47,931 Not Found: /library/book/static/images/mailchimp.webp
-WARNING 2024-09-05 07:09:47,931 "GET /library/book/static/images/mailchimp.webp HTTP/1.1" 404 3715
-INFO 2024-09-05 07:09:49,448 "POST /basket/add/11 HTTP/1.1" 302 0
-INFO 2024-09-05 07:09:49,513 "GET /library/book/testbook-testingwhiles/ HTTP/1.1" 200 18482
-WARNING 2024-09-05 07:09:49,620 Not Found: /library/book/testbook-testingwhiles/...
-WARNING 2024-09-05 07:09:49,620 "GET /library/book/testbook-testingwhiles/... HTTP/1.1" 404 3709
-WARNING 2024-09-05 07:09:49,629 Not Found: /library/book/static/images/mailchimp.webp
-WARNING 2024-09-05 07:09:49,629 "GET /library/book/static/images/mailchimp.webp HTTP/1.1" 404 3715
-INFO 2024-09-05 07:09:53,975 "GET /basket/ HTTP/1.1" 200 22010
-INFO 2024-09-05 07:09:57,386 "GET /checkout/ HTTP/1.1" 200 37690
-INFO 2024-09-05 07:09:57,481 "GET /static/checkout/css/checkout.css HTTP/1.1" 200 1322
-INFO 2024-09-05 07:09:57,496 "GET /static/checkout/js/stripe_elements.js HTTP/1.1" 200 4870
-INFO 2024-09-05 07:09:57,896 "POST /checkout/wh/ HTTP/1.1" 200 36
-INFO 2024-09-05 07:10:30,242 "POST /checkout/cache_checkout_data/ HTTP/1.1" 200 0
-INFO 2024-09-05 07:10:31,658 "POST /checkout/ HTTP/1.1" 302 0
-INFO 2024-09-05 07:10:31,725 "GET /checkout/7E4F213055E44E62BF7DFF9C080F9567/success HTTP/1.1" 200 14894
-INFO 2024-09-05 07:10:32,066 "POST /checkout/wh/ HTTP/1.1" 200 30
-INFO 2024-09-05 07:10:32,301 "POST /checkout/wh/ HTTP/1.1" 200 53
-WARNING 2024-09-05 07:10:33,035 Not Found: /checkout/static/images/mailchimp.webp
-WARNING 2024-09-05 07:10:33,036 "GET /checkout/static/images/mailchimp.webp HTTP/1.1" 404 4084
-INFO 2024-09-05 07:10:34,464 "POST /checkout/wh/ HTTP/1.1" 200 28
-INFO 2024-09-05 07:10:35,764 "GET / HTTP/1.1" 200 13875
-INFO 2024-09-05 07:10:43,757 "GET /profile/me/ HTTP/1.1" 200 89363
-WARNING 2024-09-05 07:10:43,885 Not Found: /profile/static/images/mailchimp.webp
-WARNING 2024-09-05 07:10:43,886 "GET /profile/static/images/mailchimp.webp HTTP/1.1" 404 4305
-WARNING 2024-09-05 07:10:44,047 Not Found: /profile/static/images/mailchimp.webp
-WARNING 2024-09-05 07:10:44,047 "GET /profile/static/images/mailchimp.webp HTTP/1.1" 404 4305
-INFO 2024-09-05 07:11:10,919 "GET / HTTP/1.1" 200 13875
-INFO 2024-09-05 07:11:13,736 "GET /profile/me/ HTTP/1.1" 200 89363
-WARNING 2024-09-05 07:11:13,963 Not Found: /profile/static/images/mailchimp.webp
-WARNING 2024-09-05 07:11:13,963 "GET /profile/static/images/mailchimp.webp HTTP/1.1" 404 4305
-INFO 2024-09-05 07:12:03,559 "POST /profile/me/update_review/1/ HTTP/1.1" 302 0
-INFO 2024-09-05 07:12:03,684 "GET /profile/me/ HTTP/1.1" 200 90111
-WARNING 2024-09-05 07:12:03,785 Not Found: /profile/me/...
-WARNING 2024-09-05 07:12:03,785 "GET /profile/me/... HTTP/1.1" 404 4239
-WARNING 2024-09-05 07:12:03,843 Not Found: /profile/static/images/mailchimp.webp
-WARNING 2024-09-05 07:12:03,843 "GET /profile/static/images/mailchimp.webp HTTP/1.1" 404 4305
-WARNING 2024-09-05 07:12:03,959 Not Found: /profile/static/images/mailchimp.webp
-WARNING 2024-09-05 07:12:03,960 "GET /profile/static/images/mailchimp.webp HTTP/1.1" 404 4305
-INFO 2024-09-05 07:12:20,661 "GET /profile/delete_review/1/ HTTP/1.1" 302 0
-INFO 2024-09-05 07:12:20,790 "GET /profile/me/ HTTP/1.1" 200 86699
-WARNING 2024-09-05 07:12:20,870 Not Found: /profile/me/...
-WARNING 2024-09-05 07:12:20,870 "GET /profile/me/... HTTP/1.1" 404 4239
-WARNING 2024-09-05 07:12:20,932 Not Found: /profile/static/images/mailchimp.webp
-WARNING 2024-09-05 07:12:20,932 "GET /profile/static/images/mailchimp.webp HTTP/1.1" 404 4305
-WARNING 2024-09-05 07:12:21,050 Not Found: /profile/static/images/mailchimp.webp
-WARNING 2024-09-05 07:12:21,051 "GET /profile/static/images/mailchimp.webp HTTP/1.1" 404 4305
-INFO 2024-09-05 07:12:28,709 "GET /community/community/ HTTP/1.1" 200 21043
-WARNING 2024-09-05 07:12:28,823 Not Found: /community/static/images/mailchimp.webp
-WARNING 2024-09-05 07:12:28,823 "GET /community/static/images/mailchimp.webp HTTP/1.1" 404 4531
-INFO 2024-09-05 07:12:32,374 "GET /community/community/adventure-community-1 HTTP/1.1" 200 16151
-WARNING 2024-09-05 07:12:32,465 Not Found: /community/static/images/mailchimp.webp
-WARNING 2024-09-05 07:12:32,465 "GET /community/static/images/mailchimp.webp HTTP/1.1" 404 4531
-INFO 2024-09-05 07:12:32,509 "GET /static/community/js/forums.js HTTP/1.1" 200 834
-INFO 2024-09-05 07:12:40,499 "POST /community/community/adventure-community-1 HTTP/1.1" 302 0
-WARNING 2024-09-05 07:12:40,572 Not Found: /community/forum/adventure-community-1
-WARNING 2024-09-05 07:12:40,572 "GET /community/forum/adventure-community-1 HTTP/1.1" 404 4086
-WARNING 2024-09-05 07:12:40,893 Not Found: /favicon.ico
-WARNING 2024-09-05 07:12:40,893 "GET /favicon.ico HTTP/1.1" 404 3363
-INFO 2024-09-05 07:13:24,843 "GET /profile/me/ HTTP/1.1" 200 86694
-WARNING 2024-09-05 07:13:24,933 Not Found: /profile/me/...
-WARNING 2024-09-05 07:13:24,933 "GET /profile/me/... HTTP/1.1" 404 4239
-WARNING 2024-09-05 07:13:25,003 Not Found: /profile/static/images/mailchimp.webp
-WARNING 2024-09-05 07:13:25,004 "GET /profile/static/images/mailchimp.webp HTTP/1.1" 404 4305
-WARNING 2024-09-05 07:13:25,162 Not Found: /profile/static/images/mailchimp.webp
-WARNING 2024-09-05 07:13:25,163 "GET /profile/static/images/mailchimp.webp HTTP/1.1" 404 4305
-INFO 2024-09-05 07:13:37,680 "GET /community/community/ HTTP/1.1" 200 21043
-WARNING 2024-09-05 07:13:37,803 Not Found: /community/static/images/mailchimp.webp
-WARNING 2024-09-05 07:13:37,804 "GET /community/static/images/mailchimp.webp HTTP/1.1" 404 4531
-INFO 2024-09-05 07:13:46,518 "GET /profile/me/ HTTP/1.1" 200 86054
-WARNING 2024-09-05 07:13:46,654 Not Found: /profile/static/images/mailchimp.webp
-WARNING 2024-09-05 07:13:46,654 "GET /profile/static/images/mailchimp.webp HTTP/1.1" 404 4305
-INFO 2024-09-05 07:13:52,847 "GET / HTTP/1.1" 200 13875
-INFO 2024-09-05 07:14:01,706 "GET /accounts/logout/ HTTP/1.1" 200 12527
-WARNING 2024-09-05 07:14:01,804 Not Found: /accounts/static/images/mailchimp.webp
-WARNING 2024-09-05 07:14:01,805 "GET /accounts/static/images/mailchimp.webp HTTP/1.1" 404 7728
-INFO 2024-09-05 07:14:03,361 "POST /accounts/logout/ HTTP/1.1" 302 0
-INFO 2024-09-05 07:14:03,392 "GET / HTTP/1.1" 200 13034
-WARNING 2024-09-05 07:14:03,557 Not Found: /...
-WARNING 2024-09-05 07:14:03,557 "GET /... HTTP/1.1" 404 3339
-INFO 2024-09-05 07:16:22,492 "GET /marketing/unsubscribe/ HTTP/1.1" 200 1186
-INFO 2024-09-05 07:16:30,813 "POST /marketing/unsubscribe/ HTTP/1.1" 302 0
-INFO 2024-09-05 07:16:30,837 "GET /marketing/unsubscribe/success/ HTTP/1.1" 200 663
-INFO 2024-09-05 07:16:57,212 "GET /contact/ HTTP/1.1" 200 16015
-INFO 2024-09-05 07:17:47,451 "GET / HTTP/1.1" 200 12406
-INFO 2024-09-05 07:27:36,163 /workspace/leaf-lounge/library/models.py changed, reloading.
-INFO 2024-09-05 07:27:36,882 Watching for file changes with StatReloader
-INFO 2024-09-05 07:34:18,473 "GET /accounts/login/ HTTP/1.1" 200 13397
-WARNING 2024-09-05 07:34:18,560 Not Found: /accounts/static/images/mailchimp.webp
-WARNING 2024-09-05 07:34:18,560 "GET /accounts/static/images/mailchimp.webp HTTP/1.1" 404 7728
-INFO 2024-09-05 07:34:27,096 "POST /accounts/login/ HTTP/1.1" 302 0
-INFO 2024-09-05 07:34:27,181 "GET / HTTP/1.1" 200 14517
-WARNING 2024-09-05 07:34:27,280 Not Found: /...
-WARNING 2024-09-05 07:34:27,281 "GET /... HTTP/1.1" 404 3339
-INFO 2024-09-05 07:34:29,186 "GET /community/community/ HTTP/1.1" 200 21043
-WARNING 2024-09-05 07:34:29,269 Not Found: /community/static/images/mailchimp.webp
-WARNING 2024-09-05 07:34:29,269 "GET /community/static/images/mailchimp.webp HTTP/1.1" 404 4531
-INFO 2024-09-05 07:34:33,300 "GET /community/community/crime-community-10 HTTP/1.1" 200 16915
-WARNING 2024-09-05 07:34:33,420 Not Found: /community/static/images/mailchimp.webp
-WARNING 2024-09-05 07:34:33,420 "GET /community/static/images/mailchimp.webp HTTP/1.1" 404 4531
-INFO 2024-09-05 07:34:36,129 "GET /community/community/adventure-community-1 HTTP/1.1" 200 16530
-WARNING 2024-09-05 07:34:36,207 Not Found: /community/static/images/mailchimp.webp
-WARNING 2024-09-05 07:34:36,207 "GET /community/static/images/mailchimp.webp HTTP/1.1" 404 4531
-INFO 2024-09-05 07:34:38,088 "GET /community/forum/harry-forum-adventure-community-16 HTTP/1.1" 200 15790
-INFO 2024-09-05 07:34:38,163 "GET /static/community/css/community.css HTTP/1.1" 304 0
-WARNING 2024-09-05 07:34:38,194 Not Found: /community/static/images/mailchimp.webp
-WARNING 2024-09-05 07:34:38,195 "GET /community/static/images/mailchimp.webp HTTP/1.1" 404 4531
-WARNING 2024-09-05 07:34:38,198 "GET /static/community/js/messages.js HTTP/1.1" 404 1881
-INFO 2024-09-05 07:36:18,874 /workspace/leaf-lounge/community/views.py changed, reloading.
-INFO 2024-09-05 07:36:19,522 Watching for file changes with StatReloader
-INFO 2024-09-05 07:36:21,772 "GET /community/forum/harry-forum-adventure-community-16 HTTP/1.1" 200 15790
-INFO 2024-09-05 07:36:21,952 "GET /static/community/css/community.css HTTP/1.1" 200 816
-INFO 2024-09-05 07:36:21,952 "GET /static/js/index.js HTTP/1.1" 200 470
-INFO 2024-09-05 07:36:21,956 "GET /static/js/actions.js HTTP/1.1" 200 3988
-INFO 2024-09-05 07:36:21,956 "GET /static/js/quantity.js HTTP/1.1" 200 3055
-INFO 2024-09-05 07:36:21,956 "GET /static/css/styles.css HTTP/1.1" 200 4999
-INFO 2024-09-05 07:36:21,957 "GET /static/js/library.js HTTP/1.1" 200 2656
-INFO 2024-09-05 07:36:21,963 "GET /static/images/logo.png HTTP/1.1" 200 58043
-WARNING 2024-09-05 07:36:21,966 Not Found: /community/static/images/mailchimp.webp
-WARNING 2024-09-05 07:36:21,966 "GET /static/community/js/messages.js HTTP/1.1" 404 1881
-WARNING 2024-09-05 07:36:21,966 "GET /community/static/images/mailchimp.webp HTTP/1.1" 404 4531
-INFO 2024-09-05 07:36:22,227 "GET /static/js/module.js HTTP/1.1" 200 445
-INFO 2024-09-05 07:36:22,532 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
-INFO 2024-09-05 07:36:26,245 "GET /community/community/adventure-community-1 HTTP/1.1" 200 16530
-INFO 2024-09-05 07:36:26,328 "GET /static/css/styles.css HTTP/1.1" 200 4999
-INFO 2024-09-05 07:36:26,328 "GET /static/images/logo.png HTTP/1.1" 200 58043
-INFO 2024-09-05 07:36:26,332 "GET /static/js/index.js HTTP/1.1" 200 470
-INFO 2024-09-05 07:36:26,335 "GET /static/community/js/forums.js HTTP/1.1" 200 834
-INFO 2024-09-05 07:36:26,336 "GET /static/js/quantity.js HTTP/1.1" 200 3055
-INFO 2024-09-05 07:36:26,337 "GET /static/js/actions.js HTTP/1.1" 200 3988
-INFO 2024-09-05 07:36:26,337 "GET /static/js/library.js HTTP/1.1" 200 2656
-INFO 2024-09-05 07:36:26,337 "GET /static/images/1984_cover.jpg HTTP/1.1" 200 47735
-WARNING 2024-09-05 07:36:26,352 Not Found: /community/static/images/mailchimp.webp
-WARNING 2024-09-05 07:36:26,352 "GET /community/static/images/mailchimp.webp HTTP/1.1" 404 4531
-INFO 2024-09-05 07:36:26,565 "GET /static/js/module.js HTTP/1.1" 200 445
-INFO 2024-09-05 07:36:26,672 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
-INFO 2024-09-05 07:36:31,893 "POST /community/community/adventure-community-1 HTTP/1.1" 302 0
-INFO 2024-09-05 07:36:31,955 "GET /community/forum/trial-adventure-community-17 HTTP/1.1" 200 16424
-WARNING 2024-09-05 07:36:32,102 Not Found: /community/static/images/mailchimp.webp
-WARNING 2024-09-05 07:36:32,105 Not Found: /community/forum/...
-WARNING 2024-09-05 07:36:32,106 "GET /static/community/js/messages.js HTTP/1.1" 404 1881
-WARNING 2024-09-05 07:36:32,106 "GET /community/static/images/mailchimp.webp HTTP/1.1" 404 4531
-WARNING 2024-09-05 07:36:32,106 "GET /community/forum/... HTTP/1.1" 404 4474
-INFO 2024-09-05 07:36:39,000 "GET /community/forum/trial-adventure-community-17 HTTP/1.1" 200 15784
-WARNING 2024-09-05 07:36:39,098 Not Found: /community/static/images/mailchimp.webp
-WARNING 2024-09-05 07:36:39,098 "GET /community/static/images/mailchimp.webp HTTP/1.1" 404 4531
-WARNING 2024-09-05 07:36:39,215 "GET /static/community/js/messages.js HTTP/1.1" 404 1881
-INFO 2024-09-05 07:36:50,211 /workspace/leaf-lounge/community/views.py changed, reloading.
-INFO 2024-09-05 07:36:50,725 Watching for file changes with StatReloader
-INFO 2024-09-05 07:38:42,612 /workspace/leaf-lounge/community/views.py changed, reloading.
-INFO 2024-09-05 07:38:43,168 Watching for file changes with StatReloader
-INFO 2024-09-05 07:40:40,143 /workspace/leaf-lounge/community/views.py changed, reloading.
-INFO 2024-09-05 07:40:40,684 Watching for file changes with StatReloader
-INFO 2024-09-05 07:41:44,788 /workspace/leaf-lounge/community/views.py changed, reloading.
-INFO 2024-09-05 07:41:45,266 Watching for file changes with StatReloader
-INFO 2024-09-05 07:41:53,395 /workspace/leaf-lounge/community/views.py changed, reloading.
-INFO 2024-09-05 07:41:53,856 Watching for file changes with StatReloader
-INFO 2024-09-05 07:41:56,307 "GET /community/forum/trial-adventure-community-17 HTTP/1.1" 200 15784
-INFO 2024-09-05 07:41:56,464 "GET /static/js/actions.js HTTP/1.1" 200 3988
-INFO 2024-09-05 07:41:56,465 "GET /static/css/styles.css HTTP/1.1" 200 4999
-INFO 2024-09-05 07:41:56,465 "GET /static/js/index.js HTTP/1.1" 200 470
-INFO 2024-09-05 07:41:56,465 "GET /static/community/css/community.css HTTP/1.1" 200 816
-INFO 2024-09-05 07:41:56,469 "GET /static/js/quantity.js HTTP/1.1" 200 3055
-INFO 2024-09-05 07:41:56,470 "GET /static/js/library.js HTTP/1.1" 200 2656
-INFO 2024-09-05 07:41:56,475 "GET /static/images/logo.png HTTP/1.1" 200 58043
-WARNING 2024-09-05 07:41:56,477 Not Found: /community/static/images/mailchimp.webp
-WARNING 2024-09-05 07:41:56,477 "GET /static/community/js/messages.js HTTP/1.1" 404 1881
-WARNING 2024-09-05 07:41:56,478 "GET /community/static/images/mailchimp.webp HTTP/1.1" 404 4531
-INFO 2024-09-05 07:41:56,720 "GET /static/js/module.js HTTP/1.1" 200 445
-INFO 2024-09-05 07:41:56,750 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
-INFO 2024-09-05 07:41:57,136 "GET /community/forum/trial-adventure-community-17 HTTP/1.1" 200 15784
-INFO 2024-09-05 07:41:57,219 "GET /static/css/styles.css HTTP/1.1" 200 4999
-INFO 2024-09-05 07:41:57,220 "GET /static/community/css/community.css HTTP/1.1" 200 816
-INFO 2024-09-05 07:41:57,226 "GET /static/js/index.js HTTP/1.1" 200 470
-INFO 2024-09-05 07:41:57,228 "GET /static/js/quantity.js HTTP/1.1" 200 3055
-INFO 2024-09-05 07:41:57,229 "GET /static/js/actions.js HTTP/1.1" 200 3988
-WARNING 2024-09-05 07:41:57,232 "GET /static/community/js/messages.js HTTP/1.1" 404 1881
-WARNING 2024-09-05 07:41:57,233 Not Found: /community/static/images/mailchimp.webp
-INFO 2024-09-05 07:41:57,233 "GET /static/js/library.js HTTP/1.1" 200 2656
-WARNING 2024-09-05 07:41:57,234 "GET /community/static/images/mailchimp.webp HTTP/1.1" 404 4531
-INFO 2024-09-05 07:41:57,234 "GET /static/images/logo.png HTTP/1.1" 200 58043
-INFO 2024-09-05 07:41:57,466 "GET /static/js/module.js HTTP/1.1" 200 445
-INFO 2024-09-05 07:41:57,761 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
-INFO 2024-09-05 07:41:58,721 "GET /community/become/author/ HTTP/1.1" 200 29531
-WARNING 2024-09-05 07:41:58,809 Not Found: /community/become/static/images/mailchimp.webp
-WARNING 2024-09-05 07:41:58,809 "GET /community/become/static/images/mailchimp.webp HTTP/1.1" 404 4552
-INFO 2024-09-05 07:42:02,539 "GET /community/become/author/book HTTP/1.1" 200 21672
-WARNING 2024-09-05 07:42:02,616 Not Found: /community/become/static/images/mailchimp.webp
-WARNING 2024-09-05 07:42:02,616 "GET /community/become/static/images/mailchimp.webp HTTP/1.1" 404 4552
-INFO 2024-09-05 07:42:38,506 "POST /community/become/author/book HTTP/1.1" 302 0
-INFO 2024-09-05 07:42:38,562 "GET /profile/my_books/ HTTP/1.1" 200 21772
-WARNING 2024-09-05 07:42:38,665 Not Found: /profile/static/images/mailchimp.webp
-WARNING 2024-09-05 07:42:38,665 "GET /profile/static/images/mailchimp.webp HTTP/1.1" 404 4305
-INFO 2024-09-05 07:43:22,056 "GET /profile/my_books/ HTTP/1.1" 200 21772
-INFO 2024-09-05 07:43:22,143 "GET /static/css/styles.css HTTP/1.1" 200 4999
-INFO 2024-09-05 07:43:22,144 "GET /static/images/logo.png HTTP/1.1" 200 58043
-WARNING 2024-09-05 07:43:22,175 Not Found: /profile/static/images/mailchimp.webp
-INFO 2024-09-05 07:43:22,175 "GET /static/images/1984_cover.jpg HTTP/1.1" 200 47735
-WARNING 2024-09-05 07:43:22,175 "GET /profile/static/images/mailchimp.webp HTTP/1.1" 404 4305
-INFO 2024-09-05 07:43:22,183 "GET /static/js/index.js HTTP/1.1" 200 470
-INFO 2024-09-05 07:43:22,183 "GET /static/js/quantity.js HTTP/1.1" 200 3055
-INFO 2024-09-05 07:43:22,184 "GET /static/js/library.js HTTP/1.1" 200 2656
-INFO 2024-09-05 07:43:22,184 "GET /static/js/actions.js HTTP/1.1" 200 3988
-INFO 2024-09-05 07:43:22,417 "GET /static/js/module.js HTTP/1.1" 200 445
-INFO 2024-09-05 07:43:22,452 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
-INFO 2024-09-05 07:43:24,985 "GET / HTTP/1.1" 200 13875
-INFO 2024-09-05 07:44:26,608 "GET /profile/me/ HTTP/1.1" 200 86125
-WARNING 2024-09-05 07:44:26,726 Not Found: /profile/static/images/mailchimp.webp
-WARNING 2024-09-05 07:44:26,726 "GET /profile/static/images/mailchimp.webp HTTP/1.1" 404 4305
-WARNING 2024-09-05 07:44:26,859 Not Found: /profile/static/images/mailchimp.webp
-WARNING 2024-09-05 07:44:26,859 "GET /profile/static/images/mailchimp.webp HTTP/1.1" 404 4305
-INFO 2024-09-05 07:44:27,898 "GET /profile/my_books/ HTTP/1.1" 200 21772
-WARNING 2024-09-05 07:44:27,996 Not Found: /profile/static/images/mailchimp.webp
-WARNING 2024-09-05 07:44:27,996 "GET /profile/static/images/mailchimp.webp HTTP/1.1" 404 4305
-INFO 2024-09-05 07:45:35,733 /workspace/leaf-lounge/community/views.py changed, reloading.
-INFO 2024-09-05 07:45:36,267 Watching for file changes with StatReloader
-INFO 2024-09-05 07:51:32,103 /workspace/leaf-lounge/leaves/settings.py changed, reloading.
-INFO 2024-09-05 07:51:32,746 Watching for file changes with StatReloader
-INFO 2024-09-05 07:53:58,306 /workspace/leaf-lounge/library/signals.py changed, reloading.
-INFO 2024-09-05 07:53:58,945 Watching for file changes with StatReloader
-INFO 2024-09-05 07:55:01,543 "GET /profile/my_books/ HTTP/1.1" 200 21772
-INFO 2024-09-05 07:55:01,620 "GET /static/css/styles.css HTTP/1.1" 200 4999
-INFO 2024-09-05 07:55:01,620 "GET /static/images/logo.png HTTP/1.1" 200 58043
-INFO 2024-09-05 07:55:01,621 "GET /static/images/1984_cover.jpg HTTP/1.1" 200 47735
-WARNING 2024-09-05 07:55:01,808 Not Found: /profile/static/images/mailchimp.webp
-WARNING 2024-09-05 07:55:01,809 "GET /profile/static/images/mailchimp.webp HTTP/1.1" 404 4305
-INFO 2024-09-05 07:55:01,809 "GET /static/js/quantity.js HTTP/1.1" 200 3055
-INFO 2024-09-05 07:55:01,811 "GET /static/js/index.js HTTP/1.1" 200 470
-INFO 2024-09-05 07:55:01,811 "GET /static/js/actions.js HTTP/1.1" 200 3988
-INFO 2024-09-05 07:55:01,811 "GET /static/js/library.js HTTP/1.1" 200 2656
-INFO 2024-09-05 07:55:02,143 "GET /static/js/module.js HTTP/1.1" 200 445
-INFO 2024-09-05 07:55:02,304 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
-INFO 2024-09-05 07:55:03,808 "GET / HTTP/1.1" 200 13868
-INFO 2024-09-05 07:55:54,674 "GET / HTTP/1.1" 200 14422
-INFO 2024-09-05 07:55:54,750 "GET /static/css/styles.css HTTP/1.1" 200 4999
-INFO 2024-09-05 07:55:54,754 "GET /static/js/index.js HTTP/1.1" 200 470
-INFO 2024-09-05 07:55:54,755 "GET /static/images/logo.png HTTP/1.1" 200 58043
-INFO 2024-09-05 07:55:54,757 "GET /static/js/quantity.js HTTP/1.1" 200 3055
-INFO 2024-09-05 07:55:54,757 "GET /static/js/actions.js HTTP/1.1" 200 3988
-INFO 2024-09-05 07:55:54,757 "GET /static/js/library.js HTTP/1.1" 200 2656
-INFO 2024-09-05 07:55:54,758 "GET /static/images/mailchimp.webp HTTP/1.1" 200 19650
-INFO 2024-09-05 07:55:54,853 "GET /static/images/author-type.png HTTP/1.1" 200 152492
-INFO 2024-09-05 07:55:55,061 "GET /static/js/module.js HTTP/1.1" 200 445
-INFO 2024-09-05 07:55:55,380 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
-INFO 2024-09-05 07:56:19,187 "GET / HTTP/1.1" 200 14538
-INFO 2024-09-05 07:56:19,252 "GET /static/css/styles.css HTTP/1.1" 200 4999
-INFO 2024-09-05 07:56:19,253 "GET /static/images/logo.png HTTP/1.1" 200 58043
-INFO 2024-09-05 07:56:19,300 "GET /static/images/mailchimp.webp HTTP/1.1" 200 19650
-INFO 2024-09-05 07:56:19,307 "GET /static/js/quantity.js HTTP/1.1" 200 3055
-INFO 2024-09-05 07:56:19,308 "GET /static/js/library.js HTTP/1.1" 200 2656
-INFO 2024-09-05 07:56:19,308 "GET /static/js/index.js HTTP/1.1" 200 470
-INFO 2024-09-05 07:56:19,308 "GET /static/js/actions.js HTTP/1.1" 200 3988
-INFO 2024-09-05 07:56:19,353 "GET /static/images/author-type.png HTTP/1.1" 200 152492
-INFO 2024-09-05 07:56:19,553 "GET /static/js/module.js HTTP/1.1" 200 445
-INFO 2024-09-05 07:56:19,854 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
-INFO 2024-09-05 07:56:43,488 "GET / HTTP/1.1" 200 15188
-INFO 2024-09-05 07:56:43,603 "GET /static/js/quantity.js HTTP/1.1" 200 3055
-INFO 2024-09-05 07:56:43,604 "GET /static/css/styles.css HTTP/1.1" 200 4999
-INFO 2024-09-05 07:56:43,605 "GET /static/js/actions.js HTTP/1.1" 200 3988
-INFO 2024-09-05 07:56:43,606 "GET /static/js/library.js HTTP/1.1" 200 2656
-INFO 2024-09-05 07:56:43,606 "GET /static/js/index.js HTTP/1.1" 200 470
-INFO 2024-09-05 07:56:43,607 "GET /static/images/mailchimp.webp HTTP/1.1" 200 19650
-INFO 2024-09-05 07:56:43,607 "GET /static/images/logo.png HTTP/1.1" 200 58043
-INFO 2024-09-05 07:56:43,705 "GET /static/images/author-type.png HTTP/1.1" 200 152492
-INFO 2024-09-05 07:56:43,867 "GET /static/js/module.js HTTP/1.1" 200 445
-INFO 2024-09-05 07:56:44,151 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
-INFO 2024-09-05 07:57:03,993 "GET / HTTP/1.1" 200 15188
-INFO 2024-09-05 07:57:16,768 "GET / HTTP/1.1" 200 15193
-INFO 2024-09-05 07:57:16,846 "GET /static/js/library.js HTTP/1.1" 200 2656
-INFO 2024-09-05 07:57:16,847 "GET /static/js/quantity.js HTTP/1.1" 200 3055
-INFO 2024-09-05 07:57:16,848 "GET /static/js/actions.js HTTP/1.1" 200 3988
-INFO 2024-09-05 07:57:16,849 "GET /static/images/logo.png HTTP/1.1" 200 58043
-INFO 2024-09-05 07:57:16,849 "GET /static/css/styles.css HTTP/1.1" 200 4999
-INFO 2024-09-05 07:57:16,879 "GET /static/js/index.js HTTP/1.1" 200 470
-INFO 2024-09-05 07:57:16,879 "GET /static/images/mailchimp.webp HTTP/1.1" 200 19650
-INFO 2024-09-05 07:57:16,974 "GET / HTTP/1.1" 200 15193
-INFO 2024-09-05 07:57:16,975 "GET /static/images/author-type.png HTTP/1.1" 200 152492
-INFO 2024-09-05 07:57:17,101 "GET /static/css/styles.css HTTP/1.1" 200 4999
-INFO 2024-09-05 07:57:17,102 "GET /static/js/actions.js HTTP/1.1" 200 3988
-INFO 2024-09-05 07:57:17,104 "GET /static/js/library.js HTTP/1.1" 200 2656
-INFO 2024-09-05 07:57:17,104 "GET /static/images/logo.png HTTP/1.1" 200 58043
-INFO 2024-09-05 07:57:17,104 "GET /static/js/quantity.js HTTP/1.1" 200 3055
-INFO 2024-09-05 07:57:17,105 "GET /static/js/index.js HTTP/1.1" 200 470
-INFO 2024-09-05 07:57:17,106 "GET /static/images/mailchimp.webp HTTP/1.1" 200 19650
-INFO 2024-09-05 07:57:17,183 "GET /static/images/author-type.png HTTP/1.1" 200 152492
-INFO 2024-09-05 07:57:17,295 "GET /static/js/module.js HTTP/1.1" 200 445
-INFO 2024-09-05 07:57:17,611 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
-INFO 2024-09-05 07:57:18,258 "GET / HTTP/1.1" 200 15193
-INFO 2024-09-05 07:57:18,343 "GET /static/js/index.js HTTP/1.1" 200 470
-INFO 2024-09-05 07:57:18,345 "GET /static/js/quantity.js HTTP/1.1" 200 3055
-INFO 2024-09-05 07:57:18,345 "GET /static/css/styles.css HTTP/1.1" 200 4999
-INFO 2024-09-05 07:57:18,346 "GET /static/js/library.js HTTP/1.1" 200 2656
-INFO 2024-09-05 07:57:18,347 "GET /static/js/actions.js HTTP/1.1" 200 3988
-INFO 2024-09-05 07:57:18,347 "GET /static/images/mailchimp.webp HTTP/1.1" 200 19650
-INFO 2024-09-05 07:57:18,347 "GET /static/images/logo.png HTTP/1.1" 200 58043
-INFO 2024-09-05 07:57:18,424 "GET /static/images/author-type.png HTTP/1.1" 200 152492
-INFO 2024-09-05 07:57:18,597 "GET /static/js/module.js HTTP/1.1" 200 445
-INFO 2024-09-05 07:57:18,723 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
-INFO 2024-09-05 07:57:25,527 "GET / HTTP/1.1" 200 15202
-INFO 2024-09-05 07:57:25,609 "GET /static/js/actions.js HTTP/1.1" 200 3988
-INFO 2024-09-05 07:57:25,609 "GET /static/css/styles.css HTTP/1.1" 200 4999
-INFO 2024-09-05 07:57:25,610 "GET /static/js/quantity.js HTTP/1.1" 200 3055
-INFO 2024-09-05 07:57:25,612 "GET /static/images/mailchimp.webp HTTP/1.1" 200 19650
-INFO 2024-09-05 07:57:25,612 "GET /static/js/index.js HTTP/1.1" 200 470
-INFO 2024-09-05 07:57:25,612 "GET /static/js/library.js HTTP/1.1" 200 2656
-INFO 2024-09-05 07:57:25,613 "GET /static/images/logo.png HTTP/1.1" 200 58043
-INFO 2024-09-05 07:57:25,711 "GET /static/images/author-type.png HTTP/1.1" 200 152492
-INFO 2024-09-05 07:57:25,875 "GET /static/js/module.js HTTP/1.1" 200 445
-INFO 2024-09-05 07:57:25,928 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
-INFO 2024-09-05 07:57:34,830 "GET / HTTP/1.1" 200 15197
-INFO 2024-09-05 07:57:34,911 "GET /static/css/styles.css HTTP/1.1" 200 4999
-INFO 2024-09-05 07:57:34,911 "GET /static/images/mailchimp.webp HTTP/1.1" 200 19650
-INFO 2024-09-05 07:57:34,911 "GET /static/js/index.js HTTP/1.1" 200 470
-INFO 2024-09-05 07:57:34,914 "GET /static/js/quantity.js HTTP/1.1" 200 3055
-INFO 2024-09-05 07:57:34,914 "GET /static/js/library.js HTTP/1.1" 200 2656
-INFO 2024-09-05 07:57:34,914 "GET /static/js/actions.js HTTP/1.1" 200 3988
-INFO 2024-09-05 07:57:34,914 "GET /static/images/logo.png HTTP/1.1" 200 58043
-INFO 2024-09-05 07:57:35,008 "GET /static/images/author-type.png HTTP/1.1" 200 152492
-INFO 2024-09-05 07:57:35,177 "GET /static/js/module.js HTTP/1.1" 200 445
-INFO 2024-09-05 07:57:35,581 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
-INFO 2024-09-05 07:57:52,025 "GET / HTTP/1.1" 200 13868
-INFO 2024-09-05 07:57:52,123 "GET /static/css/styles.css HTTP/1.1" 200 4999
-INFO 2024-09-05 07:57:52,124 "GET /static/js/actions.js HTTP/1.1" 200 3988
-INFO 2024-09-05 07:57:52,125 "GET /static/images/mailchimp.webp HTTP/1.1" 200 19650
-INFO 2024-09-05 07:57:52,125 "GET /static/js/index.js HTTP/1.1" 200 470
-INFO 2024-09-05 07:57:52,125 "GET /static/js/quantity.js HTTP/1.1" 200 3055
-INFO 2024-09-05 07:57:52,126 "GET /static/js/library.js HTTP/1.1" 200 2656
-INFO 2024-09-05 07:57:52,126 "GET /static/images/logo.png HTTP/1.1" 200 58043
-INFO 2024-09-05 07:57:52,237 "GET /static/images/author-type.png HTTP/1.1" 200 152492
-INFO 2024-09-05 07:57:52,379 "GET /static/js/module.js HTTP/1.1" 200 445
-INFO 2024-09-05 07:57:52,667 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
-INFO 2024-09-05 08:08:35,513 /workspace/leaf-lounge/library/views.py changed, reloading.
-INFO 2024-09-05 08:08:36,061 Watching for file changes with StatReloader
-INFO 2024-09-05 08:12:03,547 /workspace/leaf-lounge/community/views.py changed, reloading.
-INFO 2024-09-05 08:12:04,099 Watching for file changes with StatReloader
-INFO 2024-09-05 08:15:15,283 /workspace/leaf-lounge/marketing/forms.py changed, reloading.
-INFO 2024-09-05 08:15:15,861 Watching for file changes with StatReloader
-INFO 2024-09-05 08:17:34,184 /workspace/leaf-lounge/marketing/urls.py changed, reloading.
-INFO 2024-09-05 08:17:34,709 Watching for file changes with StatReloader
-INFO 2024-09-05 08:36:07,855 /workspace/leaf-lounge/marketing/views.py changed, reloading.
-INFO 2024-09-05 08:36:08,424 Watching for file changes with StatReloader
-INFO 2024-09-05 08:36:33,941 /workspace/leaf-lounge/reader/admin.py changed, reloading.
-INFO 2024-09-05 08:36:34,482 Watching for file changes with StatReloader
-INFO 2024-09-05 08:36:58,973 /workspace/leaf-lounge/reader/apps.py changed, reloading.
-INFO 2024-09-05 08:36:59,537 Watching for file changes with StatReloader
-INFO 2024-09-05 08:37:29,136 /workspace/leaf-lounge/marketing/views.py changed, reloading.
-INFO 2024-09-05 08:37:29,689 Watching for file changes with StatReloader
-INFO 2024-09-05 08:37:48,102 /workspace/leaf-lounge/marketing/views.py changed, reloading.
-INFO 2024-09-05 08:37:48,665 Watching for file changes with StatReloader
-INFO 2024-09-05 08:48:41,257 /workspace/leaf-lounge/community/forms.py changed, reloading.
-INFO 2024-09-05 08:48:41,825 Watching for file changes with StatReloader
-INFO 2024-09-05 08:55:26,431 /workspace/leaf-lounge/reader/forms.py changed, reloading.
-INFO 2024-09-05 08:55:26,959 Watching for file changes with StatReloader
-INFO 2024-09-05 08:56:46,365 /workspace/leaf-lounge/reader/forms.py changed, reloading.
-INFO 2024-09-05 08:56:46,914 Watching for file changes with StatReloader
-INFO 2024-09-05 08:56:54,075 /workspace/leaf-lounge/reader/forms.py changed, reloading.
-INFO 2024-09-05 08:56:54,620 Watching for file changes with StatReloader
-INFO 2024-09-05 08:57:37,409 /workspace/leaf-lounge/reader/models.py changed, reloading.
-INFO 2024-09-05 08:57:37,940 Watching for file changes with StatReloader
-INFO 2024-09-05 08:57:51,196 /workspace/leaf-lounge/reader/models.py changed, reloading.
-INFO 2024-09-05 08:57:51,761 Watching for file changes with StatReloader
-INFO 2024-09-05 08:58:32,501 /workspace/leaf-lounge/reader/signals.py changed, reloading.
-INFO 2024-09-05 08:58:33,035 Watching for file changes with StatReloader
-INFO 2024-09-05 09:05:54,290 /workspace/leaf-lounge/reader/views.py changed, reloading.
-INFO 2024-09-05 09:05:54,813 Watching for file changes with StatReloader
-INFO 2024-09-05 09:06:33,513 /workspace/leaf-lounge/reader/views.py changed, reloading.
-INFO 2024-09-05 09:06:34,059 Watching for file changes with StatReloader
-INFO 2024-09-05 09:14:59,400 /workspace/leaf-lounge/reader/widgets.py changed, reloading.
-INFO 2024-09-05 09:14:59,950 Watching for file changes with StatReloader
-INFO 2024-09-05 09:20:16,099 /workspace/leaf-lounge/reader/views.py changed, reloading.
-INFO 2024-09-05 09:20:16,627 Watching for file changes with StatReloader
-INFO 2024-09-05 09:22:33,909 /workspace/leaf-lounge/basket/views.py changed, reloading.
-INFO 2024-09-05 09:22:34,455 Watching for file changes with StatReloader
-INFO 2024-09-05 09:22:47,706 /workspace/leaf-lounge/basket/views.py changed, reloading.
-INFO 2024-09-05 09:22:48,243 Watching for file changes with StatReloader
-INFO 2024-09-05 09:24:35,065 /workspace/leaf-lounge/blurb/views.py changed, reloading.
-INFO 2024-09-05 09:24:35,623 Watching for file changes with StatReloader
-INFO 2024-09-05 09:24:45,863 /workspace/leaf-lounge/blurb/views.py changed, reloading.
-INFO 2024-09-05 09:24:46,429 Watching for file changes with StatReloader
-INFO 2024-09-05 09:25:37,392 /workspace/leaf-lounge/basket/views.py changed, reloading.
-INFO 2024-09-05 09:25:37,957 Watching for file changes with StatReloader
-INFO 2024-09-05 09:25:55,355 /workspace/leaf-lounge/basket/views.py changed, reloading.
-INFO 2024-09-05 09:25:55,909 Watching for file changes with StatReloader
-INFO 2024-09-05 09:27:29,500 /workspace/leaf-lounge/basket/views.py changed, reloading.
-INFO 2024-09-05 09:27:30,051 Watching for file changes with StatReloader
-INFO 2024-09-05 09:27:35,175 /workspace/leaf-lounge/basket/views.py changed, reloading.
-INFO 2024-09-05 09:27:35,730 Watching for file changes with StatReloader
-INFO 2024-09-05 09:28:17,511 /workspace/leaf-lounge/checkout/views.py changed, reloading.
-INFO 2024-09-05 09:28:18,075 Watching for file changes with StatReloader
-INFO 2024-09-05 09:28:59,842 /workspace/leaf-lounge/checkout/views.py changed, reloading.
-INFO 2024-09-05 09:29:00,393 Watching for file changes with StatReloader
-INFO 2024-09-05 09:30:38,073 /workspace/leaf-lounge/checkout/views.py changed, reloading.
-INFO 2024-09-05 09:30:38,632 Watching for file changes with StatReloader
-INFO 2024-09-05 09:30:42,746 /workspace/leaf-lounge/checkout/views.py changed, reloading.
-INFO 2024-09-05 09:30:43,303 Watching for file changes with StatReloader
-INFO 2024-09-05 09:31:04,745 /workspace/leaf-lounge/checkout/views.py changed, reloading.
-INFO 2024-09-05 09:31:05,312 Watching for file changes with StatReloader
-INFO 2024-09-05 09:32:04,367 /workspace/leaf-lounge/community/views.py changed, reloading.
-INFO 2024-09-05 09:32:04,944 Watching for file changes with StatReloader
-INFO 2024-09-05 09:32:37,572 /workspace/leaf-lounge/community/views.py changed, reloading.
-INFO 2024-09-05 09:32:38,155 Watching for file changes with StatReloader
-INFO 2024-09-05 09:32:55,557 /workspace/leaf-lounge/community/views.py changed, reloading.
-INFO 2024-09-05 09:32:56,109 Watching for file changes with StatReloader
-INFO 2024-09-05 09:33:26,457 "GET /profile/me/ HTTP/1.1" 200 86121
-WARNING 2024-09-05 09:33:26,747 Not Found: /profile/static/images/mailchimp.webp
-WARNING 2024-09-05 09:33:26,747 "GET /profile/static/images/mailchimp.webp HTTP/1.1" 404 4305
-WARNING 2024-09-05 09:33:26,835 Not Found: /profile/static/images/mailchimp.webp
-WARNING 2024-09-05 09:33:26,835 "GET /profile/static/images/mailchimp.webp HTTP/1.1" 404 4305
-INFO 2024-09-05 09:33:28,031 "GET /community/become/author/ HTTP/1.1" 200 29531
-WARNING 2024-09-05 09:33:28,122 Not Found: /community/become/static/images/mailchimp.webp
-WARNING 2024-09-05 09:33:28,122 "GET /community/become/static/images/mailchimp.webp HTTP/1.1" 404 4552
-INFO 2024-09-05 09:33:29,750 "GET /community/become/author/book HTTP/1.1" 200 21673
-WARNING 2024-09-05 09:33:29,869 Not Found: /community/become/static/images/mailchimp.webp
-WARNING 2024-09-05 09:33:29,870 "GET /community/become/static/images/mailchimp.webp HTTP/1.1" 404 4552
-INFO 2024-09-05 09:35:00,320 /workspace/leaf-lounge/community/views.py changed, reloading.
-INFO 2024-09-05 09:35:00,927 Watching for file changes with StatReloader
-INFO 2024-09-05 09:35:20,343 /workspace/leaf-lounge/community/views.py changed, reloading.
-INFO 2024-09-05 09:35:20,919 Watching for file changes with StatReloader
-INFO 2024-09-05 09:38:08,728 /workspace/leaf-lounge/library/views.py changed, reloading.
-INFO 2024-09-05 09:38:09,278 Watching for file changes with StatReloader
-INFO 2024-09-05 09:38:45,976 /workspace/leaf-lounge/reader/views.py changed, reloading.
-INFO 2024-09-05 09:38:46,522 Watching for file changes with StatReloader
-INFO 2024-09-05 09:40:28,250 /workspace/leaf-lounge/reader/views.py changed, reloading.
-INFO 2024-09-05 09:40:28,831 Watching for file changes with StatReloader
-INFO 2024-09-05 09:41:25,858 /workspace/leaf-lounge/reader/views.py changed, reloading.
-INFO 2024-09-05 09:41:26,419 Watching for file changes with StatReloader
-INFO 2024-09-05 09:41:45,839 /workspace/leaf-lounge/reader/views.py changed, reloading.
-INFO 2024-09-05 09:41:46,429 Watching for file changes with StatReloader
-INFO 2024-09-05 09:45:09,779 /workspace/leaf-lounge/reader/views.py changed, reloading.
-INFO 2024-09-05 09:45:10,259 Watching for file changes with StatReloader
-INFO 2024-09-05 09:45:18,412 /workspace/leaf-lounge/reader/views.py changed, reloading.
-INFO 2024-09-05 09:45:18,889 Watching for file changes with StatReloader
-INFO 2024-09-05 09:48:22,910 /workspace/leaf-lounge/marketing/forms.py changed, reloading.
-INFO 2024-09-05 09:48:23,394 Watching for file changes with StatReloader
+INFO 2024-09-05 10:12:45,534 Watching for file changes with StatReloader
+INFO 2024-09-05 10:12:47,876 "GET /contact/ HTTP/1.1" 200 15511
+INFO 2024-09-05 10:12:48,061 "GET /static/js/library.js HTTP/1.1" 200 2656
+INFO 2024-09-05 10:12:48,062 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+INFO 2024-09-05 10:12:48,062 "GET /static/js/actions.js HTTP/1.1" 200 3988
+INFO 2024-09-05 10:12:48,062 "GET /static/blurb/css/contact.css HTTP/1.1" 200 443
+INFO 2024-09-05 10:12:48,063 "GET /static/css/styles.css HTTP/1.1" 200 4999
+INFO 2024-09-05 10:12:48,063 "GET /static/js/index.js HTTP/1.1" 200 470
+INFO 2024-09-05 10:12:48,064 "GET /static/images/logo.png HTTP/1.1" 200 58043
+INFO 2024-09-05 10:12:48,064 "GET /static/images/mailchimp.webp HTTP/1.1" 200 19650
+INFO 2024-09-05 10:12:48,310 "GET /static/js/module.js HTTP/1.1" 200 445
+INFO 2024-09-05 10:12:48,681 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2024-09-05 10:12:49,850 "GET / HTTP/1.1" 200 12876
+INFO 2024-09-05 10:12:52,181 "GET /contact/ HTTP/1.1" 200 15511
+INFO 2024-09-05 10:12:54,682 "GET /library/ HTTP/1.1" 200 34781
+INFO 2024-09-05 10:12:59,647 "GET /accounts/signup/ HTTP/1.1" 200 14403
+WARNING 2024-09-05 10:12:59,718 Not Found: /accounts/static/images/mailchimp.webp
+WARNING 2024-09-05 10:12:59,718 "GET /accounts/static/images/mailchimp.webp HTTP/1.1" 404 7728
+INFO 2024-09-05 10:13:03,435 "GET /accounts/signup/ HTTP/1.1" 200 14403
+WARNING 2024-09-05 10:13:03,512 Not Found: /accounts/static/images/mailchimp.webp
+WARNING 2024-09-05 10:13:03,512 "GET /accounts/static/images/mailchimp.webp HTTP/1.1" 404 7728
+INFO 2024-09-05 10:13:08,510 "GET / HTTP/1.1" 200 12876
+INFO 2024-09-05 10:13:22,252 "GET /accounts/login/ HTTP/1.1" 200 12893
+WARNING 2024-09-05 10:13:22,314 Not Found: /accounts/static/images/mailchimp.webp
+WARNING 2024-09-05 10:13:22,314 "GET /accounts/static/images/mailchimp.webp HTTP/1.1" 404 7728
+INFO 2024-09-05 10:13:50,017 "GET /accounts/login/ HTTP/1.1" 200 12913
+INFO 2024-09-05 10:13:50,085 "GET /static/css/styles.css HTTP/1.1" 200 4999
+INFO 2024-09-05 10:13:50,086 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+INFO 2024-09-05 10:13:50,086 "GET /static/js/index.js HTTP/1.1" 200 470
+INFO 2024-09-05 10:13:50,089 "GET /static/js/actions.js HTTP/1.1" 200 3988
+WARNING 2024-09-05 10:13:50,091 Not Found: /accounts/static/images/mailchimp.webp
+INFO 2024-09-05 10:13:50,091 "GET /static/js/library.js HTTP/1.1" 200 2656
+WARNING 2024-09-05 10:13:50,092 "GET /accounts/static/images/mailchimp.webp HTTP/1.1" 404 7728
+INFO 2024-09-05 10:13:50,092 "GET /static/images/logo.png HTTP/1.1" 200 58043
+INFO 2024-09-05 10:13:50,345 "GET /static/js/module.js HTTP/1.1" 200 445
+INFO 2024-09-05 10:13:50,375 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2024-09-05 10:13:50,905 "GET /accounts/login/ HTTP/1.1" 200 12913
+INFO 2024-09-05 10:13:50,975 "GET /static/css/styles.css HTTP/1.1" 200 4999
+INFO 2024-09-05 10:13:50,978 "GET /static/images/logo.png HTTP/1.1" 200 58043
+WARNING 2024-09-05 10:13:50,987 Not Found: /accounts/static/images/mailchimp.webp
+INFO 2024-09-05 10:13:50,987 "GET /static/js/index.js HTTP/1.1" 200 470
+WARNING 2024-09-05 10:13:50,988 "GET /accounts/static/images/mailchimp.webp HTTP/1.1" 404 7728
+INFO 2024-09-05 10:13:50,988 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+INFO 2024-09-05 10:13:50,991 "GET /static/js/library.js HTTP/1.1" 200 2656
+INFO 2024-09-05 10:13:50,991 "GET /static/js/actions.js HTTP/1.1" 200 3988
+INFO 2024-09-05 10:13:51,206 "GET /static/js/module.js HTTP/1.1" 200 445
+INFO 2024-09-05 10:13:51,496 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2024-09-05 10:14:24,330 "GET /accounts/login/ HTTP/1.1" 200 12913
+INFO 2024-09-05 10:14:24,427 "GET /static/css/styles.css HTTP/1.1" 200 4999
+INFO 2024-09-05 10:14:24,432 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+INFO 2024-09-05 10:14:24,432 "GET /static/js/library.js HTTP/1.1" 200 2656
+INFO 2024-09-05 10:14:24,434 "GET /static/js/actions.js HTTP/1.1" 200 3988
+INFO 2024-09-05 10:14:24,435 "GET /static/js/index.js HTTP/1.1" 200 470
+INFO 2024-09-05 10:14:24,438 "GET /static/images/logo.png HTTP/1.1" 200 58043
+WARNING 2024-09-05 10:14:24,440 Not Found: /accounts/static/images/mailchimp.webp
+WARNING 2024-09-05 10:14:24,440 "GET /accounts/static/images/mailchimp.webp HTTP/1.1" 404 7728
+INFO 2024-09-05 10:14:24,592 "GET /static/js/module.js HTTP/1.1" 200 445
+INFO 2024-09-05 10:14:24,878 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2024-09-05 10:14:25,104 "GET /accounts/login/ HTTP/1.1" 200 12913
+INFO 2024-09-05 10:14:25,180 "GET /static/css/styles.css HTTP/1.1" 200 4999
+INFO 2024-09-05 10:14:25,192 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+INFO 2024-09-05 10:14:25,217 "GET /static/js/index.js HTTP/1.1" 200 470
+INFO 2024-09-05 10:14:25,220 "GET /static/js/actions.js HTTP/1.1" 200 3988
+WARNING 2024-09-05 10:14:25,222 Not Found: /accounts/static/images/mailchimp.webp
+INFO 2024-09-05 10:14:25,223 "GET /static/js/library.js HTTP/1.1" 200 2656
+WARNING 2024-09-05 10:14:25,223 "GET /accounts/static/images/mailchimp.webp HTTP/1.1" 404 7728
+INFO 2024-09-05 10:14:25,223 "GET /static/images/logo.png HTTP/1.1" 200 58043
+INFO 2024-09-05 10:14:25,394 "GET /static/js/module.js HTTP/1.1" 200 445
+INFO 2024-09-05 10:14:25,437 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2024-09-05 10:14:32,371 "GET /accounts/login/ HTTP/1.1" 200 12913
+INFO 2024-09-05 10:14:32,470 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+INFO 2024-09-05 10:14:32,470 "GET /static/js/index.js HTTP/1.1" 200 470
+INFO 2024-09-05 10:14:32,471 "GET /static/css/styles.css HTTP/1.1" 200 4999
+INFO 2024-09-05 10:14:32,476 "GET /static/js/actions.js HTTP/1.1" 200 3988
+WARNING 2024-09-05 10:14:32,479 Not Found: /accounts/static/images/mailchimp.webp
+INFO 2024-09-05 10:14:32,479 "GET /static/js/library.js HTTP/1.1" 200 2656
+WARNING 2024-09-05 10:14:32,480 "GET /accounts/static/images/mailchimp.webp HTTP/1.1" 404 7728
+INFO 2024-09-05 10:14:32,480 "GET /static/images/logo.png HTTP/1.1" 200 58043
+INFO 2024-09-05 10:14:32,695 "GET /static/js/module.js HTTP/1.1" 200 445
+INFO 2024-09-05 10:14:32,940 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2024-09-05 10:14:33,161 "GET /accounts/login/ HTTP/1.1" 200 12920
+INFO 2024-09-05 10:14:33,232 "GET /static/js/index.js HTTP/1.1" 200 470
+INFO 2024-09-05 10:14:33,233 "GET /static/css/styles.css HTTP/1.1" 200 4999
+INFO 2024-09-05 10:14:33,234 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+INFO 2024-09-05 10:14:33,235 "GET /static/js/library.js HTTP/1.1" 200 2656
+INFO 2024-09-05 10:14:33,236 "GET /static/js/actions.js HTTP/1.1" 200 3988
+WARNING 2024-09-05 10:14:33,240 Not Found: /accounts/static/images/mailchimp.webp
+WARNING 2024-09-05 10:14:33,240 "GET /accounts/static/images/mailchimp.webp HTTP/1.1" 404 7728
+INFO 2024-09-05 10:14:33,240 "GET /static/images/logo.png HTTP/1.1" 200 58043
+INFO 2024-09-05 10:14:33,437 "GET /static/js/module.js HTTP/1.1" 200 445
+INFO 2024-09-05 10:14:33,468 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2024-09-05 10:14:40,068 "GET /accounts/login/ HTTP/1.1" 200 12920
+INFO 2024-09-05 10:14:40,127 "GET /static/css/styles.css HTTP/1.1" 200 4999
+INFO 2024-09-05 10:14:40,131 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+INFO 2024-09-05 10:14:40,131 "GET /static/js/actions.js HTTP/1.1" 200 3988
+INFO 2024-09-05 10:14:40,136 "GET /static/js/index.js HTTP/1.1" 200 470
+WARNING 2024-09-05 10:14:40,138 Not Found: /accounts/static/images/mailchimp.webp
+WARNING 2024-09-05 10:14:40,138 "GET /accounts/static/images/mailchimp.webp HTTP/1.1" 404 7728
+INFO 2024-09-05 10:14:40,138 "GET /static/js/library.js HTTP/1.1" 200 2656
+INFO 2024-09-05 10:14:40,139 "GET /static/images/logo.png HTTP/1.1" 200 58043
+INFO 2024-09-05 10:14:40,334 "GET /static/js/module.js HTTP/1.1" 200 445
+INFO 2024-09-05 10:14:40,519 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2024-09-05 10:14:49,772 "GET /accounts/login/ HTTP/1.1" 200 12927
+INFO 2024-09-05 10:14:49,844 "GET /static/css/styles.css HTTP/1.1" 200 4999
+INFO 2024-09-05 10:14:49,844 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+INFO 2024-09-05 10:14:49,847 "GET /static/js/index.js HTTP/1.1" 200 470
+INFO 2024-09-05 10:14:49,850 "GET /static/js/actions.js HTTP/1.1" 200 3988
+INFO 2024-09-05 10:14:49,850 "GET /static/js/library.js HTTP/1.1" 200 2656
+WARNING 2024-09-05 10:14:49,852 Not Found: /accounts/static/images/mailchimp.webp
+WARNING 2024-09-05 10:14:49,852 "GET /accounts/static/images/mailchimp.webp HTTP/1.1" 404 7728
+INFO 2024-09-05 10:14:49,852 "GET /static/images/logo.png HTTP/1.1" 200 58043
+INFO 2024-09-05 10:14:49,974 "GET /static/js/module.js HTTP/1.1" 200 445
+INFO 2024-09-05 10:14:50,089 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2024-09-05 10:15:00,528 "GET /accounts/login/ HTTP/1.1" 200 12920
+INFO 2024-09-05 10:15:00,607 "GET /static/css/styles.css HTTP/1.1" 200 4999
+INFO 2024-09-05 10:15:00,610 "GET /static/js/index.js HTTP/1.1" 200 470
+INFO 2024-09-05 10:15:00,613 "GET /static/js/library.js HTTP/1.1" 200 2656
+INFO 2024-09-05 10:15:00,615 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+INFO 2024-09-05 10:15:00,616 "GET /static/js/actions.js HTTP/1.1" 200 3988
+WARNING 2024-09-05 10:15:00,620 Not Found: /accounts/static/images/mailchimp.webp
+WARNING 2024-09-05 10:15:00,620 "GET /accounts/static/images/mailchimp.webp HTTP/1.1" 404 7728
+INFO 2024-09-05 10:15:00,620 "GET /static/images/logo.png HTTP/1.1" 200 58043
+INFO 2024-09-05 10:15:00,861 "GET /static/js/module.js HTTP/1.1" 200 445
+INFO 2024-09-05 10:15:01,174 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2024-09-05 10:15:06,933 "GET /accounts/login/ HTTP/1.1" 200 12913
+INFO 2024-09-05 10:15:06,999 "GET /static/css/styles.css HTTP/1.1" 200 4999
+INFO 2024-09-05 10:15:07,002 "GET /static/js/index.js HTTP/1.1" 200 470
+INFO 2024-09-05 10:15:07,004 "GET /static/js/actions.js HTTP/1.1" 200 3988
+INFO 2024-09-05 10:15:07,005 "GET /static/js/library.js HTTP/1.1" 200 2656
+INFO 2024-09-05 10:15:07,005 "GET /static/images/logo.png HTTP/1.1" 200 58043
+INFO 2024-09-05 10:15:07,036 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+WARNING 2024-09-05 10:15:07,040 Not Found: /accounts/static/images/mailchimp.webp
+WARNING 2024-09-05 10:15:07,040 "GET /accounts/static/images/mailchimp.webp HTTP/1.1" 404 7728
+INFO 2024-09-05 10:15:07,198 "GET /static/js/module.js HTTP/1.1" 200 445
+INFO 2024-09-05 10:15:07,233 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2024-09-05 10:15:07,501 "GET /accounts/login/ HTTP/1.1" 200 12913
+INFO 2024-09-05 10:15:07,589 "GET /static/css/styles.css HTTP/1.1" 200 4999
+INFO 2024-09-05 10:15:07,593 "GET /static/js/actions.js HTTP/1.1" 200 3988
+WARNING 2024-09-05 10:15:07,595 Not Found: /accounts/static/images/mailchimp.webp
+INFO 2024-09-05 10:15:07,595 "GET /static/js/index.js HTTP/1.1" 200 470
+INFO 2024-09-05 10:15:07,596 "GET /static/js/library.js HTTP/1.1" 200 2656
+INFO 2024-09-05 10:15:07,596 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+WARNING 2024-09-05 10:15:07,596 "GET /accounts/static/images/mailchimp.webp HTTP/1.1" 404 7728
+INFO 2024-09-05 10:15:07,596 "GET /static/images/logo.png HTTP/1.1" 200 58043
+INFO 2024-09-05 10:15:07,769 "GET /static/js/module.js HTTP/1.1" 200 445
+INFO 2024-09-05 10:15:07,884 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2024-09-05 10:15:09,680 "GET / HTTP/1.1" 200 12896
+INFO 2024-09-05 10:15:12,205 "GET /contact/ HTTP/1.1" 200 15531
+INFO 2024-09-05 10:15:14,395 "GET /library/ HTTP/1.1" 200 34801
+INFO 2024-09-05 10:15:15,567 "GET / HTTP/1.1" 200 12896
+INFO 2024-09-05 10:15:16,681 "GET /library/ HTTP/1.1" 200 34801
+INFO 2024-09-05 10:15:43,025 "GET /library/ HTTP/1.1" 200 34801
+INFO 2024-09-05 10:15:43,095 "GET /static/library/css/library.css HTTP/1.1" 200 1412
+INFO 2024-09-05 10:15:43,095 "GET /static/css/styles.css HTTP/1.1" 200 4926
+INFO 2024-09-05 10:15:43,096 "GET /static/js/index.js HTTP/1.1" 200 470
+INFO 2024-09-05 10:15:43,097 "GET /static/images/1984_cover.jpg HTTP/1.1" 200 47735
+INFO 2024-09-05 10:15:43,099 "GET /static/js/library.js HTTP/1.1" 200 2656
+INFO 2024-09-05 10:15:43,099 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+INFO 2024-09-05 10:15:43,100 "GET /static/js/actions.js HTTP/1.1" 200 3988
+INFO 2024-09-05 10:15:43,100 "GET /static/library/js/library.js HTTP/1.1" 200 530
+INFO 2024-09-05 10:15:43,100 "GET /static/images/logo.png HTTP/1.1" 200 58043
+INFO 2024-09-05 10:15:43,123 "GET /static/images/mailchimp.webp HTTP/1.1" 200 19650
+INFO 2024-09-05 10:15:43,250 "GET /static/js/module.js HTTP/1.1" 200 445
+INFO 2024-09-05 10:15:43,364 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2024-09-05 10:15:59,640 "GET /library/ HTTP/1.1" 200 34810
+INFO 2024-09-05 10:15:59,710 "GET /static/library/css/library.css HTTP/1.1" 200 1412
+INFO 2024-09-05 10:15:59,711 "GET /static/css/styles.css HTTP/1.1" 200 4926
+INFO 2024-09-05 10:15:59,711 "GET /static/images/logo.png HTTP/1.1" 200 58043
+INFO 2024-09-05 10:15:59,753 "GET /static/images/mailchimp.webp HTTP/1.1" 200 19650
+INFO 2024-09-05 10:15:59,754 "GET /static/images/1984_cover.jpg HTTP/1.1" 200 47735
+INFO 2024-09-05 10:15:59,757 "GET /static/js/index.js HTTP/1.1" 200 470
+INFO 2024-09-05 10:15:59,759 "GET /static/js/library.js HTTP/1.1" 200 2656
+INFO 2024-09-05 10:15:59,759 "GET /static/library/js/library.js HTTP/1.1" 200 530
+INFO 2024-09-05 10:15:59,759 "GET /static/js/actions.js HTTP/1.1" 200 3988
+INFO 2024-09-05 10:15:59,760 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+INFO 2024-09-05 10:15:59,953 "GET /static/js/module.js HTTP/1.1" 200 445
+INFO 2024-09-05 10:15:59,991 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2024-09-05 10:16:07,603 "GET /library/ HTTP/1.1" 200 34803
+INFO 2024-09-05 10:16:07,680 "GET /static/library/css/library.css HTTP/1.1" 200 1412
+INFO 2024-09-05 10:16:07,680 "GET /static/css/styles.css HTTP/1.1" 200 4926
+INFO 2024-09-05 10:16:07,680 "GET /static/images/1984_cover.jpg HTTP/1.1" 200 47735
+INFO 2024-09-05 10:16:07,681 "GET /static/images/logo.png HTTP/1.1" 200 58043
+INFO 2024-09-05 10:16:07,745 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+INFO 2024-09-05 10:16:07,745 "GET /static/js/index.js HTTP/1.1" 200 470
+INFO 2024-09-05 10:16:07,745 "GET /static/js/actions.js HTTP/1.1" 200 3988
+INFO 2024-09-05 10:16:07,757 "GET /static/library/js/library.js HTTP/1.1" 200 530
+INFO 2024-09-05 10:16:07,757 "GET /static/js/library.js HTTP/1.1" 200 2656
+INFO 2024-09-05 10:16:07,763 "GET /static/images/mailchimp.webp HTTP/1.1" 200 19650
+INFO 2024-09-05 10:16:07,973 "GET /static/js/module.js HTTP/1.1" 200 445
+INFO 2024-09-05 10:16:08,010 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2024-09-05 10:18:17,054 "GET /library/ HTTP/1.1" 200 34801
+INFO 2024-09-05 10:18:17,123 "GET /static/css/styles.css HTTP/1.1" 200 4926
+INFO 2024-09-05 10:18:17,124 "GET /static/library/css/library.css HTTP/1.1" 200 1412
+INFO 2024-09-05 10:18:17,124 "GET /static/images/logo.png HTTP/1.1" 200 58043
+INFO 2024-09-05 10:18:17,157 "GET /static/images/1984_cover.jpg HTTP/1.1" 200 47735
+INFO 2024-09-05 10:18:17,165 "GET /static/js/index.js HTTP/1.1" 200 470
+INFO 2024-09-05 10:18:17,165 "GET /static/images/mailchimp.webp HTTP/1.1" 200 19650
+INFO 2024-09-05 10:18:17,168 "GET /static/js/actions.js HTTP/1.1" 200 3988
+INFO 2024-09-05 10:18:17,168 "GET /static/js/library.js HTTP/1.1" 200 2656
+INFO 2024-09-05 10:18:17,169 "GET /static/library/js/library.js HTTP/1.1" 200 530
+INFO 2024-09-05 10:18:17,169 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+INFO 2024-09-05 10:18:17,408 "GET /static/js/module.js HTTP/1.1" 200 445
+INFO 2024-09-05 10:18:17,439 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2024-09-05 10:18:21,641 "GET /accounts/signup/ HTTP/1.1" 200 14423
+WARNING 2024-09-05 10:18:21,764 Not Found: /accounts/static/images/mailchimp.webp
+WARNING 2024-09-05 10:18:21,764 "GET /accounts/static/images/mailchimp.webp HTTP/1.1" 404 7728
+INFO 2024-09-05 10:18:23,646 "GET /accounts/login/ HTTP/1.1" 200 12913
+WARNING 2024-09-05 10:18:23,751 Not Found: /accounts/static/images/mailchimp.webp
+WARNING 2024-09-05 10:18:23,751 "GET /accounts/static/images/mailchimp.webp HTTP/1.1" 404 7728
+INFO 2024-09-05 10:18:42,518 "GET /accounts/login/ HTTP/1.1" 200 12926
+INFO 2024-09-05 10:18:42,604 "GET /static/css/styles.css HTTP/1.1" 200 4926
+INFO 2024-09-05 10:18:42,606 "GET /static/js/index.js HTTP/1.1" 200 470
+INFO 2024-09-05 10:18:42,612 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+WARNING 2024-09-05 10:18:42,614 Not Found: /accounts/static/images/mailchimp.webp
+INFO 2024-09-05 10:18:42,614 "GET /static/js/actions.js HTTP/1.1" 200 3988
+INFO 2024-09-05 10:18:42,614 "GET /static/images/logo.png HTTP/1.1" 200 58043
+WARNING 2024-09-05 10:18:42,615 "GET /accounts/static/images/mailchimp.webp HTTP/1.1" 404 7728
+INFO 2024-09-05 10:18:42,615 "GET /static/js/library.js HTTP/1.1" 200 2656
+INFO 2024-09-05 10:18:42,817 "GET /static/js/module.js HTTP/1.1" 200 445
+INFO 2024-09-05 10:18:42,958 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2024-09-05 10:18:45,210 "GET /library/ HTTP/1.1" 200 34814
+INFO 2024-09-05 10:20:01,700 "GET /library/ HTTP/1.1" 200 34830
+INFO 2024-09-05 10:20:01,789 "GET /static/css/styles.css HTTP/1.1" 200 4926
+INFO 2024-09-05 10:20:01,792 "GET /static/library/css/library.css HTTP/1.1" 200 1412
+INFO 2024-09-05 10:20:01,792 "GET /static/images/logo.png HTTP/1.1" 200 58043
+INFO 2024-09-05 10:20:01,795 "GET /static/images/1984_cover.jpg HTTP/1.1" 200 47735
+INFO 2024-09-05 10:20:01,814 "GET /static/images/mailchimp.webp HTTP/1.1" 200 19650
+INFO 2024-09-05 10:20:01,822 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+INFO 2024-09-05 10:20:01,822 "GET /static/js/index.js HTTP/1.1" 200 470
+INFO 2024-09-05 10:20:01,824 "GET /static/js/actions.js HTTP/1.1" 200 3988
+INFO 2024-09-05 10:20:01,824 "GET /static/library/js/library.js HTTP/1.1" 200 530
+INFO 2024-09-05 10:20:01,824 "GET /static/js/library.js HTTP/1.1" 200 2656
+INFO 2024-09-05 10:20:02,040 "GET /static/js/module.js HTTP/1.1" 200 445
+INFO 2024-09-05 10:20:02,071 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2024-09-05 10:20:06,867 "GET / HTTP/1.1" 200 12925
+INFO 2024-09-05 10:20:08,345 "GET /accounts/login/ HTTP/1.1" 200 12942
+WARNING 2024-09-05 10:20:08,445 Not Found: /accounts/static/images/mailchimp.webp
+WARNING 2024-09-05 10:20:08,446 "GET /accounts/static/images/mailchimp.webp HTTP/1.1" 404 7728
+INFO 2024-09-05 10:20:16,122 "GET /accounts/login/ HTTP/1.1" 200 12926
+INFO 2024-09-05 10:20:16,201 "GET /static/js/actions.js HTTP/1.1" 200 3988
+INFO 2024-09-05 10:20:16,203 "GET /static/css/styles.css HTTP/1.1" 200 4926
+INFO 2024-09-05 10:20:16,204 "GET /static/js/index.js HTTP/1.1" 200 470
+WARNING 2024-09-05 10:20:16,209 Not Found: /accounts/static/images/mailchimp.webp
+INFO 2024-09-05 10:20:16,210 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+WARNING 2024-09-05 10:20:16,210 "GET /accounts/static/images/mailchimp.webp HTTP/1.1" 404 7728
+INFO 2024-09-05 10:20:16,210 "GET /static/js/library.js HTTP/1.1" 200 2656
+INFO 2024-09-05 10:20:16,210 "GET /static/images/logo.png HTTP/1.1" 200 58043
+INFO 2024-09-05 10:20:16,434 "GET /static/js/module.js HTTP/1.1" 200 445
+INFO 2024-09-05 10:20:16,692 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2024-09-05 10:21:13,670 "GET /accounts/login/ HTTP/1.1" 200 12926
+INFO 2024-09-05 10:21:13,745 "GET /static/css/styles.css HTTP/1.1" 200 4926
+INFO 2024-09-05 10:21:13,745 "GET /static/images/logo.png HTTP/1.1" 200 58043
+INFO 2024-09-05 10:21:13,780 "GET /static/js/index.js HTTP/1.1" 200 470
+WARNING 2024-09-05 10:21:13,785 Not Found: /accounts/static/images/mailchimp.webp
+INFO 2024-09-05 10:21:13,785 "GET /static/js/library.js HTTP/1.1" 200 2656
+INFO 2024-09-05 10:21:13,785 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+WARNING 2024-09-05 10:21:13,786 "GET /accounts/static/images/mailchimp.webp HTTP/1.1" 404 7728
+INFO 2024-09-05 10:21:13,786 "GET /static/js/actions.js HTTP/1.1" 200 3988
+INFO 2024-09-05 10:21:14,006 "GET /static/js/module.js HTTP/1.1" 200 445
+INFO 2024-09-05 10:21:14,036 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2024-09-05 10:21:14,488 "GET /accounts/login/ HTTP/1.1" 200 12926
+INFO 2024-09-05 10:21:14,591 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+INFO 2024-09-05 10:21:14,594 "GET /static/js/actions.js HTTP/1.1" 200 3988
+INFO 2024-09-05 10:21:14,594 "GET /static/js/library.js HTTP/1.1" 200 2656
+WARNING 2024-09-05 10:21:14,596 Not Found: /accounts/static/images/mailchimp.webp
+WARNING 2024-09-05 10:21:14,596 "GET /accounts/static/images/mailchimp.webp HTTP/1.1" 404 7728
+INFO 2024-09-05 10:21:14,624 "GET /static/css/styles.css HTTP/1.1" 200 4926
+INFO 2024-09-05 10:21:14,624 "GET /static/js/index.js HTTP/1.1" 200 470
+INFO 2024-09-05 10:21:14,624 "GET /static/images/logo.png HTTP/1.1" 200 58043
+INFO 2024-09-05 10:21:14,821 "GET /static/js/module.js HTTP/1.1" 200 445
+INFO 2024-09-05 10:21:15,083 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2024-09-05 10:21:16,209 "GET /contact/ HTTP/1.1" 200 15544
+INFO 2024-09-05 10:21:22,045 "GET /library/ HTTP/1.1" 200 34814
+INFO 2024-09-05 10:21:59,672 "GET /library/ HTTP/1.1" 200 34814
+INFO 2024-09-05 10:21:59,736 "GET /static/css/styles.css HTTP/1.1" 200 4926
+INFO 2024-09-05 10:21:59,738 "GET /static/library/css/library.css HTTP/1.1" 200 1412
+INFO 2024-09-05 10:21:59,739 "GET /static/images/logo.png HTTP/1.1" 200 58043
+INFO 2024-09-05 10:21:59,742 "GET /static/js/index.js HTTP/1.1" 200 470
+INFO 2024-09-05 10:21:59,742 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+INFO 2024-09-05 10:21:59,743 "GET /static/js/actions.js HTTP/1.1" 200 3988
+INFO 2024-09-05 10:21:59,744 "GET /static/library/js/library.js HTTP/1.1" 200 530
+INFO 2024-09-05 10:21:59,745 "GET /static/js/library.js HTTP/1.1" 200 2656
+INFO 2024-09-05 10:21:59,745 "GET /static/images/1984_cover.jpg HTTP/1.1" 200 47735
+INFO 2024-09-05 10:21:59,782 "GET /static/images/mailchimp.webp HTTP/1.1" 200 19650
+INFO 2024-09-05 10:21:59,947 "GET /static/js/module.js HTTP/1.1" 200 445
+INFO 2024-09-05 10:22:00,030 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2024-09-05 10:22:02,768 "GET / HTTP/1.1" 200 12909
+INFO 2024-09-05 10:22:05,019 "GET /accounts/login/ HTTP/1.1" 200 12921
+WARNING 2024-09-05 10:22:05,155 Not Found: /accounts/static/images/mailchimp.webp
+WARNING 2024-09-05 10:22:05,155 "GET /accounts/static/images/mailchimp.webp HTTP/1.1" 404 7728
+INFO 2024-09-05 10:22:20,383 "GET /accounts/login/ HTTP/1.1" 200 12840
+INFO 2024-09-05 10:22:20,460 "GET /static/js/index.js HTTP/1.1" 200 470
+INFO 2024-09-05 10:22:20,463 "GET /static/css/styles.css HTTP/1.1" 200 4926
+INFO 2024-09-05 10:22:20,464 "GET /static/js/library.js HTTP/1.1" 200 2656
+INFO 2024-09-05 10:22:20,464 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+INFO 2024-09-05 10:22:20,464 "GET /static/images/logo.png HTTP/1.1" 200 58043
+WARNING 2024-09-05 10:22:20,466 Not Found: /accounts/static/images/mailchimp.webp
+INFO 2024-09-05 10:22:20,467 "GET /static/js/actions.js HTTP/1.1" 200 3988
+WARNING 2024-09-05 10:22:20,467 "GET /accounts/static/images/mailchimp.webp HTTP/1.1" 404 7728
+INFO 2024-09-05 10:22:20,691 "GET /static/js/module.js HTTP/1.1" 200 445
+INFO 2024-09-05 10:22:20,724 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2024-09-05 10:26:02,710 "GET /accounts/login/ HTTP/1.1" 200 12840
+INFO 2024-09-05 10:26:02,808 "GET /static/css/styles.css HTTP/1.1" 200 4926
+INFO 2024-09-05 10:26:02,810 "GET /static/js/index.js HTTP/1.1" 200 470
+INFO 2024-09-05 10:26:02,813 "GET /static/js/actions.js HTTP/1.1" 200 3988
+INFO 2024-09-05 10:26:02,813 "GET /static/js/library.js HTTP/1.1" 200 2656
+INFO 2024-09-05 10:26:02,814 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+WARNING 2024-09-05 10:26:02,818 Not Found: /accounts/static/images/mailchimp.webp
+INFO 2024-09-05 10:26:02,818 "GET /static/images/logo.png HTTP/1.1" 200 58043
+WARNING 2024-09-05 10:26:02,818 "GET /accounts/static/images/mailchimp.webp HTTP/1.1" 404 7728
+INFO 2024-09-05 10:26:03,065 "GET /static/js/module.js HTTP/1.1" 200 445
+INFO 2024-09-05 10:26:03,094 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2024-09-05 10:27:24,524 "POST /accounts/login/ HTTP/1.1" 302 0
+INFO 2024-09-05 10:27:24,550 "GET / HTTP/1.1" 200 15525
+INFO 2024-09-05 10:27:24,628 "GET /static/css/styles.css HTTP/1.1" 200 5006
+WARNING 2024-09-05 10:27:24,635 Not Found: /...
+WARNING 2024-09-05 10:27:24,635 "GET /... HTTP/1.1" 404 3339
+INFO 2024-09-05 10:27:44,052 "GET / HTTP/1.1" 200 14883
+INFO 2024-09-05 10:27:44,140 "GET /static/js/actions.js HTTP/1.1" 200 3988
+INFO 2024-09-05 10:27:44,142 "GET /static/css/styles.css HTTP/1.1" 200 5034
+INFO 2024-09-05 10:27:44,142 "GET /static/js/library.js HTTP/1.1" 200 2656
+INFO 2024-09-05 10:27:44,142 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+INFO 2024-09-05 10:27:44,143 "GET /static/js/index.js HTTP/1.1" 200 470
+INFO 2024-09-05 10:27:44,143 "GET /static/images/mailchimp.webp HTTP/1.1" 200 19650
+INFO 2024-09-05 10:27:44,143 "GET /static/images/logo.png HTTP/1.1" 200 58043
+INFO 2024-09-05 10:27:44,248 "GET /static/images/author-type.png HTTP/1.1" 200 152492
+INFO 2024-09-05 10:27:44,426 "GET /static/js/module.js HTTP/1.1" 200 445
+INFO 2024-09-05 10:27:44,758 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2024-09-05 10:27:46,875 "GET /accounts/logout/ HTTP/1.1" 200 12555
+INFO 2024-09-05 10:27:46,962 "GET /static/css/styles.css HTTP/1.1" 304 0
+WARNING 2024-09-05 10:27:46,973 Not Found: /accounts/static/images/mailchimp.webp
+WARNING 2024-09-05 10:27:46,973 "GET /accounts/static/images/mailchimp.webp HTTP/1.1" 404 7728
+INFO 2024-09-05 10:27:48,526 "POST /accounts/logout/ HTTP/1.1" 302 0
+INFO 2024-09-05 10:27:48,560 "GET / HTTP/1.1" 200 13537
+INFO 2024-09-05 10:27:48,656 "GET /static/css/styles.css HTTP/1.1" 304 0
+WARNING 2024-09-05 10:27:48,665 Not Found: /...
+WARNING 2024-09-05 10:27:48,665 "GET /... HTTP/1.1" 404 3339
+INFO 2024-09-05 10:28:13,330 "GET / HTTP/1.1" 200 12909
+INFO 2024-09-05 10:28:13,430 "GET /static/images/mailchimp.webp HTTP/1.1" 200 19650
+INFO 2024-09-05 10:28:13,430 "GET /static/js/actions.js HTTP/1.1" 200 3988
+INFO 2024-09-05 10:28:13,431 "GET /static/js/index.js HTTP/1.1" 200 470
+INFO 2024-09-05 10:28:13,431 "GET /static/css/styles.css HTTP/1.1" 200 5034
+INFO 2024-09-05 10:28:13,431 "GET /static/js/library.js HTTP/1.1" 200 2656
+INFO 2024-09-05 10:28:13,432 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+INFO 2024-09-05 10:28:13,432 "GET /static/images/logo.png HTTP/1.1" 200 58043
+INFO 2024-09-05 10:28:13,552 "GET /static/images/author-type.png HTTP/1.1" 200 152492
+INFO 2024-09-05 10:28:13,593 "GET /static/js/module.js HTTP/1.1" 200 445
+INFO 2024-09-05 10:28:13,733 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2024-09-05 10:28:15,738 "GET /accounts/login/ HTTP/1.1" 200 12840
+INFO 2024-09-05 10:28:15,813 "GET /static/css/styles.css HTTP/1.1" 304 0
+WARNING 2024-09-05 10:28:15,823 Not Found: /accounts/static/images/mailchimp.webp
+WARNING 2024-09-05 10:28:15,823 "GET /accounts/static/images/mailchimp.webp HTTP/1.1" 404 7728
+INFO 2024-09-05 10:28:22,569 "POST /accounts/login/ HTTP/1.1" 302 0
+INFO 2024-09-05 10:28:22,613 "GET / HTTP/1.1" 200 15525
+INFO 2024-09-05 10:28:22,683 "GET /static/css/styles.css HTTP/1.1" 304 0
+WARNING 2024-09-05 10:28:22,737 Not Found: /...
+WARNING 2024-09-05 10:28:22,737 "GET /... HTTP/1.1" 404 3339
+INFO 2024-09-05 10:28:29,661 "GET / HTTP/1.1" 200 14883
+INFO 2024-09-05 10:28:29,729 "GET /static/css/styles.css HTTP/1.1" 200 5034
+INFO 2024-09-05 10:28:29,729 "GET /static/images/logo.png HTTP/1.1" 200 58043
+INFO 2024-09-05 10:28:29,793 "GET /static/js/index.js HTTP/1.1" 200 470
+INFO 2024-09-05 10:28:29,793 "GET /static/js/actions.js HTTP/1.1" 200 3988
+INFO 2024-09-05 10:28:29,794 "GET /static/images/mailchimp.webp HTTP/1.1" 200 19650
+INFO 2024-09-05 10:28:29,795 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+INFO 2024-09-05 10:28:29,795 "GET /static/js/library.js HTTP/1.1" 200 2656
+INFO 2024-09-05 10:28:29,903 "GET /static/images/author-type.png HTTP/1.1" 200 152492
+INFO 2024-09-05 10:28:30,071 "GET /static/js/module.js HTTP/1.1" 200 445
+INFO 2024-09-05 10:28:30,286 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2024-09-05 10:28:32,772 "GET /accounts/logout/ HTTP/1.1" 200 12555
+INFO 2024-09-05 10:28:32,842 "GET /static/css/styles.css HTTP/1.1" 304 0
+WARNING 2024-09-05 10:28:32,853 Not Found: /accounts/static/images/mailchimp.webp
+WARNING 2024-09-05 10:28:32,853 "GET /accounts/static/images/mailchimp.webp HTTP/1.1" 404 7728
+INFO 2024-09-05 10:28:37,494 "POST /accounts/logout/ HTTP/1.1" 302 0
+INFO 2024-09-05 10:28:37,525 "GET / HTTP/1.1" 200 13537
+INFO 2024-09-05 10:28:37,623 "GET /static/css/styles.css HTTP/1.1" 304 0
+WARNING 2024-09-05 10:28:37,627 Not Found: /...
+WARNING 2024-09-05 10:28:37,627 "GET /... HTTP/1.1" 404 3339
+INFO 2024-09-05 10:28:48,347 "GET / HTTP/1.1" 200 12909
+INFO 2024-09-05 10:28:48,430 "GET /static/css/styles.css HTTP/1.1" 200 5047
+INFO 2024-09-05 10:28:48,430 "GET /static/images/logo.png HTTP/1.1" 200 58043
+INFO 2024-09-05 10:28:48,469 "GET /static/images/mailchimp.webp HTTP/1.1" 200 19650
+INFO 2024-09-05 10:28:48,477 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+INFO 2024-09-05 10:28:48,477 "GET /static/js/actions.js HTTP/1.1" 200 3988
+INFO 2024-09-05 10:28:48,477 "GET /static/js/index.js HTTP/1.1" 200 470
+INFO 2024-09-05 10:28:48,478 "GET /static/js/library.js HTTP/1.1" 200 2656
+INFO 2024-09-05 10:28:48,525 "GET /static/images/author-type.png HTTP/1.1" 200 152492
+INFO 2024-09-05 10:28:48,674 "GET /static/js/module.js HTTP/1.1" 200 445
+INFO 2024-09-05 10:28:49,205 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2024-09-05 10:28:50,522 "GET /accounts/login/ HTTP/1.1" 200 12840
+INFO 2024-09-05 10:28:50,612 "GET /static/css/styles.css HTTP/1.1" 304 0
+WARNING 2024-09-05 10:28:50,623 Not Found: /accounts/static/images/mailchimp.webp
+WARNING 2024-09-05 10:28:50,623 "GET /accounts/static/images/mailchimp.webp HTTP/1.1" 404 7728
+INFO 2024-09-05 10:28:57,255 "POST /accounts/login/ HTTP/1.1" 302 0
+INFO 2024-09-05 10:28:57,279 "GET / HTTP/1.1" 200 15525
+INFO 2024-09-05 10:28:57,334 "GET /static/css/styles.css HTTP/1.1" 304 0
+WARNING 2024-09-05 10:28:57,347 Not Found: /...
+WARNING 2024-09-05 10:28:57,348 "GET /... HTTP/1.1" 404 3339
+INFO 2024-09-05 10:29:04,935 "GET / HTTP/1.1" 200 14883
+INFO 2024-09-05 10:29:05,010 "GET /static/css/styles.css HTTP/1.1" 200 5048
+INFO 2024-09-05 10:29:05,013 "GET /static/js/index.js HTTP/1.1" 200 470
+INFO 2024-09-05 10:29:05,014 "GET /static/images/mailchimp.webp HTTP/1.1" 200 19650
+INFO 2024-09-05 10:29:05,014 "GET /static/js/actions.js HTTP/1.1" 200 3988
+INFO 2024-09-05 10:29:05,015 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+INFO 2024-09-05 10:29:05,015 "GET /static/js/library.js HTTP/1.1" 200 2656
+INFO 2024-09-05 10:29:05,015 "GET /static/images/logo.png HTTP/1.1" 200 58043
+INFO 2024-09-05 10:29:05,117 "GET /static/images/author-type.png HTTP/1.1" 200 152492
+INFO 2024-09-05 10:29:05,269 "GET /static/js/module.js HTTP/1.1" 200 445
+INFO 2024-09-05 10:29:05,577 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2024-09-05 10:29:30,356 /workspace/leaf-lounge/blurb/views.py changed, reloading.
+INFO 2024-09-05 10:29:30,961 Watching for file changes with StatReloader
+INFO 2024-09-05 10:29:33,685 "GET / HTTP/1.1" 200 15569
+INFO 2024-09-05 10:29:33,858 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+INFO 2024-09-05 10:29:33,861 "GET /static/js/library.js HTTP/1.1" 200 2656
+INFO 2024-09-05 10:29:33,861 "GET /static/css/styles.css HTTP/1.1" 200 5048
+INFO 2024-09-05 10:29:33,863 "GET /static/js/index.js HTTP/1.1" 200 470
+INFO 2024-09-05 10:29:33,863 "GET /static/js/actions.js HTTP/1.1" 200 3988
+INFO 2024-09-05 10:29:33,864 "GET /static/images/mailchimp.webp HTTP/1.1" 200 19650
+INFO 2024-09-05 10:29:33,864 "GET /static/images/logo.png HTTP/1.1" 200 58043
+WARNING 2024-09-05 10:29:33,868 Not Found: /...
+WARNING 2024-09-05 10:29:33,868 "GET /... HTTP/1.1" 404 3339
+INFO 2024-09-05 10:29:33,942 "GET /static/images/author-type.png HTTP/1.1" 200 152492
+INFO 2024-09-05 10:29:33,964 "GET / HTTP/1.1" 200 15569
+INFO 2024-09-05 10:29:34,089 "GET /static/js/module.js HTTP/1.1" 200 445
+INFO 2024-09-05 10:29:34,295 "GET /static/js/index.js HTTP/1.1" 200 470
+INFO 2024-09-05 10:29:34,296 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+INFO 2024-09-05 10:29:34,300 "GET /static/js/actions.js HTTP/1.1" 200 3988
+INFO 2024-09-05 10:29:34,300 "GET /static/css/styles.css HTTP/1.1" 200 5048
+WARNING 2024-09-05 10:29:34,301 Not Found: /...
+INFO 2024-09-05 10:29:34,301 "GET /static/js/library.js HTTP/1.1" 200 2656
+INFO 2024-09-05 10:29:34,302 "GET /static/images/mailchimp.webp HTTP/1.1" 200 19650
+WARNING 2024-09-05 10:29:34,302 "GET /... HTTP/1.1" 404 3339
+INFO 2024-09-05 10:29:34,302 "GET /static/images/logo.png HTTP/1.1" 200 58043
+INFO 2024-09-05 10:29:34,482 "GET /static/images/author-type.png HTTP/1.1" 200 152492
+INFO 2024-09-05 10:29:34,552 "GET /static/js/module.js HTTP/1.1" 200 445
+INFO 2024-09-05 10:29:34,717 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2024-09-05 10:29:48,655 "GET / HTTP/1.1" 200 15569
+INFO 2024-09-05 10:29:48,729 "GET /static/css/styles.css HTTP/1.1" 200 5051
+INFO 2024-09-05 10:29:48,731 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+INFO 2024-09-05 10:29:48,732 "GET /static/js/index.js HTTP/1.1" 200 470
+INFO 2024-09-05 10:29:48,732 "GET /static/js/library.js HTTP/1.1" 200 2656
+INFO 2024-09-05 10:29:48,734 "GET /static/js/actions.js HTTP/1.1" 200 3988
+INFO 2024-09-05 10:29:48,734 "GET /static/images/logo.png HTTP/1.1" 200 58043
+WARNING 2024-09-05 10:29:48,737 Not Found: /...
+WARNING 2024-09-05 10:29:48,737 "GET /... HTTP/1.1" 404 3339
+INFO 2024-09-05 10:29:48,751 "GET /static/images/mailchimp.webp HTTP/1.1" 200 19650
+INFO 2024-09-05 10:29:48,824 "GET /static/images/author-type.png HTTP/1.1" 200 152492
+INFO 2024-09-05 10:29:48,939 "GET /static/js/module.js HTTP/1.1" 200 445
+INFO 2024-09-05 10:29:49,432 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2024-09-05 10:29:55,636 "GET / HTTP/1.1" 200 15569
+INFO 2024-09-05 10:29:55,716 "GET /static/css/styles.css HTTP/1.1" 200 5051
+WARNING 2024-09-05 10:29:55,725 Not Found: /...
+INFO 2024-09-05 10:29:55,725 "GET /static/js/library.js HTTP/1.1" 200 2656
+INFO 2024-09-05 10:29:55,726 "GET /static/js/index.js HTTP/1.1" 200 470
+WARNING 2024-09-05 10:29:55,726 "GET /... HTTP/1.1" 404 3339
+INFO 2024-09-05 10:29:55,727 "GET /static/js/actions.js HTTP/1.1" 200 3988
+INFO 2024-09-05 10:29:55,727 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+INFO 2024-09-05 10:29:55,727 "GET /static/images/logo.png HTTP/1.1" 200 58043
+INFO 2024-09-05 10:29:55,736 "GET /static/images/mailchimp.webp HTTP/1.1" 200 19650
+INFO 2024-09-05 10:29:55,806 "GET /static/images/author-type.png HTTP/1.1" 200 152492
+INFO 2024-09-05 10:29:56,011 "GET /static/js/module.js HTTP/1.1" 200 445
+INFO 2024-09-05 10:29:56,136 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2024-09-05 10:30:01,901 "GET / HTTP/1.1" 200 15569
+INFO 2024-09-05 10:30:01,977 "GET /static/css/styles.css HTTP/1.1" 200 5051
+INFO 2024-09-05 10:30:01,981 "GET /static/js/library.js HTTP/1.1" 200 2656
+INFO 2024-09-05 10:30:01,981 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+INFO 2024-09-05 10:30:01,983 "GET /static/images/logo.png HTTP/1.1" 200 58043
+INFO 2024-09-05 10:30:02,016 "GET /static/js/index.js HTTP/1.1" 200 470
+INFO 2024-09-05 10:30:02,017 "GET /static/js/actions.js HTTP/1.1" 200 3988
+WARNING 2024-09-05 10:30:02,019 Not Found: /...
+INFO 2024-09-05 10:30:02,019 "GET /static/images/mailchimp.webp HTTP/1.1" 200 19650
+WARNING 2024-09-05 10:30:02,020 "GET /... HTTP/1.1" 404 3339
+INFO 2024-09-05 10:30:02,073 "GET /static/images/author-type.png HTTP/1.1" 200 152492
+INFO 2024-09-05 10:30:02,209 "GET /static/js/module.js HTTP/1.1" 200 445
+INFO 2024-09-05 10:30:02,254 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2024-09-05 10:30:52,032 "GET / HTTP/1.1" 200 15582
+INFO 2024-09-05 10:30:52,102 "GET /static/css/styles.css HTTP/1.1" 200 5051
+INFO 2024-09-05 10:30:52,102 "GET /static/images/logo.png HTTP/1.1" 200 58043
+INFO 2024-09-05 10:30:52,159 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+INFO 2024-09-05 10:30:52,162 "GET /static/js/index.js HTTP/1.1" 200 470
+WARNING 2024-09-05 10:30:52,166 Not Found: /...
+INFO 2024-09-05 10:30:52,167 "GET /static/js/actions.js HTTP/1.1" 200 3988
+WARNING 2024-09-05 10:30:52,167 "GET /... HTTP/1.1" 404 3339
+INFO 2024-09-05 10:30:52,167 "GET /static/js/library.js HTTP/1.1" 200 2656
+INFO 2024-09-05 10:30:52,168 "GET /static/images/mailchimp.webp HTTP/1.1" 200 19650
+INFO 2024-09-05 10:30:52,223 "GET /static/images/author-type.png HTTP/1.1" 200 152492
+INFO 2024-09-05 10:30:52,427 "GET /static/js/module.js HTTP/1.1" 200 445
+INFO 2024-09-05 10:30:52,742 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2024-09-05 10:31:16,146 "GET / HTTP/1.1" 200 15582
+INFO 2024-09-05 10:31:16,221 "GET /static/css/styles.css HTTP/1.1" 200 5051
+WARNING 2024-09-05 10:31:16,224 Not Found: /...
+WARNING 2024-09-05 10:31:16,226 "GET /... HTTP/1.1" 404 3339
+INFO 2024-09-05 10:31:16,226 "GET /static/js/library.js HTTP/1.1" 200 2656
+INFO 2024-09-05 10:31:16,226 "GET /static/images/logo.png HTTP/1.1" 200 58043
+INFO 2024-09-05 10:31:16,228 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+INFO 2024-09-05 10:31:16,228 "GET /static/js/actions.js HTTP/1.1" 200 3988
+INFO 2024-09-05 10:31:16,228 "GET /static/js/index.js HTTP/1.1" 200 470
+INFO 2024-09-05 10:31:16,250 "GET /static/images/mailchimp.webp HTTP/1.1" 200 19650
+INFO 2024-09-05 10:31:16,341 "GET /static/images/author-type.png HTTP/1.1" 200 152492
+INFO 2024-09-05 10:31:16,556 "GET /static/js/module.js HTTP/1.1" 200 445
+INFO 2024-09-05 10:31:16,880 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2024-09-05 10:31:31,817 "GET / HTTP/1.1" 200 15597
+INFO 2024-09-05 10:31:31,875 "GET /static/css/styles.css HTTP/1.1" 200 5051
+INFO 2024-09-05 10:31:31,875 "GET /static/images/logo.png HTTP/1.1" 200 58043
+WARNING 2024-09-05 10:31:31,923 Not Found: /...
+INFO 2024-09-05 10:31:31,923 "GET /static/images/mailchimp.webp HTTP/1.1" 200 19650
+WARNING 2024-09-05 10:31:31,925 "GET /... HTTP/1.1" 404 3339
+INFO 2024-09-05 10:31:31,926 "GET /static/js/index.js HTTP/1.1" 200 470
+INFO 2024-09-05 10:31:31,927 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+INFO 2024-09-05 10:31:31,927 "GET /static/js/actions.js HTTP/1.1" 200 3988
+INFO 2024-09-05 10:31:31,927 "GET /static/js/library.js HTTP/1.1" 200 2656
+INFO 2024-09-05 10:31:31,977 "GET /static/images/author-type.png HTTP/1.1" 200 152492
+INFO 2024-09-05 10:31:32,135 "GET /static/js/module.js HTTP/1.1" 200 445
+INFO 2024-09-05 10:31:32,295 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2024-09-05 10:32:07,125 "GET / HTTP/1.1" 200 15642
+INFO 2024-09-05 10:32:07,199 "GET /static/css/styles.css HTTP/1.1" 200 5051
+WARNING 2024-09-05 10:32:07,203 Not Found: /...
+INFO 2024-09-05 10:32:07,203 "GET /static/js/actions.js HTTP/1.1" 200 3988
+INFO 2024-09-05 10:32:07,205 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+INFO 2024-09-05 10:32:07,205 "GET /static/js/index.js HTTP/1.1" 200 470
+WARNING 2024-09-05 10:32:07,205 "GET /... HTTP/1.1" 404 3339
+INFO 2024-09-05 10:32:07,205 "GET /static/js/library.js HTTP/1.1" 200 2656
+INFO 2024-09-05 10:32:07,206 "GET /static/images/logo.png HTTP/1.1" 200 58043
+INFO 2024-09-05 10:32:07,224 "GET /static/images/mailchimp.webp HTTP/1.1" 200 19650
+INFO 2024-09-05 10:32:07,319 "GET /static/images/author-type.png HTTP/1.1" 200 152492
+INFO 2024-09-05 10:32:07,512 "GET /static/js/module.js HTTP/1.1" 200 445
+INFO 2024-09-05 10:32:07,847 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2024-09-05 10:32:34,563 "GET / HTTP/1.1" 200 15642
+INFO 2024-09-05 10:32:34,636 "GET /static/css/styles.css HTTP/1.1" 200 5051
+WARNING 2024-09-05 10:32:34,640 Not Found: /...
+WARNING 2024-09-05 10:32:34,641 "GET /... HTTP/1.1" 404 3339
+INFO 2024-09-05 10:32:34,642 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+INFO 2024-09-05 10:32:34,643 "GET /static/js/index.js HTTP/1.1" 200 470
+INFO 2024-09-05 10:32:34,643 "GET /static/js/actions.js HTTP/1.1" 200 3988
+INFO 2024-09-05 10:32:34,643 "GET /static/images/logo.png HTTP/1.1" 200 58043
+INFO 2024-09-05 10:32:34,643 "GET /static/js/library.js HTTP/1.1" 200 2656
+INFO 2024-09-05 10:32:34,660 "GET /static/images/mailchimp.webp HTTP/1.1" 200 19650
+INFO 2024-09-05 10:32:34,737 "GET /static/images/author-type.png HTTP/1.1" 200 152492
+INFO 2024-09-05 10:32:34,919 "GET /static/js/module.js HTTP/1.1" 200 445
+INFO 2024-09-05 10:32:35,210 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2024-09-05 10:33:27,514 "GET / HTTP/1.1" 200 15642
+INFO 2024-09-05 10:33:27,602 "GET /static/js/library.js HTTP/1.1" 200 2656
+INFO 2024-09-05 10:33:27,603 "GET /static/css/styles.css HTTP/1.1" 200 5051
+INFO 2024-09-05 10:33:27,604 "GET /static/js/actions.js HTTP/1.1" 200 3988
+INFO 2024-09-05 10:33:27,607 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+INFO 2024-09-05 10:33:27,607 "GET /static/images/logo.png HTTP/1.1" 200 58043
+INFO 2024-09-05 10:33:27,609 "GET /static/js/index.js HTTP/1.1" 200 470
+WARNING 2024-09-05 10:33:27,611 Not Found: /...
+WARNING 2024-09-05 10:33:27,611 "GET /... HTTP/1.1" 404 3339
+INFO 2024-09-05 10:33:27,636 "GET /static/images/mailchimp.webp HTTP/1.1" 200 19650
+INFO 2024-09-05 10:33:27,717 "GET /static/images/author-type.png HTTP/1.1" 200 152492
+INFO 2024-09-05 10:33:27,908 "GET /static/js/module.js HTTP/1.1" 200 445
+INFO 2024-09-05 10:33:28,210 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2024-09-05 10:33:54,419 "GET / HTTP/1.1" 200 15589
+INFO 2024-09-05 10:33:54,503 "GET /static/css/styles.css HTTP/1.1" 200 5051
+INFO 2024-09-05 10:33:54,507 "GET /static/js/index.js HTTP/1.1" 200 470
+INFO 2024-09-05 10:33:54,509 "GET /static/images/mailchimp.webp HTTP/1.1" 200 19650
+INFO 2024-09-05 10:33:54,509 "GET /static/js/library.js HTTP/1.1" 200 2656
+INFO 2024-09-05 10:33:54,510 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+INFO 2024-09-05 10:33:54,510 "GET /static/js/actions.js HTTP/1.1" 200 3988
+INFO 2024-09-05 10:33:54,510 "GET /static/images/logo.png HTTP/1.1" 200 58043
+INFO 2024-09-05 10:33:54,588 "GET /static/images/author-type.png HTTP/1.1" 200 152492
+INFO 2024-09-05 10:33:54,787 "GET /static/js/module.js HTTP/1.1" 200 445
+INFO 2024-09-05 10:33:54,964 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2024-09-05 10:34:03,704 "GET / HTTP/1.1" 200 15589
+INFO 2024-09-05 10:34:03,820 "GET /static/css/styles.css HTTP/1.1" 200 5023
+INFO 2024-09-05 10:34:03,822 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+INFO 2024-09-05 10:34:03,823 "GET /static/js/index.js HTTP/1.1" 200 470
+INFO 2024-09-05 10:34:03,823 "GET /static/js/actions.js HTTP/1.1" 200 3988
+INFO 2024-09-05 10:34:03,824 "GET /static/js/library.js HTTP/1.1" 200 2656
+INFO 2024-09-05 10:34:03,824 "GET /static/images/mailchimp.webp HTTP/1.1" 200 19650
+INFO 2024-09-05 10:34:03,825 "GET /static/images/logo.png HTTP/1.1" 200 58043
+INFO 2024-09-05 10:34:03,912 "GET /static/images/author-type.png HTTP/1.1" 200 152492
+INFO 2024-09-05 10:34:04,149 "GET /static/js/module.js HTTP/1.1" 200 445
+INFO 2024-09-05 10:34:04,307 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2024-09-05 10:34:17,147 "GET / HTTP/1.1" 200 15589
+INFO 2024-09-05 10:34:17,241 "GET /static/js/library.js HTTP/1.1" 200 2656
+INFO 2024-09-05 10:34:17,242 "GET /static/js/actions.js HTTP/1.1" 200 3988
+INFO 2024-09-05 10:34:17,243 "GET /static/css/styles.css HTTP/1.1" 200 5060
+INFO 2024-09-05 10:34:17,243 "GET /static/js/index.js HTTP/1.1" 200 470
+INFO 2024-09-05 10:34:17,244 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+INFO 2024-09-05 10:34:17,244 "GET /static/images/mailchimp.webp HTTP/1.1" 200 19650
+INFO 2024-09-05 10:34:17,244 "GET /static/images/logo.png HTTP/1.1" 200 58043
+INFO 2024-09-05 10:34:17,335 "GET /static/images/author-type.png HTTP/1.1" 200 152492
+INFO 2024-09-05 10:34:17,503 "GET /static/js/module.js HTTP/1.1" 200 445
+INFO 2024-09-05 10:34:17,638 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2024-09-05 10:34:45,728 "GET / HTTP/1.1" 200 15589
+INFO 2024-09-05 10:34:45,820 "GET /static/css/styles.css HTTP/1.1" 200 5060
+INFO 2024-09-05 10:34:45,821 "GET /static/js/index.js HTTP/1.1" 200 470
+INFO 2024-09-05 10:34:45,822 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+INFO 2024-09-05 10:34:45,822 "GET /static/js/actions.js HTTP/1.1" 200 3988
+INFO 2024-09-05 10:34:45,824 "GET /static/js/library.js HTTP/1.1" 200 2656
+INFO 2024-09-05 10:34:45,824 "GET /static/images/mailchimp.webp HTTP/1.1" 200 19650
+INFO 2024-09-05 10:34:45,825 "GET /static/images/logo.png HTTP/1.1" 200 58043
+INFO 2024-09-05 10:34:45,925 "GET /static/images/author-type.png HTTP/1.1" 200 152492
+INFO 2024-09-05 10:34:46,097 "GET /static/js/module.js HTTP/1.1" 200 445
+INFO 2024-09-05 10:34:46,486 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2024-09-05 10:35:07,076 "GET / HTTP/1.1" 200 15595
+INFO 2024-09-05 10:35:07,148 "GET /static/css/styles.css HTTP/1.1" 200 5060
+INFO 2024-09-05 10:35:07,155 "GET /static/js/index.js HTTP/1.1" 200 470
+INFO 2024-09-05 10:35:07,156 "GET /static/js/actions.js HTTP/1.1" 200 3988
+INFO 2024-09-05 10:35:07,156 "GET /static/images/mailchimp.webp HTTP/1.1" 200 19650
+INFO 2024-09-05 10:35:07,156 "GET /static/js/library.js HTTP/1.1" 200 2656
+INFO 2024-09-05 10:35:07,156 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+INFO 2024-09-05 10:35:07,157 "GET /static/images/logo.png HTTP/1.1" 200 58043
+INFO 2024-09-05 10:35:07,248 "GET /static/images/author-type.png HTTP/1.1" 200 152492
+INFO 2024-09-05 10:35:07,428 "GET /static/js/module.js HTTP/1.1" 200 445
+INFO 2024-09-05 10:35:07,478 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2024-09-05 10:35:19,875 "GET / HTTP/1.1" 200 15596
+INFO 2024-09-05 10:35:19,946 "GET /static/css/styles.css HTTP/1.1" 200 5060
+INFO 2024-09-05 10:35:19,946 "GET /static/images/logo.png HTTP/1.1" 200 58043
+INFO 2024-09-05 10:35:19,948 "GET /static/js/index.js HTTP/1.1" 200 470
+INFO 2024-09-05 10:35:19,949 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+INFO 2024-09-05 10:35:19,950 "GET /static/js/library.js HTTP/1.1" 200 2656
+INFO 2024-09-05 10:35:19,951 "GET /static/images/mailchimp.webp HTTP/1.1" 200 19650
+INFO 2024-09-05 10:35:19,951 "GET /static/js/actions.js HTTP/1.1" 200 3988
+INFO 2024-09-05 10:35:20,075 "GET /static/images/author-type.png HTTP/1.1" 200 152492
+INFO 2024-09-05 10:35:20,250 "GET /static/js/module.js HTTP/1.1" 200 445
+INFO 2024-09-05 10:35:20,380 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2024-09-05 10:35:38,409 "GET / HTTP/1.1" 200 15589
+INFO 2024-09-05 10:35:38,499 "GET /static/css/styles.css HTTP/1.1" 200 5060
+INFO 2024-09-05 10:35:38,500 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+INFO 2024-09-05 10:35:38,501 "GET /static/js/index.js HTTP/1.1" 200 470
+INFO 2024-09-05 10:35:38,502 "GET /static/js/actions.js HTTP/1.1" 200 3988
+INFO 2024-09-05 10:35:38,503 "GET /static/js/library.js HTTP/1.1" 200 2656
+INFO 2024-09-05 10:35:38,504 "GET /static/images/mailchimp.webp HTTP/1.1" 200 19650
+INFO 2024-09-05 10:35:38,504 "GET /static/images/logo.png HTTP/1.1" 200 58043
+INFO 2024-09-05 10:35:38,621 "GET /static/images/author-type.png HTTP/1.1" 200 152492
+INFO 2024-09-05 10:35:38,750 "GET /static/js/module.js HTTP/1.1" 200 445
+INFO 2024-09-05 10:35:39,109 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2024-09-05 10:35:54,398 /workspace/leaf-lounge/blurb/views.py changed, reloading.
+INFO 2024-09-05 10:35:54,955 Watching for file changes with StatReloader
+INFO 2024-09-05 10:35:58,056 "GET / HTTP/1.1" 200 14883
+INFO 2024-09-05 10:35:58,161 "GET /static/css/styles.css HTTP/1.1" 200 5060
+INFO 2024-09-05 10:35:58,161 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+INFO 2024-09-05 10:35:58,163 "GET /static/js/index.js HTTP/1.1" 200 470
+INFO 2024-09-05 10:35:58,165 "GET /static/js/library.js HTTP/1.1" 200 2656
+INFO 2024-09-05 10:35:58,165 "GET /static/js/actions.js HTTP/1.1" 200 3988
+INFO 2024-09-05 10:35:58,166 "GET /static/images/mailchimp.webp HTTP/1.1" 200 19650
+INFO 2024-09-05 10:35:58,166 "GET /static/images/logo.png HTTP/1.1" 200 58043
+INFO 2024-09-05 10:35:58,246 "GET /static/images/author-type.png HTTP/1.1" 200 152492
+INFO 2024-09-05 10:35:58,473 "GET /static/js/module.js HTTP/1.1" 200 445
+INFO 2024-09-05 10:35:58,855 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2024-09-05 10:36:00,080 "GET /contact/ HTTP/1.1" 200 17452
+INFO 2024-09-05 10:36:23,300 "POST /contact/ HTTP/1.1" 302 0
+INFO 2024-09-05 10:36:23,336 "GET / HTTP/1.1" 200 15623
+INFO 2024-09-05 10:36:23,429 "GET /static/css/styles.css HTTP/1.1" 304 0
+INFO 2024-09-05 10:36:30,707 "GET /profile/me/ HTTP/1.1" 200 86154
+WARNING 2024-09-05 10:36:30,833 Not Found: /profile/static/images/mailchimp.webp
+WARNING 2024-09-05 10:36:30,833 "GET /profile/static/images/mailchimp.webp HTTP/1.1" 404 4305
+WARNING 2024-09-05 10:36:30,957 Not Found: /profile/static/images/mailchimp.webp
+WARNING 2024-09-05 10:36:30,957 "GET /profile/static/images/mailchimp.webp HTTP/1.1" 404 4305
+INFO 2024-09-05 10:36:32,743 "GET /contact/ HTTP/1.1" 200 17452
+INFO 2024-09-05 10:36:33,721 "GET /library/ HTTP/1.1" 200 36744
+INFO 2024-09-05 10:36:50,445 "GET / HTTP/1.1" 200 14883
+INFO 2024-09-05 10:36:50,530 "GET /static/css/styles.css HTTP/1.1" 304 0
+INFO 2024-09-05 10:37:11,424 "GET / HTTP/1.1" 200 14883
+INFO 2024-09-05 10:37:11,492 "GET /static/css/styles.css HTTP/1.1" 200 5060
+INFO 2024-09-05 10:37:11,495 "GET /static/js/index.js HTTP/1.1" 200 470
+INFO 2024-09-05 10:37:11,497 "GET /static/js/library.js HTTP/1.1" 200 2656
+INFO 2024-09-05 10:37:11,497 "GET /static/js/actions.js HTTP/1.1" 200 3988
+INFO 2024-09-05 10:37:11,498 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+INFO 2024-09-05 10:37:11,498 "GET /static/images/mailchimp.webp HTTP/1.1" 200 19650
+INFO 2024-09-05 10:37:11,498 "GET /static/images/logo.png HTTP/1.1" 200 58043
+INFO 2024-09-05 10:37:11,612 "GET /static/images/author-type.png HTTP/1.1" 200 152492
+INFO 2024-09-05 10:37:11,803 "GET /static/js/module.js HTTP/1.1" 200 445
+INFO 2024-09-05 10:37:12,111 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2024-09-05 10:37:25,435 "GET / HTTP/1.1" 200 14873
+INFO 2024-09-05 10:37:25,511 "GET /static/css/styles.css HTTP/1.1" 200 5060
+INFO 2024-09-05 10:37:25,511 "GET /static/images/logo.png HTTP/1.1" 200 58043
+INFO 2024-09-05 10:37:25,562 "GET /static/images/mailchimp.webp HTTP/1.1" 200 19650
+INFO 2024-09-05 10:37:25,565 "GET /static/js/index.js HTTP/1.1" 200 470
+INFO 2024-09-05 10:37:25,565 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+INFO 2024-09-05 10:37:25,566 "GET /static/js/actions.js HTTP/1.1" 200 3988
+INFO 2024-09-05 10:37:25,566 "GET /static/js/library.js HTTP/1.1" 200 2656
+INFO 2024-09-05 10:37:25,627 "GET /static/images/author-type.png HTTP/1.1" 200 152492
+INFO 2024-09-05 10:37:25,797 "GET /static/js/module.js HTTP/1.1" 200 445
+INFO 2024-09-05 10:37:25,969 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2024-09-05 10:37:28,247 "GET / HTTP/1.1" 200 14873
+INFO 2024-09-05 10:37:28,332 "GET /static/js/index.js HTTP/1.1" 200 470
+INFO 2024-09-05 10:37:28,332 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+INFO 2024-09-05 10:37:28,334 "GET /static/css/styles.css HTTP/1.1" 200 5060
+INFO 2024-09-05 10:37:28,334 "GET /static/js/actions.js HTTP/1.1" 200 3988
+INFO 2024-09-05 10:37:28,334 "GET /static/images/mailchimp.webp HTTP/1.1" 200 19650
+INFO 2024-09-05 10:37:28,334 "GET /static/images/logo.png HTTP/1.1" 200 58043
+INFO 2024-09-05 10:37:28,366 "GET /static/js/library.js HTTP/1.1" 200 2656
+INFO 2024-09-05 10:37:28,443 "GET /static/images/author-type.png HTTP/1.1" 200 152492
+INFO 2024-09-05 10:37:28,600 "GET /static/js/module.js HTTP/1.1" 200 445
+INFO 2024-09-05 10:37:28,652 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2024-09-05 10:38:16,482 "GET / HTTP/1.1" 200 13891
+INFO 2024-09-05 10:38:16,546 "GET /static/css/styles.css HTTP/1.1" 200 5060
+INFO 2024-09-05 10:38:16,546 "GET /static/images/logo.png HTTP/1.1" 200 58043
+INFO 2024-09-05 10:38:16,589 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+INFO 2024-09-05 10:38:16,590 "GET /static/js/index.js HTTP/1.1" 200 470
+INFO 2024-09-05 10:38:16,590 "GET /static/images/mailchimp.webp HTTP/1.1" 200 19650
+INFO 2024-09-05 10:38:16,597 "GET /static/js/library.js HTTP/1.1" 200 2656
+INFO 2024-09-05 10:38:16,597 "GET /static/js/actions.js HTTP/1.1" 200 3988
+INFO 2024-09-05 10:38:16,668 "GET /static/images/author-type.png HTTP/1.1" 200 152492
+INFO 2024-09-05 10:38:16,853 "GET /static/js/module.js HTTP/1.1" 200 445
+INFO 2024-09-05 10:38:16,898 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2024-09-05 10:38:28,285 "GET / HTTP/1.1" 200 13896
+INFO 2024-09-05 10:38:28,353 "GET /static/css/styles.css HTTP/1.1" 200 5060
+INFO 2024-09-05 10:38:28,356 "GET /static/js/index.js HTTP/1.1" 200 470
+INFO 2024-09-05 10:38:28,357 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+INFO 2024-09-05 10:38:28,358 "GET /static/js/actions.js HTTP/1.1" 200 3988
+INFO 2024-09-05 10:38:28,359 "GET /static/images/mailchimp.webp HTTP/1.1" 200 19650
+INFO 2024-09-05 10:38:28,359 "GET /static/js/library.js HTTP/1.1" 200 2656
+INFO 2024-09-05 10:38:28,359 "GET /static/images/logo.png HTTP/1.1" 200 58043
+INFO 2024-09-05 10:38:28,461 "GET /static/images/author-type.png HTTP/1.1" 200 152492
+INFO 2024-09-05 10:38:28,635 "GET /static/js/module.js HTTP/1.1" 200 445
+INFO 2024-09-05 10:38:28,969 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2024-09-05 10:38:29,578 "GET / HTTP/1.1" 200 13896
+INFO 2024-09-05 10:38:29,654 "GET /static/css/styles.css HTTP/1.1" 200 5060
+INFO 2024-09-05 10:38:29,657 "GET /static/js/library.js HTTP/1.1" 200 2656
+INFO 2024-09-05 10:38:29,658 "GET /static/js/index.js HTTP/1.1" 200 470
+INFO 2024-09-05 10:38:29,658 "GET /static/js/actions.js HTTP/1.1" 200 3988
+INFO 2024-09-05 10:38:29,659 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+INFO 2024-09-05 10:38:29,659 "GET /static/images/logo.png HTTP/1.1" 200 58043
+INFO 2024-09-05 10:38:29,659 "GET /static/images/mailchimp.webp HTTP/1.1" 200 19650
+INFO 2024-09-05 10:38:29,784 "GET /static/images/author-type.png HTTP/1.1" 200 152492
+INFO 2024-09-05 10:38:29,995 "GET /static/js/module.js HTTP/1.1" 200 445
+INFO 2024-09-05 10:38:30,169 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2024-09-05 10:38:36,179 "GET / HTTP/1.1" 200 13896
+INFO 2024-09-05 10:38:36,255 "GET /static/css/styles.css HTTP/1.1" 200 5060
+INFO 2024-09-05 10:38:36,258 "GET /static/js/index.js HTTP/1.1" 200 470
+INFO 2024-09-05 10:38:36,258 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+INFO 2024-09-05 10:38:36,260 "GET /static/js/actions.js HTTP/1.1" 200 3988
+INFO 2024-09-05 10:38:36,260 "GET /static/images/mailchimp.webp HTTP/1.1" 200 19650
+INFO 2024-09-05 10:38:36,261 "GET /static/js/library.js HTTP/1.1" 200 2656
+INFO 2024-09-05 10:38:36,261 "GET /static/images/logo.png HTTP/1.1" 200 58043
+INFO 2024-09-05 10:38:36,356 "GET /static/images/author-type.png HTTP/1.1" 200 152492
+INFO 2024-09-05 10:38:36,534 "GET /static/js/module.js HTTP/1.1" 200 445
+INFO 2024-09-05 10:38:36,580 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2024-09-05 10:39:14,587 "GET / HTTP/1.1" 200 13959
+INFO 2024-09-05 10:39:14,661 "GET /static/css/styles.css HTTP/1.1" 200 5060
+INFO 2024-09-05 10:39:14,664 "GET /static/js/index.js HTTP/1.1" 200 470
+INFO 2024-09-05 10:39:14,664 "GET /static/images/mailchimp.webp HTTP/1.1" 200 19650
+INFO 2024-09-05 10:39:14,664 "GET /static/images/logo.png HTTP/1.1" 200 58043
+INFO 2024-09-05 10:39:14,667 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+INFO 2024-09-05 10:39:14,668 "GET /static/js/actions.js HTTP/1.1" 200 3988
+INFO 2024-09-05 10:39:14,668 "GET /static/js/library.js HTTP/1.1" 200 2656
+INFO 2024-09-05 10:39:14,781 "GET /static/images/author-type.png HTTP/1.1" 200 152492
+INFO 2024-09-05 10:39:14,931 "GET /static/js/module.js HTTP/1.1" 200 445
+INFO 2024-09-05 10:39:14,983 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2024-09-05 10:39:21,046 "GET / HTTP/1.1" 200 13959
+INFO 2024-09-05 10:39:21,120 "GET /static/css/styles.css HTTP/1.1" 200 5060
+INFO 2024-09-05 10:39:21,125 "GET /static/js/index.js HTTP/1.1" 200 470
+INFO 2024-09-05 10:39:21,128 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+INFO 2024-09-05 10:39:21,129 "GET /static/js/actions.js HTTP/1.1" 200 3988
+INFO 2024-09-05 10:39:21,130 "GET /static/images/mailchimp.webp HTTP/1.1" 200 19650
+INFO 2024-09-05 10:39:21,130 "GET /static/images/logo.png HTTP/1.1" 200 58043
+INFO 2024-09-05 10:39:21,183 "GET /static/js/library.js HTTP/1.1" 200 2656
+INFO 2024-09-05 10:39:21,229 "GET /static/images/author-type.png HTTP/1.1" 200 152492
+INFO 2024-09-05 10:39:21,389 "GET /static/js/module.js HTTP/1.1" 200 445
+INFO 2024-09-05 10:39:21,430 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2024-09-05 10:39:32,785 "GET / HTTP/1.1" 200 13976
+INFO 2024-09-05 10:39:32,854 "GET /static/css/styles.css HTTP/1.1" 200 5060
+INFO 2024-09-05 10:39:32,854 "GET /static/images/logo.png HTTP/1.1" 200 58043
+INFO 2024-09-05 10:39:32,856 "GET /static/js/index.js HTTP/1.1" 200 470
+INFO 2024-09-05 10:39:32,860 "GET /static/js/actions.js HTTP/1.1" 200 3988
+INFO 2024-09-05 10:39:32,861 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+INFO 2024-09-05 10:39:32,861 "GET /static/js/library.js HTTP/1.1" 200 2656
+INFO 2024-09-05 10:39:32,861 "GET /static/images/mailchimp.webp HTTP/1.1" 200 19650
+INFO 2024-09-05 10:39:32,960 "GET /static/images/author-type.png HTTP/1.1" 200 152492
+INFO 2024-09-05 10:39:33,114 "GET /static/js/module.js HTTP/1.1" 200 445
+INFO 2024-09-05 10:39:33,455 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2024-09-05 10:39:55,339 "GET / HTTP/1.1" 200 13976
+INFO 2024-09-05 10:39:55,427 "GET /static/css/styles.css HTTP/1.1" 200 5131
+INFO 2024-09-05 10:39:55,431 "GET /static/js/library.js HTTP/1.1" 200 2656
+INFO 2024-09-05 10:39:55,432 "GET /static/js/actions.js HTTP/1.1" 200 3988
+INFO 2024-09-05 10:39:55,432 "GET /static/js/quantity.js HTTP/1.1" 200 3055
+INFO 2024-09-05 10:39:55,433 "GET /static/js/index.js HTTP/1.1" 200 470
+INFO 2024-09-05 10:39:55,433 "GET /static/images/mailchimp.webp HTTP/1.1" 200 19650
+INFO 2024-09-05 10:39:55,433 "GET /static/images/logo.png HTTP/1.1" 200 58043
+INFO 2024-09-05 10:39:55,536 "GET /static/images/author-type.png HTTP/1.1" 200 152492
+INFO 2024-09-05 10:39:55,678 "GET /static/js/module.js HTTP/1.1" 200 445
+INFO 2024-09-05 10:39:55,978 "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2024-09-05 10:40:06,069 "GET /contact/ HTTP/1.1" 200 17452
+INFO 2024-09-05 10:40:06,163 "GET /static/css/styles.css HTTP/1.1" 304 0
+INFO 2024-09-05 10:40:09,145 "GET /library/ HTTP/1.1" 200 36744
+INFO 2024-09-05 10:40:09,261 "GET /static/css/styles.css HTTP/1.1" 304 0
+INFO 2024-09-05 10:40:18,664 "GET /accounts/logout/ HTTP/1.1" 200 12555
+INFO 2024-09-05 10:40:18,753 "GET /static/css/styles.css HTTP/1.1" 304 0
+WARNING 2024-09-05 10:40:18,764 Not Found: /accounts/static/images/mailchimp.webp
+WARNING 2024-09-05 10:40:18,764 "GET /accounts/static/images/mailchimp.webp HTTP/1.1" 404 7728
+INFO 2024-09-05 10:40:20,142 "POST /accounts/logout/ HTTP/1.1" 302 0
+INFO 2024-09-05 10:40:20,169 "GET / HTTP/1.1" 200 13557
+INFO 2024-09-05 10:40:20,289 "GET /static/css/styles.css HTTP/1.1" 304 0
+INFO 2024-09-05 10:40:26,740 "GET /library/ HTTP/1.1" 200 34814
+INFO 2024-09-05 10:40:26,822 "GET /static/css/styles.css HTTP/1.1" 304 0
+INFO 2024-09-05 10:40:28,487 "GET /library/book/testbook-testingwhiles/ HTTP/1.1" 200 17197
+INFO 2024-09-05 10:40:28,556 "GET /static/css/styles.css HTTP/1.1" 304 0
+WARNING 2024-09-05 10:40:28,570 Not Found: /library/book/static/images/mailchimp.webp
+WARNING 2024-09-05 10:40:28,570 "GET /library/book/static/images/mailchimp.webp HTTP/1.1" 404 3715
+INFO 2024-09-05 10:40:31,230 "POST /basket/add/11 HTTP/1.1" 302 0
+INFO 2024-09-05 10:40:31,263 "GET /library/book/testbook-testingwhiles/ HTTP/1.1" 200 17932
+INFO 2024-09-05 10:40:31,351 "GET /static/css/styles.css HTTP/1.1" 304 0
+WARNING 2024-09-05 10:40:31,364 Not Found: /library/book/static/images/mailchimp.webp
+WARNING 2024-09-05 10:40:31,364 "GET /library/book/static/images/mailchimp.webp HTTP/1.1" 404 3715
+INFO 2024-09-05 10:40:36,207 "GET /basket/ HTTP/1.1" 200 20146
+INFO 2024-09-05 10:40:36,279 "GET /static/css/styles.css HTTP/1.1" 304 0
+INFO 2024-09-05 10:40:41,030 "GET /checkout/ HTTP/1.1" 200 35896
+INFO 2024-09-05 10:40:41,183 "GET /static/css/styles.css HTTP/1.1" 304 0
+INFO 2024-09-05 10:40:41,467 "POST /checkout/wh/ HTTP/1.1" 200 36

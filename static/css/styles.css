@@ -240,12 +240,21 @@ body {
     transform: scale(0.80);
 }
 
-/* footer{
-    position: absolute;
-    width: 100%;
-    bottom: 0;
-} */
+.btn-link{
+    text-decoration: none;
+    color: var(--white-text);
+}
 /* /General */
+
+/* Toasts */
+.toast{
+    position: absolute;
+    z-index: 999;
+    right: 30px;
+    border: none;
+    outline: none;
+}
+/* /Toasts */
 
 /* Media Queries */
 @media all and (min-width: 400px){
