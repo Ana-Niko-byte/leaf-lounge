@@ -41,29 +41,6 @@ CSRF_TRUSTED_ORIGINS = [
     "https://*.ws.codeinstitute-ide.net",
 ]
 
-LOGGING = {
-    "version": 1,
-    "formatters": {
-        "verbose": {
-            "format": "%(levelname)s %(asctime)s %(message)s"
-        },
-    },
-    "handlers": {
-        "file": {
-            "level": "INFO",
-            "class": "logging.FileHandler",
-            "filename": "django.log",
-            "formatter": "verbose",
-        },
-    },
-    "loggers": {
-        "django": {
-            "handlers": ["file"],
-            "level": "INFO",
-        },
-    },
-}
-
 # Application definition
 
 INSTALLED_APPS = [
