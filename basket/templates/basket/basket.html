@@ -5,39 +5,27 @@
 
 {% block content %}
 <div class="container-fluid">
-    <div class="row text-center">
-        <h6 class="text-uppercase mb-4"><strong>
-            {% if not books_in_basket %}<i class="fa-solid fa-wine-glass-empty me-3"></i>
-            {% else %}<i class="fa-solid fa-wine-glass me-2"></i>{% endif %}
-            Your Basket{% if not books_in_basket %} is empty  :({% endif %}
-        </strong></h6>
-        {% if not books_in_basket %}
-        <div class="button-container text-center mt-4">
-            <a href="{{ library_url }}">
-                <button class="custom-button">
-                    <i class="fa-solid fa-sm fa-chevron-left me-2"></i>Return to Library
-                </button>
-            </a>
-        </div>
-        {% endif %}
-    </div>
-
-    <div class="row d-flex justify-content-around align-items-start">
+    <div class="row d-flex justify-content-around align-items-start mt-3">
         {% if books_in_basket %}
             <!-- Table -->
             <div class="table-responsive col-lg-7 col-md-6 col-sm-12 mx-2">
-                {% include 'basket/_table.html' %}
+                <div class="large-table d-none d-lg-block">
+                    {% include 'basket/_table.html' %}
+                </div>
+                <div class="small-table d-block d-lg-none">
+                    {% include 'basket/_mobile_table.html' %}
+                </div>
             </div>
-            <div class="col-lg-4 col-md-6 col-sm-12 bg-light p-4 rounded shadow-sm">
+            <div class="col-lg-4 col-md-6 col-sm-12 bg-light p-3 rounded shadow-sm">
                 {% include 'basket/_summary.html' %}
-                <div class="d-flex flex-row align-items-start justify-content-between py-3">
+                <div class="d-flex flex-column flex-md-row align-items-center align-items-md-start justify-content-between py-3">
                     <a href="{% if user.is_authenticated %}{{ checkout_url }}{% else %}{{ signin_url }}{% endif %}">
                         <button class="custom-button">
                             <i class="fas fa-lock me-2"></i>Secure Checkout
                         </button>
                     </a>
                     <a href="{% url 'library' %}">
-                        <button class="custom-button">
+                        <button class="custom-button mt-3 mt-md-0">
                             <i class="fa-solid fa-sm fa-book me-2"></i>Keep Shopping
                         </button>
                     </a>

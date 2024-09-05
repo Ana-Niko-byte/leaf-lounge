@@ -266,9 +266,9 @@ body {
     }
 
     .mid-basket-sign-up{
-        outline: 3px solid red;
         display: flex;
         flex-direction: row;
+        color: var(--white-text);
     }
 }
 /* /Media Queries */

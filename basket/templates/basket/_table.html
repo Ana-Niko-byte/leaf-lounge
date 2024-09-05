@@ -1,10 +1,10 @@
 <table class="table table-sm table-shadow">
     <thead class="text-center">
         <tr class="mb-5">
-            <th class="text-start small text-uppercase">Book</th>
+            <th class="text-start small text-uppercase ps-3">Book</th>
             <th class="small text-uppercase">Price/Book</th>
             <th class="small text-uppercase">Quantity</th>
-            <th class="text-end small text-uppercase">Subtotal</th>
+            <th class="small text-uppercase">Subtotal</th>
         </tr>
     </thead>
     <tbody>
@@ -14,13 +14,15 @@
             <td>
                 <div class="container-data d-flex flex-row justify-content-start align-items-start pt-3 p-2">
                     <a href="{{ book.book.get_absolute_url }}">
-                        <img src="../../../static/images/1984_cover.jpg" style="width: 60px;" alt="{{ book.book.title }} book cover">
+                        <img src="../../../static/images/1984_cover.jpg" style="width: 80px;" alt="{{ book.book.title }} book cover">
                     </a>
-                    <div class="book-info ms-3">
-                        <h6 class="small m-0 p-0"><strong>{{ book.book.title }}</strong></h6>
-                        <p class="small text-muted">{{ book.book.author }}</p>
-                        <p class="small m-0 p-0"><strong>Type: </strong>{{ book.type|upper }}</p>
-                        <p class="small text-muted mt-4">ISBN: {{ book.book.isbn|upper }}</p>
+                    <div class="book-basket-info d-flex flex-column justify-content-between ms-3">
+                        <div class="general-info flex-fill">
+                            <h6 class="small m-0 p-0"><strong>Book: </strong>{{ book.book.title }}</h6>
+                            <p class="small m-0 p-0"><strong>Type: </strong>{{ book.type|upper }}</p>
+                            <p class="small m-0 p-0"><strong>Genre: </strong>{{ book.book.genre }}</p>
+                        </div>
+                        <p class="small text-muted">ISBN: {{ book.book.isbn|upper }}</p>
                     </div>
                 </div>
             </td>

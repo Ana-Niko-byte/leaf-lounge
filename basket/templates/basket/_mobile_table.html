@@ -1,0 +1,71 @@
+{% for book in books_in_basket %}
+<div class="book-basket-container">
+    <div class="table table-sm table-shadow p-2">
+        <div class="container-data shadow-sm d-flex flex-row justify-content-center align-items-center pt-3 p-2">
+            <a href="{{ book.book.get_absolute_url }}">
+                <img src="../../../static/images/1984_cover.jpg" style="width: 80px;" alt="{{ book.book.title }} book cover">
+            </a>
+            <div class="book-basket-info d-flex flex-column justify-content-between ms-3">
+                <div class="general-info flex-fill">
+                    <h6 class="small m-0 p-0"><strong>Book: </strong>{{ book.book.title }}</h6>
+                    <p class="small m-0 p-0"><strong>Type: </strong>{{ book.type|upper }}</p>
+                    <p class="small m-0 p-0"><strong>Genre: </strong>{{ book.book.genre }}</p>
+                </div>
+                <p class="small text-muted">ISBN: {{ book.book.isbn|upper }}</p>
+            </div>
+        </div>
+        <div class="price-container">
+            <p class="small text-center pt-3"><strong>Price/Book: </strong>€{{ book.book.price|floatformat:2 }}</p>
+            <p id="quantity_{{ book.book_id }}_{{ forloop.counter }}" class="text-center basket-book-quantity"><strong>Quantity: </strong>{{ book.quantity }}</p>
+            <!-- Update Form -->
+            <div class="form-container d-flex align-items-center justify-content-center">
+                <form action="{% url 'update_basket' book.book_id %}" method="POST" id="update_form_{{ book.book_id }}_{{forloop.counter}}">
+                    {% csrf_token %}
+
+                    <!-- Input Group -->
+                    <div class="input-group d-none align-items-center justify-content-center" id="form_{{ book.book_id }}_{{ forloop.counter }}">
+                        <!-- Delete Button -->
+                        <div class="input-group-prepend">
+                            <a href="{% url 'delete_basket' book.book_id %}" class="basket-link btn delete-book my-1" data-book-id="{{ book.book_id }}" data-book-type="{{ book.type }}" data-counter="{{ forloop.counter }}" id="delete_{{ book.book_id }}_{{ forloop.counter }}"><i class="fa-solid fa-trash"></i></a>
+                        </div>
+                        <!-- /Delete Button -->
+
+                        <div class="qty-container">
+                            <input type="number" class="form-control qty_input text-center" name="quantity" value="{{ book.quantity }}" min="1" max="99" data-book-id="{{ book.book_id }}" id="book_id_{{ book.book_id }}_{{ forloop.counter }}">
+                            <span class="small" id="qty_warning_{{ book.book_id }}_{{forloop.counter}}"></span>
+                        </div>
+
+                        <!-- Increment Quantity -->
+                        <div class="inut-group-append">
+                            <button type="button" class="increment btn" id="increment_{{ book.book_id }}_{{ forloop.counter }}" data-book-id="{{ book.book_id }}" data-counter="{{ forloop.counter }}">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </div>
+                        <!-- /Increment Quantity -->
+                        
+                            <input type="hidden" name="book_type" value="{{ book.type }}">
+                    </div>
+                    <!-- /Input Group -->
+
+
+                    <!-- Handlers -->
+                    <div class="button-container d-flex flex-column justify-content-center">
+                        <!-- Manipulation (js) -->
+                        <span class="d-none basket-link custom-button cancel-update my-1" data-book-id="{{ book.book_id }}" id="cancel_{{ book.book_id }}_{{ forloop.counter }}">Cancel</span>
+                        <span class="basket-link custom-button update-book my-1" data-book-id="{{ book.book_id }}" data-counter="{{ forloop.counter }}">Update</span>
+                        <!-- /Manipulation (js) -->
+                        <!-- Button -->
+                        <a class="d-none basket-link custom-button save-book my-1" data-book-id="{{ book.book_id }}" id="save_{{ book.book_id }}_{{ forloop.counter }}">Save Changes</a>
+                        <!-- /Button -->
+                    </div>
+                    <!-- /Handlers -->
+                </form>
+            </div>
+            <!-- Update Form -->
+            <!-- Lineitem subtotal -->
+            <p class="text-center mt-3"><strong>Book Subtotal: </strong>€{{ book.indiv_total }}</p>
+            <!-- /Lineitem subtotal -->
+        </div>
+    </div>
+</div>
+{% endfor %}

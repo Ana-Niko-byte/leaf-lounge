@@ -22,14 +22,18 @@
                 </a>
             </li>
             <li class="nav-item py-3 ps-3">
-                <a href="{{ signout_url }}" class="custom-button">
-                    <i class="fa-solid fa-arrow-right-from-bracket me-2"></i>Sign Out
+                <a href="{{ signout_url }}" class="btn-link">
+                    <button class="custom-button">
+                        <i class="fa-solid fa-arrow-right-from-bracket me-2"></i>Sign Out
+                    </button>
                 </a>
             </li>
             {% else %}
             <li class="nav-item py-3 ps-3">
-                <a href="{{ signup_url }}" class="custom-button">
-                    <i class="fa-solid fa-user-plus me-2"></i>Sign Up
+                <a href="{{ signup_url }}" class="btn-link">
+                    <button class="custom-button">
+                        <i class="fa-solid fa-user-plus me-2"></i>Sign Up
+                    </button>
                 </a>
             </li>
             {% endif %}
@@ -38,7 +42,7 @@
     <!-- Original Menu for Medium/Small Screens -->
 
     <!-- Basket + Sign Up -->
-    <ul class="navbar-nav">
+    <ul class="navbar-nav d-none d-md-block">
         <li class="nav-item px-2 mx-1 mb-3">
             <a href="{{ basket_url }}">
                 <i class="fa-solid fa-basket-shopping {% if books_total %} basket-highlight gelatine{% endif %}"></i>
