@@ -49,7 +49,7 @@ class UserProfileForm(forms.ModelForm):
                 else:
                     placeholder = placeholders[field]
                 self.fields[field].widget.attrs['placeholder'] = placeholder
-                self.fields[field].widget.attrs['class'] = 'custom-fields'
+            self.fields[field].widget.attrs['class'] = 'custom-profile-fields'
             self.fields[field].label = False
 
 
@@ -92,5 +92,5 @@ class ReviewForm(forms.ModelForm):
             if field == 'comment':
                 self.fields[field].widget.attrs['placeholder'] = 'Great book!'
             elif field == 'rating':
-                self.fields[field].widget.attrs['placeholder'] = '(Out of 10)'
+                self.fields[field].widget.attrs['placeholder'] = 'Rating out of 10'
             self.fields[field].widget.attrs['class'] = 'custom-fields'

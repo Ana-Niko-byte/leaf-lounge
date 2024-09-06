@@ -4,7 +4,7 @@
 {% block secondary_nav %}
 <div class="secondary-navigation d-flex flex-column flex-md-row justify-content-between align-items-center m-0 p-0">
     <div class="ul-container mb-3">
-        <ul class="navbar-nav flex-row justify-content-center">
+        <ul class="navbar-nav flex-row justify-content-center ms-4">
             <li class="nav-item second-nav-link text-center">
                 <a href="{% if request.user.is_authenticated %}{% url 'user_books' %}{% else %}{{ signup_url }}{% endif %}">My Books</a>
             </li>
@@ -42,19 +42,5 @@
     {% if detail %}
     {% include 'library/_breadcrumb.html' with book=book %}
     {% endif %}
-    <div class="form-container col-lg-2 col-md-4 col-sm-12 me-0 me-md-4 mb-3 mb-md-0">
-        <form method="GET" action="{% url 'library' %}">
-            <div class="input-group input-group-search">
-                <input class="form-control search-nav p-2 ps-3" type="text" name="q" placeholder="Book Name or Author" autofocus>
-                <div class="input-group-append">
-                    <button class="form-control search-button-nav p-2" type="submit">
-                        <span class="icon">
-                            <i class="fas fa-search mx-2"></i>
-                        </span>
-                    </button>
-                </div>
-            </div>
-        </form>
-    </div>
 </div>
 {% endblock %}

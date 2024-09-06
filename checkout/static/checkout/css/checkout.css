@@ -4,11 +4,7 @@
   --placeholder-grey: #aab7c4;
 }
 
-p{
-  margin: 0;
-  padding: 0;
-}
-
+/* Stripe */
 .StripeElement,
 .stripe-style-input {
   box-sizing: border-box;
@@ -55,9 +51,9 @@ select option[value=""]{
   color: var(--black);
   border: 1px solid var(--light-grey);
 }
+/* /Stripe */
 
 #loading-overlay {
-
 	display: none;
 	position: fixed;
   top: 0;
@@ -74,9 +70,4 @@ select option[value=""]{
   justify-content: center;
   margin: 0;
   height: 100%;
-}
-
-#order-summary{
-  max-width: 100px;
-  overflow-x: auto;
 }

@@ -30,9 +30,9 @@ def my_profile(request):
     reader = get_object_or_404(UserProfile, user=request.user)
 
     if request.method == 'POST':
-        form = UserProfileForm(request.POST, instance=reader)
-        if form.is_valid:
-            form.save()
+        user_form = UserProfileForm(request.POST, instance=reader)
+        if user_form.is_valid:
+            user_form.save()
             messages.success(
                 request,
                 "Your information has been saved!"
@@ -51,13 +51,13 @@ def my_profile(request):
         return redirect('user_profile')
 
     review_form = ReviewForm()
-    form = UserProfileForm(instance=reader)
+    user_form = UserProfileForm(instance=reader)
     book_orders = reader.orders.all()
     user_reviews = Review.objects.filter(reviewer=reader)
 
     context = {
         'reader': reader,
-        'form': form,
+        'user_form': user_form,
         'review_form': review_form,
         'book_orders': book_orders,
         'user_reviews': user_reviews,

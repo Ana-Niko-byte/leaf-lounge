@@ -14,7 +14,7 @@
     --green-grey: #4c7273;
     --light-green-grey: #86b9b0;
     --light-blue: #d0d6d6;
-    --search-bg: rgb(250, 250, 250);
+    --search-bg: rgb(254, 254, 254);
     --book-outline: #041421;
 }
 /* /Colour Specification */
@@ -125,6 +125,7 @@ p{
     border-bottom-left-radius: 12px;
     caret-color: var(--dark-text-color);
     border: 7px solid var(--book-outline);
+    background-color: var(--search-bg);
     border-right: none;
 }
 
@@ -136,6 +137,7 @@ p{
     border: 7px solid var(--book-outline);
     border-left: none;
     border-right: none;
+    background-color: var(--search-bg);
 }
 
 .search-button-nav{
@@ -148,7 +150,6 @@ p{
 
 .search-button-nav, .search-nav{
     border: 5px solid var(--book-outline);
-    background-color: var(--search-bg);
 }
 
 .search-button-nav, .search-nav{
@@ -174,6 +175,7 @@ p{
     box-shadow: 5px 5px 5px var(--dark-navy);
     transform: scale(1.08);
     border: 7px solid var(--book-outline);
+    background-color: var(--search-bg);
 }
 
 .form-control-search:focus + .input-group-append .search-button{
@@ -302,6 +304,10 @@ body {
     outline: none;
 }
 /* /Toasts */
+
+footer{
+    background-color: var(--light-blue);
+}
 
 /* Media Queries */
 @media all and (max-width: 450px){

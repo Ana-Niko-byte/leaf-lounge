@@ -109,24 +109,6 @@ a{
 }
 /* /Book */
 
-/* UIUX */
-.book-type-form-control{
-    border: 5px solid var(--book-outline);
-    border-right: none;
-    border-top-left-radius: 15px;
-    border-bottom-left-radius: 15px;
-    background-color: var(--search-bg);
-    transition: all 0.3s ease;
-    max-width: 300px;
-}
-
-.book-type-form-control:focus{
-    box-shadow: none;
-    border-color: var(--dark-blue);
-    transform: scale(1.04);
-}
-/* /UIUX */
-
 /* User Reviews */
 .rating-box{
     height: 21px;

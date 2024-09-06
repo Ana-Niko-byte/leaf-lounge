@@ -1,4 +1,10 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+{{ block_super }}
+<link rel="stylesheet" href="{% static 'checkout/css/success.css' %}">
+{% endblock %}
 
 {% block content %}
 <div class="container py-5">
@@ -50,23 +56,30 @@
         </div>
 
         <!-- Order Summary -->
-        <div class="col-lg-4 col-md-8 col-sm-12">
-            <div class="order-summary bg-light p-4 rounded shadow-sm">
-                <h5 class="text-uppercase mb-3 text-center"><strong>Order Summary</strong></h5>
-                <div class="d-flex justify-content-center" id="order-summary">
-                    {% for book in book_order.booklineitem.all %}
-                        <div class="book-item bg-white p-3 m-2 rounded shadow-sm text-center" style="width: 200px;">
-                            <img src="../../../static/images/1984_cover.jpg" alt="{{ book.book.title }}" class="img-fluid mb-2" style="height: 200px; object-fit: cover;">
-                            <p class="h5"><strong>{{ book.book.title }}</strong></p>
-                            <p class="text-secondary small">by {{ book.book.author }}</p>
-                            <p class="small">Type: {{ book.type }}</p>
-                            <p class="small">Amount: {{ book.quantity }}</p>
+        <div class="col-lg-4 col-md-8 col-sm-12 bg-light p-4 rounded shadow-sm">
+            <h5 class="text-uppercase mb-3 text-center"><strong>Order Summary</strong></h5>
+            <div class="book-genre-rows d-flex justify-content-start align-items-end" id="order-summary">
+                {% for book in book_order.booklineitem.all %}
+                <div class="link-container">
+                    <a href="{{ book.book.get_absolute_url }}" class="btn-link">
+                        <div class="book d-flex me-1 position-relative">
+                            <div class="book-spine p-2 d-flex align-items-end">
+                                <p class="text-white book-turned h6 text-uppercase small"><strong>{{ book.book.title }}</strong></p>
+                                <p class="text-white book-turned my-2 small">{{ book.book.author }} | {{ book.book.year_published }}</p>
+                            </div> 
+                            <img src="../../../static/images/1984_cover.jpg" alt="{{ book.book.title }} cover" class="book-main">
                         </div>
-                    {% endfor %}
+                    </a>
                 </div>
+                {% endfor %}
             </div>
         </div>
         <!-- /Order Summary -->
     </div>
 </div>
+{% endblock %}
+
+{% block extra_js %}
+{{ block_super }}
+<script src="{% static 'library/js/library.js' %}" type="module"></script>
 {% endblock %}

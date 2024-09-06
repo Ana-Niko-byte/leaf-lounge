@@ -8,6 +8,22 @@
 
 {% block content %}
 <div class="container-fluid p-0">
+    <div class="row d-flex">
+        <!-- Search Form -->
+        <form method="GET" action="{% url 'library' %}">
+            <div class="input-group input-group-search mb-lg-5 d-flex justify-content-center align-items-center">
+                <input class="form-control form-control-search search-input p-2 ps-3" type="text" name="q" placeholder="Book Name" autofocus>
+                <div class="input-group-append">
+                    <button class="form-control form-control-search search-button p-2" type="submit">
+                        <span class="icon">
+                            <i class="fas fa-search mx-2"></i>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </form>
+        <!-- /Search Form -->
+    </div>
     <div class="row d-flex justify-content-center p-0 m-0 mx-2 mx-md-5">
         <!-- Books -->
         <div class="books col-lg-9 col-md-6 col-sm-12">

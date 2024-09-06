@@ -158,6 +158,7 @@ def library(request):
         'filtered_genres': filtered_genres,
         'book_count_authors': book_count_authors,
         'search_term': query,
+        'library_view': True,
     }
     return render(
         request,

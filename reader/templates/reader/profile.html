@@ -24,7 +24,7 @@
         </form>
     </div>
     <div class="row mt-3">
-        <div class="col-lg-2 col-md-3 col-sm-12 order-first">
+        <div class="col-lg-3 col-md-3 col-sm-12 order-first">
             <ul class="list-unstyled ms-3">
                 <li class="menu-item">
                     <button class="table-button mb-2 display-button" data-detail="billing">My Billing Details</button>
@@ -51,107 +51,135 @@
                 </li>
             </ul>
         </div>
-        <div class="col-lg-10 col-md-9 col-sm-12 order-first order-md-last text-center">
+        <div class="col-lg-9 col-md-9 col-sm-12 order-first order-md-last text-center">
             <div class="profile-starter me-5 pt-3">
                 <h5>Hey there! You've found your profile.</h5>
                 <p>To get started, click on a button on the left handside to view, change, or delete your information.</p>
             </div>
             <ul class="list-unstyled">
-                <li class="d-none profile-details mx-0 mx-md-5" data-profile="billing-details">
-                    <div class="col-lg-8 col-md-12 col-sm-12 bg-light rounded shadow-sm p-4">
-                        <h4 class="mb-3 text-uppercase text-start small"><strong><i class="fa-solid fa-book me-2"></i>My Details</strong></h4>
-                        <form action="{% url 'user_profile' %}" method="post" id="userProfileForm">
-                            {% csrf_token %}
-                            {{ form | crispy }}
-                            <div class="button-container d-flex justify-content-end mt-3">
-                                <button type="submit" class="btn-lg custom-button"><i class="fa-solid fa-circle-check me-2"></i>Update Information</button>
-                            </div>
-                        </form>
-                    </div>
+                <li class="d-none profile-details mx-0 mx-md-3 d-flex justify-content-start align-items-start ms-5" data-profile="billing-details">
+                        <div class="main-form bg-light rounded shadow-sm p-4">
+                            <h4 class="mb-3 text-uppercase text-start small"><strong><i class="fa-solid fa-book me-2"></i>My Details</strong></h4>
+                            <hr>
+                            <form action="{% url 'user_profile' %}" method="post" id="userProfileForm">
+                                {% csrf_token %}
+                                <div class="inner-form-container d-flex flex-column flex-md-row align-items-start justify-content-between">
+                                    <div class="half">
+                                        <fieldset class="px-3 mb-3">
+                                            <legend class="fieldset-details fieldset-label small text-black text-uppercase text-start"><strong>Contact Details</strong></legend>
+                                            {{ user_form.default_phone_number | as_crispy_field }}
+                                        </fieldset>
+                                        <fieldset class="px-3 mb-3">
+                                            <legend class="fieldset-details fieldset-label small text-black text-uppercase text-start"><strong>Street Address</strong></legend>
+                                            {{ user_form.default_street_1 | as_crispy_field }}
+                                            {{ user_form.default_street_2 | as_crispy_field }}
+                                            {{ user_form.default_town_city | as_crispy_field }}
+                                        </fieldset>
+                                    </div>
+                                    <div class="half">
+                                        <fieldset class="px-3 mb-3">
+                                            <legend class="fieldset-details fieldset-label small text-black text-uppercase text-start"><strong>Locality</strong></legend>
+                                            {{ user_form.default_county | as_crispy_field }}
+                                        </fieldset>
+                                        <fieldset class="px-3 mb-3">
+                                            <legend class="fieldset-details fieldset-label small text-black text-uppercase text-start"><strong>Region</strong></legend>
+                                            {{ user_form.default_postcode | as_crispy_field }}
+                                            {{ user_form.default_country | as_crispy_field }}
+                                        </fieldset>
+                                        <div class="button-container d-flex justify-content-end me-3">
+                                            <button type="submit" class="btn-lg custom-button"><i class="fa-solid fa-circle-check me-2"></i>Update Information</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                 </li>
                 <li class="d-none profile-details me-5" data-profile="history-details">
                     <div>
                         <h4 class="mb-3 text-uppercase text-center text-md-start small"><strong><i class="fa-solid fa-list me-2"></i>My Order History</strong></h4>
-                        {% for book_order in book_orders %}
-                        <div class="row accordion accordion-flush my-2 px-3 bg-white shadow-sm p-3 rounded" id="accordion{{ forloop.counter }}">
-                            <div class="col-lg-9 accordion-item bg-light rounded">
-                                <div class="info-container mt-3">
-                                    <p class="m-0 p-0"><strong>Order Number : <span class="small">{{ book_order.order_number }}</span></strong></p>
-                                    <p class="m-0 p-0"><small>Date placed: {{ book_order.date }}</small></p>
-                                </div>
-                                <div class="image-container d-flex flex-column flex-md-row justify-content-center align-items-center">
-                                    {% for book in book_order.booklineitem.all %}
-                                    <!-- Add book image here -->
-                                    <div style="max-width: 150px;" class="mx-3 mb-3 col-lg-2 d-flex flex-column justify-content-between">
-                                        <div class="book-info">
-                                            <img src="../../../static/images/1984_cover.jpg" class="mt-4 mb-2" style="width: 100px;" alt="{{ book.book.title }} book cover">
-                                            <p class="m-0 p-0"><small><strong>{{ book.book.title }}</strong></small></p>
+                        {% if book_orders %}
+                            {% for book_order in book_orders %}
+                            <div class="row accordion accordion-flush my-2 px-3 bg-white shadow-sm p-3 rounded" id="accordion{{ forloop.counter }}">
+                                <div class="col-lg-9 accordion-item bg-light rounded">
+                                    <div class="info-container mt-3">
+                                        <p class="m-0 p-0"><strong>Order Number : <span class="small">{{ book_order.order_number }}</span></strong></p>
+                                        <p class="m-0 p-0"><small>Date placed: {{ book_order.date }}</small></p>
+                                    </div>
+                                    <div class="book-profile-order d-flex flex-column flex-md-row justify-content-start align-items-start">
+                                        {% for book in book_order.booklineitem.all %}
+                                        <div class="mx-3 mb-3 d-flex flex-column justify-content-between">
+                                            <div class="book-info">
+                                                <img src="../../../static/images/1984_cover.jpg" class="mt-4 mb-2" style="width: 100px;" alt="{{ book.book.title }} cover">
+                                                <p class="m-0 p-0"><small><strong>( {{ book.quantity }} )</strong></small></p>
+                                            </div>
                                         </div>
-                                        <p><small>( x {{ book.quantity }} )</small></p>
-                                    </div>
-                                    {% endfor %}
-                                </div>
-                            </div>
-                            <div class="col-lg-3 d-flex flex-column justify-content-between">
-                                <div class="info-container ms-4 mt-3">
-                                    <div class="row d-flex shadow-sm p-2">
-                                        <span class="col-3"><strong>Subtotal: </strong></span>
-                                        <span class="col-9"><p class="m-0 p-0">€{{ book_order.order_total }}</p></span>
-                                    </div>
-                                    <div class="row d-flex shadow-sm p-2">
-                                        <span class="col-3"><strong>Shipping: </strong></span>
-                                        <span class="col-9"><p class="m-0 p-0">{% if book_order.delivery_cost == 0.00 %}<strong>FREE</strong>{% else %}€{{ book_order.delivery_cost }}{% endif %}</p></span>
-                                    </div>
-                                    <div class="row d-flex shadow-sm p-2">
-                                        <span class="col-3"><strong>Total: </strong></span>
-                                        <span class="col-9"><p class="m-0 p-0">€{{ book_order.grand_total }}</p></span>
+                                        {% endfor %}
                                     </div>
                                 </div>
-                                <button class="custom-button mb-4 accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse{{ forloop.counter }}" aria-expanded="false" aria-controls="flush-collapse{{ forloop.counter }}">
-                                    <i class="fa-solid fa-truck-fast me-2"></i>Shipping Details
-                                </button>
-                            </div>
-                            <div id="flush-collapse{{ forloop.counter }}" class="accordion-collapse collapse" aria-labelledby="flush-heading{{ forloop.counter }}" data-bs-parent="#accordionFlushExample">
-                                <div class="accordion-body text-start">
-                                    <h6 class="my-3 text-uppercase"><strong>Shipping Address</strong></h6>
-                                    <div class="row d-flex shadow-sm p-2">
-                                        <span class="col-3"><strong>Full Name: </strong></span>
-                                        <span class="col-9"><p class="text-start my-0 p-0">{{ book_order.full_name }}</p></span>
+                                <div class="col-lg-3 d-flex flex-column justify-content-between">
+                                    <div class="info-container ms-4 mt-3">
+                                        <div class="row d-flex shadow-sm p-2">
+                                            <span class="col-3"><strong>Subtotal: </strong></span>
+                                            <span class="col-9"><p class="m-0 p-0">€{{ book_order.order_total }}</p></span>
+                                        </div>
+                                        <div class="row d-flex shadow-sm p-2">
+                                            <span class="col-3"><strong>Shipping: </strong></span>
+                                            <span class="col-9"><p class="m-0 p-0">{% if book_order.delivery_cost == 0.00 %}<strong>FREE</strong>{% else %}€{{ book_order.delivery_cost }}{% endif %}</p></span>
+                                        </div>
+                                        <div class="row d-flex shadow-sm p-2">
+                                            <span class="col-3"><strong>Total: </strong></span>
+                                            <span class="col-9"><p class="m-0 p-0">€{{ book_order.grand_total }}</p></span>
+                                        </div>
                                     </div>
-                                    <div class="row d-flex shadow-sm p-2">
-                                        <span class="col-3"><strong>Street 1: </strong></span>
-                                        <span class="col-9"><p class="my-0 p-0">{{ book_order.street_1 }}</p></span>
-                                    </div>
-                                    {% if book_order.street_2 %}
-                                    <div class="row d-flex shadow-sm p-2">
-                                        <span class="col-3"><strong>Street 2: </strong></span>
-                                        <span class="col-9"><p class="my-0 p-0">{{ book_order.street_2 }}</p></span>
-                                    </div>
-                                    {% endif %}
-                                    <div class="row d-flex shadow-sm p-2">
-                                        <span class="col-3"><strong>Town / City: </strong></span>
-                                        <span class="col-9"><p class="my-0 p-0">{{ book_order.town_city }}</p></span>
-                                    </div>
-                                    {% if book_order.county %}
-                                    <div class="row d-flex shadow-sm p-2">
-                                        <span class="col-3"><strong>County: </strong></span>
-                                        <span class="col-9"><p class="my-0 p-0">{{ book_order.county }}</p></span>
-                                    </div>
-                                    {% endif %}
-                                    {% if book_order.postcode %}
-                                    <div class="row d-flex shadow-sm p-2">
-                                        <span class="col-3"><strong>Postcode: </strong></span>
-                                        <span class="col-9"><p class="my-0 p-0">{{ book_order.postcode }}</p></span>
-                                    </div>
-                                    {% endif %}
-                                    <div class="row d-flex shadow-sm p-2">
-                                        <span class="col-3"><strong>Country: </strong></span>
-                                        <span class="col-9"><p class="my-0 p-0">{{ book_order.country }}</p></span>
+                                    <button class="custom-button mb-4 accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse{{ forloop.counter }}" aria-expanded="false" aria-controls="flush-collapse{{ forloop.counter }}">
+                                        <i class="fa-solid fa-truck-fast me-2"></i>Shipping Details
+                                    </button>
+                                </div>
+                                <div id="flush-collapse{{ forloop.counter }}" class="accordion-collapse collapse" aria-labelledby="flush-heading{{ forloop.counter }}" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body text-start">
+                                        <h6 class="my-3 text-uppercase"><strong>Shipping Address</strong></h6>
+                                        <div class="row d-flex shadow-sm p-2">
+                                            <span class="col-3"><strong>Full Name: </strong></span>
+                                            <span class="col-9"><p class="text-start my-0 p-0">{{ book_order.full_name }}</p></span>
+                                        </div>
+                                        <div class="row d-flex shadow-sm p-2">
+                                            <span class="col-3"><strong>Street 1: </strong></span>
+                                            <span class="col-9"><p class="my-0 p-0">{{ book_order.street_1 }}</p></span>
+                                        </div>
+                                        {% if book_order.street_2 %}
+                                        <div class="row d-flex shadow-sm p-2">
+                                            <span class="col-3"><strong>Street 2: </strong></span>
+                                            <span class="col-9"><p class="my-0 p-0">{{ book_order.street_2 }}</p></span>
+                                        </div>
+                                        {% endif %}
+                                        <div class="row d-flex shadow-sm p-2">
+                                            <span class="col-3"><strong>Town / City: </strong></span>
+                                            <span class="col-9"><p class="my-0 p-0">{{ book_order.town_city }}</p></span>
+                                        </div>
+                                        {% if book_order.county %}
+                                        <div class="row d-flex shadow-sm p-2">
+                                            <span class="col-3"><strong>County: </strong></span>
+                                            <span class="col-9"><p class="my-0 p-0">{{ book_order.county }}</p></span>
+                                        </div>
+                                        {% endif %}
+                                        {% if book_order.postcode %}
+                                        <div class="row d-flex shadow-sm p-2">
+                                            <span class="col-3"><strong>Postcode: </strong></span>
+                                            <span class="col-9"><p class="my-0 p-0">{{ book_order.postcode }}</p></span>
+                                        </div>
+                                        {% endif %}
+                                        <div class="row d-flex shadow-sm p-2">
+                                            <span class="col-3"><strong>Country: </strong></span>
+                                            <span class="col-9"><p class="my-0 p-0">{{ book_order.country }}</p></span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        {% endfor %}
+                            {% endfor %}
+                        {% else %}
+                            <p>Looks like you don't have any orders!</p>
+                            <p>To place an order,visit our <span><a href="{{ library_url }}">Library</a></span> :)</p>
+                        {% endif %}
                     </div>
                 </li>
                 <li class="d-none profile-details" data-profile="reviews-details">
