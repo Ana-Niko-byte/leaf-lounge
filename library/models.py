@@ -54,7 +54,7 @@ class Author(models.Model):
         blank=False
     )
     nationality = CountryField(
-        blank_label='Unknown Nationality',
+        blank_label='Nationality',
         null=True,
         blank=True
     )
