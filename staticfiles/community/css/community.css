@@ -1,0 +1,52 @@
+.message-container{
+    border-radius: 10px;
+    border: 1px solid lightgrey;
+    max-height: 450px;
+    min-height: 400px;
+    overflow-y: auto;
+}
+
+.forum-user-container{
+    max-height: 450px;
+    min-height: 400px;
+    overflow-y: auto;
+}
+
+.message-box{
+    border-radius: 10px;
+    background-color: rgb(95, 95, 143);
+    color: white;
+}
+
+.member-container{
+    border-radius: 10px;
+    background-color: rgb(149, 177, 116);
+}
+
+.user-member{
+    border-radius: 10px;
+    background-color: rgb(255, 197, 96);
+}
+
+.tickies{
+    color: rgb(147, 255, 52);
+}
+
+.message-buttons{
+    color: white;
+    transition: color 0.3s ease;
+}
+
+.message-buttons:hover{
+    color: rgb(255, 50, 50);
+}
+
+.forum-container{
+    min-width: 400px;
+    max-width: 450px;
+    overflow-y: auto;
+}
+
+.bookmarks{
+    color: rgb(255, 166, 0);
+}

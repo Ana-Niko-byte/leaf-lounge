@@ -1,3 +1,5 @@
+import { displayError, returnBookId } from './module.js';
+
 document.addEventListener("DOMContentLoaded", () => {
     /**
      * Increments/decrements the quantity of books to be ordered.
@@ -8,73 +10,79 @@ document.addEventListener("DOMContentLoaded", () => {
      * Attaches a "click" event listener to each button and increments/decrements the value as needed.
      * Re-assigns the value back to the input element.
      * 
-     * Displays error if user attempts to decrease quantity of books lower than 1.
+     * Displays errors if user attempts to decrease quantity of books lower than 1 or increase over 99.
      */
 
-    const decrement_btn = document.getElementsByClassName('decrement')[0];
-    const increment_btn = document.getElementsByClassName('increment')[0];
+    const iButtons = document.getElementsByClassName('increment');
 
-    let quantity = parseInt(document.getElementsByClassName('qty_input')[0].value);
-
-    // Event Listeners
-    decrement_btn.addEventListener('click', function(e){
+    function returnCounter(button){
         /**
-         * Decreases value of 'qty_input' by 1.
+         * Returns the loop count for individual form handling.
          */
-        e.preventDefault();
-        quantity -= 1;
+        return button.dataset.counter;
+    }
 
-        determineError();
-    });
-
-    increment_btn.addEventListener('click', function(e){
+    for (let i of iButtons){
         /**
          * Increases value of 'qty_input' by 1.
          */
-        e.preventDefault();
-        quantity += 1;
+        i.addEventListener('click', function(e){
+            e.preventDefault();
 
-        determineError();
-    });
+            let bookId = returnBookId(i);
+            let counter = returnCounter(i);
 
-    function determineError(){
+            // Retrieves the value of the quantity input field.
+            let quantity = returnQuantity(bookId, counter);
+            
+            quantity += 1;
+            document.getElementById(`book_id_${ bookId }_${ counter }`).value = quantity;
+            // Error handling.
+            determineError(bookId, quantity, counter);
+        });
+    }
+
+    function determineError(bookId, quantity, counter){
         /**
          * Determines the display of the value error and disables buttons.
          */
+
+        const increment_btn = document.getElementById(`increment_${ bookId }_${ counter }`);
+
         if (quantity > 0){
             // Resets value if there is an error displayed.
-            resetError();
+            resetError(bookId, quantity, counter);
+
             // Resets buttons to enabled.
-            decrement_btn.disabled = false;
             increment_btn.disabled = false;
 
             if (quantity > 98){
                 increment_btn.disabled = true;
+                displayError('Maximum quantity allowed: 99', bookId, counter);
             }
+        // Does it really though?
         } else if (quantity < 2) {
-            displayError();
-            // Keeps the value of 'quantity' at 1 and prevents backstage decrement.
+            displayError('Minimum quantity required: 1', bookId, counter);
+            // Keeps the value of 'quantity' at 1.
             quantity = 1;
-            if (quantity <= 1){
-                decrement_btn.disabled = true;
-            }
         }
     }
 
-    function displayError(){
-        /**
-         * Sets the styling and innerHTML of the error.
-         */
-        document.getElementById('qty_warning').innerHTML='Minimum quantity required: 1';
-        document.getElementById('qty_warning').style.color='red';
-    }
-
-    function resetError(){
+    function resetError(bookId, quantity, counter){
         /**
          * Resets the styling and innerHTML of the error.
          */
-        document.getElementById('qty_warning').innerHTML='';
+        document.getElementById(`qty_warning_${bookId}_${counter}`).innerHTML='';
         document.getElementsByClassName('qty_input')[0].value = quantity;
     }
-
 });
+
+    function returnQuantity(bookId, counter){
+        /**
+         * Fetches book Id for individual form handling.
+         * 
+         * Returns: (int) : The integer value of the current book amount in basket.
+         */
+        let quantity = parseInt(document.getElementById(`book_id_${ bookId }_${ counter }`).value);
+        return quantity;
+    }

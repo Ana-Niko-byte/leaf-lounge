@@ -11,3 +11,4 @@ pillow==10.4.0
 pytz==2024.1
 sqlparse==0.5.0
 stripe==10.4.0
+whitenoise==5.3.0

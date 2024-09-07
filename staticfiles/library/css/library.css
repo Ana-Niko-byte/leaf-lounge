@@ -1,0 +1,137 @@
+/* Colour Specification */
+:root {
+    --dark-text-color : rgb(77, 77, 77);
+    --mute-grey-color : rgb(156, 156, 156);
+    --white-text : rgb(246, 246, 246);
+    --light-grey : rgb(161, 161, 161);
+    --orange : orange;
+    --dark-navy : #041421;
+    --dark-blue : #042630;
+    --green-grey: #4c7273;
+    --light-green-grey: #86b9b0;
+    --light-blue: #d0d6d6;
+    --search-bg: rgb(250, 250, 250);
+    --book-outline: #041421;
+}
+/* /Colour Specification */
+
+/* Reviews */
+#rating-box{
+    height: 21px;
+    width: 120px;
+    background-color: rgb(214, 214, 214);
+    border: none;
+    border-radius: 5px;
+    position: relative;
+}
+
+#loader-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+#rating-bar{
+    height: 20px;
+    background-color: rgb(0, 255, 166);
+    border: none;
+    border-radius: 5px;
+    position: relative;
+    z-index: 0;
+}
+/* /Reviews */
+
+.qty_input{
+    width: 260px;
+    height: 40px;
+}
+
+.qty_input:focus{
+    box-shadow: none;
+    border: 2px solid var(--book-outline);
+}
+
+#qty_warning{
+    width: 260px;
+}
+
+a{
+    text-decoration: none;
+    color: rgb(29, 29, 29);
+}
+
+/* Shelf */
+.book-genre-rows {
+    border-bottom: 12px solid #583101;
+    overflow-y: hidden;
+    overflow-x: auto;
+    background-color: #ebd6c3;
+    padding-left: 20px;
+    padding-top: 20px;
+}
+/* /Shelf */
+
+/* Book */
+.book{
+    transition: all 0.3s ease;
+    color: rgb(237, 237, 237);
+    position: relative;
+}
+
+.book-spine{
+    min-height: 130px;
+    max-width: 50px;
+    position: relative;
+    border-radius: 2px;
+}
+
+.book-main{
+    height: 100%;
+    max-width: 120px;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+    position: absolute;
+    z-index: -1;
+    left: 50px;
+    top: 0;
+}
+
+.book:hover{
+    transform: scale(1.04);
+    transform: translateX(-20px) rotate(-15deg);
+    transform-origin: bottom;
+}
+
+.book-turned{
+    writing-mode:vertical-lr;
+    transform: rotate(-180deg);
+}
+/* /Book */
+
+/* User Reviews */
+.rating-box{
+    height: 21px;
+    width: 120px;
+    background-color: rgb(214, 214, 214);
+    border: none;
+    border-radius: 5px;
+    position: relative;
+}
+
+.loader-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.rating-bar{
+    height: 20px;
+    background-color: rgb(0, 255, 166);
+    border: none;
+    border-radius: 5px;
+    position: relative;
+    z-index: 0;
+}
+/* User Reviews */
