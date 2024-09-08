@@ -226,7 +226,7 @@ body {
 }
 
 .jumbotron{
-    background-image: url(../images/author-type.png);
+    background-image: url(../../media/author-type.png);
     background-repeat: no-repeat;
     background-color: var(--mute-grey-color);
     background-size: cover;
