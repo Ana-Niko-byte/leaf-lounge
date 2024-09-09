@@ -1,9 +1,13 @@
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.conf import settings
+from django.contrib import messages
+
 from marketing.forms import EmailForm
+
 from mailchimp_marketing import Client
 from mailchimp_marketing.api_client import ApiClientError
+
 import hashlib
 
 
@@ -27,63 +31,44 @@ def subscribe_view(request):
     Mailchimp list.
     """
     if request.method == 'POST':
-        form = EmailForm(request.POST)
-        if form.is_valid():
+        marketing_form = EmailForm(request.POST)
+        if marketing_form.is_valid():
             try:
-                form_email = form.cleaned_data['email']
+                form_email = marketing_form.cleaned_data['email']
                 member_info = {
                     'email_address': form_email,
                     'status': 'subscribed',
-                    'merge_fields': {
-                        'FNAME': 'Elliot',
-                        'LNAME': 'Alderson',
-                    }
                 }
                 response = mailchimp.lists.add_list_member(
                     settings.MAILCHIMP_MARKETING_AUDIENCE_ID,
                     member_info,
                 )
-                return redirect('subscribe-success')
-
+                messages.success(
+                    request, 
+                    """
+                    You've successfully subscribed to our mailing list! :)
+                    """
+                )
+                return redirect(request.META.get('HTTP_REFERER', '/'))
             except ApiClientError as error:
-                return redirect('subscribe-fail')
+                messages.error(
+                    request,
+                    """Our mailing list is currently being updated. 
+                    Please try again a bit later or get in touch
+                    with our dedicated customer support team to resolve
+                    this issue.
+                    Thank you for your understanding!"""
+                )
+                return redirect(request.META.get('HTTP_REFERER', '/'))
 
     return render(request, 'marketing/subscribe.html', {
-        'form': EmailForm(),
+        'marketing_form': EmailForm(),
     })
-
-
-def subscribe_success_view(request):
-    """
-    Renders the dedicated success page following successful subscription.
-    """
-    return render(
-        request,
-        'marketing/message.html',
-        {
-            'title': 'Successfully subscribed',
-            'message': 'You\'ve successfully subscribed to our mailing list.',
-        }
-    )
-
-
-def subscribe_fail_view(request):
-    """
-    Renders the dedicated fail page following unsuccessful subscription.
-    """
-    return render(
-        request,
-        'marketing/message.html',
-        {
-            'title': 'Failed to subscribe',
-            'message': 'Oops, something went wrong.',
-        }
-    )
 
 
 def unsubscribe_view(request):
     """
-    Handles user UNsubscriptions by processing the subscription form with the
+    Handles user Unsubscriptions by processing the subscription form with the
     user's email.
 
     This view accepts POST requests with user email information. On form
@@ -101,10 +86,10 @@ def unsubscribe_view(request):
     Mailchimp list.
     """
     if request.method == 'POST':
-        form = EmailForm(request.POST)
-        if form.is_valid():
+        marketing_form = EmailForm(request.POST)
+        if marketing_form.is_valid():
             try:
-                form_email = form.cleaned_data['email']
+                form_email = marketing_form.cleaned_data['email']
                 form_email_hash = hashlib.md5(
                     form_email.encode('utf-8').lower()
                 ).hexdigest()
@@ -116,42 +101,27 @@ def unsubscribe_view(request):
                     form_email_hash,
                     member_update,
                 )
-                return redirect('unsubscribe-success')
-
+                messages.success(
+                    request, 
+                    """
+                    You've successfully unsubscribed from our mailing list! :(
+                    """
+                )
+                return redirect(request.META.get('HTTP_REFERER', '/'))
             except ApiClientError as error:
-                return redirect('unsubscribe-fail')
+                messages.error(
+                    request,
+                    """Our mailing list is currently being updated.
+                    Please try again a bit later or get in touch
+                    with our dedicated customer support team to get
+                    you unsubscribed.
+                    Thank you for your understanding!"""
+                )
+                return redirect(request.META.get('HTTP_REFERER', '/'))
 
-    return render(request, 'marketing/unsubscribe.html', {
-        'form': EmailForm(),
+    return render(request, 'marketing/subscribe.html', {
+        'marketing_form': EmailForm(),
     })
-
-
-def unsubscribe_success_view(request):
-    """
-    Renders the dedicated success page following successful unsubscription.
-    """
-    return render(
-        request,
-        'marketing/message.html',
-        {
-            'title': 'Successfully unsubscribed',
-            'message': 'You\'ve unsubscribed from our mailing list.',
-        }
-    )
-
-
-def unsubscribe_fail_view(request):
-    """
-    Renders the dedicated fail page following unsuccessful unsubscription.
-    """
-    return render(
-        request,
-        'marketing/message.html',
-        {
-            'title': 'Failed to unsubscribe',
-            'message': 'Oops, something went wrong.',
-        }
-    )
 
 
 mailchimp = Client()

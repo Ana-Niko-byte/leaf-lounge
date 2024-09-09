@@ -120,6 +120,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'basket.contexts.bag_content',
+                'marketing.contexts.mailchimp_marketing'
             ],
         },
     },

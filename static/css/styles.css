@@ -305,32 +305,126 @@ body {
 }
 /* /Toasts */
 
-/* User Reviews */
-/* .rating-box{
-    height: 21px;
-    width: 120px;
-    background-color: rgb(214, 214, 214);
-    border: none;
-    border-radius: 5px;
-    position: relative;
+/* Marketing */
+.subscribe-input{
+    border: 2px solid var(--dark-navy);
+    outline: none;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-right: none;
 }
 
-.loader-image {
+.subscribe-btn{
+    border: 2px solid var(--dark-navy);
+    outline: none;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-left: none;
+    background-color: white;
+    transition: color 0.3s ease;
+}
+
+.subscribe-btn:hover i{
+    color: green;
+}
+
+.subscribe-input:active, .subscribe-input:focus{
+    box-shadow: none;
+}
+
+.mailchimp-logo{
+    width: 80px;
+}
+/* /Marketing */
+
+/* Slider */
+.toggle {
+    position: relative;
+    display: inline-block;
+    width: 245px;
+    height: 22px;
+}
+
+.toggle input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    font-family: sans-serif;
+    font-size: 12px;
+    color: white;
     position: absolute;
+    cursor: pointer;
     top: 0;
     left: 0;
-    z-index: 1;
+    right: 0;
+    bottom: 0;
+    background-color: green;
+    -webkit-transition: .4s;
+    transition: .4s;
 }
 
-.rating-bar{
-    height: 20px;
-    background-color: rgb(0, 255, 166);
-    border: none;
-    border-radius: 5px;
-    position: relative;
-    z-index: 0;
-} */
-/* User Reviews */
+.subscribe-text, .unsubscribe-text{
+    transition: color 0.3s ease;
+}
+
+.subscribe-text{
+    color: white;
+}
+
+.unsubscribe-text{
+    color: green;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: grey;
+}
+
+input:checked + .slider .subscribe-text{
+    color: grey;
+}
+
+input:checked + .slider .unsubscribe-text{
+    color: white;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px grey;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(222px);
+    -ms-transform: translateX(222px);
+    transform: translateX(222px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+/* /Slider */
 
 footer{
     background-color: var(--light-blue);

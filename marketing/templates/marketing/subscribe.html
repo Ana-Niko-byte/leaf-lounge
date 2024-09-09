@@ -1,10 +1,29 @@
+{% load static %}
+
 <div class="col-lg-4 d-flex flex-column ps-5">
-    <p class="mb-1"><strong><small>Subscribe to the Leaf Lounge Newsletter!</small></strong></p>
-    <form method="post" class="d-flex align-items-center justify-content-between">
+    <label class="toggle mb-2">
+        <input type="checkbox" id="subscribe-unsubscribe">
+        <span class="slider round">
+            <span class="unsubscribe-text text-start">Unsubscribe Below</span>
+            <span class="subscribe-text text-end">Subscribe Below</span>
+        </span>
+    </label>
+    <!-- Subscribe -->
+    <form method="post" action="{% url 'subscribe' %}" class="subscribe-form d-flex align-items-center justify-content-start">
         {% csrf_token %}
-        <img src="../static/images/mailchimp.webp" alt="Mailchimp Newsletter Logo" width="80" class="me-3">
-        {{ form.as_p }}
-        <button type="submit" class="subscribe-btn d-flex justify-content-center align-items-center"><i class="fa-solid fa-circle-check fa-lg"></i></button>
+        <div class="inner-form-container d-flex align-items-center justify-content-center">
+            {{ marketing_form.as_p }}
+            <button type="submit" class="subscribe-btn d-flex justify-content-center align-items-center"><i class="add fa-solid fa-circle-check fa-lg"></i></button>
+        </div>
+        <img src="{% static 'images/mailchimp.webp' %}" class="mailchimp-logo ms-2" alt="Mailchimp Newsletter Logo">
     </form>
-    <p class="mt-2 text-danger nav-link"><a href="{% url 'unsubscribe' %}">Unsubscribe form</a></p>
+    <!-- Unsubscribe -->
+    <form method="post" action="{% url 'unsubscribe' %}" class="unsubscribe-form d-none align-items-center justify-content-start">
+        {% csrf_token %}
+        <div class="inner-form-container d-flex align-items-center justify-content-center">
+            {{ marketing_form.as_p }}
+            <button type="submit" class="subscribe-btn d-flex justify-content-center align-items-center"><i class="remove fa-solid fa-circle-xmark fa-lg"></i></button>
+        </div>
+        <img src="{% static 'images/mailchimp.webp' %}" class="mailchimp-logo ms-2" alt="Mailchimp Newsletter Logo">
+    </form>
 </div>
