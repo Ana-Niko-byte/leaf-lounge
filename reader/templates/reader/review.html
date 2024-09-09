@@ -3,7 +3,10 @@
 {% load crispy_forms_tags %}
 
 
-{% block extra_css %}<link rel="stylesheet" href="{% static 'reader/css/review.css' %}">{% endblock %}
+{% block extra_css %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'reader/css/review.css' %}">
+{% endblock %}
 {% block content %}
 <div class="container">
     <div class="row">
@@ -12,7 +15,7 @@
                 <h5 class="strong">{{ review_book.title }}</h5>
                 <h6 class="text-secondary small">{{ review_book.author }}</h6>
             </div>
-            <img src="../../../static/images/1984_cover.jpg" width="220px" alt="{{ review_book.title }} cover">
+            <img src="{{ review_book.image.url }}" width="220px" alt="{{ review_book.title }} cover">
         </div>
         <div class="col-lg-6 col-md-8 col-sm-12">
             <form method="POST" class="mt-3 mb-5 p-4" id="reviewForm" data-book-title="{{ review_book.title }}">
@@ -21,7 +24,7 @@
                 <div class="review-user d-flex flex-column align-items-end justify-content-start">
                     <div class="rating-container d-flex justify-content-center align-items-center">
                         <div id="rating-box-review" class="d-flex justify-content-start align-items-start">
-                            <img src="../../../static/images/stars.png" alt="" width="160" id="loader-image-review">
+                            <img src="{{ MEDIA_URL }}stars.png" alt="" width="160" id="loader-image-review">
                             <div id="rating-bar-review"></div>
                         </div>
                     </div>

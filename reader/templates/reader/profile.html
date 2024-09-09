@@ -109,7 +109,7 @@
                                         {% for book in book_order.booklineitem.all %}
                                         <div class="mx-3 mb-3 d-flex flex-column justify-content-between">
                                             <div class="book-info">
-                                                <img src="../../../static/images/1984_cover.jpg" class="mt-4 mb-2" style="width: 100px;" alt="{{ book.book.title }} cover">
+                                                <img src="{{ book.book.image.url }}" class="mt-4 mb-2" style="width: 100px;" alt="{{ book.book.title }} cover">
                                                 <p class="m-0 p-0"><small><strong>( {{ book.quantity }} )</strong></small></p>
                                             </div>
                                         </div>
@@ -192,7 +192,7 @@
                                         <div class="half col-6">
                                             <div class="rating-container d-flex">
                                                 <div id="profile-rating-box-{{ forloop.counter }}" data-forloop="{{ forloop.counter }}" data-rating="{{ review.rating }}" class="review rating-box d-flex justify-content-start align-items-start mb-3">
-                                                    <img src="../../../static/images/stars.png" alt="{{ book.title }} cover" width="120" id="profile-loader-image-{{ forloop.counter }}" class="loader-image">
+                                                    <img src="{{ MEDIA_URL }}stars.png" alt="{{ book.title }} cover" width="120" id="profile-loader-image-{{ forloop.counter }}" class="loader-image">
                                                     <div id="profile-rating-bar-{{ forloop.counter }}" class="rating-bar"></div>
                                                 </div>
                                             </div>
@@ -208,7 +208,7 @@
                                             <p class="ms-2 small text-start"><strong>Book: {{ review.book.title }}</strong></p>
                                             <p class="ms-2 small text-start">Author: {{ review.book.author }}</p>
                                         </div>
-                                        <p class="pb-2 text-start">{{ review.comment }}</p>
+                                        <p class="pb-2 text-start">{{ review.comment|safe }}</p>
                                     </div>
                                     <div class="button-container pb-2 d-flex justify-content-between align-items-end">
                                         {% if not review.approved %}
@@ -220,7 +220,7 @@
                                         <p class="ms-2 my-2 small text-muted">You can no longer edit this review.</p>
                                         {% endif %}
 
-                                        <a href="{% url 'delete_review' review.id %}">
+                                        <a href="{% url 'delete_review' review.id %}" class="btn-link">
                                             <button class="btn btn-danger m-2 d-flex justify-content-center align-items-center">
                                                 <i class="fa-solid fa-trash fa-sm me-2"></i>Delete
                                             </button>
