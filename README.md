@@ -206,16 +206,16 @@ In Heroku, this is configured under `Config Vars` in the `Settings` tab.
 Log onto your Heroku dashboard using your username and password, and confirm the access code in the two-factor verification app of your choosing.
 
 Login to Heroku:
-![Login to Heroku](static/images/00-login-heroku.png)
+![Login to Heroku](docs/images/00-login-heroku.png)
 
 Verify your Identity:
-![Login to Heroku](static/images/00-verify-heroku.png)
+![Login to Heroku](docs/images/00-verify-heroku.png)
 
 Create a new Heroku app:
-![New Heroku App](static/images/00-create-new-app-heroku.png)
+![New Heroku App](docs/images/00-create-new-app-heroku.png)
 
 You will be asked to pick a name and region for your app before clicking `Create app` on the next page.
-![New App Options](static/images/00-name-app-heroku.png)
+![New App Options](docs/images/00-name-app-heroku.png)
 
 ### Step 2: Connect to GitHub
 Once you've created your app, go to the `Deploy` tab at the top.

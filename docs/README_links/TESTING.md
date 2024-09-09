@@ -9,7 +9,7 @@ This section outlines procedures for manual testing. For automated testing, plea
 
 >>> ## Issues
 1. #### Contact Page `ConnectionRefusedError`
-![Connection Refused Error](static/images/connectionrefusederror.png)
+![Connection Refused Error](../../docs/images/connectionrefusederror.png)
 The error was encountered when attempting to send emails from the contact page. Instead of redirecting users to the home page with a success message, the application would throw the 500 Server Error page, and the email wouldn't reach the recipients' addresses.
 
 > #### Solution

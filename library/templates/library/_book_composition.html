@@ -1,3 +1,4 @@
+{% load static %}
 <div class="d-flex flex-row align-items-end p-0 m-0">
     {% for book in books %}
     {% if book.genre == genre %}
@@ -10,8 +11,7 @@
             {% if book.image %}
             <img src="{{ book.image.url }}" alt="{{ book.title }} cover" class="book-main">
             {% else %}
-            <img src="{{ MEDIA_URL }}bookplaceholder.png" alt="{{ book.title }} cover" class="book-main">
-            <p>no book cover</p>
+            <img src="{% static 'images/bookplaceholder.png' %}" alt="{{ book.title }} cover" class="book-main">
             {% endif %}
         </div>
     </a>
