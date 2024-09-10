@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 import dj_database_url
+import sys
 
 
 if os.path.isfile('env.py'):
@@ -205,6 +206,9 @@ else:
             'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
+
+if 'test' in sys.argv:
+    DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
 
 
 # Password validation
