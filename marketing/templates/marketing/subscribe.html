@@ -15,7 +15,7 @@
             {{ marketing_form.as_p }}
             <button type="submit" class="subscribe-btn d-flex justify-content-center align-items-center"><i class="add fa-solid fa-circle-check fa-lg"></i></button>
         </div>
-        <img src="{% static 'images/mailchimp.webp' %}" class="mailchimp-logo ms-2" alt="Mailchimp Newsletter Logo">
+        <img src="{{ MEDIA_URL }}mailchimp.webp" class="mailchimp-logo ms-2" alt="Mailchimp Newsletter Logo">
     </form>
     <!-- Unsubscribe -->
     <form method="post" action="{% url 'unsubscribe' %}" class="unsubscribe-form d-none align-items-center justify-content-start">
@@ -24,6 +24,6 @@
             {{ marketing_form.as_p }}
             <button type="submit" class="subscribe-btn d-flex justify-content-center align-items-center"><i class="remove fa-solid fa-circle-xmark fa-lg"></i></button>
         </div>
-        <img src="{% static 'images/mailchimp.webp' %}" class="mailchimp-logo ms-2" alt="Mailchimp Newsletter Logo">
+        <img src="{{ MEDIA_URL }}mailchimp.webp" class="mailchimp-logo ms-2" alt="Mailchimp Newsletter Logo">
     </form>
 </div>

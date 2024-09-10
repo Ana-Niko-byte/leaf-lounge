@@ -143,4 +143,5 @@ class MessageForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
 
         self.fields['content'].widget.attrs['autofocus'] = True
+        self.fields['content'].widget.attrs['class'] = 'forum-message-input'
         self.fields['content'].label = False

@@ -2,59 +2,69 @@
 {% load static %}
 {% load crispy_forms_tags %}
 
+{% block extra_css %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'community/css/community.css' %}">
+{% endblock %}
+
 {% block content %}
 <div class="container-fluid">
-    <div class="row d-flex justify-content-around mt-4">
+    <div class="row d-flex justify-content-around mt-3">
+        {% if books_in_genre %}
+        <!-- More Books -->
+        <div class="col-lg-3 col-md-6 col-sm-12">
+            <h6 class="m-0 p-0 m-3 small text-black text-uppercase"><strong>More {{ current_genre.name }} Books</strong></h6>
+            {% for book in books_in_genre %}
+                <span>
+                    <a href="{{ book.get_absolute_url }}" class="btn-link">
+                        <img src="{{ book.image.url }}" alt="{{ book.title }} cover" class="forum-book rounded m-2">
+                    </a>
+                </span>
+            {% endfor %}
+        </div>
+        <!-- /More Books -->
+        {% endif %}
 
         <!-- Forums -->
-        <div class="card col-7 forum-container p-2">
-            <div class="card-body d-flex flex-column justify-content-start">
-                <h5 class="mb-4 text-center text-uppercase"><strong>Forums</strong></h5>
-                <div class="col-12 d-flex flex-column justify-content-center">
-                    {% if forums %}
-                        {% for forum in forums %}
-                            {% if forum.community == community %}
-                            <a href="{{ forum.get_absolute_url }}" class="forum-link">
-                                <div class="card py-2 px-3 mb-2">
-                                    {{ forum.name }}
-                                </div>
-                            </a>
-                            {% endif %}
-                        {% endfor %}
-                    {% else %}
-                    <p class="text-seconary text-center">Looks like there aren't any forums yet -</p>
-                    <p class="text-seconary text-center">Click the button below to start a chat :)</p>
-                    {% endif %}
+        <div class="bg-light border p-4 rounded col-lg-8 col-md-6 col-sm-12 me-3 d-flex flex-column justify-content-between">
+            <h6 class="m-0 p-0 mb-3 small text-black text-uppercase"><strong>Community Forums</strong></h6>
+            <div class="inner-forum bg-white rounded shadow-sm p-2">
+                <div class="h-100 d-flex flex-column justify-content-start">
+                    <div class="h-100 forum-box d-flex flex-column justify-content-center">
+                        {% if forums %}
+                            {% for forum in forums %}
+                                {% if forum.community == community %}
+                                <a href="{{ forum.get_absolute_url }}" class="forum-link">
+                                    <div class="p-3">
+                                        {{ forum.name }}
+                                    </div>
+                                </a>
+                                {% endif %}
+                            {% endfor %}
+                        {% else %}
+                        <p class="text-seconary text-center">This community doesn't have any forums yet :)</p>
+                        <p class="text-seconary text-center">To start a chat, click the button below and give your community a descriptive name.</p>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
-            <form method="POST" class="d-none justify-content-between align-items-center card-footer" id="forumForm">
-                {% csrf_token %}
-                {{ forumForm|crispy }}
-
+            <form method="POST" class="d-none justify-content-start align-items-start mt-2 mt-md-3 my-2 mt-md-4" id="forumForm">
+                <div class="main-form w-100">
+                    {% csrf_token %}
+                    {{ forumForm|crispy }}
+                    <p class="text-muted small mb-3"><strong>Note:</strong> You will be taken inside the forum after creating it.</p>
+                </div>
                 <div class="button-container">
-                    <button type="submit" class="btn btn-success"><i class="fa-solid fa-plus me-2"></i>Create</button>
+                    <button type="submit" class="small-custom-button">
+                        <i class="fa-solid fa-plus me-2"></i>Create
+                    </button>
                 </div>
             </form>
-            <button class="card-footer btn d-flex align-items-center justify-content-center" id="start-forum">
+            <button class="custom-button mt-3" id="start-forum">
                 <i class="fa-solid fa-comments me-2"></i>Start a Discussion
             </button>
         </div>
         <!-- /Forums -->
-
-        <!-- More Books -->
-        <div class="col-4 card p-4">
-            <h5 class="mb-4 text-uppercase"><strong>{{ current_genre.name }} Books</strong></h5>
-            {% for book in books_in_genre %}
-                <a href="{{ book.get_absolute_url }}" class="book-link d-flex justify-content-start">
-                    <img src="../../../static/images/1984_cover.jpg" alt="" style="width: 100px;">
-                    <div class="text-start ms-2">
-                        <p class="h6">{{ book.title }}</p>
-                        <p class="m-0 p-0"> by {{ book.author }}</p>
-                    </div>
-                </a>
-            {% endfor %}
-        </div>
-        <!-- /More Books -->
     </div>
 {% endblock %}
 

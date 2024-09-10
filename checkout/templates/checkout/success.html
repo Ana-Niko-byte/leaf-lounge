@@ -67,7 +67,7 @@
                                 <p class="text-white book-turned h6 text-uppercase small"><strong>{{ book.book.title }}</strong></p>
                                 <p class="text-white book-turned my-2 small">{{ book.book.author }} | {{ book.book.year_published }}</p>
                             </div> 
-                            <img src="../../../static/images/1984_cover.jpg" alt="{{ book.book.title }} cover" class="book-main">
+                            <img src="{{ book.book.image.url }}" alt="{{ book.book.title }} cover" class="book-main">
                         </div>
                     </a>
                 </div>

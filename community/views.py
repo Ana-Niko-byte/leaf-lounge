@@ -183,10 +183,19 @@ def forum_detail(request, slug):
     forum_messages = Message.objects.filter(forum=forum)
     todays_date = datetime.date.today()
 
+    if forum_messages:
+        last_message = forum_messages.latest('date_sent').date_sent
+    else:
+        last_message = None
+
     forum_participants = []
     for message in forum_messages:
         if message.messenger not in forum_participants:
             forum_participants.append(message.messenger)
+    
+    for participant in forum_participants:
+        first_member_message = Message.objects.filter(messenger=participant).first()
+        participant.first_message = first_member_message
 
     if request.method == 'POST':
         message_form = MessageForm(data=request.POST)
@@ -214,6 +223,7 @@ def forum_detail(request, slug):
                     this issue.
                     Thank you for your understanding!"""
                 )
+                print(f'{e}')
                 return HttpResponseRedirect(
                     reverse('forum_detail', args=[slug])
                 )
@@ -238,7 +248,8 @@ def forum_detail(request, slug):
         'forum_participants': forum_participants,
         'forum_messages': forum_messages,
         'message_form': message_form,
-        'todays_date': todays_date
+        'todays_date': todays_date,
+        'last_message': last_message,
     }
     return render(
         request,

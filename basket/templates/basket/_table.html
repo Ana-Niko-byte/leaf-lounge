@@ -14,7 +14,7 @@
             <td>
                 <div class="container-data d-flex flex-row justify-content-start align-items-start pt-3 p-2">
                     <a href="{{ book.book.get_absolute_url }}">
-                        <img src="../../../static/images/1984_cover.jpg" style="width: 80px;" alt="{{ book.book.title }} book cover">
+                        <img src="{{ book.book.image.url }}" style="width: 80px;" alt="{{ book.book.title }} book cover">
                     </a>
                     <div class="book-basket-info d-flex flex-column justify-content-between ms-3">
                         <div class="general-info flex-fill">

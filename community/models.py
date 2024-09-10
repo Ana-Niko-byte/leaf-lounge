@@ -55,6 +55,7 @@ class Community(models.Model):
         (community name)-(community id).
         """
         try:
+            super(Community, self).save(*args, **kwargs)
             if not self.slug or self.slug != slugify(
                 Community.objects.get(id=self.id).name + '-' + str(self.id)
             ):

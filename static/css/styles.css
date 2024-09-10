@@ -234,25 +234,39 @@ body {
     height: 545px;
 }
 
-.custom-button{
+.custom-button, .small-custom-button{
     text-decoration: none;
     border-color: transparent;
-    background-color: #042630;
+    background-color: var(--dark-blue);
     color: var(--white-text);
-    min-width: 150px;
-    padding: 10px;
-    border-radius: 20px;
-    /* color: var(--dark-text-color); */
     transition: all 0.2s ease-in;
     text-align: center;
 }
 
+.custom-button{
+    min-width: 150px;
+    padding: 10px;
+    border-radius: 7px;
+}
+
+.small-custom-button{
+    width: 100px;
+    padding: 7px;
+    border-radius: 5px;
+}
+
+.custom-button:hover, .small-custom-button:hover{
+    background-color: var(--book-outline);
+}
+
 .custom-button:hover{
-    background-color: darkorange;
-    outline: 4px solid rgb(255, 194, 80);
-    color: white;
     transform: translateY(-5px);
-    box-shadow: 0 10px rgb(78, 78, 78);
+    box-shadow: 0 10px var(--light-green-grey);
+}
+
+.small-custom-button:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 6px var(--light-green-grey);
 }
 
 .table-button{
