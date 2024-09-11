@@ -11,12 +11,11 @@ def create_community_on_genre_save(sender, instance, created, **kwargs):
     Creates an associated community when a new Genre is added to the DB.
     """
     if created:
-        community = Community.objects.create(
-            name=f'{instance.name} Community',
-            description=f'Welcome to the {instance.name} community!',
+        community = Community(
+            name=f"{instance.name} Community",
+            description=f'Welcome to the {instance.name} community!'
         )
         instance.community = community
-        instance.save()
 
 
 @receiver(post_delete, sender=Genre)

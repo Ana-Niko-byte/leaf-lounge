@@ -5,7 +5,11 @@ from django.core.exceptions import ValidationError
 
 # Signal triggering user_profile creation after user login.
 from reader.signals import create_or_save_profile
+# Signal triggering community creation after genre save.
+from .signals import create_community_on_genre_save
+
 from reader.models import UserProfile
+from community.models import Community
 from .models import *
 
 import datetime
@@ -27,42 +31,61 @@ class TestibraryModels(TestCase):
         assigned the current workspace.
 
     def test_author_profile_creation_and_validation():
-        Asserts the author user profile is the same as the current user's user profile.
-        Asserts that an author profile can be blank (for authors uploaded via admin panel). For registering users, the author profile is created automatically.
+        Asserts the author user profile is the same as the current user's user
+        profile.
+        Asserts that an author profile can be blank (for authors uploaded via
+        admin panel). For registering users, the author profile is created
+        automatically.
 
-        Asserts the author's first name matches that of the model's setup value.
-        Asserts a ValidationError is raised if the author's first name is empty.
+        Asserts the author's first name matches the model's setup value.
+        Asserts a ValidationError is raised if the author's firstname is empty.
 
-        Asserts the author's last name matches that of the model's setup value.
-        Asserts a ValidationError is raised if the author's last name is empty.
+        Asserts the author's last name matches the model's setup value.
+        Asserts a ValidationError is raised if the author's lastname is empty.
 
-        Asserts the author's d_o_b is a datetime object that matches the model's setup value.
-        Asserts a ValidationError is raised if the author's d_o_b is of the wrong format - this is handled via a date input but just in case.
+        Asserts the author's d_o_b is a datetime object that matches the
+        model's setup value.
+        Asserts a ValidationError is raised if the author's d_o_b is of the
+        wrong format - this is handled via a date input but just in case.
         Asserts a ValidationError is raised if the author's d_o_b is empty.
 
-        Asserts the author's nationality matches that of the model's setup value.
+        Asserts the author's nationality matches the model's setup value.
         Asserts the author's nationality can be blank.
 
-        Asserts the author's bio matches that of the model's setup value.
+        Asserts the author's bio matches the model's setup value.
         Asserts a ValidationError is raised if the author's bio is empty.
 
-    def test_task_model_creation():
-        Runs a series of asserions for each Task Model field to validate
-        the expected values of the instance.
+    def test_genre_and_genre_community_creation():
+        Retrieves the appropriate genre instance.
+        Asserts the genre's __str__() returns the expected string for the
+        appropriate genre instance.
 
-    def test_workspace_delete_when_user_delete():
-        Deletes the user and checks whether workspaces and tasks associated
-        with the user were deleted as well, as per cascade.
+        Asserts the genre name matches the model's setup value.
+        Asserts a ValidationError is raised if the genre's name is empty.
 
-    def test_task_delete_when_workspace_delete():
-        Deletes the current workspace and checks whether tasks associated
-        with the workspace were deleted as well, as per cascade.
+        Asserts the genre's community field can be blank.
+        Asserts the genre's community's name matches the expected value. A
+        community instance is automatically created and linked following a
+        new genre creation. This is handled via library.signals.
     """
     def setUp(self):
         """
-        Simulates user registration to allow for the creation of a user profile and author profile.
-        Retrieves the user profile automatically created following successful user registration.
-        Simulates the creation of an author profile and assigns the relevant user profile to the author.user_profile field.
+        REGISTRATION:
+        Simulates user registration to allow for the creation of a user profile
+        and author profile.
+
+        USER PROFILE & AUTHOR PROFILE:
+        Retrieves the user profile automatically created following successful
+        user registration. This is handled via
+        reader.signals.create_or_save_profile.
+        Simulates the creation of an author profile and assigns the relevant
+        user profile to the author.user_profile field.
+
+        GENRE & COMMUNITY:
+        Simulates the creation of a genre. A community instance associated
+        with the genre is created automatically via
+        library.signals.create_community_on_genre_save.
+
         Saves the relevant models to the test sqlite3 database.
         """
         self.client = Client()
@@ -73,44 +96,62 @@ class TestibraryModels(TestCase):
         self.user_profile = UserProfile.objects.get(user=self.user)
         self.author = Author(
             user_profile=self.user_profile,
-            first_name="Test Firstname",
-            last_name="Test Lastname",
+            first_name="Firstname",
+            last_name="Lastname",
             d_o_b="1999-01-28",
             nationality="Ireland",
             bio="Test author model bio!"
         )
         self.author.save()
 
+        self.genre = Genre(
+            name="TestGenre",
+            community=None
+        )
+        self.genre.save()
+
     def test_author_profile_creation_and_validation(self):
         """
-        Asserts the author user profile is the same as the current user's user profile.
-        Asserts that an author profile can be blank (for authors uploaded via admin panel). For registering users, the author profile is created automatically.
+        Retrieves the appropriate author instance.
+        Asserts the author's __str__() returns the expected string for the
+        appropriate author instance.
 
-        Asserts the author's first name matches that of the model's setup value.
-        Asserts a ValidationError is raised if the author's first name is empty.
+        Asserts the author user profile is the same as the current user's
+        user profile.
+        Asserts that an author profile can be blank (for authors uploaded via
+        admin panel). For registering users, the author profile is created
+        automatically. This is handled via reader.signals.
 
-        Asserts the author's last name matches that of the model's setup value.
-        Asserts a ValidationError is raised if the author's last name is empty.
+        Asserts the author's first name matches the model's setup value.
+        Asserts a ValidationError is raised if the author's firstname is empty.
 
-        Asserts the author's d_o_b is a datetime object that matches the model's setup value.
-        Asserts a ValidationError is raised if the author's d_o_b is of the wrong format - this is handled via a date input but just in case.
+        Asserts the author's last name matches the model's setup value.
+        Asserts a ValidationError is raised if the author's lastname is empty.
+
+        Asserts the author's d_o_b is a datetime object that matches the
+        model's setup value.
+        Asserts a ValidationError is raised if the author's d_o_b is of the
+        wrong format - this is handled via a date input but just in case.
         Asserts a ValidationError is raised if the author's d_o_b is empty.
 
-        Asserts the author's nationality matches that of the model's setup value.
+        Asserts the author's nationality matches the model's setup value.
         Asserts the author's nationality can be blank.
 
-        Asserts the author's bio matches that of the model's setup value.
+        Asserts the author's bio matches the model's setup value.
         Asserts a ValidationError is raised if the author's bio is empty.
         """
+        author = Author.objects.get(user_profile=self.user_profile)
+        self.assertEqual(author.__str__(), "Firstname Lastname")
+
         self.assertEqual(self.author.user_profile, self.user_profile)
         self.assertTrue(self.author.user_profile, "")
 
-        self.assertEqual(self.author.first_name, "Test Firstname")
+        self.assertEqual(self.author.first_name, "Firstname")
         with self.assertRaises(ValidationError):
             self.author.first_name = ""
             self.author.full_clean()
 
-        self.assertEqual(self.author.last_name, "Test Lastname")
+        self.assertEqual(self.author.last_name, "Lastname")
         with self.assertRaises(ValidationError):
             self.author.last_name = ""
             self.author.full_clean()
@@ -131,43 +172,27 @@ class TestibraryModels(TestCase):
             self.author.bio = ""
             self.author.full_clean()
 
-    # def test_task_model_creation(self):
-    #     '''
-    #     Asserts the task id is 6, as per model setup.
-    #     Asserts the task name is 'Test Task', as per model setup.
-    #     Asserts the task notes are 'Testing Task Model', as per model setup.
-    #     Asserts the task creator's username is 'ananiko', as per user login.
-    #     Asserts the task workspace title is 'Test Workspace',
-    #     as per model setup.
-    #     Asserts the task priority is 'Minor', as per model setup.
-    #     Asserts the task status is 'To Do', as per model setup.
-    #     Asserts the task due_date is '2024-07-21', as per model setup.
-    #     Asserts whether the task updated field is set to False,
-    #     as per model setup.
-    #     '''
-    #     self.assertEqual(self.task.id, 6)
-    #     self.assertEqual(self.task.name, 'Test Task')
-    #     self.assertEqual(self.task.notes, 'Testing Task Model')
-    #     self.assertEqual(self.task.creator.username, 'ananiko')
-    #     self.assertEqual(self.task.workspace.title, 'Test Workspace')
-    #     self.assertEqual(self.task.priority, 'Minor')
-    #     self.assertEqual(self.task.status, 'To Do')
-    #     self.assertEqual(self.task.due_date, '2024-07-21')
+    def test_genre_and_genre_community_creation(self):
+        """
+        Retrieves the appropriate genre instance.
+        Asserts the genre's __str__() returns the expected string for the
+        appropriate genre instance.
 
-    # def test_workspace_delete_when_user_delete(self):
-    #     '''
-    #     Deletes the current user.
-    #     Asserts user's workspaces are also deleted.
-    #     Asserts user's tasks are also deleted.
-    #     '''
-    #     self.user.delete()
-    #     self.assertEqual(len(Workspace.objects.all()), 0)
-    #     self.assertEqual(len(Task.objects.all()), 0)
+        Asserts the genre name matches the model's setup value.
+        Asserts a ValidationError is raised if the genre's name is empty.
 
-    # def test_task_delete_when_workspace_delete(self):
-    #     '''
-    #     Deletes the current workspace.
-    #     Asserts tasks associated with that workspace are also deleted.
-    #     '''
-    #     self.workspace.delete()
-    #     self.assertEqual(len(Task.objects.all()), 0)
+        Asserts the genre's community field can be blank.
+        Asserts the genre's community's name matches the expected value. A
+        community instance is automatically created and linked following a
+        new genre creation. This is handled via library.signals.
+        """
+        genre = Genre.objects.get(name="TestGenre")
+        self.assertEqual(genre.__str__(), "TestGenre")
+
+        self.assertEqual(self.genre.name, "TestGenre")
+        with self.assertRaises(ValidationError):
+            self.genre.name = ""
+            self.genre.full_clean()
+
+        self.assertTrue(self.genre.community, "")
+        self.assertEqual(self.genre.community.name, "TestGenre Community")
