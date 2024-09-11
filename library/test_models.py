@@ -51,6 +51,7 @@ class TestibraryModels(TestCase):
 
 
     def test_author_profile_creation_and_validation():
+        Retrieves the appropriate author instance for testing.
         Asserts the author user profile is the same as the current user's user
         profile.
         Asserts that an author profile can be blank (for authors uploaded via
@@ -77,7 +78,7 @@ class TestibraryModels(TestCase):
 
 
     def test_genre_and_genre_community_creation():
-        Retrieves the appropriate genre instance.
+        Retrieves the appropriate genre instance for testing.
         Asserts the genre's __str__() returns the expected string for the
         appropriate genre instance.
 
@@ -91,7 +92,7 @@ class TestibraryModels(TestCase):
 
 
     def test_book_creation():
-        Retrieves the appropriate book instance.
+        Retrieves the appropriate book instance for testing.
         Asserts the book's __str__() returns the expected string for the
         appropriate book instance.
 
