@@ -185,14 +185,12 @@
     - Dynamic Year
 
 > > > ## Models
-> > >
-> > > Below is an ERD for `Leaf Lounge`'s db models.
+Below is an ERD for `Leaf Lounge`'s db models.
 
 ![Leaf Lounge ERD](static/images/quickdbdiagrams.png)
 
 > > #### The Author Model (library app)
-> >
-> > Represents a Leaf Lounge author. Authors can register new books on the website, with new books being saved under their UserProfile.
+Represents a Leaf Lounge author. Authors can register new books on the website, with new books being saved under their UserProfile.
 
 Fields: `user_profile`, `first_name`, `last_name`, `d_o_b`, `nationality`, `bio`
 
@@ -240,8 +238,7 @@ def __str__() -> str : (author's first name) (author's last name)
 ---
 
 > > #### The Genre Model (library app)
-> >
-> > Represents the breakdown of a book Genre. Each genre has an associated community, which is created at the same time as a new Genre is created. Each book registered on the app is given an associated Genre. After purchasing the book, the user gets access to the community associated with the genre.
+Represents the breakdown of a book Genre. Each genre has an associated community, which is created at the same time as a new Genre is created. Each book registered on the app is given an associated Genre. After purchasing the book, the user gets access to the community associated with the genre.
 
 Fields: `name`, `community`
 
@@ -270,76 +267,7 @@ def __str__() -> str : (genre name)
 ---
 
 > > #### The Book Model (library app)
-> >
-> > Represents a Book on Leaf Lounge. Books can be uploaded directly by admin, or registered on the website by registered Leaf Lounge authors. After selecting (clicking) on a book on the 'Library' page, users are taken into a detail view of that book. All books have associated reviews, genres, authors, and communities.
-
-    title = models.CharField(
-        max_length=100,
-        blank=False,
-        null=False
-    )
-    # Internation Standard Book Number - books after 2007 are 13 digits long.
-    isbn = models.CharField(
-        max_length=13,
-        blank=False,
-        null=False
-    )
-    # SlugField can be blank as slug is saved following model instance save.
-    slug = models.SlugField(
-        max_length=100,
-        blank=True,
-        null=True,
-        help_text='This field will be auto-filled after save.'
-    )
-    author = models.ForeignKey(
-        Author,
-        on_delete=models.CASCADE,
-        related_name='author_books',
-        blank=False,
-        null=False
-    )
-    genre = models.ForeignKey(
-        Genre,
-        on_delete=models.SET_NULL,
-        related_name='book_genre',
-        null=True,
-        blank=False
-    )
-    blurb = models.TextField(
-        max_length=500,
-        blank=False,
-        null=False
-    )
-    year_published = models.IntegerField(
-        validators=[MaxValueValidator(2024)],
-        blank=False,
-        null=False
-    )
-    publisher = models.CharField(
-        max_length=100,
-        blank=True,
-        null=True
-    )
-    type = models.CharField(
-        max_length=9,
-        choices=COVERS,
-        default='SC',
-        blank=False,
-        null=False
-    )
-    date_added = models.DateField(
-        auto_now_add=True
-    )
-    price = models.DecimalField(
-        max_digits=5,
-        decimal_places=2,
-        blank=False,
-        null=False
-    )
-    image = models.ImageField(
-        null=True,
-        blank=True
-    )
+Represents a Book on Leaf Lounge. Books can be uploaded directly by admin, or registered on the website by registered Leaf Lounge authors. After selecting (clicking) on a book on the 'Library' page, users are taken into a detail view of that book. All books have associated reviews, genres, authors, and communities.
 
 Fields: `title`, `isbn`, `slug`, `author`, `genre`, `blurb`, `year_published`, `publisher`, `type`, `date_added`, `price`, `image`
 
@@ -347,11 +275,15 @@ Fields: `title`, `isbn`, `slug`, `author`, `genre`, `blurb`, `year_published`, `
 
 - Constraints:
   - _max-length_ : 100 characters.
+  - can not be _null_.
+  - can not be _blank_.
 
 2. `isbn` : CharField - represents the book's Internation Standard Book Number.
 
 - Constraints:
   - _max-length_ : 13 characters (all books after 2007 are 13 digits long, all before are 10 digits long).
+  - can not be _null_.
+  - can not be _blank_.
 
 3. `slug` : SlugField - represents the book slug (name-author fields).
 
@@ -363,28 +295,46 @@ Fields: `title`, `isbn`, `slug`, `author`, `genre`, `blurb`, `year_published`, `
 
 4. `author` : FK : Author - represents the author of the book.
 
-5. `genre` : CharField : choices - represents the book genre.
+- Constraints:
+  - _on-delete_: _models.CASCADE_.
+  - _related-name_: _'author-books'_.
+  - can not be _null_.
+  - can not be _blank_.
+
+5. `genre` :FK : Genre - represents the book genre.
 
 - Constraints:
-  - predefined _choices_ from `GENRES` tuple.
-  - _max-length_ : 50 characters.
+  - _on-delete_: _models.SET-NULL_.
+  - _related-name_: _'book-genre'_.
+  - can be _null_.
+  - can not be _blank_.
 
 6. `blurb` : TextField - represents the book blurb.
 
 - Constraints:
   - _max-length_ : 500 characters.
+  - can not be _null_.
+  - can not be _blank_.
 
 7. `year_published` : IntegerField - represents the year the book was published.
 
 - Constraints:
   - _MaxValueValidator_ : 2024.
+  - can not be _null_.
+  - can not be _blank_.
 
 8. `publisher` : CharField - represents the book publisher.
 
 - Constraints:
   - _max-length_ : 100 characters.
+  - can be _null_.
+  - can be _blank_.
 
 9. `type` : CharField - represents the book cover type.
+
+- Constraints:
+  - can not be _null_.
+  - can not be _blank_.
 
 10. `date_added` : DateField - represents the date the book was added to the database.
 
@@ -396,6 +346,8 @@ Fields: `title`, `isbn`, `slug`, `author`, `genre`, `blurb`, `year_published`, `
 - Constraints:
   - _decimal-places_ : 2.
   - _max-digits_ : 5.
+  - can not be _null_.
+  - can not be _blank_.
 
 12. `image` : ImageField - represents the book cover image.
 
@@ -430,16 +382,17 @@ Orders by earliest date added.
 ---
 
 > > #### The Review Model (library app)
-> >
-> > Represents a book review. Reviews can be left by registered users, who have purchased at least one book. The link for this is under the 'My Books' tab in the secondary navigation bar. Reviews can be edited prior to approval, and deleted at any stage. Approved reviews are displayed on the relevant book detail page. Reviews are displayed as star fillings on all relevant pages.
+Represents a book review. Reviews can be left by registered users, who have purchased at least one book. The link for this is under the 'My Books' tab in the secondary navigation bar. Reviews can be edited prior to approval, and deleted at any stage. Approved reviews are displayed on the relevant book detail page. Reviews are displayed as star fillings on all relevant pages.
 
 Fields: `reviewer`, `book`, `title`, `rating`, `comment`, `reviewed_on`, `approved`
 
-1. reviewer : FK : User - represents the user leaving the review.
+1. reviewer : FK : UserProfile - the user leaving the review. This field is tied to the user's user profile to facilitate users managing reviews from their profile.
 
 - Constraints:
   - _on-delete_: _models.CASCADE_.
   - _related-name_: _'reviewer'_.
+  - can be _null_.
+  - can not be _blank_.
 
 2. book : FK : Book - represents the book being reviewed.
 
@@ -484,8 +437,7 @@ Fields: `reviewer`, `book`, `title`, `rating`, `comment`, `reviewed_on`, `approv
 ---
 
 > > #### The Order Model (checkout app)
-> >
-> > Represents a user's book Order. Orders are placed via the checkout page. Order histories can be viewed under the 'My Profile' tab.
+Represents a user's book Order. Orders are placed via the checkout page. Order histories can be viewed under the 'My Profile' tab.
 
 Fields: `order_number`, `user_profile`, `full_name`, `email`, `phone_number`, `country`, `postcode`, `town_city`, `street_1`, `street_2`, `county`, `date`, `delivery_cost`, `order_total`, `grand_total`, `original_basket`, `stripe_pid`
 
@@ -642,8 +594,7 @@ def __str__() -> int : order number.
 ---
 
 > > #### The BookLineItem Model (checkout app)
-> >
-> > Represents a book lineitem for each book inside an order.
+Represents a book lineitem for each book inside an order.
 
 Fields: `order`, `book`, `type`, `quantity`, `book_order_cost`
 
@@ -698,8 +649,7 @@ def __str__() -> str : 'ISBN: (book ISBN), order: (order number uuid)'.
 ---
 
 > > #### The Community Model (community app)
-> >
-> > Represents a genre community where users can access forums, chats and messages. Users are granted access to the community matching the book genre after making purchasing a book in that genre.
+Represents a genre community where users can access forums, chats and messages. Users are granted access to the community matching the book genre after making purchasing a book in that genre.
 
 Fields: `name`, `description`, `slug`, `image`
 
@@ -736,8 +686,7 @@ def __str__() -> str : (community name)
 ---
 
 > > #### The Forum Model (community app)
-> >
-> > Represents a community forum. Each community can have multiple forums. All users inside the community have full access to forums in the community, and users may create new forums inside the community for chats and networking.
+Represents a community forum. Each community can have multiple forums. All users inside the community have full access to forums in the community, and users may create new forums inside the community for chats and networking.
 
 Fields: `name`, `slug`, `date_created`, `community`
 
@@ -788,8 +737,7 @@ def get_absolute_url(): Returns -> the forum detail page with (self.slug) as url
 ---
 
 > > #### The Message Model (community app)
-> >
-> > Represents a message within a community forum. Messages can be viewed by all members of the forum, but can only be deleted by the user who sent the message.
+Represents a message within a community forum. Messages can be viewed by all members of the forum, but can only be deleted by the user who sent the message.
 
 Fields: `forum`, `content`, `messenger`, `date_sent`
 
@@ -826,8 +774,7 @@ def __str__() -> str : "Message in '(forum name)'"
 ---
 
 > > #### The UserProfile Model (reader app)
-> >
-> > A user profile for maintaining default delivery information, order history, and saved books.
+A user profile for maintaining default delivery information, order history, and saved books.
 
 Fields: `user`, `default_street_1`, `default_street_2`, `default_town_city`, `default_county`, `default_postcode`, `default_country`
 

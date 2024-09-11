@@ -24,12 +24,32 @@ class TestibraryModels(TestCase):
 
     Methods:
     def setUp():
-        Simulates user log in to allow the creation for workspaces and tasks.
-        Simulates the creation of a workspace where workspace.creator field is
-        automatically assigned the current User instance.
-        Simulates the creation of a task where task.creator is automatically
-        assigned the current User instance, and task.workspace is automatically
-        assigned the current workspace.
+        REGISTRATION:
+        Simulates user registration to allow for the creation of a user profile
+        and author profile.
+
+        USER PROFILE & AUTHOR PROFILE:
+        Retrieves the user profile automatically created following successful
+        user registration. This is handled via
+        reader.signals.create_or_save_profile.
+        Simulates the creation of an author profile and assigns the relevant
+        user profile to the author.user_profile field.
+
+        GENRE & COMMUNITY:
+        Simulates the creation of a genre. A community instance associated
+        with the genre is created automatically via
+        library.signals.create_community_on_genre_save.
+
+        BOOK:
+        Simulates the creation of a book with relevant relationships to the
+        author and genre models.
+
+        REVIEW:
+        Simulates the creation of a review with relevant relationships to the
+        user_profile and book models.
+
+        Saves the relevant models to the test sqlite3 database.
+
 
     def test_author_profile_creation_and_validation():
         Asserts the author user profile is the same as the current user's user
@@ -56,6 +76,7 @@ class TestibraryModels(TestCase):
         Asserts the author's bio matches the model's setup value.
         Asserts a ValidationError is raised if the author's bio is empty.
 
+
     def test_genre_and_genre_community_creation():
         Retrieves the appropriate genre instance.
         Asserts the genre's __str__() returns the expected string for the
@@ -68,6 +89,7 @@ class TestibraryModels(TestCase):
         Asserts the genre's community's name matches the expected value. A
         community instance is automatically created and linked following a
         new genre creation. This is handled via library.signals.
+
 
     def test_book_creation():
         Retrieves the appropriate book instance.
@@ -85,30 +107,33 @@ class TestibraryModels(TestCase):
         than 13 characters.
 
         Asserts the book author's firstname matches the model's setup value.
-        Asserts a ValidationError is raised if their is no author.
+        Asserts a ValidationError is raised if there is no author.
 
         Asserts the book genre matches the model's setup value.
-        Asserts a ValidationError is raised if their is no genre.
+        Asserts a ValidationError is raised if there is no genre.
 
         Asserts the book blurb matches the model's setup value.
         Asserts a ValidationError is raised if the book's blurb is empty.
 
-        Asserts the book's year_published field matches the model's setup value.
+        Asserts the book's year_published field matches the model's setup
+        value.
         Asserts a ValidationError is raised if the book's year_published is
         of the wrong format.
-        Asserts a ValidationError is raised if the book's year_published is empty.
-        Asserts a ValidationError is raised if their is no year_published value.
+        Asserts a ValidationError is raised if the book's year_published is
+        empty.
+        Asserts a ValidationError is raised if there is no year_published
+        value.
 
         Asserts the book publisher matches the model's setup value.
         Asserts the book publisher can be empty.
 
         Asserts the book cover-type matches the model's setup value.
-        Asserts a ValidationError is raised if their is no cover-type value.
+        Asserts a ValidationError is raised if there is no cover-type value.
         Asserts a ValidationError is raised if the book's cover-type is empty.
 
         Asserts the book's date_added field value is a datetime object that
         matches the model's setup value.
-        Asserts a ValidationError is raised if their is no date_added value.
+        Asserts a ValidationError is raised if there is no date_added value.
         Asserts a ValidationError is raised if the book's date_added is empty.
         Asserts a ValidationError is raised if the book's date_added is of the
         wrong format.
@@ -118,6 +143,40 @@ class TestibraryModels(TestCase):
         Asserts a ValidationError is raised if the book's price is empty.
         Asserts a ValidationError is raised if the book's price is over 5
         decimals, i.e., a book's value is raised too high.
+
+
+    def test_review_creation():
+        Retrieves the appropriate review instance for testing.
+        Asserts the review's __str__() returns the expected string for the
+        appropriate review instance.
+
+        Asserts the reviewer is the user profile as per model setup.
+        Asserts the user profile belongs to the user as per model setup.
+        Asserts a ValidationError is raised if a review is without a reviewer.
+
+        Asserts the book reviewed matches the model's setup value.
+        Asserts a ValidationError is raised if there is no book title (no book)
+        associated with the review.
+
+        Asserts the review title matches the model's setup value.
+        Asserts a ValidationError is raised if the review title is empty.
+        Asserts a ValidationError is raised if the review title is over the 80
+        character limit as defined in models.py.
+
+        Asserts the review rating matches the model's setup value.
+        Asserts a ValidationError is raised if there is no review rating.
+        Asserts a ValidationError is raised if the rating is over 10.
+        Asserts a ValidationError is raised if the rating is below 0.
+
+        Asserts the review comment matches the model's setup value.
+        Asserts a ValidationError is raised if there is no comment.
+
+        Asserts today's (11-09-2024) date is automatically saved to
+        the review's reviewed_on field.
+        Asserts a validation error is raised if the reviewed_on date
+        is missing.
+
+        Asserts the newly saved review is saved as an unapproved instance.
     """
     def setUp(self):
         """
@@ -136,6 +195,14 @@ class TestibraryModels(TestCase):
         Simulates the creation of a genre. A community instance associated
         with the genre is created automatically via
         library.signals.create_community_on_genre_save.
+
+        BOOK:
+        Simulates the creation of a book with relevant relationships to the
+        author and genre models.
+
+        REVIEW:
+        Simulates the creation of a review with relevant relationships to the
+        user_profile and book models.
 
         Saves the relevant models to the test sqlite3 database.
         """
@@ -175,9 +242,18 @@ class TestibraryModels(TestCase):
         )
         self.book.save()
 
+        self.review = Review(
+            reviewer=self.user_profile,
+            book=self.book,
+            title="Test Review Title",
+            rating=8,
+            comment="Test review content body",
+        )
+        self.review.save()
+
     def test_author_profile_creation_and_validation(self):
         """
-        Retrieves the appropriate author instance.
+        Retrieves the appropriate author instance for testing.
         Asserts the author's __str__() returns the expected string for the
         appropriate author instance.
 
@@ -239,7 +315,7 @@ class TestibraryModels(TestCase):
 
     def test_genre_and_genre_community_creation(self):
         """
-        Retrieves the appropriate genre instance.
+        Retrieves the appropriate genre instance for testing.
         Asserts the genre's __str__() returns the expected string for the
         appropriate genre instance.
 
@@ -264,7 +340,7 @@ class TestibraryModels(TestCase):
 
     def test_book_creation(self):
         """
-        Retrieves the appropriate book instance.
+        Retrieves the appropriate book instance for testing.
         Asserts the book's __str__() returns the expected string for the
         appropriate book instance.
 
@@ -279,30 +355,33 @@ class TestibraryModels(TestCase):
         than 13 characters.
 
         Asserts the book author's firstname matches the model's setup value.
-        Asserts a ValidationError is raised if their is no author.
+        Asserts a ValidationError is raised if there is no author.
 
         Asserts the book genre matches the model's setup value.
-        Asserts a ValidationError is raised if their is no genre.
+        Asserts a ValidationError is raised if there is no genre.
 
         Asserts the book blurb matches the model's setup value.
         Asserts a ValidationError is raised if the book's blurb is empty.
 
-        Asserts the book's year_published field matches the model's setup value.
+        Asserts the book's year_published field matches the model's setup
+        value.
         Asserts a ValidationError is raised if the book's year_published is
         of the wrong format.
-        Asserts a ValidationError is raised if the book's year_published is empty.
-        Asserts a ValidationError is raised if their is no year_published value.
+        Asserts a ValidationError is raised if the book's year_published is
+        empty.
+        Asserts a ValidationError is raised if there is no year_published
+        value.
 
         Asserts the book publisher matches the model's setup value.
         Asserts the book publisher can be empty.
 
         Asserts the book cover-type matches the model's setup value.
-        Asserts a ValidationError is raised if their is no cover-type value.
+        Asserts a ValidationError is raised if there is no cover-type value.
         Asserts a ValidationError is raised if the book's cover-type is empty.
 
         Asserts the book's date_added field value is a datetime object that
         matches the model's setup value.
-        Asserts a ValidationError is raised if their is no date_added value.
+        Asserts a ValidationError is raised if there is no date_added value.
         Asserts a ValidationError is raised if the book's date_added is empty.
         Asserts a ValidationError is raised if the book's date_added is of the
         wrong format.
@@ -314,7 +393,10 @@ class TestibraryModels(TestCase):
         decimals, i.e., a book's value is raised too high.
         """
         book = Book.objects.get(author=self.author, genre=self.genre)
-        self.assertEqual(book.__str__(), '"How to Test Django Models" by Firstname Lastname')
+        self.assertEqual(
+            book.__str__(),
+            '"How to Test Django Models" by Firstname Lastname'
+        )
 
         self.assertEqual(book.title, "How to Test Django Models")
         with self.assertRaises(ValidationError):
@@ -386,3 +468,89 @@ class TestibraryModels(TestCase):
         with self.assertRaises(ValidationError):
             self.book.price = Decimal('1409.99')
             self.book.full_clean()
+
+    def test_review_creation(self):
+        """
+        Retrieves the appropriate review instance for testing.
+        Asserts the review's __str__() returns the expected string for the
+        appropriate review instance.
+
+        Asserts the reviewer is the user profile as per model setup.
+        Asserts the user profile belongs to the user as per model setup.
+        Asserts a ValidationError is raised if a review is without a reviewer.
+
+        Asserts the book reviewed matches the model's setup value.
+        Asserts a ValidationError is raised if there is no book title (no book)
+        associated with the review.
+
+        Asserts the review title matches the model's setup value.
+        Asserts a ValidationError is raised if the review title is empty.
+        Asserts a ValidationError is raised if the review title is over the 80
+        character limit as defined in models.py.
+
+        Asserts the review rating matches the model's setup value.
+        Asserts a ValidationError is raised if there is no review rating.
+        Asserts a ValidationError is raised if the rating is over 10.
+        Asserts a ValidationError is raised if the rating is below 0.
+
+        Asserts the review comment matches the model's setup value.
+        Asserts a ValidationError is raised if there is no comment.
+
+        Asserts today's (11-09-2024) date is automatically saved to
+        the review's reviewed_on field.
+        Asserts a validation error is raised if the reviewed_on date
+        is missing.
+
+        Asserts the newly saved review is saved as an unapproved instance.
+        """
+        review = Review.objects.get(reviewer=self.user_profile, book=self.book)
+        self.assertEqual(
+            review.__str__(),
+            '''Review for "How to Test Django Models" by
+            Firstname Lastname : 8/10'''
+        )
+
+        self.assertEqual(review.reviewer, self.user_profile)
+        self.assertEqual(review.reviewer.user, self.user)
+        with self.assertRaises(ValidationError):
+            self.review.reviewer = None
+            self.review.full_clean()
+
+        self.assertEqual(review.book.title, "How to Test Django Models")
+        with self.assertRaises(ValidationError):
+            self.review.book.title = ""
+            self.review.full_clean()
+
+        self.assertEqual(review.title, "Test Review Title")
+        with self.assertRaises(ValidationError):
+            self.review.book.title = ""
+            self.review.full_clean()
+        with self.assertRaises(ValidationError):
+            self.review.book.title = """zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+            zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+            zzzzzzzzzzzzzzzzz"""
+            self.review.full_clean()
+
+        self.assertEqual(review.rating, 8)
+        with self.assertRaises(ValidationError):
+            self.review.rating = None
+            self.review.full_clean()
+        with self.assertRaises(ValidationError):
+            self.review.rating = 15
+            self.review.full_clean()
+        with self.assertRaises(ValidationError):
+            self.review.rating = -2
+            self.review.full_clean()
+
+        self.assertEqual(review.comment, "Test review content body")
+        with self.assertRaises(ValidationError):
+            self.review.comment = None
+            self.review.full_clean()
+
+        # Tested on 11/09/2024.
+        self.assertEqual(review.reviewed_on, datetime.date(2024, 9, 11))
+        with self.assertRaises(ValidationError):
+            self.review.reviewed_on = None
+            self.review.full_clean()
+
+        self.assertEqual(review.approved, False)

@@ -263,19 +263,25 @@ class Review(models.Model):
     pages.
 
     Fields:
-    reviewer : FK : User - the user leaving the review.
+    reviewer : FK : UserProfile - the user leaving the review. This field is
+    tied to the user's user profile to facilitate users managing reviews from
+    their profile.
     book : FK : Book - the book being reviewed.
     title : CharField - the review title.
     rating : IntegerField - the book rating out of 10.
     comment : TextField - the user's verbal book rating.
     reviewed_on : DateField - the date the review was left on.
     approved : BooleanField - whether the comment is admin approved.
+
+    Methods:
+    def __str__() -> str :
+    'Review for (book) : (rating)/10'.
     """
     reviewer = models.ForeignKey(
         UserProfile,
         on_delete=models.SET_NULL,
         null=True,
-        blank=True,
+        blank=False,
         related_name='reviewer'
     )
     book = models.ForeignKey(
