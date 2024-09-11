@@ -105,6 +105,9 @@ class TestibraryModels(TestCase):
         Asserts a ValidationError is raised if the book's isbn is longer
         than 13 characters.
 
+        Asserts a slug is automatically generated after a book instance is
+        saved.
+
         Asserts the book author's firstname matches the model's setup value.
         Asserts a ValidationError is raised if there is no author.
 
@@ -230,6 +233,7 @@ class TestibraryModels(TestCase):
         self.book = Book(
             title="How to Test Django Models",
             isbn="0-061-96436-0",
+            slug=None,
             author=self.author,
             genre=self.genre,
             blurb="Test Test Test Test Test",
@@ -353,6 +357,9 @@ class TestibraryModels(TestCase):
         Asserts a ValidationError is raised if the book's isbn is longer
         than 13 characters.
 
+        Asserts a slug is automatically generated after a book instance is
+        saved.
+
         Asserts the book author's firstname matches the model's setup value.
         Asserts a ValidationError is raised if there is no author.
 
@@ -414,6 +421,8 @@ class TestibraryModels(TestCase):
         with self.assertRaises(ValidationError):
             self.book.isbn = "ISBN0-061-96436-0"
             self.book.full_clean()
+
+        self.assertEqual(book.slug, "how-to-test-django-models-lastname")
 
         self.assertEqual(book.author.first_name, "Firstname")
         with self.assertRaises(ValidationError):

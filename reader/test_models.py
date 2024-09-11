@@ -1,7 +1,5 @@
 from django.test import TestCase, Client
 from django.contrib.auth.models import User
-from django.utils.text import slugify
-from django.core.exceptions import ValidationError
 
 # Signal triggering user_profile creation after user login.
 from .signals import create_or_save_profile

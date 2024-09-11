@@ -19,8 +19,8 @@ Models: `Author`, `Genre`, `Book`, `Review`
 ###### Methods
 
 `def setUp():`
-REGISTRATION:
-Simulates user registration to allow for the creation of a user profile and author profile.
+    REGISTRATION:
+    Simulates user registration to allow for the creation of a user profile and author profile.
 
     USER PROFILE & AUTHOR PROFILE:
     Retrieves the user profile automatically created following successful user registration. This is handled via reader.signals.create_or_save_profile.
@@ -38,8 +38,8 @@ Simulates user registration to allow for the creation of a user profile and auth
     Saves the relevant models to the test sqlite3 database.
 
 `def test_author_profile_creation_and_validation():`
-Asserts the author user profile is the same as the current user's user profile.
-Asserts that an author profile can be blank (for authors uploaded via admin panel). For registering users, the author profile is created automatically.
+    Asserts the author user profile is the same as the current user's user profile.
+    Asserts that an author profile can be blank (for authors uploaded via admin panel). For registering users, the author profile is created automatically.
 
     Asserts the author's first name matches the model's setup value.
     Asserts a ValidationError is raised if the author's firstname is empty.
@@ -58,8 +58,8 @@ Asserts that an author profile can be blank (for authors uploaded via admin pane
     Asserts a ValidationError is raised if the author's bio is empty.
 
 `def test_genre_and_genre_community_creation():`
-Retrieves the appropriate genre instance.
-Asserts the genre's **str**() returns the expected string for the appropriate genre instance.
+    Retrieves the appropriate genre instance.
+    Asserts the genre's **str**() returns the expected string for the appropriate genre instance.
 
     Asserts the genre name matches the model's setup value.
     Asserts a ValidationError is raised if the genre's name is empty.
@@ -68,8 +68,8 @@ Asserts the genre's **str**() returns the expected string for the appropriate ge
     Asserts the genre's community's name matches the expected value. A community instance is automatically created and linked following a new genre creation. This is handled via library.signals.~
 
 `def test_book_creation():`
-Retrieves the appropriate book instance.
-Asserts the book's **str**() returns the expected string for the appropriate book instance.
+    Retrieves the appropriate book instance.
+    Asserts the book's **str**() returns the expected string for the appropriate book instance.
 
     Asserts the book name matches the model's setup value.
     Asserts a ValidationError is raised if the book's name is empty.
@@ -78,6 +78,8 @@ Asserts the book's **str**() returns the expected string for the appropriate boo
     Asserts the book isbn matches the model's setup value.
     Asserts a ValidationError is raised if the book's isbn is empty.
     Asserts a ValidationError is raised if the book's isbn is longer than 13 characters.
+
+    Asserts a slug is automatically generated after a book instance is saved.
 
     Asserts the book author's firstname matches the model's setup value.
     Asserts a ValidationError is raised if there is no author.
@@ -110,8 +112,8 @@ Asserts the book's **str**() returns the expected string for the appropriate boo
     Asserts a ValidationError is raised if the book's price is over 5 decimals, i.e., a book's value is raised too high.
 
 `def test_review_creation():`
-Retrieves the appropriate review instance for testing.
-Asserts the review's **str**() returns the expected string for the appropriate review instance.
+    Retrieves the appropriate review instance for testing.
+    Asserts the review's **str**() returns the expected string for the appropriate review instance.
 
     Asserts the reviewer is the user profile as per model setup.
     Asserts the user profile belongs to the user as per model setup.
@@ -136,6 +138,26 @@ Asserts the review's **str**() returns the expected string for the appropriate r
     Asserts a validation error is raised if the reviewed_on date is missing.
 
     Asserts the newly saved review is saved as an unapproved instance.
+
+
+> #### Models (reader app)
+
+`class TestUserProfile():`
+A class for testing models in the Reader app. Testing includes asserting a user profile is successfully created following user registration, and that the created user profile belongs to the registered user.
+
+Models: `UserProfile`
+
+###### Methods:
+`def setUp():`
+    REGISTRATION:
+    Simulates user registration to allow for the creation of a user profile.
+
+`def test_user_profile_creation_on_user_registration():`
+    Retrieves the appropriate user profile instance for testing.
+    Asserts a user profile is successfully created following user registration.
+    Asserts the user profile's __str__() returns the expected string for the appropriate user profile instance.
+
+
 
 > > > ## Issues
 
