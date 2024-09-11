@@ -153,11 +153,15 @@ class Book(models.Model):
         ('D', 'Epub'),
     ]
     title = models.CharField(
-        max_length=100
+        max_length=100,
+        blank=False,
+        null=False
     )
     # Internation Standard Book Number - books after 2007 are 13 digits long.
     isbn = models.CharField(
-        max_length=13
+        max_length=13,
+        blank=False,
+        null=False
     )
     # SlugField can be blank as slug is saved following model instance save.
     slug = models.SlugField(
@@ -169,7 +173,9 @@ class Book(models.Model):
     author = models.ForeignKey(
         Author,
         on_delete=models.CASCADE,
-        related_name='author_books'
+        related_name='author_books',
+        blank=False,
+        null=False
     )
     genre = models.ForeignKey(
         Genre,
@@ -179,27 +185,36 @@ class Book(models.Model):
         blank=False
     )
     blurb = models.TextField(
-        max_length=500
+        max_length=500,
+        blank=False,
+        null=False
     )
     year_published = models.IntegerField(
-        validators=[MaxValueValidator(2024)]
+        validators=[MaxValueValidator(2024)],
+        blank=False,
+        null=False
     )
     publisher = models.CharField(
-        max_length=100
+        max_length=100,
+        blank=True,
+        null=True
     )
     type = models.CharField(
         max_length=9,
         choices=COVERS,
-        default='SC'
+        default='SC',
+        blank=False,
+        null=False
     )
     date_added = models.DateField(
         auto_now_add=True
     )
     price = models.DecimalField(
         max_digits=5,
-        decimal_places=2
+        decimal_places=2,
+        blank=False,
+        null=False
     )
-    # placeholder for Cloudinary.
     image = models.ImageField(
         null=True,
         blank=True

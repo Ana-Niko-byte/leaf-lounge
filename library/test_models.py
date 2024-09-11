@@ -2,6 +2,7 @@ from django.test import TestCase, Client
 from django.contrib.auth.models import User
 from django.utils.text import slugify
 from django.core.exceptions import ValidationError
+from decimal import Decimal
 
 # Signal triggering user_profile creation after user login.
 from reader.signals import create_or_save_profile
@@ -67,6 +68,56 @@ class TestibraryModels(TestCase):
         Asserts the genre's community's name matches the expected value. A
         community instance is automatically created and linked following a
         new genre creation. This is handled via library.signals.
+
+    def test_book_creation():
+        Retrieves the appropriate book instance.
+        Asserts the book's __str__() returns the expected string for the
+        appropriate book instance.
+
+        Asserts the book name matches the model's setup value.
+        Asserts a ValidationError is raised if the book's name is empty.
+        Asserts a ValidationError is raised if the book's name is longer
+        than 100 characters.
+
+        Asserts the book isbn matches the model's setup value.
+        Asserts a ValidationError is raised if the book's isbn is empty.
+        Asserts a ValidationError is raised if the book's isbn is longer
+        than 13 characters.
+
+        Asserts the book author's firstname matches the model's setup value.
+        Asserts a ValidationError is raised if their is no author.
+
+        Asserts the book genre matches the model's setup value.
+        Asserts a ValidationError is raised if their is no genre.
+
+        Asserts the book blurb matches the model's setup value.
+        Asserts a ValidationError is raised if the book's blurb is empty.
+
+        Asserts the book's year_published field matches the model's setup value.
+        Asserts a ValidationError is raised if the book's year_published is
+        of the wrong format.
+        Asserts a ValidationError is raised if the book's year_published is empty.
+        Asserts a ValidationError is raised if their is no year_published value.
+
+        Asserts the book publisher matches the model's setup value.
+        Asserts the book publisher can be empty.
+
+        Asserts the book cover-type matches the model's setup value.
+        Asserts a ValidationError is raised if their is no cover-type value.
+        Asserts a ValidationError is raised if the book's cover-type is empty.
+
+        Asserts the book's date_added field value is a datetime object that
+        matches the model's setup value.
+        Asserts a ValidationError is raised if their is no date_added value.
+        Asserts a ValidationError is raised if the book's date_added is empty.
+        Asserts a ValidationError is raised if the book's date_added is of the
+        wrong format.
+
+        Asserts the book's price field is a Decimal format that matches the
+        model's setup value.
+        Asserts a ValidationError is raised if the book's price is empty.
+        Asserts a ValidationError is raised if the book's price is over 5
+        decimals, i.e., a book's value is raised too high.
     """
     def setUp(self):
         """
@@ -109,6 +160,20 @@ class TestibraryModels(TestCase):
             community=None
         )
         self.genre.save()
+
+        self.book = Book(
+            title="How to Test Django Models",
+            isbn="0-061-96436-0",
+            author=self.author,
+            genre=self.genre,
+            blurb="Test Test Test Test Test",
+            year_published=1999,
+            publisher="Test Publisher",
+            type="Softcover",
+            date_added="2024-09-11",
+            price=14.99
+        )
+        self.book.save()
 
     def test_author_profile_creation_and_validation(self):
         """
@@ -189,10 +254,135 @@ class TestibraryModels(TestCase):
         genre = Genre.objects.get(name="TestGenre")
         self.assertEqual(genre.__str__(), "TestGenre")
 
-        self.assertEqual(self.genre.name, "TestGenre")
+        self.assertEqual(genre.name, "TestGenre")
         with self.assertRaises(ValidationError):
             self.genre.name = ""
             self.genre.full_clean()
 
         self.assertTrue(self.genre.community, "")
         self.assertEqual(self.genre.community.name, "TestGenre Community")
+
+    def test_book_creation(self):
+        """
+        Retrieves the appropriate book instance.
+        Asserts the book's __str__() returns the expected string for the
+        appropriate book instance.
+
+        Asserts the book name matches the model's setup value.
+        Asserts a ValidationError is raised if the book's name is empty.
+        Asserts a ValidationError is raised if the book's name is longer
+        than 100 characters.
+
+        Asserts the book isbn matches the model's setup value.
+        Asserts a ValidationError is raised if the book's isbn is empty.
+        Asserts a ValidationError is raised if the book's isbn is longer
+        than 13 characters.
+
+        Asserts the book author's firstname matches the model's setup value.
+        Asserts a ValidationError is raised if their is no author.
+
+        Asserts the book genre matches the model's setup value.
+        Asserts a ValidationError is raised if their is no genre.
+
+        Asserts the book blurb matches the model's setup value.
+        Asserts a ValidationError is raised if the book's blurb is empty.
+
+        Asserts the book's year_published field matches the model's setup value.
+        Asserts a ValidationError is raised if the book's year_published is
+        of the wrong format.
+        Asserts a ValidationError is raised if the book's year_published is empty.
+        Asserts a ValidationError is raised if their is no year_published value.
+
+        Asserts the book publisher matches the model's setup value.
+        Asserts the book publisher can be empty.
+
+        Asserts the book cover-type matches the model's setup value.
+        Asserts a ValidationError is raised if their is no cover-type value.
+        Asserts a ValidationError is raised if the book's cover-type is empty.
+
+        Asserts the book's date_added field value is a datetime object that
+        matches the model's setup value.
+        Asserts a ValidationError is raised if their is no date_added value.
+        Asserts a ValidationError is raised if the book's date_added is empty.
+        Asserts a ValidationError is raised if the book's date_added is of the
+        wrong format.
+
+        Asserts the book's price field is a Decimal format that matches the
+        model's setup value.
+        Asserts a ValidationError is raised if the book's price is empty.
+        Asserts a ValidationError is raised if the book's price is over 5
+        decimals, i.e., a book's value is raised too high.
+        """
+        book = Book.objects.get(author=self.author, genre=self.genre)
+        self.assertEqual(book.__str__(), '"How to Test Django Models" by Firstname Lastname')
+
+        self.assertEqual(book.title, "How to Test Django Models")
+        with self.assertRaises(ValidationError):
+            self.book.title = ""
+            self.book.full_clean()
+        with self.assertRaises(ValidationError):
+            self.book.title = """zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+            zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+            zzzzzzzzzzzzzzzzz"""
+            self.book.full_clean()
+
+        self.assertEqual(book.isbn, "0-061-96436-0")
+        with self.assertRaises(ValidationError):
+            self.book.isbn = ""
+            self.book.full_clean()
+        with self.assertRaises(ValidationError):
+            self.book.isbn = "ISBN0-061-96436-0"
+            self.book.full_clean()
+
+        self.assertEqual(book.author.first_name, "Firstname")
+        with self.assertRaises(ValidationError):
+            self.book.author = None
+            self.book.full_clean()
+
+        self.assertEqual(book.genre.name, "TestGenre")
+        with self.assertRaises(ValidationError):
+            self.book.genre = None
+            self.book.full_clean()
+
+        self.assertEqual(book.blurb, "Test Test Test Test Test")
+        with self.assertRaises(ValidationError):
+            self.book.blurb = ""
+            self.book.full_clean()
+
+        self.assertEqual(book.year_published, 1999)
+        with self.assertRaises(ValidationError):
+            self.book.year_published = None
+            self.book.full_clean()
+        with self.assertRaises(ValidationError):
+            self.book.year_published = ""
+            self.book.full_clean()
+
+        self.assertEqual(book.publisher, "Test Publisher")
+        self.assertTrue(book.publisher, "")
+
+        self.assertEqual(book.type, "Softcover")
+        with self.assertRaises(ValidationError):
+            self.book.type = None
+            self.book.full_clean()
+        with self.assertRaises(ValidationError):
+            self.book.type = ""
+            self.book.full_clean()
+
+        self.assertEqual(book.date_added, datetime.date(2024, 9, 11))
+        with self.assertRaises(ValidationError):
+            self.book.date_added = None
+            self.book.full_clean()
+        with self.assertRaises(ValidationError):
+            self.book.date_added = ""
+            self.book.full_clean()
+        with self.assertRaises(ValidationError):
+            self.book.date_added = "11/09/2024"
+            self.book.full_clean()
+
+        self.assertEqual(book.price, Decimal('14.99'))
+        with self.assertRaises(ValidationError):
+            self.book.price = ""
+            self.book.full_clean()
+        with self.assertRaises(ValidationError):
+            self.book.price = Decimal('1409.99')
+            self.book.full_clean()
