@@ -22,15 +22,16 @@ class TestCommunityModel(TestCase):
     format validation for datetime objects and slugs.
 
     Methods:
-    REGISTRATION:
-    Simulates user registration to allow for users to access
-    community-related functionality and models.
+    def setUp():
+        REGISTRATION:
+        Simulates user registration to allow for users to access
+        community-related functionality and models.
 
-    GENRE & COMMUNITY:
-    Simulates the creation of a genre. After the mock genre
-    is saved, a community is automatically created.
+        GENRE & COMMUNITY:
+        Simulates the creation of a genre. After the mock genre
+        is saved, a community is automatically created.
 
-    Saves the relevant models to the test sqlite3 database.
+        Saves the relevant models to the test sqlite3 database.
 
 
     def test_community_creation_following_genre_creation():
@@ -125,17 +126,33 @@ class TestCommunityModel(TestCase):
             self.community.full_clean()
 
 
-class TestForumModel(TestCase):
+class TestForumAndMessageModels(TestCase):
     """
-    A class for testing models in the Community app.
+    A class for testing the forum and message models in the Community app.
+    Testing includes asserting equal values to those in the model setup,
+    save method testing, user profile association, and format validation
+    for datetime objects and slugs.
 
     Methods:
-    GENRE & COMMUNITY & FORUM:
+    def setUp()
+        REGISTRATION:
+        Simulates user registration to allow for the creation of a user
+        profile.
+
+        USER PROFILE & AUTHOR PROFILE:
+        Retrieves the user profile automatically created following successful
+        user registration. This is handled via
+        reader.signals.create_or_save_profile.
+
+        GENRE & COMMUNITY & FORUM:
         Simulates the creation of a genre. After the mock genre
         is saved, a community is automatically created. After
         the community is saved, forums can be created inside the
         community.
         Simulates the creation of a forum and saves it.
+
+        MESSAGE:
+        Simulates the creation of a message and saves it.
 
         Saves the relevant models to the test sqlite3 database.
 
@@ -162,9 +179,38 @@ class TestForumModel(TestCase):
 
         Asserts the forum is created inside the correct community by checking
         the name of the community.
+
+
+    def test_message_creation():
+        Retrieves the appropriate message instance for testing.
+        Asserts the message's __str__() returns the expected string for the
+        appropriate message instance.
+
+        Asserts the message is created inside the correct forum by checking
+        its associated forum name.
+
+        Asserts the message's content matches the model's setup value.
+        Asserts a ValidationError is raised if the message's content is empty.
+        Asserts a ValidationError is raised if there is no message content.
+
+        Asserts the message sender matches the expected user profile.
+        Asserts the message sender's username matches the expected value.
+
+        Asserts the message's date_sent matches today's date.
+        Asserts a ValidationError is thrown if the date_sent does not match
+        today's date.
     """
     def setUp(self):
         """
+        REGISTRATION:
+        Simulates user registration to allow for the creation of a user
+        profile.
+
+        USER PROFILE & AUTHOR PROFILE:
+        Retrieves the user profile automatically created following successful
+        user registration. This is handled via
+        reader.signals.create_or_save_profile.
+
         GENRE & COMMUNITY & FORUM:
         Simulates the creation of a genre. After the mock genre
         is saved, a community is automatically created. After
@@ -172,8 +218,18 @@ class TestForumModel(TestCase):
         community.
         Simulates the creation of a forum and saves it.
 
+        MESSAGE:
+        Simulates the creation of a message and saves it.
+
         Saves the relevant models to the test sqlite3 database.
         """
+        self.client = Client()
+        self.user = User(username="ananiko")
+        self.user.set_password("modeltesting")
+        self.user.save()
+
+        self.user_profile = get_object_or_404(UserProfile, user=self.user)
+
         self.genre = Genre(
             name="TestGenre",
             community=None
@@ -188,6 +244,13 @@ class TestForumModel(TestCase):
             community=self.community
         )
         self.forum.save()
+
+        self.message = Message(
+            forum=self.forum,
+            content="test message",
+            messenger=self.user_profile
+        )
+        self.message.save()
 
     def test_forum_creation(self):
         """
@@ -207,7 +270,7 @@ class TestForumModel(TestCase):
         generated in an incorrect format.
 
         Asserts the forum's date_added matches today's date.
-        Asserts a ValidationError is thrown if the date_added is does not match
+        Asserts a ValidationError is thrown if the date_added does not match
         today's date.
 
         Asserts the forum is created inside the correct community by checking
@@ -242,3 +305,46 @@ class TestForumModel(TestCase):
             self.forum.full_clean()
 
         self.assertEqual(forum.community.name, "TestGenre Community")
+
+    def test_message_creation(self):
+        """
+        Retrieves the appropriate message instance for testing.
+        Asserts the message's __str__() returns the expected string for the
+        appropriate message instance.
+
+        Asserts the message is created inside the correct forum by checking
+        its associated forum name.
+
+        Asserts the message's content matches the model's setup value.
+        Asserts a ValidationError is raised if the message's content is empty.
+        Asserts a ValidationError is raised if there is no message content.
+
+        Asserts the message sender matches the expected user profile.
+        Asserts the message sender's username matches the expected value.
+
+        Asserts the message's date_sent matches today's date.
+        Asserts a ValidationError is thrown if the date_sent does not match
+        today's date.
+        """
+        self.message = get_object_or_404(Message, messenger=self.user_profile)
+        self.assertEqual(
+            self.message.__str__(), f"Message in '{self.message.forum.name}'"
+        )
+
+        self.assertEqual(self.message.forum.name, f"Test Forum")
+
+        self.assertEqual(self.message.content, "test message")
+        with self.assertRaises(ValidationError):
+            self.message.content = ""
+            self.message.full_clean()
+        with self.assertRaises(ValidationError):
+            self.message.content = None
+            self.message.full_clean()
+
+        self.assertEqual(self.message.messenger, self.user_profile)
+        self.assertEqual(self.message.messenger.user.username, "ananiko")
+
+        self.assertEqual(self.message.date_sent.date(), datetime.date.today())
+        with self.assertRaises(ValidationError):
+            self.message.date_sent = datetime.date(2023, 5, 18)
+            self.message.full_clean()

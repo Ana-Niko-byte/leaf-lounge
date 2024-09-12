@@ -12,6 +12,7 @@
 > #### Models (library app)
 
 `class TestibraryModels():`
+
 A class for testing models in the Library app. Testing includes asserting equal values to those in the model setup, relational testing (including signal triggers) and basic validation.
 
 Models: `Author`, `Genre`, `Book`, `Review`
@@ -19,6 +20,7 @@ Models: `Author`, `Genre`, `Book`, `Review`
 ###### Methods
 
 `def setUp():`
+
     REGISTRATION:
     Simulates user registration to allow for the creation of a user profile and author profile.
 
@@ -38,6 +40,7 @@ Models: `Author`, `Genre`, `Book`, `Review`
     Saves the relevant models to the test sqlite3 database.
 
 `def test_author_profile_creation_and_validation():`
+
     Asserts the author user profile is the same as the current user's user profile.
     Asserts that an author profile can be blank (for authors uploaded via admin panel). For registering users, the author profile is created automatically.
 
@@ -48,8 +51,9 @@ Models: `Author`, `Genre`, `Book`, `Review`
     Asserts a ValidationError is raised if the author's lastname is empty.
 
     Asserts the author's d_o_b is a datetime object that matches the model's setup value.
-    Asserts a ValidationError is raised if the author's d_o_b is of the wrong format - this is handled via a date input but just in case.
-    Asserts a ValidationError is raised if the author's d_o_b is empty.
+    Asserts a ValidationError is raised if:
+        - the author's d_o_b is of the wrong format - this is handled via a date input but just in case.
+        - the author's d_o_b is empty.
 
     Asserts the author's nationality matches the model's setup value.
     Asserts the author's nationality can be blank.
@@ -58,6 +62,7 @@ Models: `Author`, `Genre`, `Book`, `Review`
     Asserts a ValidationError is raised if the author's bio is empty.
 
 `def test_genre_and_genre_community_creation():`
+
     Retrieves the appropriate genre instance.
     Asserts the genre's **str**() returns the expected string for the appropriate genre instance.
 
@@ -68,16 +73,19 @@ Models: `Author`, `Genre`, `Book`, `Review`
     Asserts the genre's community's name matches the expected value. A community instance is automatically created and linked following a new genre creation. This is handled via library.signals.~
 
 `def test_book_creation():`
+
     Retrieves the appropriate book instance.
     Asserts the book's **str**() returns the expected string for the appropriate book instance.
 
     Asserts the book name matches the model's setup value.
-    Asserts a ValidationError is raised if the book's name is empty.
-    Asserts a ValidationError is raised if the book's name is longer than 100 characters.
+    Asserts a ValidationError is raised if:
+        - the book's name is empty.
+        - the book's name is longer than 100 characters.
 
     Asserts the book isbn matches the model's setup value.
-    Asserts a ValidationError is raised if the book's isbn is empty.
-    Asserts a ValidationError is raised if the book's isbn is longer than 13 characters.
+    Asserts a ValidationError is raised if
+        - the book's isbn is empty.
+        - the book's isbn is longer than 13 characters.
 
     Asserts a slug is automatically generated after a book instance is saved.
 
@@ -91,27 +99,32 @@ Models: `Author`, `Genre`, `Book`, `Review`
     Asserts a ValidationError is raised if the book's blurb is empty.
 
     Asserts the book's year_published field matches the model's setup value.
-    Asserts a ValidationError is raised if the book's year_published is of the wrong format.
-    Asserts a ValidationError is raised if the book's year_published is empty.
-    Asserts a ValidationError is raised if there is no year_published value.
+    Asserts a ValidationError is raised if
+        - the book's year_published is of the wrong format.
+        - the book's year_published is empty.
+        - there is no year_published value.
 
     Asserts the book publisher matches the model's setup value.
     Asserts the book publisher can be empty.
 
     Asserts the book cover-type matches the model's setup value.
-    Asserts a ValidationError is raised if there is no cover-type value.
-    Asserts a ValidationError is raised if the book's cover-type is empty.
+    Asserts a ValidationError is raised if
+        - there is no cover-type value.
+        - the book's cover-type is empty.
 
     Asserts the book's date_added field value is a datetime object that matches the model's setup value.
-    Asserts a ValidationError is raised if there is no date_added value.
-    Asserts a ValidationError is raised if the book's date_added is empty.
-    Asserts a ValidationError is raised if the book's date_added is of the wrong format.
+    Asserts a ValidationError is raised if
+        - there is no date_added value.
+        - the book's date_added is empty.
+        - the book's date_added is of the wrong format.
 
     Asserts the book's price field is a Decimal format that matches the model's setup value.
-    Asserts a ValidationError is raised if the book's price is empty.
-    Asserts a ValidationError is raised if the book's price is over 5 decimals, i.e., a book's value is raised too high.
+    Asserts a ValidationError is raised if
+        - the book's price is empty.
+        - the book's price is over 5 decimals, i.e., a book's value is raised too high.
 
 `def test_review_creation():`
+
     Retrieves the appropriate review instance for testing.
     Asserts the review's **str**() returns the expected string for the appropriate review instance.
 
@@ -123,13 +136,15 @@ Models: `Author`, `Genre`, `Book`, `Review`
     Asserts a ValidationError is raised if there is no book title (no book) associated with the review.
 
     Asserts the review title matches the model's setup value.
-    Asserts a ValidationError is raised if the review title is empty.
-    Asserts a ValidationError is raised if the review title is over the 80 character limit as defined in models.py.
+    Asserts a ValidationError is raised if
+        - the review title is empty.
+        - the review title is over the 80 character limit as defined in models.py.
 
     Asserts the review rating matches the model's setup value.
-    Asserts a ValidationError is raised if there is no review rating.
-    Asserts a ValidationError is raised if the rating is over 10.
-    Asserts a ValidationError is raised if the rating is below 0.
+    Asserts a ValidationError is raised if
+        - there is no review rating.
+        - the rating is over 10.
+        - the rating is below 0.
 
     Asserts the review comment matches the model's setup value.
     Asserts a ValidationError is raised if there is no comment.
@@ -139,6 +154,111 @@ Models: `Author`, `Genre`, `Book`, `Review`
 
     Asserts the newly saved review is saved as an unapproved instance.
 
+---
+
+`class TestCommunityModel():`
+
+    A class for testing the community model. Testing includes asserting equal values to those in the model setup, save method testing, and format validation for datetime objects and slugs.
+
+Fields: `Community`
+
+###### Methods
+
+`def setUp():`
+
+    REGISTRATION:
+    Simulates user registration to allow for users to access community-related functionality and models.
+
+    GENRE & COMMUNITY:
+    Simulates the creation of a genre. After the mock genre is saved, a community is automatically created.
+
+    Saves the relevant models to the test sqlite3 database.
+
+
+`def test_community_creation_following_genre_creation():`
+
+    Retrieves the appropriate community instance for testing and saves it.
+    This process generates the community slug as per the defined format.
+
+    Asserts the community's __str__() returns the expected string for the appropriate community instance.
+
+    Asserts the correct community is retrieved.
+    Asserts a ValidationError is raised if
+        - the community's name is empty.
+        - there is no community name.
+        - the community's name exceeds the 80 character limit.
+
+    Asserts the community's description matches the model's setup value.
+
+    Asserts the community's slug matches the expected slug string format.
+    Asserts a ValidationError is thrown if the slug is inputted or generated in an incorrect format.
+
+---
+
+`class TestForumAndMessageModels():`
+
+A class for testing the forum and message models in the Community app.
+Testing includes asserting equal values to those in the model setup, save method testing, user profile association, and format validation for datetime objects and slugs.
+
+Fields: `Forum`, `Message`
+
+###### Methods
+
+`def setUp()`
+
+    REGISTRATION:
+    Simulates user registration to allow for the creation of a user profile.
+
+    USER PROFILE & AUTHOR PROFILE:
+    Retrieves the user profile automatically created following successful user registration. This is handled via reader.signals.create_or_save_profile.
+
+    GENRE & COMMUNITY & FORUM:
+    Simulates the creation of a genre. After the mock genre is saved, a community is automatically created. After the community is saved, forums can be created inside the community.
+    Simulates the creation of a forum and saves it.
+
+    MESSAGE:
+    Simulates the creation of a message and saves it.
+
+    Saves the relevant models to the test sqlite3 database.
+
+`def test_forum_creation():`
+
+    Retrieves the appropriate forum instance for testing.
+    Asserts the forum's __str__() returns the expected string for the appropriate forum instance.
+
+    Asserts the correct forum is retrieved by checking the name.
+    Asserts a ValidationError is raised if
+        - the forum's name is empty.
+        - there is no forum name.
+        - the forum's name exceeds the 80 character limit.
+
+    Asserts the forum slug is automatically generated in the correct format after the instance is saved.
+    Asserts a ValidationError is thrown if the slug is inputted or generated in an incorrect format.
+
+    Asserts the forum's date_added matches today's date.
+    Asserts a ValidationError is thrown if the date_added is does not match today's date.
+
+    Asserts the forum is created inside the correct community by checking the name of the community.
+
+`def test_message_creation():`
+
+    Retrieves the appropriate message instance for testing.
+    Asserts the message's __str__() returns the expected string for the appropriate message instance.
+
+    Asserts the message is created inside the correct forum by checking its associated forum name.
+
+    Asserts the message's content matches the model's setup value.
+    Asserts a ValidationError is raised if
+        - the message's content is empty.
+        - there is no message content.
+
+    Asserts the message sender matches the expected user profile.
+    Asserts the message sender's username matches the expected value.
+
+    Asserts the message's date_sent matches today's date.
+    Asserts a ValidationError is thrown if the date_sent does not match today's date.
+
+---
 
 > #### Models (reader app)
 
