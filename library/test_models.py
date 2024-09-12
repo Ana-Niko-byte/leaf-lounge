@@ -459,7 +459,7 @@ class TestibraryModels(TestCase):
             self.book.type = ""
             self.book.full_clean()
 
-        self.assertEqual(book.date_added, datetime.date(2024, 9, 11))
+        self.assertEqual(book.date_added, datetime.date.today())
         with self.assertRaises(ValidationError):
             self.book.date_added = None
             self.book.full_clean()
@@ -557,7 +557,7 @@ class TestibraryModels(TestCase):
             self.review.full_clean()
 
         # Tested on 11/09/2024.
-        self.assertEqual(review.reviewed_on, datetime.date(2024, 9, 11))
+        self.assertEqual(review.reviewed_on, datetime.date.today())
         with self.assertRaises(ValidationError):
             self.review.reviewed_on = None
             self.review.full_clean()
