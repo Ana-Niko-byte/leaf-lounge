@@ -271,15 +271,23 @@ Fields: `order`, ``
 `def setUp():`
 
     REGISTRATION:
-    Simulates user registration to allow for the creation of a user profile.
+        Simulates user registration to allow for the creation of a user profile.
 
-    USER PROFILE & AUTHOR PROFILE:
-    Retrieves the user profile automatically created following successful user registration. This is handled via reader.signals.create_or_save_profile.
+        USER PROFILE & AUTHOR PROFILE:
+        Retrieves the user profile automatically created following successful user registration. This is handled via reader.signals.create_or_save_profile.
+        Simulates the creation of an author profile and assigns the relevant user profile to the author.user_profile field.
 
-    ORDER:
-    Simulates the creation of an order with no order number.
+        GENRE & COMMUNITY:
+        Simulates the creation of a genre.
 
-    Saves the relevant models to the test sqlite3 database.
+        BOOK:
+        Simulates the creation of a book with relevant relationships to the author and genre models.
+
+        ORDER & BOOKLINEITEM:
+        Simulates the creation of an order with no order number.
+        Simulates the creation of a booklineitem, with relevant relationships to the order and book models. These models in turn depend on the genre, user profile, and author models.
+
+        Saves the relevant models to the test sqlite3 databa 
 
 `def test_order_creation_and_string_fields():`
 
@@ -366,6 +374,19 @@ Fields: `order`, ``
 
     Asserts the order's associated stripe_pid matches the models's setup value.
     Asserts a ValidationError is raised if there is no stripe_pid or it is empty.
+
+`def test_booklineitem_creation():`
+
+    Retrieves the appropriate booklineitem instance for testing.
+    Asserts the booklineitem's __str__() returns the expected string for the appropriate booklineitem instance.
+
+    Asserts the booklineitem's order's user matches the appropriate user.
+    Asserts the booklineitem's book matches the appropriate book.
+    Asserts the booklineitem book type matches the model's set up and raises a ValidationError if there is no type or the type value is empty.
+
+    Asserts the booklineitem quantity matches the model's set up and raises a ValidationError is there is no quantity, the quantity is under the minimum value of 1, or over the maximum value of 99.
+
+    Asserts the booklineitem book_order_cost is calculated and saved correctly.
 
 > #### Models (reader app)
 
