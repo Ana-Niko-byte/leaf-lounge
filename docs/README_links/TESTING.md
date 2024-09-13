@@ -154,7 +154,7 @@ Models: `Author`, `Genre`, `Book`, `Review`
 
     Asserts the newly saved review is saved as an unapproved instance.
 
----
+> #### Models (community app)
 
 `class TestCommunityModel():`
 
@@ -197,8 +197,8 @@ Fields: `Community`
 
 `class TestForumAndMessageModels():`
 
-A class for testing the forum and message models in the Community app.
-Testing includes asserting equal values to those in the model setup, save method testing, user profile association, and format validation for datetime objects and slugs.
+    A class for testing the forum and message models in the Community app.
+    Testing includes asserting equal values to those in the model setup, save method testing, user profile association, and format validation for datetime objects and slugs.
 
 Fields: `Forum`, `Message`
 
@@ -258,7 +258,114 @@ Fields: `Forum`, `Message`
     Asserts the message's date_sent matches today's date.
     Asserts a ValidationError is thrown if the date_sent does not match today's date.
 
----
+> #### Models (checkout app)
+
+`class TestCheckoutModels():`
+
+    A class for testing the order and booklineitem models in the checkout app.
+    Testing includes asserting equal values to those in the model setup, save method testing, and format validation for timezone objects and slugs.
+
+Fields: `order`, ``
+
+###### Methods
+`def setUp():`
+
+    REGISTRATION:
+    Simulates user registration to allow for the creation of a user profile.
+
+    USER PROFILE & AUTHOR PROFILE:
+    Retrieves the user profile automatically created following successful user registration. This is handled via reader.signals.create_or_save_profile.
+
+    ORDER:
+    Simulates the creation of an order with no order number.
+
+    Saves the relevant models to the test sqlite3 database.
+
+`def test_order_creation_and_string_fields():`
+
+    Retrieves the appropriate order instance for testing.
+    Asserts the order's __str__() returns the expected string for the appropriate order instance.
+
+    Asserts order associated user profile matches the expected user profile.
+    Asserts the order's user's username matches the expected value.
+
+    Asserts the order's order number is not empty or None. This ensures that the model was saved and an order number was automatically generated and assigned.
+
+    Asserts the order's associated user's full name matches the model's setup.
+    Asserts a ValidationError is raised if:
+        - the full_name field is empty.
+        - there is no full_name value.
+        - the full_name is longer than 50 characters.
+
+    Asserts the order's associated email matches the model's setup.
+    Asserts a ValidationError is raised if
+        - the email field is empty.
+        - there is no email value.
+        - the email is of an unexpected format.
+
+    Asserts the order's associated phone_number matches the model's setup.
+    Asserts a ValidationError is raised if
+        - the phone_number field is empty.
+        - there is no phone_number value.
+        - the phone_number is longer than 20 characters.
+
+    Asserts the order's associated country matches the model's setup.
+    Asserts a ValidationError is raised if
+        - the country field is empty.
+        - there is no country value.
+        - the country is of an unexpected format.
+
+    Asserts the order's associated postcode matches the model's setup.
+    Asserts a ValidationError is raised if the postcode is of an unexpected format.
+
+    Asserts the order's associated town_city matches the model's setup.
+    Asserts a ValidationError is raised if
+        - the town_city field is empty.
+        - there is no town_city value.
+        - the town_city is longer than 40 characters.
+
+    Asserts the order's associated street_1 matches the model's setup.
+    Asserts a ValidationError is raised if
+        - the street_1 field is empty.
+        - there is no street_1 value.
+        - the street_1 is longer than 80 characters.
+
+    Asserts the order's associated street_2 matches the model's setup.
+    Asserts a ValidationError is raised if
+        - the street_2 field is empty.
+        - there is no street_2 value.
+        - the street_2 is longer than 80 characters.
+
+    Asserts the order's associated county matches the model's setup.
+    Asserts a ValidationError is raised if the county is longer than 80 characters.
+
+`def test_order_creation_and_decimal_fields():`
+
+    Retrieves the appropriate order instance for testing.
+    Asserts the order's __str__() returns the expected string for the appropriate order instance.
+
+    Asserts the order's associated date matches the current date.
+    Asserts a ValidationError is raised if:
+        - the date field is empty.
+        - there is no date value.
+
+    Asserts the order's delivery_cost field is a Decimal format that matches the model's setup value.
+    Asserts the delivery_cost cannot be null or empty.
+    Asserts a ValidationError is raised if the delivery_cost is over 6 decimals, i.e., a book's value is raised too high, or is below 0.
+
+    Asserts the order's order_total field is a Decimal format that matches the model's setup value.
+    Asserts the order_total cannot be null or empty.
+    Asserts a ValidationError is raised if the order_total is over 10 decimals, i.e., the order_total is raised too high, or is below 0.
+
+    Asserts the order's grand_total field is a Decimal format that matches the model's setup value.
+    Asserts the grand_total cannot be null or empty.
+    Asserts a ValidationError is raised if the grand_total is over 10 decimals, i.e., the grand_total is raised too high, or is below 0.
+
+    Asserts the order's original basket identifier matches the model's setup value.
+    Asserts there must be an original_basket value.
+
+    Asserts the order's associated stripe_pid matches the models's setup value.
+    Asserts a ValidationError is raised if there is no stripe_pid or it is empty.
 
 > #### Models (reader app)
 

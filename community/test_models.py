@@ -3,6 +3,7 @@ from django.test import TestCase, Client
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.utils.text import slugify
+from django.utils import timezone
 
 # Signal triggering user_profile creation after user login.
 from reader.signals import create_or_save_profile
@@ -248,7 +249,8 @@ class TestForumAndMessageModels(TestCase):
         self.message = Message(
             forum=self.forum,
             content="test message",
-            messenger=self.user_profile
+            messenger=self.user_profile,
+            date_sent=timezone.now()
         )
         self.message.save()
 
@@ -299,9 +301,9 @@ class TestForumAndMessageModels(TestCase):
             self.forum.slug = "incorrectformat"
             self.forum.full_clean()
 
-        self.assertEqual(forum.date_created, datetime.date.today())
+        self.assertEqual(forum.date_created, timezone.now().date())
         with self.assertRaises(ValidationError):
-            self.forum.date_created = datetime.date(2023, 5, 18)
+            self.forum.date_created = timezone.now()
             self.forum.full_clean()
 
         self.assertEqual(forum.community.name, "TestGenre Community")
@@ -344,7 +346,7 @@ class TestForumAndMessageModels(TestCase):
         self.assertEqual(self.message.messenger, self.user_profile)
         self.assertEqual(self.message.messenger.user.username, "ananiko")
 
-        self.assertEqual(self.message.date_sent.date(), datetime.date.today())
+        self.assertEqual(self.message.date_sent.date(), timezone.now().date())
         with self.assertRaises(ValidationError):
-            self.message.date_sent = datetime.date(2023, 5, 18)
+            self.message.date_sent = timezone.now().date()
             self.message.full_clean()
