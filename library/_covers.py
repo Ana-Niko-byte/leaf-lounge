@@ -1,5 +1,5 @@
 COVERS = (
-    ('SC', 'Softcover'),
-    ('HB', 'Hardback'),
-    ('D', 'Epub'),
+    ('Softcover', 'Softcover'),
+    ('Hardback', 'Hardback'),
+    ('EPUB', 'Epub'),
 )

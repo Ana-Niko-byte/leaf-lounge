@@ -141,3 +141,28 @@
     transform: scale(1.01);
 }
 /* /Forum Books */
+
+/* Author Bio */
+#id_bio{
+    border-radius: 5px;
+    height: 235px;
+    margin: 0;
+    padding-left: 10px;
+}
+/* /Author Bio */
+
+#id_bio:focus, #id_blurb:focus{
+    box-shadow: none;
+    border: 1px solid var(--dark-blue);
+}
+
+#bookForm{
+    max-width: 750px;
+}
+
+#id_blurb{
+    border-radius: 5px;
+    height: 160px;
+    margin: 0;
+    padding-left: 10px;
+}

@@ -13,12 +13,15 @@
         <div class="col-12 d-flex flex-column flex-lg-row justify-content-around align-items-center align-items-lg-start">
             <!-- Author Form -->
             <div class="col-lg-6 col-md-8 col-sm-12 my-3 order-sm-last">
-                <form id="authorForm" method="post" class="bg-light p-4 rounded shadow-sm">
+                <form id="authorForm" method="post" class="bg-white p-4 rounded shadow-lg">
                     <h3 class="mb-3 text-uppercase small d-block d-lg-none"><strong>😉 Let's Get You Registered!</strong></h3>
                     {% csrf_token %}
                     <div class="form-field-container d-flex flex-column flex-md-row">
                         <fieldset class="px-3 mb-3">
-                            {% if profile_exists %}<p class="small mb-3">Already a Leaf Lounge Author?  <a href="{{ upload_book }}">Find my profile</a></p>{% endif %}
+                            {% if profile_exists %}
+                                <p class="small">Already a Leaf Lounge Author?</p>
+                                <p class="small mb-3"><a href="{{ upload_book }}">Find my profile</a></p>
+                                {% endif %}
                             <legend class="fieldset-details fieldset-label small text-black text-uppercase"><strong>Author</strong></legend>
                             <p class="text-muted small mb-2">This name will appear as the book author!</p>
                             {{ authorForm.first_name | as_crispy_field }}
@@ -26,7 +29,7 @@
                             {{ authorForm.d_o_b | as_crispy_field }}
                             {{ authorForm.nationality | as_crispy_field }}
                         </fieldset>
-                        <fieldset class="px-3 mb-3">
+                        <fieldset class="px-3 mt-5 mb-3 d-flex flex-column justify-content-end">
                             <legend class="fieldset-details fieldset-label small text-black text-uppercase"><strong>Bio</strong></legend>
                             {{ authorForm.bio | as_crispy_field }}
                         </fieldset>
@@ -39,7 +42,7 @@
             <!-- /Author Form -->
             <!-- Text -->
             <div class="col-lg-5 contact-info d-none d-lg-block">
-                <h3 class="mt-4 text-uppercase"><strong>😉 Let's Get You Registered!</strong></h3>
+                <h3 class="mt-4 text-uppercase text-start"><strong>😉 Let's Get You Registered!</strong></h3>
                 <p class="mt-2 mb-5">We just need some information about our new author to get started!</p>
 
                 <p class="my-4"><span class="bookmarks"><i class="fa-solid fa-sm fa-bookmark me-2"></i></span>You can go by your <strong>real name or a pen name</strong> — it's up to you!</p>

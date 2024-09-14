@@ -8,9 +8,9 @@
 
 {% block content %}
 <div class="container">
-    <div class="row text-center">
-        <h1>Sign In</h1>
-        <p>Don't have an account? Create one <a href="{{ signup_url }}">here</a>.</p>
+    <div class="row text-center mt-5">
+        <h1><strong>Sign In</strong></h1>
+        <p>Don't have an account? Create one <a href="{{ signup_url }}" class="btn-link text-info">here</a>.</p>
     </div>
     <div class="row d-flex justify-content-center">
         <div class="col-lg-6 col-md-8 col-sm-12">
@@ -26,11 +26,15 @@
                 {% csrf_token %}
                 {{ form | crispy }}
                 {% if redirect_field_value %}
-                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                <!-- <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" /> -->
                 {% endif %}
                 <div class="button-container text-center">
-                    <a href="{{ home_url }}" class="btn btn-info"><i class="fa-solid fa-house-chimney me-2"></i>Home</a>
-                    <button class="btn btn-warning" type="submit">
+                    <a href="{{ home_url }}" class="btn-link">
+                        <button class="custom-button me-0 me-md-2">
+                            <i class="fa-solid fa-house-chimney me-2"></i>Home
+                        </button>
+                    </a>
+                    <button class="custom-button ms-0 ms-md-2" type="submit">
                         <i class="fa-solid fa-arrow-right-to-bracket me-2"></i>Sign In
                     </button>
                 </div>

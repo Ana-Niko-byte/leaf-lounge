@@ -286,6 +286,7 @@ def delete_message(request, slug, id):
     return HttpResponseRedirect(reverse('forum_detail', args=[slug]))
 
 
+@login_required
 def create_author(request):
     """
     This view is responsible for allowing users to register as Leaf
@@ -321,7 +322,7 @@ def create_author(request):
         attempt = 1
         while attempt <= 5:
             try:
-                p = UserProfile.objects.get(
+                p = UserProfile.objects.filter(
                     user=request.user
                 )
                 profile_exists = True
@@ -333,7 +334,7 @@ def create_author(request):
     if request.method == 'POST':
         author_form = AuthorForm(data=request.POST)
         if author_form.is_valid():
-            user = UserProfile.objects.get(user=request.user)
+            user = get_object_or_404(UserProfile, user=request.user)
             firstname = author_form.cleaned_data['first_name']
             lastname = author_form.cleaned_data['last_name']
             d_o_b = author_form.cleaned_data['d_o_b']
@@ -344,7 +345,6 @@ def create_author(request):
             age = (today-d_o_b).days / 365.25
             if age > 16 and age < 100:
                 if profile_exists:
-                    print('EXISTS')
                     Author.objects.create(
                         user_profile=user,
                         first_name=f'{firstname}',
@@ -354,11 +354,9 @@ def create_author(request):
                         bio=f'{bio}',
                     )
                 else:
-                    print('trying to create new profile')
                     new_profile = UserProfile.objects.create(
                         user=request.user
                     )
-                    print('created new profile!')
                     Author.objects.create(
                         user_profile=new_profile,
                         first_name=f'{firstname}',
@@ -367,7 +365,6 @@ def create_author(request):
                         nationality=f'{nationality}',
                         bio=f'{bio}'
                     )
-                    print('created author from new profile!')
                 messages.success(
                     request,
                     """Success! Now let's register your book :)"""
@@ -414,32 +411,35 @@ def upload_book(request):
     is unsuccessful, the user is redirected home with an error
     message.
     """
-    profile = UserProfile.objects.get(user=request.user)
-    author = get_object_or_404(Author, user_profile=profile)
-    if request.method == 'POST':
-        book_form = BookForm(data=request.POST)
-        if book_form.is_valid():
-            book = book_form.save(commit=False)
-            book.author = author
-            book.save()
-            messages.success(
-                request,
-                """Your book has been registered successfully!
-                You may view it under 'My Books' :)"""
-            )
-            return redirect('user_books')
+    try:
+        profile = UserProfile.objects.get(user=request.user)
+        author = get_object_or_404(Author, user_profile=profile)
+        if request.method == 'POST':
+            book_form = BookForm(data=request.POST)
+            if book_form.is_valid():
+                book = book_form.save(commit=False)
+                book.author = author
+                book.save()
+                messages.success(
+                    request,
+                    """Your book has been registered successfully!
+                    You may view it under 'Authored Books' :)"""
+                )
+                return redirect('user_books')
+            else:
+                messages.error(
+                    request,
+                    """Please ensure your information is correct and
+                    try again. If the error persists, please get in touch
+                    with our dedicated customer support team to resolve
+                    this issue.
+                    Thank you for your understanding!"""
+                )
+                return redirect('upload_book')
         else:
-            messages.error(
-                request,
-                """We are unable to register your book at this
-                time. If the error persists, please get in touch
-                with our dedicated customer support team to resolve
-                this issue.
-                Thank you for your understanding!"""
-            )
-            return redirect('home')
-    else:
-        book_form = BookForm()
+            book_form = BookForm()
+    except Exception as e:
+        print(f'{e}')
 
     context = {
         'bookForm': book_form,

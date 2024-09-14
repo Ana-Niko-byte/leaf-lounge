@@ -148,9 +148,9 @@ class Book(models.Model):
         Orders by earliest date added.
     """
     COVERS = [
-        ('SC', 'Softcover'),
-        ('HB', 'Hardback'),
-        ('D', 'Epub'),
+        ('Softcover', 'Softcover'),
+        ('Hardback', 'Hardback'),
+        ('EPUB', 'Epub'),
     ]
     title = models.CharField(
         max_length=100,
@@ -202,7 +202,7 @@ class Book(models.Model):
     type = models.CharField(
         max_length=9,
         choices=COVERS,
-        default='SC',
+        default='Softcover',
         blank=False,
         null=False
     )

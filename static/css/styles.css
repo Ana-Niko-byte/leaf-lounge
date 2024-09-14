@@ -4,7 +4,7 @@
 
 /* Colour Specification */
 :root {
-    --dark-text-color : rgb(77, 77, 77);
+    --dark-text-color : rgb(25, 25, 25);
     --mute-grey-color : rgb(156, 156, 156);
     --white-text : rgb(246, 246, 246);
     --light-grey : rgb(161, 161, 161);
@@ -16,6 +16,7 @@
     --light-blue: #d0d6d6;
     --search-bg: rgb(254, 254, 254);
     --book-outline: #041421;
+    --light-light: rgb(247, 247, 247);
 }
 /* /Colour Specification */
 
@@ -48,6 +49,10 @@ html, body{
 /* /Branding */
 
 /* Links */
+nav{
+    background-color: var(--light-light);
+}
+
 .nav-item a{
     text-decoration: none;
     font-size: 1.2rem;
@@ -88,6 +93,25 @@ html, body{
 }
 /* /Links */
 
+/* Authentication */
+#id_login, #id_password{
+    border-radius: 5px;
+    height: 35px;
+    margin: 0;
+    padding-left: 10px;
+}
+
+#id_login:focus, #id_password:focus{
+    box-shadow: none;
+    border: 1px solid var(--dark-blue);
+}
+
+.form-label{
+    font-weight: 700;
+    font-size: 0.8rem;
+}
+/* /Authentication */
+
 /* UIUX */
 *{
     margin: 0;
@@ -111,7 +135,7 @@ p{
 .active-loader{
     height: 3px;
     width: 100%;
-    background-color: var(--green-grey);
+    background-color: #006D77;
     border-radius: 2px;
     transition: all 0.2s ease;
 }
@@ -171,10 +195,26 @@ p{
     transform: scale(1.04);
 }
 
+.search-input{
+    border: 7px solid var(--book-outline);
+    border-right: none;
+    box-shadow: none;
+    outline: none;
+}
+
+.search-input:focus{
+    border: 7px solid var(--book-outline);
+    border-right: none;
+    box-shadow: none;
+    outline: none;
+    background-color: var(--search-bg);
+}
+
 .form-control-search:focus {
     box-shadow: 5px 5px 5px var(--dark-navy);
     transform: scale(1.08);
-    border: 7px solid var(--book-outline);
+    border-top: 7px solid var(--book-outline);
+    border-bottom: 7px solid var(--book-outline);
     background-color: var(--search-bg);
 }
 
@@ -204,11 +244,15 @@ p{
     padding: 10px;
 }
 
-.subscribe-btn{
+.subscribe-btn, .unsubscribe-btn{
     border: none;
     height: 35px;
     margin: 0;
     padding: 10px;
+}
+
+.fieldset-label{
+    font-size: 0.7rem;
 }
 /* /UIUX */
 
@@ -250,7 +294,7 @@ body {
 }
 
 .small-custom-button{
-    width: 100px;
+    width: 120px;
     padding: 7px;
     border-radius: 5px;
 }
@@ -280,11 +324,10 @@ body {
 }
 
 .table-button:hover{
-    background-color: darkorange;
-    outline: 4px solid rgb(255, 194, 80);
-    color: white;
+    background-color: var(--dark-blue);
+    color: var(--white-text);
     transform: translateY(-5px);
-    box-shadow: 0 10px rgb(78, 78, 78);
+    box-shadow: 0 10px var(--light-green-grey);
 }
 
 .custom-button-small{
@@ -298,10 +341,6 @@ body {
 .btn-link{
     text-decoration: none;
     color: var(--white-text);
-}
-
-.search-form-container{
-    background-color: rgba(116, 116, 116, 0.5);
 }
 
 .search-input, .search-input-nav{
@@ -328,7 +367,7 @@ body {
     border-right: none;
 }
 
-.subscribe-btn{
+.subscribe-btn, .unsubscribe-btn{
     border: 2px solid var(--dark-navy);
     outline: none;
     border-top-right-radius: 3px;
@@ -340,6 +379,10 @@ body {
 
 .subscribe-btn:hover i{
     color: green;
+}
+
+.unsubscribe-btn:hover i{
+    color: red;
 }
 
 .subscribe-input:active, .subscribe-input:focus{
@@ -379,7 +422,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: green;
+    background-color: var(--dark-blue);
     -webkit-transition: .4s;
     transition: .4s;
 }
@@ -393,7 +436,7 @@ body {
 }
 
 .unsubscribe-text{
-    color: green;
+    color: var(--dark-blue);
 }
 
 .slider:before {
@@ -441,7 +484,7 @@ input:checked + .slider:before {
 /* /Slider */
 
 footer{
-    background-color: var(--light-blue);
+    background-color: var(--light-light);
 }
 
 /* Media Queries */

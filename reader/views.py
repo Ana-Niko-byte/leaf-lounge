@@ -80,8 +80,11 @@ def my_books(request):
     user_profile = get_object_or_404(UserProfile, user=request.user)
 
     # Check if the user is a registered author.
-    is_author = Author.objects.get(user_profile=user_profile)
-    my_books = Book.objects.filter(author=is_author)
+    is_author = False
+    if Author.objects.filter(user_profile=user_profile):
+        is_author = True
+
+    my_books = Book.objects.filter(author=Author.objects.get(user_profile=user_profile))
 
     # Retrieve their orders.
     user_orders = Order.objects.filter(user_profile=user_profile)

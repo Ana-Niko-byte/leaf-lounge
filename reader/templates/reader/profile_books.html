@@ -2,15 +2,24 @@
 {% load static %}
 {% load crispy_forms_tags %}
 
+{% block extra_css %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'reader/css/my_books.css' %}">
+{% endblock %}
+
 {% block content %}
 <div class="container">
     <!-- Registered -->
     {% if is_author %}
     <div class="row shadow-lg p-4 rounded my-3">
-        <h4 class="mb-4 text-uppercase small"><strong><i class="fa-solid fa-book me-2"></i>My Books</strong></h4>
+        <h4 class="mb-4 text-uppercase small"><strong><i class="fa-solid fa-pen-nib me-2"></i>Authored Books</strong></h4>
         {% for book in my_books %}
         <div class="book col-2">
-            <img src="../../../static/images/1984_cover.jpg" style="width: 150px;" alt="{{ book.book.title }} cover">
+            {% if book.image %}
+            <img src="{{ book.image.url }}" alt="{{ book.book.title }} cover" class="profile-book">
+            {% else %}
+            <img src="{{ MEDIA_URL }}bookplaceholder.png" alt="{{ book.book.title }} cover" class="profile-book">
+            {% endif %}
             <p class="mt-2"><strong><small>Title: {{ book.title }}</small></strong></p>
             <p class="mt-1"><strong><small>Registered: {{ book.date_added }}</small></strong></p>
         </div>
@@ -21,28 +30,38 @@
 
     <div class="row d-flex justify-content-between align-items-start mt-4">
         <!-- Purchased -->
-        <div class="col-lg-2 col-md-4 col-sm-12 d-flex flex-column align-items-center">
-            <a href="{% url 'user_books' %}" class="nav-link custom-button custom-button-extended text-center {% if not chosen %}d-none{% else %}d-block custom-button-alternative{% endif %} m-2">Show All</a>
+        <div class="col-lg-3 col-md-4 col-sm-12">
             <form action="{% url 'user_books' %}" class="d-flex flex-column align-items-center justify-content-center" method="get">
-                <h4 class="mb-4 text-uppercase small"><strong><i class="fa-solid fa-book me-2"></i>My Purchses</strong></h4>
+                <h4 class="mb-4 text-uppercase small"><strong><i class="fa-solid fa-book me-2"></i>My Purchases</strong></h4>
                 {% for genre in user_genres %}
-                <button type="submit" class="table-button {% if genre.name == user_genre %}{% else %}{% endif %} text-center m-2" name="genre" value="{{ genre.name }}">
+                <button type="submit" class="table-button text-center m-1" name="genre" value="{{ genre.name }}">
                     <span class="text-uppercase small"><strong>{{ genre.name }}</strong></span>
                 </button>
                 {% endfor %}
             </form>
+            <!-- This needs fixing! should reset the url -->
+            <div class="button-container d-flex justify-content-end">
+                <a href="{% url 'user_books' %}" class="btn-link"></a>
+                    <button class="custom-button mt-3 {% if not chosen %}d-none{% else %}d-block{% endif %}">
+                        Show All
+                    </button>
+                </a>
+            </div>
         </div>
-        <div class="col-lg-10 col-md-8 col-sm-12 {% if not chosen %}d-block{% else %}d-none{% endif %}">
+        <div class="col-lg-9 col-md-8 col-sm-12 {% if not chosen %}d-block{% else %}d-none{% endif %}">
             {% for genre in user_genres %}
-            <div class="genre-container mb-5 p-4 bg-white rounded">
+            <div class="genre-container mb-5 rounded">
                 <h4 class="mb-3 text-uppercase small"><strong><i class="fa-solid fa-bookmark fa-sm me-2"></i>{{ genre.name }}</strong></h4>
-                <div class="book-container">
+                <div class="book-genre-rows">
                     {% for book in user_books %}
                         {% if book.genre == genre %}
                         <div class="book col-2">
-                            <img src="../../../static/images/1984_cover.jpg" style="width: 150px;" alt="{{ book.book.title }} cover">
-                            <p class="mt-2 mb-3"><strong><small>{{ book.title }}</small></strong></p>
-                            <a href="{% url 'leave_review' book.id %}" class="nav-link btn-review custom-button custom-button-extended" data-book-title="{{ book.title }}">Leave a Review</a>
+                            <img src="{{ book.image.url }}" alt="{{ book.book.title }} cover" class="profile-book">
+                            <a href="{% url 'leave_review' book.id %}" class="btn-link" data-book-title="{{ book.title }}">
+                                <button class="my-3 custom-button">
+                                    Leave a Review
+                                </button>
+                            </a>
                         </div>
                         {% endif %}
                     {% endfor %}
@@ -50,16 +69,22 @@
             </div>
             {% endfor %}
         </div>
-        <div class="col-lg-10 col-md-8 col-sm-12">
-            {% if filtered_books %}
-                {% for book in filtered_books %}
-                <div class="book col-2">
-                    <img src="../../../static/images/1984_cover.jpg" style="width: 150px;" alt="{{ book.book.title }} cover">
-                    <p class="mt-2 mb-3"><strong><small>{{ book.title }}</small></strong></p>
-                    <a href="{% url 'leave_review' book.id %}" class="nav-link btn-review custom-button custom-button-extended mb-3" data-book-title="{{ book.title }}">Leave a Review</a>
-                </div>
-                {% endfor %}
-            {% endif %}
+        <div class="col-lg-9 col-md-8 col-sm-12">
+            <div class="book-genre-rows">
+                {% if filtered_books %}
+                <h4 class="mb-3 text-uppercase small"><strong><i class="fa-solid fa-bookmark fa-sm me-2"></i>{{ user_genre }}</strong></h4>
+                    {% for book in filtered_books %}
+                    <div class="book col-2">
+                        <img src="{{ book.image.url }}" alt="{{ book.book.title }} cover" class="profile-book">
+                        <a href="{% url 'leave_review' book.id %}" class="btn-link" data-book-title="{{ book.title }}">
+                            <button class="my-3 custom-button">
+                                Leave a Review
+                            </button>
+                        </a>
+                    </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
         </div>
         <!-- Purchased -->
 

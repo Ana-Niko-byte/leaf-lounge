@@ -56,8 +56,8 @@ class UserProfileForm(forms.ModelForm):
 class ReviewForm(forms.ModelForm):
     """
     A form for users to leave reviews on purchased books. Reviews are tied
-    to the user's user profile, and can be viewed under
-    'My Profile' > 'My Reviews'.
+    to the user's user profile, and can be left under 'My Books', and viewed
+    under 'My Profile' > 'My Reviews'.
 
     Each review requires approval prior to being displayed in the relevant book
     detail page. Unapproved reviews can be edited. All reviews can be deleted.
@@ -93,4 +93,4 @@ class ReviewForm(forms.ModelForm):
                 self.fields[field].widget.attrs['placeholder'] = 'Great book!'
             elif field == 'rating':
                 self.fields[field].widget.attrs['placeholder'] = 'Rating out of 10'
-            self.fields[field].widget.attrs['class'] = 'custom-fields'
+            self.fields[field].widget.attrs['class'] = 'custom-review-fields'

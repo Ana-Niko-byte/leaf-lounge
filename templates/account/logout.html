@@ -6,8 +6,8 @@
 
 {% block content %}
 <div class="container">
-    <div class="row text-center">
-        <h1>Sign Out</h1>
+    <div class="row text-center mt-5">
+        <h1><strong>Sign Out</strong></h1>
         <p>Are you sure you want to sign out?</p>
     </div>
     <div class="row text-center">
@@ -18,9 +18,13 @@
                 {{ redirect_field }}
             {% endslot %}
             {% slot actions %}
-            <div class="button-container my-5">
-                <a href="{{ home_url }}" class="btn btn-warning"><i class="fa-solid fa-house-chimney me-2"></i>Home</a>
-                <button class="btn btn-warning" type="submit"><i class="fa-solid fa-arrow-right-from-bracket me-2"></i>Sign Out</button>
+            <div class="button-container mt-5">
+                <a href="{{ home_url }}" class="btn-link">
+                    <button class="custom-button me-0 me-md-2">
+                        <i class="fa-solid fa-house-chimney me-2"></i>No
+                    </button>
+                </a>
+                <button class="custom-button ms-0 ms-md-2" type="submit"><i class="fa-solid fa-arrow-right-from-bracket me-2"></i>Sign Out</button>
             </div>
             {% endslot %}
         {% endelement %}

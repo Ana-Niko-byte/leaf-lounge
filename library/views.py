@@ -42,7 +42,7 @@ def library(request):
 
     if request.GET:
         if 'q' in request.GET:
-            print('by search')
+            print('q')
             query = request.GET['q']
             if not query:
                 messages.error(
@@ -52,6 +52,7 @@ def library(request):
                 return redirect(reverse('library'))
             queries = Q(title__icontains=query)
             books = books.filter(queries)
+            print(queries)
 
         if 'author' in request.GET:
             if 'genre' in request.GET:
