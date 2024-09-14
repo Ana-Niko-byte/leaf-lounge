@@ -13,7 +13,7 @@
             "publisher": "Charles Scribner's Sons",
             "date_added": "2024-07-11",
             "price": 10.99,
-            "image": "tgg.jpg"
+            "image": "the-great-gatsby-cover.webp"
         }
     },
     {
@@ -30,7 +30,7 @@
             "publisher": "J.B. Lippincott & Co.",
             "date_added": "2024-07-11",
             "price": 7.99,
-            "image": "to_kill_a_mockingbird_cover.jpg"
+            "image": "to-kill-a-mockingbird-cover.jpg"
         }
     },
     {
@@ -41,13 +41,13 @@
             "isbn": "9780451524935",
             "slug": "1984-orwell",
             "author": 3,
-            "genre": 1,
+            "genre": 12,
             "blurb": "A novel about a dystopian future under totalitarian rule.",
             "year_published": 1949,
             "publisher": "Secker & Warburg",
             "date_added": "2024-07-11",
             "price": 8.99,
-            "image": "1984_cover.jpg"
+            "image": "1984-cover.png"
         }
     },
     {
@@ -64,7 +64,7 @@
             "publisher": "T. Egerton",
             "date_added": "2024-07-11",
             "price": 6.99,
-            "image": "pride_and_prejudice_cover.jpg"
+            "image": "pride-and-prejudice-cover.jpg"
         }
     },
     {
@@ -81,7 +81,7 @@
             "publisher": "Little, Brown and Company",
             "date_added": "2024-07-11",
             "price": 9.99,
-            "image": "catcher_in_the_rye_cover.jpg"
+            "image": "the-catcher-in-the-rye-cover.webp"
         }
     },
     {
@@ -98,7 +98,7 @@
             "publisher": "George Allen & Unwin",
             "date_added": "2024-07-11",
             "price": 11.99,
-            "image": "the_hobbit_cover.jpg"
+            "image": "the-hobbit-cover.jpg"
         }
     },
     {
@@ -115,7 +115,7 @@
             "publisher": "Harper & Brothers",
             "date_added": "2024-07-11",
             "price": 12.99,
-            "image": "moby_dick_cover.jpg"
+            "image": "moby-dick-cover.jpg"
         }
     },
     {
@@ -132,7 +132,7 @@
             "publisher": "The Russian Messenger",
             "date_added": "2024-07-11",
             "price": 15.99,
-            "image": "war_and_peace_cover.jpg"
+            "image": "war-and-peace-cover.jpg"
         }
     },
     {
@@ -149,7 +149,7 @@
             "publisher": "Chatto & Windus",
             "date_added": "2024-07-11",
             "price": 9.49,
-            "image": "brave_new_world_cover.jpg"
+            "image": "brave-new-world-cover.jpg"
         }
     },
     {
@@ -166,7 +166,313 @@
             "publisher": "George Allen & Unwin",
             "date_added": "2024-07-11",
             "price": 25.99,
-            "image": "the_lord_of_the_rings_cover.jpg"
+            "image": "the-lord-of-the-rings-cover.jpg"
+        }
+    },
+    {
+        "model": "library.book",
+        "pk": 11,
+        "fields": {
+            "title": "Wuthering Heights",
+            "isbn": "9780141439556",
+            "slug": "wuthering-heights-bronte",
+            "author": 17,
+            "genre": 33,
+            "blurb": "A novel that tells the story of the intense and destructive love between Heathcliff and Catherine Earnshaw.",
+            "year_published": 1847,
+            "publisher": "Thomas Cautley Newby",
+            "date_added": "2024-07-11",
+            "price": 7.99,
+            "image": "wuthering-heights-cover.jpg"
+        }
+    },
+    {
+        "model": "library.book",
+        "pk": 12,
+        "fields": {
+            "title": "Jane Eyre",
+            "isbn": "9780141441146",
+            "slug": "jane-eyre-bronte",
+            "author": 16,
+            "genre": 33,
+            "blurb": "A novel that follows the experiences of Jane Eyre as she becomes governess to the brooding Mr. Rochester.",
+            "year_published": 1847,
+            "publisher": "Smith, Elder & Co.",
+            "date_added": "2024-07-11",
+            "price": 7.49,
+            "image": "jane-eyre-cover.jpg"
+        }
+    },
+    {
+        "model": "library.book",
+        "pk": 13,
+        "fields": {
+            "title": "Shirley",
+            "isbn": "9780140435092",
+            "slug": "shirley-bronte",
+            "author": 16,
+            "genre": 7,
+            "blurb": "A novel that explores social and industrial unrest in 19th-century England.",
+            "year_published": 1849,
+            "publisher": "Smith, Elder & Co.",
+            "date_added": "2024-07-11",
+            "price": 8.49,
+            "image": "shirley-cover.jpg"
+        }
+    },
+    {
+        "model": "library.book",
+        "pk": 14,
+        "fields": {
+            "title": "Villette",
+            "isbn": "9780140431186",
+            "slug": "villette-bronte",
+            "author": 16,
+            "genre": 7,
+            "blurb": "A novel that tells the story of Lucy Snowe's emotional struggle in a foreign land.",
+            "year_published": 1853,
+            "publisher": "Smith, Elder & Co.",
+            "date_added": "2024-07-11",
+            "price": 8.99,
+            "image": "villette-cover.jpg"
+        }
+    },
+    {
+        "model": "library.book",
+        "pk": 15,
+        "fields": {
+            "title": "The Professor",
+            "isbn": "9780140433111",
+            "slug": "the-professor-bronte",
+            "author": 16,
+            "genre": 7,
+            "blurb": "A novel about a young man, William Crimsworth, who goes to Belgium to seek his fortune.",
+            "year_published": 1857,
+            "publisher": "Smith, Elder & Co.",
+            "date_added": "2024-07-11",
+            "price": 7.99,
+            "image": "the-professor-cover.jpg"
+        }
+    },
+    {
+        "model": "library.book",
+        "pk": 16,
+        "fields": {
+            "title": "Agnes Grey",
+            "isbn": "9780140432107",
+            "slug": "agnes-grey-bronte",
+            "author": 18,
+            "genre": 7,
+            "blurb": "A novel about a governess who finds herself working in difficult conditions.",
+            "year_published": 1847,
+            "publisher": "Thomas Cautley Newby",
+            "date_added": "2024-07-11",
+            "price": 7.49,
+            "image": "agnes-grey-cover.jpg"
+        }
+    },
+    {
+        "model": "library.book",
+        "pk": 17,
+        "fields": {
+            "title": "The Tenant of Wildfell Hall",
+            "isbn": "9780140434743",
+            "slug": "the-tenant-of-wildfell-hall-bronte",
+            "author": 18,
+            "genre": 7,
+            "blurb": "A novel about a woman who leaves her alcoholic husband and attempts to live independently.",
+            "year_published": 1848,
+            "publisher": "Thomas Cautley Newby",
+            "date_added": "2024-07-11",
+            "price": 8.49,
+            "image": "the-tenant-of-wildfell-hall-cover.jpg"
+        }
+    },
+    {
+        "model": "library.book",
+        "pk": 18,
+        "fields": {
+            "title": "Crime and Punishment",
+            "isbn": "9780143107637",
+            "slug": "crime-and-punishment-dostoevsky",
+            "author": 15,
+            "genre": 7,
+            "blurb": "A novel that focuses on the mental anguish and moral dilemmas of an impoverished ex-student who murders a pawnbroker.",
+            "year_published": 1866,
+            "publisher": "The Russian Messenger",
+            "date_added": "2024-07-11",
+            "price": 9.99,
+            "image": "crime-and-punishment-cover.jpg"
+        }
+    },
+    {
+        "model": "library.book",
+        "pk": 19,
+        "fields": {
+            "title": "The Brothers Karamazov",
+            "isbn": "9780374528379",
+            "slug": "the-brothers-karamazov-dostoevsky",
+            "author": 15,
+            "genre": 7,
+            "blurb": "A philosophical novel set in 19th-century Russia, dealing with faith, doubt, and free will.",
+            "year_published": 1880,
+            "publisher": "The Russian Messenger",
+            "date_added": "2024-07-11",
+            "price": 11.99,
+            "image": "the-brothers-karamazov-cover.jpg"
+        }
+    },
+    {
+        "model": "library.book",
+        "pk": 20,
+        "fields": {
+            "title": "The Idiot",
+            "isbn": "9780140447927",
+            "slug": "the-idiot-dostoevsky",
+            "author": 15,
+            "genre": 7,
+            "blurb": "A novel about the simple and naive Prince Myshkin, whose honesty and kindness contrast with society's corruption.",
+            "year_published": 1869,
+            "publisher": "The Russian Messenger",
+            "date_added": "2024-07-11",
+            "price": 10.99,
+            "image": "the-idiot-cover.jpg"
+        }
+    },
+    {
+        "model": "library.book",
+        "pk": 21,
+        "fields": {
+            "title": "A Tale of Two Cities",
+            "isbn": "9780141439600",
+            "slug": "a-tale-of-two-cities-dickens",
+            "author": 14,
+            "genre": 7,
+            "blurb": "A historical novel set in London and Paris before and during the French Revolution.",
+            "year_published": 1859,
+            "publisher": "Chapman & Hall",
+            "date_added": "2024-07-11",
+            "price": 7.99,
+            "image": "a-tale-of-two-cities-cover.jpg"
+        }
+    },
+    {
+        "model": "library.book",
+        "pk": 22,
+        "fields": {
+            "title": "Great Expectations",
+            "isbn": "9780141439563",
+            "slug": "great-expectations-dickens",
+            "author": 14,
+            "genre": 7,
+            "blurb": "A novel that depicts the personal growth and development of an orphan named Pip.",
+            "year_published": 1861,
+            "publisher": "Chapman & Hall",
+            "date_added": "2024-07-11",
+            "price": 8.99,
+            "image": "great-expectations-cover.jpg"
+        }
+    },
+    {
+        "model": "library.book",
+        "pk": 23,
+        "fields": {
+            "title": "The Old Man and the Sea",
+            "isbn": "9780684830490",
+            "slug": "the-old-man-and-the-sea-hemingway",
+            "author": 12,
+            "genre": 7,
+            "blurb": "A novel about an aging Cuban fisherman who struggles with a giant marlin far out in the Gulf Stream.",
+            "year_published": 1952,
+            "publisher": "Charles Scribner's Sons",
+            "date_added": "2024-07-11",
+            "price": 9.49,
+            "image": "the-old-man-and-the-sea-cover.jpg"
+        }
+    },
+    {
+        "model": "library.book",
+        "pk": 24,
+        "fields": {
+            "title": "For Whom the Bell Tolls",
+            "isbn": "9780684803357",
+            "slug": "for-whom-the-bell-tolls-hemingway",
+            "author": 12,
+            "genre": 17,
+            "blurb": "A novel that tells the story of an American dynamiter during the Spanish Civil War.",
+            "year_published": 1940,
+            "publisher": "Charles Scribner's Sons",
+            "date_added": "2024-07-11",
+            "price": 10.99,
+            "image": "for-whom-the-bell-tolls-cover.jpg"
+        }
+    },
+    {
+        "model": "library.book",
+        "pk": 25,
+        "fields": {
+            "title": "The Adventures of Tom Sawyer",
+            "isbn": "9780141321102",
+            "slug": "the-adventures-of-tom-sawyer-twain",
+            "author": 11,
+            "genre": 1,
+            "blurb": "A novel about the adventures of a young boy growing up along the Mississippi River.",
+            "year_published": 1876,
+            "publisher": "American Publishing Company",
+            "date_added": "2024-07-11",
+            "price": 8.99,
+            "image": "the-adventures-of-tom-sawyer-cover.jpg"
+        }
+    },
+    {
+        "model": "library.book",
+        "pk": 26,
+        "fields": {
+            "title": "Adventures of Huckleberry Finn",
+            "isbn": "9780142437178",
+            "slug": "adventures-of-huckleberry-finn-twain",
+            "author": 11,
+            "genre": 1,
+            "blurb": "A novel about Huck Finn and his journey down the Mississippi River, exploring themes of race, identity, and freedom.",
+            "year_published": 1884,
+            "publisher": "Chatto & Windus",
+            "date_added": "2024-07-11",
+            "price": 9.49,
+            "image": "adventures-of-huckleberry-finn-cover.jpg"
+        }
+    },
+    {
+        "model": "library.book",
+        "pk": 27,
+        "fields": {
+            "title": "The Prince and the Pauper",
+            "isbn": "9780140436693",
+            "slug": "the-prince-and-the-pauper-twain",
+            "author": 11,
+            "genre": 15,
+            "blurb": "A historical novel about two boys—one a prince and one a pauper—who switch places and experience life from the other's perspective.",
+            "year_published": 1881,
+            "publisher": "James R. Osgood & Co.",
+            "date_added": "2024-07-11",
+            "price": 7.99,
+            "image": "the-prince-and-the-pauper-cover.jpg"
+        }
+    },
+    {
+        "model": "library.book",
+        "pk": 28,
+        "fields": {
+            "title": "One Hundred Years of Solitude",
+            "isbn": "9780060883287",
+            "slug": "one-hundred-years-of-solitude-marquez",
+            "author": 10,
+            "genre": 23,
+            "blurb": "A novel that tells the story of the Buendía family over seven generations in the fictional town of Macondo.",
+            "year_published": 1967,
+            "publisher": "Harper & Row",
+            "date_added": "2024-07-11",
+            "price": 12.49,
+            "image": "one-hundred-years-of-solitude-cover.jpg"
         }
     }
 ]

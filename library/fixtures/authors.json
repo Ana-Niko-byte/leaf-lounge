@@ -96,5 +96,104 @@
             "nationality": "UK",
             "bio": "Aldous Leonard Huxley was an English writer and philosopher."
         }
+    },
+    {
+        "model": "library.author",
+        "pk": 10,
+        "fields": {
+            "first_name": "Gabriel",
+            "last_name": "García Márquez",
+            "d_o_b": "1927-03-06",
+            "nationality": "CO",
+            "bio": "Gabriel José de la Concordia García Márquez was a Colombian novelist, short-story writer, and journalist, known for his works of magic realism."
+        }
+    },
+    {
+        "model": "library.author",
+        "pk": 11,
+        "fields": {
+            "first_name": "Mark",
+            "last_name": "Twain",
+            "d_o_b": "1835-11-30",
+            "nationality": "US",
+            "bio": "Samuel Langhorne Clemens, known by his pen name Mark Twain, was an American writer, humorist, and lecturer."
+        }
+    },
+    {
+        "model": "library.author",
+        "pk": 12,
+        "fields": {
+            "first_name": "Ernest",
+            "last_name": "Hemingway",
+            "d_o_b": "1899-07-21",
+            "nationality": "US",
+            "bio": "Ernest Miller Hemingway was an American novelist, short-story writer, and journalist."
+        }
+    },
+    {
+        "model": "library.author",
+        "pk": 13,
+        "fields": {
+            "first_name": "Virginia",
+            "last_name": "Woolf",
+            "d_o_b": "1882-01-25",
+            "nationality": "UK",
+            "bio": "Adeline Virginia Woolf was an English writer, considered one of the most important modernist authors of the 20th century."
+        }
+    },
+    {
+        "model": "library.author",
+        "pk": 14,
+        "fields": {
+            "first_name": "Charles",
+            "last_name": "Dickens",
+            "d_o_b": "1812-02-07",
+            "nationality": "UK",
+            "bio": "Charles John Huffam Dickens was an English writer and social critic, regarded as the greatest novelist of the Victorian era."
+        }
+    },
+    {
+        "model": "library.author",
+        "pk": 15,
+        "fields": {
+            "first_name": "Fyodor",
+            "last_name": "Dostoevsky",
+            "d_o_b": "1821-11-11",
+            "nationality": "RU",
+            "bio": "Fyodor Mikhailovich Dostoevsky was a Russian novelist, short-story writer, essayist, and journalist."
+        }
+    },
+    {
+        "model": "library.author",
+        "pk": 16,
+        "fields": {
+            "first_name": "Charlotte",
+            "last_name": "Brontë",
+            "d_o_b": "1816-04-21",
+            "nationality": "UK",
+            "bio": "Charlotte Brontë was an English novelist and poet, best known for her novel Jane Eyre."
+        }
+    },
+    {
+        "model": "library.author",
+        "pk": 17,
+        "fields": {
+            "first_name": "Emily",
+            "last_name": "Brontë",
+            "d_o_b": "1818-07-30",
+            "nationality": "UK",
+            "bio": "Emily Jane Brontë was an English novelist and poet, best known for her novel Wuthering Heights."
+        }
+    },
+    {
+        "model": "library.author",
+        "pk": 18,
+        "fields": {
+            "first_name": "Anne",
+            "last_name": "Brontë",
+            "d_o_b": "1820-01-17",
+            "nationality": "UK",
+            "bio": "Anne Brontë was an English novelist and poet, the youngest member of the Brontë literary family."
+        }
     }
 ]

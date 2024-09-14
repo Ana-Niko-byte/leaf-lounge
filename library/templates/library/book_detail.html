@@ -116,31 +116,27 @@
     {% if author_books %}
     <div class="row more-by-author mt-5">
         <h5><strong>More By {{ book.author }}</strong></h5>
-        {% for book in author_books %}
-        <div class="card border-0">
-            <div class="card-body {% if 'q' in request.GET or 'author' in request.GET %} m-0 p-0 {% endif %}">
-                <div class="col-lg-3 col-md-4 col-sm-12">
-                    <div class="book d-flex flex-column align-items-center justify-content-start">
-                        <a href="{{ book.get_absolute_url }}">
-                            <img src="{{ book.image.url }}" alt="{{ book.title }} cover" style="width: 150px;">
-                        </a>
-                        <div class="text-center">
-                            <p class="h6 mt-2"><strong>{{ book.title }}</strong></p>
-                            <p class="text-secondary"><small><em>by {{ book.author }} | {{ book.year_published }}</em></small></p>
-                        </div>
+        <div class="row book-genre-rows my-2">
+
+            <h6 class="m-0 p-0 mb-3 small text-black text-uppercase"><strong>{{ book.genre }}</strong></h6>
+            <div class="d-flex flex-row align-items-end p-0 m-0">
+                {% for book in author_books %}
+                <a href="{{ book.get_absolute_url }}">
+                    <div class="book d-flex me-1">
+                        <div class="book-spine p-2 d-flex align-items-end">
+                            <p class="text-white book-turned h6 text-uppercase small"><strong>{{ book.title }}</strong></p>
+                            <p class="text-white book-turned my-2 small">{{ book.author }} | {{ book.year_published }}</p>
+                        </div> 
+                        {% if book.image %}
+                        <img src="{{ book.image.url }}" alt="{{ book.title }} cover" class="book-main">
+                        {% else %}
+                        <img src="{{ MEDIA_URL }}bookplaceholder.png" alt="{{ book.title }} cover" class="book-main">
+                        {% endif %}
                     </div>
-                </div>
-            </div>
-            <div class="card-footer">
-                <div class="col-lg-3 col-md-4 col-sm-12 text-center">
-                    <p>"{{ book.blurb | safe }}"</p>
-                    <a href="{{ book.get_absolute_url }}" class="btn btn-warning">
-                        Read More<i class="fa-solid fa-arrow-right ms-2"></i>
-                    </a>
-                </div>
+                </a>
+                {% endfor %}
             </div>
         </div>
-        {% endfor %}
     </div>
     {% endif %}
     <!-- /More books from Author -->
@@ -151,4 +147,5 @@
     {{ block.super }}
     <script src="{% static 'library/js/loader.js' %}" type="module"></script>
     <script src="{% static 'library/js/book_detail.js' %}" type="module"></script>
+    <script src="{% static 'library/js/library.js' %}" type="module"></script>
 {% endblock %}

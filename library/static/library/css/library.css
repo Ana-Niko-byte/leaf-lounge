@@ -91,6 +91,7 @@ a{
     min-width: 50px;
     position: relative;
     border-radius: 2px;
+    background-color: var(--book-outline);
 }
 
 .book-main{
@@ -114,6 +115,7 @@ a{
 .book-turned{
     writing-mode:vertical-lr;
     transform: rotate(-180deg);
+    font-size: 0.6rem;
 }
 /* /Book */
 

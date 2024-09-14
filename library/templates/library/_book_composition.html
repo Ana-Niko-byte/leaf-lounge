@@ -5,7 +5,7 @@
     <a href="{{ book.get_absolute_url }}">
         <div class="book d-flex me-1">
             <div class="book-spine p-2 d-flex align-items-end">
-                <p class="text-white book-turned h6 text-uppercase small"><strong>{{ book.title }}</strong></p>
+                <p class="text-white book-turned text-uppercase small"><strong>{{ book.title }}</strong></p>
                 <p class="text-white book-turned my-2 small">{{ book.author }} | {{ book.year_published }}</p>
             </div> 
             {% if book.image %}
