@@ -220,12 +220,21 @@
                                         {% else %}
                                         <p class="ms-2 my-2 small text-muted">You can no longer edit this review.</p>
                                         {% endif %}
-
-                                        <a href="{% url 'delete_review' review.id %}" class="btn-link">
-                                            <button class="btn btn-danger m-2 d-flex justify-content-center align-items-center">
-                                                <i class="fa-solid fa-trash fa-sm me-2"></i>Delete
-                                            </button>
-                                        </a>
+                                        
+                                        <div class="admin-button-container d-flex">
+                                            {% if not review.approved and user.is_superuser %}
+                                            <a href="{% url 'approve_review' review.id %}" class="btn-link">
+                                                <button class="btn btn-success m-2 d-flex justify-content-center align-items-center">
+                                                    <i class="fa-solid fa-check fa-sm me-2"></i>Approve
+                                                </button>
+                                            </a>
+                                            {% endif %}
+                                            <a href="{% url 'delete_review' review.id %}" class="btn-link">
+                                                <button class="btn btn-danger m-2 d-flex justify-content-center align-items-center">
+                                                    <i class="fa-solid fa-trash fa-sm me-2"></i>Delete
+                                                </button>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             {% endfor %}

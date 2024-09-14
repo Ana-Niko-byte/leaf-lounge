@@ -283,3 +283,31 @@ def update_review(request, id):
 
     except Exception as e:
         return HttpResponseRedirect(reverse('user_profile'))
+
+
+def approve_review(request, id):
+    """
+    This view allows admins to approve pending reviews
+    from the client side instead of accessing the review
+    through the Django admin panel.
+    """
+
+    try:
+        review_for_approval = get_object_or_404(Review, id=id)
+        print(review_for_approval)
+        review_for_approval.approved = True
+        review_for_approval.save()
+        messages.success(
+            request,
+            "You've successfully approved this review!"
+        )
+        return redirect('user_profile')
+    except Exception as e:
+        messages.error(
+            request,
+            """An error occurred. Please try approving
+            via the admin panel. If the error persists, 
+            please contact our dedicated technical team
+            with your query. Thank you for understanding."""
+        )
+        return redirect('user_profile')

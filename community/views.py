@@ -411,35 +411,32 @@ def upload_book(request):
     is unsuccessful, the user is redirected home with an error
     message.
     """
-    try:
-        profile = UserProfile.objects.get(user=request.user)
-        author = get_object_or_404(Author, user_profile=profile)
-        if request.method == 'POST':
-            book_form = BookForm(data=request.POST)
-            if book_form.is_valid():
-                book = book_form.save(commit=False)
-                book.author = author
-                book.save()
-                messages.success(
-                    request,
-                    """Your book has been registered successfully!
-                    You may view it under 'Authored Books' :)"""
-                )
-                return redirect('user_books')
-            else:
-                messages.error(
-                    request,
-                    """Please ensure your information is correct and
-                    try again. If the error persists, please get in touch
-                    with our dedicated customer support team to resolve
-                    this issue.
-                    Thank you for your understanding!"""
-                )
-                return redirect('upload_book')
+    profile = UserProfile.objects.get(user=request.user)
+    author = get_object_or_404(Author, user_profile=profile)
+    if request.method == 'POST':
+        book_form = BookForm(data=request.POST)
+        if book_form.is_valid():
+            book = book_form.save(commit=False)
+            book.author = author
+            book.save()
+            messages.success(
+                request,
+                """Your book has been registered successfully!
+                You may view it under 'Authored Books' :)"""
+            )
+            return redirect('user_books')
         else:
-            book_form = BookForm()
-    except Exception as e:
-        print(f'{e}')
+            messages.error(
+                request,
+                """Please ensure your information is correct and
+                try again. If the error persists, please get in touch
+                with our dedicated customer support team to resolve
+                this issue.
+                Thank you for your understanding!"""
+            )
+            return redirect('upload_book')
+    else:
+        book_form = BookForm()
 
     context = {
         'bookForm': book_form,

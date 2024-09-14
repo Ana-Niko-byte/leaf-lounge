@@ -28,6 +28,7 @@
 {% url 'delete_message' as delete_message %}
 {% url 'delete_review' as delete_review %}
 {% url 'update_review' as update_review %}
+{% url 'approve_review' as approve_review %}
 {% load static %}
 
 <!DOCTYPE html>
@@ -53,7 +54,7 @@
         {% endblock %}
         {% block extra_css %}{% endblock %}
 
-        <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
+        <link rel="icon" type="image/x-icon" href="{{ MEDIA_URL }}favicon.ico">
         <title>Leaf Lounge {% block extra_title %}{% endblock %}</title>
     </head>
 

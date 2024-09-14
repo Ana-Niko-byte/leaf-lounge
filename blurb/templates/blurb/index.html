@@ -33,7 +33,7 @@
             </div>
         {% else %}
             <div class="welcome-container ps-4 ps-md-5 pt-4 pt-md-5">
-                <p class="h4">Hey, {{ user }}!</p>
+                <p class="h4">Hey, {% if user.is_superuser %}admin {% endif %}{{ user }}!</p>
                 <h1 class="typewriter typewriter-blurb h2 mt-3 mb-4">Don't miss out on the chatter in your communities :)</h1>
                 <div class="button-container d-flex justify-content-start">
                     <a href="{{ community_general_url }}" class="btn-link">
