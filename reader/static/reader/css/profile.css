@@ -1,33 +1,33 @@
-:root{
-    --black : #000;
-    --light-grey : #ececec;
+:root {
+    --black: #000;
+    --light-grey: #ececec;
     --placeholder-grey: #aab7c4;
 }
 
-p{
+p {
     margin: 0;
     padding: 0;
 }
 
-#userProfileForm input::placeholder{
+#userProfileForm input::placeholder {
     color: var(--placeholder-grey);
 }
 
 #id_default_country,
-#id_default_country option:not(:first-child){
+#id_default_country option:not(:first-child) {
     color: var(--black);
 }
 
-#id_default_country option:first-child{
+#id_default_country option:first-child {
     color: var(--placeholder-grey);
 }
 
-.order-container{
+.order-container {
     text-decoration: none;
     color: var(--black);
 }
 
-.rating-box{
+.rating-box {
     height: 21px;
     width: 120px;
     background-color: rgb(214, 214, 214);
@@ -43,7 +43,7 @@ p{
     z-index: 1;
 }
 
-.rating-bar{
+.rating-bar {
     height: 20px;
     background-color: rgb(0, 255, 166);
     border: none;
@@ -52,27 +52,27 @@ p{
     z-index: 0;
 }
 
-.outer-review{
+.outer-review {
     height: 300px;
 }
 
-.inner-review{
+.inner-review {
     height: 120px;
     overflow-y: auto;
 }
 
-.slider-review{
+.slider-review {
     z-index: 9999;
     height: 500px;
 }
 
 /* Profile */
-.custom-profile-fields{
+.custom-profile-fields {
     width: 300px;
     height: 38px;
 }
 
-.book-profile-order{
+.book-profile-order {
     overflow-x: auto;
 }
 /* /Profile */

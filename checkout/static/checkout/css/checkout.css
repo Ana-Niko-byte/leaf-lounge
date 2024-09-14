@@ -1,6 +1,6 @@
-:root{
-  --black : #000;
-  --light-grey : #dfdfdf;
+:root {
+  --black: #000;
+  --light-grey: #dfdfdf;
   --placeholder-grey: #aab7c4;
 }
 
@@ -33,29 +33,32 @@
   color: var(--placeholder-grey);
 }
 
-select, select option{
+select,
+select option {
   color: var(--black);
 }
 
 select:invalid,
-select option[value=""]{
+select option[value=""] {
   color: var(--placeholder-grey) !important;
 }
 
-.fieldset-label{
+.fieldset-label {
   position: relative;
-  right: .5rem;
+  right: 0.5rem;
 }
 
-.form-control,.form-select, #card-element{
+.form-control,
+.form-select,
+#card-element {
   color: var(--black);
   border: 1px solid var(--light-grey);
 }
 /* /Stripe */
 
 #loading-overlay {
-	display: none;
-	position: fixed;
+  display: none;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -65,7 +68,7 @@ select option[value=""]{
 }
 
 .loading-spinner {
-	display: flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   margin: 0;

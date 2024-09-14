@@ -1,19 +1,5 @@
-/* Shelf */
-.book-genre-rows {
-    position: relative;
-    z-index: 2;
-    border: 12px solid #583101;
-    border-radius: 2px;
-    overflow-y: hidden;
-    overflow-x: auto;
-    background-color: #f4e4d6;
-    padding-left: 20px;
-    padding-top: 20px;
-}
-/* /Shelf */
-
 /* Book */
-.profile-book{
+.profile-book {
     width: 150px;
 }
 /* /Book */

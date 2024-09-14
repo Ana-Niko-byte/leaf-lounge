@@ -1,77 +1,86 @@
 /* Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap");
 /* /Fonts */
 
 /* Colour Specification */
 :root {
-    --dark-text-color : rgb(25, 25, 25);
-    --mute-grey-color : rgb(156, 156, 156);
-    --white-text : rgb(246, 246, 246);
-    --light-grey : rgb(161, 161, 161);
-    --orange : orange;
-    --dark-navy : #041421;
-    --dark-blue : #042630;
+    --dark-text-color: rgb(25, 25, 25);
+    --mute-grey-color: rgb(156, 156, 156);
+    --white-text: rgb(246, 246, 246);
+    --light-grey: rgb(161, 161, 161);
+    --orange: orange;
+    --dark-navy: #041421;
+    --dark-blue: #042630;
     --green-grey: #4c7273;
     --light-green-grey: #86b9b0;
     --light-blue: #d0d6d6;
     --search-bg: rgb(254, 254, 254);
     --book-outline: #041421;
     --light-light: rgb(247, 247, 247);
+    --sent: rgb(116, 231, 14);
 }
 /* /Colour Specification */
 
 /* Branding */
-html, body{
+html,
+body {
     font-family: "Nunito Sans", sans-serif;
     color: var(--dark-text-color);
 }
 
-.typewriter{
+.typewriter {
     max-width: 920px;
     overflow: hidden;
-    border-right: .10em solid var(--dark-navy);
+    border-right: 0.1em solid var(--dark-navy);
     white-space: nowrap;
-    letter-spacing: .10em;
-    animation: 
-      typing 4s steps(50, end),
-      blink-caret 0.9s step-end infinite;
+    letter-spacing: 0.1em;
+    animation: typing 4s steps(50, end), blink-caret 0.9s step-end infinite;
 }
 
 @keyframes typing {
-    from { width: 0 }
-    to { width: 100% }
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
 }
 
 @keyframes blink-caret {
-    from, to { border-color: transparent }
-    50% { border-color: orange; }
+    from,
+    to {
+        border-color: transparent;
+    }
+    50% {
+        border-color: orange;
+    }
 }
 /* /Branding */
 
 /* Links */
-.main-nav{
+.main-nav {
     background-color: var(--light-light);
 }
 
-.nav-item a{
+.nav-item a {
     text-decoration: none;
     font-size: 1.2rem;
     color: var(--dark-text-color);
     transition: all 0.2s ease;
 }
 
-.nav-crumb a{
+.nav-crumb a {
     text-decoration: none;
     font-size: 1rem;
     color: var(--white-text);
     transition: all 0.2s ease;
 }
 
-.breadcrumb-item a{
+.breadcrumb-item a {
     color: var(--green-grey);
 }
 
-.basket-link{
+.basket-link {
     text-decoration: none;
 }
 
@@ -81,74 +90,87 @@ html, body{
 }
 
 @keyframes gelatine {
-    from, to { transform: scale(1, 1); }
-    25% { transform: scale(0.7, 1.3); }
-    50% { transform: scale(1.3, 0.7); }
-    75% { transform: scale(0.9, 1.1); }
+    from,
+    to {
+        transform: scale(1, 1);
+    }
+    25% {
+        transform: scale(0.7, 1.3);
+    }
+    50% {
+        transform: scale(1.3, 0.7);
+    }
+    75% {
+        transform: scale(0.9, 1.1);
+    }
 }
 
-.social-links{
+.social-links {
     color: var(--dark-text-color);
     transition: all 0.3s;
 }
 
-.social-links:hover i{
-    transform: scale(1.20);
+.social-links:hover i {
+    transform: scale(1.2);
 }
 /* /Links */
 
 /* Authentication */
-#id_login, #id_password{
+#id_login,
+#id_password {
     border-radius: 5px;
     height: 35px;
     margin: 0;
     padding-left: 10px;
 }
 
-#id_login:focus, #id_password:focus{
+#id_login:focus,
+#id_password:focus {
     box-shadow: none;
     border: 1px solid var(--dark-blue);
 }
 
-.form-label{
+.form-label {
     font-weight: 700;
     font-size: 0.8rem;
 }
 /* /Authentication */
 
 /* UIUX */
-*{
+* {
     margin: 0;
     padding: 0;
 }
 
-p{
+p {
     margin: 0;
     padding: 0;
     color: var(--dark-text-color);
 }
 
-.nav-item:hover, .nav-crumb:hover{
+.nav-item:hover,
+.nav-crumb:hover {
     transform: scale(1.05);
 }
 
-.second-nav-link a{
+.second-nav-link a {
     font-size: 1rem;
 }
 
-.active-loader{
+.active-loader {
     height: 3px;
     width: 100%;
-    background-color: #006D77;
+    background-color: #006d77;
     border-radius: 2px;
     transition: all 0.2s ease;
 }
 
-.search-button, .form-control{
+.search-button,
+.form-control {
     transition: all 0.4s ease;
 }
 
-.form-control-search{
+.form-control-search {
     border-top-left-radius: 12px;
     border-bottom-left-radius: 12px;
     caret-color: var(--dark-text-color);
@@ -157,7 +179,8 @@ p{
     border-right: none;
 }
 
-.search-button, .search-button-nav{
+.search-button,
+.search-button-nav {
     position: relative;
     z-index: 20;
     border-top-left-radius: 0px;
@@ -168,45 +191,47 @@ p{
     background-color: var(--search-bg);
 }
 
-.search-button-nav{
+.search-button-nav {
     border-radius: 3px;
 }
 
-.search-nav{
+.search-nav {
     border-radius: 10px;
 }
 
-.search-button-nav, .search-nav{
+.search-button-nav,
+.search-nav {
     border: 5px solid var(--book-outline);
 }
 
-.search-button-nav, .search-nav{
+.search-button-nav,
+.search-nav {
     border-right: none;
 }
 
-.search-button-nav{
+.search-button-nav {
     border-left: none;
 }
 
-.search-nav:focus{
+.search-nav:focus {
     box-shadow: none;
     border-color: var(--book-outline);
     background-color: var(--search-bg);
     transform: scale(1.05);
 }
 
-.search-nav:focus + .input-group-append .search-button-nav{
+.search-nav:focus + .input-group-append .search-button-nav {
     transform: scale(1.04);
 }
 
-.search-input{
+.search-input {
     border: 7px solid var(--book-outline);
     border-right: none;
     box-shadow: none;
     outline: none;
 }
 
-.search-input:focus{
+.search-input:focus {
     border: 7px solid var(--book-outline);
     border-right: none;
     box-shadow: none;
@@ -222,14 +247,14 @@ p{
     background-color: var(--search-bg);
 }
 
-.form-control-search:focus + .input-group-append .search-button{
+.form-control-search:focus + .input-group-append .search-button {
     transform: scale(1.08);
     border: 7px solid var(--book-outline);
     border-left: none;
     border-right: none;
 }
 
-.custom-fields{
+.custom-fields {
     border-radius: 5px;
     height: 35px;
     margin: 0;
@@ -237,25 +262,27 @@ p{
     max-width: 250px;
 }
 
-.custom-fields:focus, .custom-fields-large:focus{
+.custom-fields:focus,
+.custom-fields-large:focus {
     box-shadow: none;
     border: 1px solid var(--dark-blue);
 }
 
-.subscribe-input{
+.subscribe-input {
     height: 35px;
     margin: 0;
     padding: 10px;
 }
 
-.subscribe-btn, .unsubscribe-btn{
+.subscribe-btn,
+.unsubscribe-btn {
     border: none;
     height: 35px;
     margin: 0;
     padding: 10px;
 }
 
-.fieldset-label{
+.fieldset-label {
     font-size: 0.7rem;
 }
 /* /UIUX */
@@ -265,15 +292,15 @@ body {
     min-height: 100vh;
 }
 
-.basket-sign-up{
+.basket-sign-up {
     display: flex;
 }
 
-.mid-basket-sign-up{
+.mid-basket-sign-up {
     display: none;
 }
 
-.jumbotron{
+.jumbotron {
     background-image: url(../../media/author-type.png);
     background-repeat: no-repeat;
     background-color: var(--mute-grey-color);
@@ -282,7 +309,8 @@ body {
     height: 545px;
 }
 
-.custom-button, .small-custom-button{
+.custom-button,
+.small-custom-button {
     text-decoration: none;
     border-color: transparent;
     background-color: var(--dark-blue);
@@ -291,33 +319,34 @@ body {
     text-align: center;
 }
 
-.custom-button{
+.custom-button {
     min-width: 150px;
     padding: 10px;
     border-radius: 7px;
 }
 
-.small-custom-button{
+.small-custom-button {
     width: 120px;
     padding: 7px;
     border-radius: 5px;
 }
 
-.custom-button:hover, .small-custom-button:hover{
+.custom-button:hover,
+.small-custom-button:hover {
     background-color: var(--book-outline);
 }
 
-.custom-button:hover{
+.custom-button:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px var(--light-green-grey);
 }
 
-.small-custom-button:hover{
+.small-custom-button:hover {
     transform: translateY(-3px);
     box-shadow: 0 6px var(--light-green-grey);
 }
 
-.table-button{
+.table-button {
     width: 100%;
     padding: 10px;
     text-decoration: none;
@@ -327,33 +356,34 @@ body {
     transition: all 0.2s ease;
 }
 
-.table-button:hover{
+.table-button:hover {
     background-color: var(--dark-blue);
     color: var(--white-text);
     transform: translateY(-5px);
     box-shadow: 0 10px var(--light-green-grey);
 }
 
-.custom-button-small{
-    transform: scale(0.80);
+.custom-button-small {
+    transform: scale(0.8);
 }
 
-.custom-button-small:hover{
-    transform: scale(0.80);
+.custom-button-small:hover {
+    transform: scale(0.8);
 }
 
-.btn-link{
+.btn-link {
     text-decoration: none;
     color: var(--white-text);
 }
 
-.search-input, .search-input-nav{
+.search-input,
+.search-input-nav {
     max-width: 400px;
 }
 /* /General */
 
 /* Toasts */
-.toast{
+.toast {
     position: absolute;
     z-index: 999;
     right: 30px;
@@ -361,13 +391,13 @@ body {
     outline: none;
 }
 
-.toast-body{
+.toast-body {
     background-color: var(--white-text);
 }
 /* /Toasts */
 
 /* Marketing */
-.subscribe-input{
+.subscribe-input {
     border: 2px solid var(--dark-navy);
     outline: none;
     border-top-left-radius: 3px;
@@ -375,7 +405,8 @@ body {
     border-right: none;
 }
 
-.subscribe-btn, .unsubscribe-btn{
+.subscribe-btn,
+.unsubscribe-btn {
     border: 2px solid var(--dark-navy);
     outline: none;
     border-top-right-radius: 3px;
@@ -385,19 +416,20 @@ body {
     transition: color 0.3s ease;
 }
 
-.subscribe-btn:hover i{
+.subscribe-btn:hover i {
     color: green;
 }
 
-.unsubscribe-btn:hover i{
+.unsubscribe-btn:hover i {
     color: red;
 }
 
-.subscribe-input:active, .subscribe-input:focus{
+.subscribe-input:active,
+.subscribe-input:focus {
     box-shadow: none;
 }
 
-.mailchimp-logo{
+.mailchimp-logo {
     width: 80px;
 }
 /* /Marketing */
@@ -410,7 +442,7 @@ body {
     height: 22px;
 }
 
-.toggle input { 
+.toggle input {
     opacity: 0;
     width: 0;
     height: 0;
@@ -431,19 +463,20 @@ body {
     right: 0;
     bottom: 0;
     background-color: var(--dark-blue);
-    -webkit-transition: .4s;
-    transition: .4s;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
 }
 
-.subscribe-text, .unsubscribe-text{
+.subscribe-text,
+.unsubscribe-text {
     transition: color 0.3s ease;
 }
 
-.subscribe-text{
+.subscribe-text {
     color: white;
 }
 
-.unsubscribe-text{
+.unsubscribe-text {
     color: var(--dark-blue);
 }
 
@@ -455,19 +488,19 @@ body {
     left: 3px;
     bottom: 3px;
     background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
 }
 
 input:checked + .slider {
     background-color: grey;
 }
 
-input:checked + .slider .subscribe-text{
+input:checked + .slider .subscribe-text {
     color: grey;
 }
 
-input:checked + .slider .unsubscribe-text{
+input:checked + .slider .unsubscribe-text {
     color: white;
 }
 
@@ -491,24 +524,82 @@ input:checked + .slider:before {
 }
 /* /Slider */
 
-footer{
+/* Shelf */
+.book-genre-rows {
+    position: relative;
+    z-index: 2;
+    border: 12px solid #271703;
+    border-radius: 2px;
+    overflow-y: hidden;
+    overflow-x: auto;
+    background-color: #f4e4d6;
+    padding-left: 20px;
+    padding-top: 20px;
+}
+/* /Shelf */
+
+/* Book */
+.book {
+    position: relative;
+    z-index: 9;
+    transition: all 0.3s ease;
+    color: rgb(237, 237, 237);
+    position: relative;
+}
+
+.book-spine {
+    position: relative;
+    min-height: 130px;
+    max-height: 200px;
+    min-width: 50px;
+    position: relative;
+    border-radius: 2px;
+    background-color: var(--book-outline);
+}
+
+.book-main {
+    height: 100%;
+    max-width: 120px;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+    position: absolute;
+    z-index: -1;
+    left: 50px;
+    top: 0;
+}
+
+.book:hover {
+    transform: scale(1.04);
+    transform: translateX(-20px) rotate(-15deg);
+    transform-origin: bottom;
+    z-index: 1000;
+}
+
+.book-turned {
+    writing-mode: vertical-lr;
+    transform: rotate(-180deg);
+    font-size: 0.6rem;
+}
+/* /Book */
+
+footer {
     background-color: var(--light-light);
 }
 
 /* Media Queries */
-@media all and (max-width: 450px){
-    .typewriter{
+@media all and (max-width: 450px) {
+    .typewriter {
         font-size: 0.95rem;
         max-width: 350px;
     }
 }
 
-@media all and (max-width: 1375px){
-    .basket-sign-up{
+@media all and (max-width: 1375px) {
+    .basket-sign-up {
         display: none;
     }
 
-    .mid-basket-sign-up{
+    .mid-basket-sign-up {
         display: flex;
         flex-direction: row;
         color: var(--white-text);

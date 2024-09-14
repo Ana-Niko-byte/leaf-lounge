@@ -132,17 +132,6 @@
     },
     {
         "model": "library.author",
-        "pk": 13,
-        "fields": {
-            "first_name": "Virginia",
-            "last_name": "Woolf",
-            "d_o_b": "1882-01-25",
-            "nationality": "UK",
-            "bio": "Adeline Virginia Woolf was an English writer, considered one of the most important modernist authors of the 20th century."
-        }
-    },
-    {
-        "model": "library.author",
         "pk": 14,
         "fields": {
             "first_name": "Charles",

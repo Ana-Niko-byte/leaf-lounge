@@ -1,105 +1,96 @@
-/* Colour Specification */
-:root {
-    --dark-text-color : rgb(77, 77, 77);
-    --mute-grey-color : rgb(156, 156, 156);
-    --white-text : rgb(246, 246, 246);
-    --light-grey : rgb(161, 161, 161);
-    --orange : orange;
-    --dark-navy : #041421;
-    --dark-blue : #042630;
-    --green-grey: #4c7273;
-    --light-green-grey: #86b9b0;
-    --light-blue: #d0d6d6;
-    --search-bg: rgb(254, 254, 254);
-    --book-outline: #041421;
-    --sent: rgb(116, 231, 14);
-}
-/* /Colour Specification */
-
 /* Chat */
-.forum-message-container{
+.forum-message-container {
     border-radius: 10px;
     max-height: 380px;
     min-height: 330px;
     overflow-y: auto;
 }
 
-.forum-user-container{
+.forum-user-container {
     max-height: 380px;
     min-height: 330px;
     overflow-y: auto;
 }
 
-.message-box{
+.message-box {
     border-radius: 7px;
     background-color: var(--green-grey);
     color: var(--white-text);
 }
 
-.message-box-alternative{
+.message-box-alternative {
     border-radius: 7px;
     background-color: var(--dark-blue);
     color: var(--white-text);
 }
 
-.member-container{
+.member-container {
     border-radius: 7px;
     background-color: var(--dark-blue);
     color: var(--white-text);
 }
 
-.user-member{
+.user-member {
     border-radius: 7px;
     background-color: var(--green-grey);
     color: var(--white-text);
 }
 
-.tickies{
+.tickies {
     color: var(--sent);
 }
 
-.message-buttons{
+.message-buttons {
     color: var(--white-text);
     transition: color 0.3s ease;
 }
 
-.message-buttons:focus{
+.message-buttons:focus {
     border: none;
 }
 
-.message-buttons:hover i{
+.message-buttons:hover i {
     animation: gelatine 0.7s infinite;
 }
 
 @keyframes gelatine {
-    from, to { transform: scale(1, 1); }
-    25% { transform: scale(0.7, 1.3); }
-    50% { transform: scale(1.3, 0.7); }
-    75% { transform: scale(0.9, 1.1); }
+    from,
+    to {
+        transform: scale(1, 1);
+    }
+    25% {
+        transform: scale(0.7, 1.3);
+    }
+    50% {
+        transform: scale(1.3, 0.7);
+    }
+    75% {
+        transform: scale(0.9, 1.1);
+    }
 }
 
-.message-buttons:hover{
+.message-buttons:hover {
     color: rgb(52, 0, 0);
 }
 
-.forum-container{
+.forum-container {
     min-width: 400px;
     max-width: 450px;
     overflow-y: auto;
 }
 
-.bookmarks{
+.bookmarks {
     color: rgb(255, 166, 0);
 }
 /* /Chat */
 
 /* Communities */
-.community-container{
+.community-container {
     background-color: rgba(208, 214, 214, 0.4);
     transition: all 0.3s ease;
 }
 
-.community-container:hover{
+.community-container:hover {
     background-color: var(--light-green-grey);
     color: var(--white-text);
     transform: translateY(-5px);
@@ -108,20 +99,22 @@
 /* /Communities */
 
 /* Forums */
-.forum-input, .forum-message-input{
+.forum-input,
+.forum-message-input {
     width: 100%;
     box-shadow: none;
     border: 2px solid darkgrey;
     outline: none;
 }
 
-.forum-input:focus, .forum-message-input:focus{
+.forum-input:focus,
+.forum-message-input:focus {
     box-shadow: none;
     border: 2px solid var(--light-green-grey);
     outline: none;
 }
 
-.forum-link{
+.forum-link {
     text-decoration: none;
     background-color: var(--green-grey);
     color: var(--white-text);
@@ -129,25 +122,25 @@
     transition: all 0.3s ease;
 }
 
-.forum-link:hover{
+.forum-link:hover {
     transform: scale(1.02);
     background-color: var(--dark-blue);
 }
 /* /Forums */
 
 /* Forum Books */
-.forum-book{
+.forum-book {
     max-width: 120px;
     transition: all 0.3s ease;
 }
 
-.forum-book:hover{
+.forum-book:hover {
     transform: scale(1.01);
 }
 /* /Forum Books */
 
 /* Author Bio */
-#id_bio{
+#id_bio {
     border-radius: 5px;
     height: 235px;
     margin: 0;
@@ -155,16 +148,17 @@
 }
 /* /Author Bio */
 
-#id_bio:focus, #id_blurb:focus{
+#id_bio:focus,
+#id_blurb:focus {
     box-shadow: none;
     border: 1px solid var(--dark-blue);
 }
 
-#bookForm{
+#bookForm {
     max-width: 750px;
 }
 
-#id_blurb{
+#id_blurb {
     border-radius: 5px;
     height: 160px;
     margin: 0;

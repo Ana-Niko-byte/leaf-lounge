@@ -236,21 +236,21 @@
                                             <!-- Modal -->
                                             <div class="modal fade" id="reviewDelete" tabindex="-1" role="dialog" aria-labelledby="reviewDelete" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header border-0 d-flex justify-content-between">
-                                                        <h5 class="modal-title" id="reviewDelete">Are you sure?</h5>
-                                                        <span aria-hidden="true" class="close" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-xmark"></i></span>
+                                                    <div class="modal-content">
+                                                        <div class="modal-header border-0 d-flex justify-content-between">
+                                                            <h5 class="modal-title" id="reviewDelete">Are you sure?</h5>
+                                                            <span aria-hidden="true" class="close" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-xmark"></i></span>
+                                                        </div>
+                                                        <div class="modal-body border-0">
+                                                            <p>You won't be able to undo the delete.</p>
+                                                        </div>
+                                                        <div class="modal-footer d-flex justify-content-between">
+                                                            <button type="button" class="custom-button" data-bs-dismiss="modal">No, Cancel</button>
+                                                            <a href="{% url 'delete_review' review.id %}" class="btn-link">
+                                                                <button type="button" class="custom-button">Yes, Delete</button>
+                                                            </a>
+                                                        </div>
                                                     </div>
-                                                    <div class="modal-body border-0">
-                                                        <p>You won't be able to undo the delete.</p>
-                                                    </div>
-                                                    <div class="modal-footer d-flex justify-content-between">
-                                                        <button type="button" class="custom-button" data-bs-dismiss="modal">No, Cancel</button>
-                                                        <a href="{% url 'delete_review' review.id %}" class="btn-link">
-                                                            <button type="button" class="custom-button">Yes, Delete</button>
-                                                        </a>
-                                                    </div>
-                                                </div>
                                                 </div>
                                             </div>
                                         </div>

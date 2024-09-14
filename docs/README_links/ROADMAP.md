@@ -174,6 +174,8 @@ Approved Review -
 
 This is a button that redirects users to the `Contact` page, and encompasses the same functionality as outlined in [Dedicated Customer Service](#dedicated-customer-service).
 
+>> #### Become an Author
+
 >> #### Dedicated Customer Service
 - Contact
 

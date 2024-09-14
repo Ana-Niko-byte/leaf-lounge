@@ -7,7 +7,7 @@ Also available for viewing here:
 ![Leaf Lounge Responsive Image]()
 
 >>> ## Introduction
-Leaf Lounge is built with `Django` - a high-level Python framework that encourages rapid development and clean code practices. As a book & networking platform, Leaf Lounge offers book lovers the unique opportunity to network and share impressions, reviews, and critiques of books. Visitors wishing to join one of Leaf Lounge's vast communities need only purchase a book and register a personal Leaf Lounge account, and they immediately gain access to all Leaf Lounge has to offer.
+Leaf Lounge book store and community hub is built with a `Django` backend - a high-level Python framework that encourages rapid development and clean code practices, and `Bootstrap5`, an extensive styling library. As a networking platform, Leaf Lounge offers book lovers the unique opportunity to connect and share impressions, reviews, and critiques of books. Visitors wishing to join one of Leaf Lounge's vast communities need only purchase a book and create an account to gain access to their personal profile, immediately gaining access to all Leaf Lounge has to offer. Additionally, registered users have the option of becoming a Leaf Lounge author by registering for an author profile and uploading their own published works to the Leaf Lounge library.
 
 >>> ## Table of Contents
 - [Technology Stack](#technology-stack)
@@ -16,17 +16,12 @@ Leaf Lounge is built with `Django` - a high-level Python framework that encourag
 - [Wireframes](#wireframes)
 - [User Stories](#user-stories)
 - [Strategy](#strategy)
+- [Scope of Application](#scope-of-application)
 - [Business/Social Goals](#businesssocial-goals)
   - [Target Audience](#target-audience)
 - [UX Goals](#ux-goals)
-- [Key Information Deliverables](#key-information-deliverables)
-  - [Client Side](#client-side)
-  - [Technical](#technical)
-  - [Marketing](#marketing)
-- [Scope of Application](#scope-of-application)
 - [Features](#features)
 - [Models](#models)
-- [Views & Templates](#views--templates)
 - [Aesthetics](#aesthetics)
 - [Testing & Debugging](#testing--debugging)
   - [Manual Testing](#manual-testing)
@@ -49,7 +44,6 @@ Leaf Lounge is built with `Django` - a high-level Python framework that encourag
 - [Forking a GitHub Repository](#forking-a-github-repository)
 - [Cloning a GitHub Repository](#cloning-a-github-repository)
 - [Credits](#credits)
-- [Acknowledgements](#acknowledgements)
 
 >>> ## Technology Stack
 >> #### Backend
@@ -58,15 +52,17 @@ Leaf Lounge is built with `Django` - a high-level Python framework that encourag
 
 >> #### Database
 - `PostgreSQL`
+- `Amazon S3`
 
 >> #### Frontend
 - `HTML5/ Django Syntax` - Used for structuring and content.
 - `CSS3` - Used for adding styles to the content for legibility and aesthetic appeal.
+- `Bootstrap5` - For quick styling and pre-built component libraries.
 - `Javascript` - For adding basic interactivity and dynamically setting URLs.
 - `jQuery` - For adding basic interactivity and dynamically setting URLs.
 
 >> #### Additional Technologies
-- `FontAwesome/Bootstrap` icons - used for icons.
+- `FontAwesome` icons - used for icons.
 - `Chrome Developer Tools` - used for debugging the website during production.
 - `Lighthouse` - For performance, accessibility, best practices and SEO checking.
 - `GitHub` - For code storage, version control and deployment.
@@ -86,39 +82,47 @@ Leaf Lounge is built with `Django` - a high-level Python framework that encourag
 - Leave & Read Reviews
 - Comprehensive E-COMMERCE
 - Custom User Profile
+- Become an Author
 - Dedicated Customer Service
 
 >>> ## Structure
 [ARCHITECTURE.md](https://github.com/Ana-Niko-byte/leaf-lounge/blob/main/ARCHITECTURE.md)
 
 >>> ## Wireframes
-![]()
+![Leaf Lounge Wireframes]()
 
 >>> ## User Stories
 | Id | User Story | Label | User Story Testing |
 | ----- | ----- | ----- | ----- |
 | 1 | As a first time visitor, I would like to be taken directly to the 'Leaf Lounge' home page so that I have quick access to all relevant information to get started. | `must-have` | ----- |
-| 6 | As a site user, I would like a custom profile with my personal information. | `should-have` | ----- |
+| 2 | As a site user, it would be nice to have a contact page so that I could contact the 'Leaf Lounge' team with queries. | `should-have` | ----- |
 | 3 | As a site visitor, I require access to the library page so that I can view and choose from available books. | `must-have` | ----- |
 | 4 | As a site user, I would like the option to read more information on the book before buying it. | `must-have` | ----- |
-| 2 | As a site user, it would be nice to have a contact page so that I could contact the 'Leaf Lounge' team with queries. | `should-have` | ----- |
+| 5 | As a site user, I require the option of signing-up, signing-in and signing-out of my account. | `must-have` | ----- |
+| 6 | As a site user, I would like a custom profile with my personal information. | `should-have` | ----- |
 | 7 | As a site user, I require a checkout page from which I can make secure transactions. | `must-have` | ----- |
-| 28 | As a site user, I require access to the chatroom so that I can network with other readers. | `must-have` | ----- |
+| 8 | As a site user, I would like access to Leaf Lounge's social media so that I could follow the page and stay up to date. | `good-to-have` | ----- |
+| 11 | As a site visitor, I would like the option of signing up for the Leaf Lounge Newsletter, without needing to register for an account. | `must-have` | ----- |
 | 14 | As a site user, I would like the option of viewing my books before buying them. | `should-have` | ----- |
 | 15 | As a site user, I would like the option of amending my books before buying them. | `must-have` | ----- |
 | 16 | As a site user, I would like the option of deleting books from my basket. | `must-have` | ----- |
 | 17 | As a site user, I require a secure payment system to make transactions. | `must-have` | ----- |
-| 5 | As a site user, I require the option of signing-up, signing-in and signing-out of my account. | `must-have` | ----- |
-| 11 | As a site visitor, I would like the option of signing up for the Leaf Lounge Newsletter, without needing to register for an account. | `must-have` | ----- |
-| 8 | As a site user, I would like access to Leaf Lounge's social media so that I could follow the page and stay up to date. | `good-to-have` | ----- |
-| 27 | As a book lover, I would like the option of putting my old books up for sale or donating them. | `should-have` | ----- |
-| 29 | As a site user, I would like the option of viewing the books I have bought and storing them in my profile. | `should-have` | ----- |
+| 27 | I would like the option of registering as an author and putting my work on Leaf Lounge so that I can get exposure within the communities. | `should-have` | ----- |
+| 28 | As a site user, I require access to the chatroom so that I can network with other readers. | `must-have` | ----- |
+| 29 | As a site user, I would like the option of viewing the books I have bought and storing them in my profile so that I can access the book communities and view my order history. | `must-have` | ----- |
 | 30 | As a user, I would like the ability to search for a book so that I can quickly find the one I am looking for. | `should-have` | ----- |
+| 31 | As a user, I require access to the book's genre community after making a purchase so I can network and engage with fellow book-enthusiasts. | `must-have` | ----- |
+| 32 | As a user and community member, I would like the ability to leave reviews so new users can get feedback on a book prior to making purchase. | `must-have` | ----- |
 
 >>> ## Strategy
-This application aims to create an engaging and interactive environment for readers and book enthusiasts to connect, network and, subsequently, broaden the outreach of new authors within the various book communities. Several intuitive features in the navigation bar at the top of the page and considerable consideration given to the overall design and feel of the website make the user's experience quick, efficient, and satisfying.
+This website strives to create an engaging and interactive environment for readers and book enthusiasts to connect, network and broaden the outreach of new authors within various book communities. Several intuitive features in the navigation bar at the top of the page and considerable consideration given to the overall design and feel of the website make the user's experience pleasant and easy-going, link shopping in a book shop.
+
+By adopting a similar layout to that of a bookstore, users visiting the library collection get fast access to all Leaf Lounge has to offer, while being able to partake in the same book-shopping experience from the comfort of their own homes.
+
+>>> ## Scope of Application
 
 >>> ## Business/Social Goals
+
 >> #### Target Audience
 `Readers` `Authors` `Publishers` `Book Critics` `Book Enthusiasts` `Users 15+ years of age (payment)`.
 
@@ -134,59 +138,47 @@ This application aims to create an engaging and interactive environment for read
 - As a site user, I would like the option of amending my books before buying them.
 - As a site user, I would like the option of deleting books from my basket.
 - As a site user, I require a secure payment system to make transactions.
-- As a site user, I require the option of signing-up, signing-in and signing-out of my account.
+- As a site user, I require the option of signing-up, signing-in and signing-out of my account so that I can have a more personal experience and manage my data.
 - As a site visitor, I would like the option of signing up for the Leaf Lounge Newsletter, without needing to register for an account.
 - As a site user, I would like access to Leaf Lounge's social media so that I could follow the page and stay up to date.
 - As a site user, I would like the ability to search for a book so that I can quickly find the one I am looking for.
-- As a book lover, I would like the option of putting my old books up for sale or donating them.
+- As a book enthusiast, I would like the option of registering as an author and putting my work on Leaf Lounge so that I can get exposure within the communities.
+- As a site user, I would like the option of viewing the books I have bought and storing them in my profile so that I can access the book communities and view my order history.
+- As a user, I require access to the book's genre community after making a purchase so I can network and engage with fellow book-enthusiasts.
+- As a user and community member, I would like the ability to leave reviews so new users can get feedback on a book prior to making purchase.
+_Note: full CRUD functionality will be implemented here._
+
 
 >>> ## UX Goals
 - As a site user, I would like fast access to only the pages that would benefit my experience.
   -  All pages should be displayed based on whether I am registered/logged in.
   - I should be redirected to relevant pages and without coming across site errors.
-- As a site user, I would like all pages to follow the same branding guidelines - this includes font family, colours (colour palette), image styles, spacing, and effects. 
+- As a site user, I would like all pages to follow the same branding guidelines - this includes font family, colours (colour palette), image styles, spacing, and effects. I would also like colours to convey the correct emotions to ensure the intended branding message and motives.
 - As a site visitor and/or potential reseller, I would like colours to convey the correct emotions to ensure the intended branding message and motives.
 - As a site user, I would like all pages to be responsive to ensure I have a good user experience. This includes best practices in legibility, colour contrast, font sizes, branding, and element visibility.
-
->>> ## Key Information Deliverables
-For the purposes of document navigation, the key information deliverables for this project have been split into three sections, each focusing on a different vital aspect of the project.
-
->> #### Client-Side
-- _Home page_ with all relevant information about the platform.
-- _Checkout page_ with _Stripe_ Payments.
-- Community Page
-  - _Chatroom_
-  - _Reviews_
-- Creation of _Personal/Seller Profiles_ for audience expansion.
-
->> #### Technical
-- _Contact page_ queries reaching Leaf Lounge _Email_.
-- _Stripe_ Payments
-- Testing files for all app views, urls, and models.
-
->> #### Marketing
-- [Facebook Page](https://www.facebook.com/profile.php?id=61563390085042)
-- Clear and intuative branding
-- Legibility and responsiveness of all elements on all screen sizing
-
->>> ## Scope of Application
+- As a site user, if I am not provided with a success page, I need to be presented with a success message on the home page so I know my action was successful.
+- As a site user, if I am not provided with an error page, I need to be presented with an error message on the home page so I know my action was unsuccessful.
+- As a site user, I should be presented with a 404 page if the page I am looking for is unavailable, or a 500 page I made a bad request to the server with the option of returning to the home page.
+- As a site user, I would like to be redirected to an error page if my financial transaction was unsuccessful. Alternatively, an error message should be provided.
+- As a site user, I would like to be redirected to a success page so that I can be sure my financial transaction was successful. Alternatively, a success message should be provided.
+- As a user, I want to be provided with good accessiblity and interaction on the site so that I can have a pleasant experience on the platform.
 
 >>> ## Features
-[ROADMAP.md](https://github.com/Ana-Niko-byte/leaf-lounge/blob/main/ROADMAP.md)
+[ROADMAP.md](https://github.com/Ana-Niko-byte/leaf-lounge/blob/main/docs/README_links/ROADMAP.md)
 
 >>> ## Models
-[ARCHITECTURE.md](https://github.com/Ana-Niko-byte/leaf-lounge/blob/main/ARCHITECTURE.md)
-
->>> ## Views & Templates
-[ARCHITECTURE.md](https://github.com/Ana-Niko-byte/leaf-lounge/blob/main/ARCHITECTURE.md)
+[ARCHITECTURE.md](https://github.com/Ana-Niko-byte/leaf-lounge/blob/main/docs/README_links/ARCHITECTURE.md)
 
 >>> ## Aesthetics
+Leaf Lounge strives to recreate the experience of shopping in a bookstore by designing its library as a collection of shelves, with different height and colour books, split by genres. The colour `blue` is associated with wisdom, a common association with that of a library, thus is the main colour echoed throughout the site. Aesthetics outside of colours are kept to a minimum, with most of the books' appeal stemming from their cover images and effects.
+
+The _shelves_ in the library use a combination of cold-brown tones to mimick wood, while the book-spine shades of dark blues and musky green compliment the timber-colours.
 
 >>> ## Testing & Debugging
-[TESTING.md](https://github.com/Ana-Niko-byte/leaf-lounge/blob/main/TESTING.md)
+[TESTING.md](https://github.com/Ana-Niko-byte/leaf-lounge/blob/main/docs/README_links/TESTING.md)
 
 >>> ## Accessibility & Performance
-[TESTING.md](https://github.com/Ana-Niko-byte/leaf-lounge/blob/main/TESTING.md)
+[TESTING.md](https://github.com/Ana-Niko-byte/leaf-lounge/blob/main/docs/README_links/TESTING.md)
 
 >>> ## Deployment
 The application is deployed on Heroku via a GitHub  connection, and is available for viewing in the link at the top of this README.md document. To deploy a Heroku project, please refer to the guide below.
@@ -274,5 +266,3 @@ Steps:
 - For initialising an `Q()` (wasn't sure on syntax): [stack overflow](https://stackoverflow.com/questions/44198266/django-how-to-check-if-q-object-is-empty)
 
 - For setting up [Mailchimp Marketing](https://testdriven.io/blog/django-mailchimp/)
-
->>> ## Acknowledgements
