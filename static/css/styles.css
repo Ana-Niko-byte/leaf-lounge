@@ -356,6 +356,10 @@ body {
     border: none;
     outline: none;
 }
+
+.toast-body{
+    background-color: var(--white-text);
+}
 /* /Toasts */
 
 /* Marketing */

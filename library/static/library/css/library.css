@@ -65,7 +65,7 @@ a{
 .book-genre-rows {
     position: relative;
     z-index: 2;
-    border: 12px solid #583101;
+    border: 12px solid #271703;
     border-radius: 2px;
     overflow-y: hidden;
     overflow-x: auto;
@@ -87,7 +87,8 @@ a{
 .book-spine{
     position: relative;
     min-height: 130px;
-    max-width: 50px;
+    max-height: 200px;
+    min-width: 50px;
     position: relative;
     border-radius: 2px;
 }

@@ -29,12 +29,12 @@
         <div class="bg-light border p-4 rounded col-lg-8 col-md-6 col-sm-12 me-3 d-flex flex-column justify-content-between">
             <h6 class="m-0 p-0 mb-3 small text-black text-uppercase"><strong>Community Forums</strong></h6>
             <div class="inner-forum bg-white rounded shadow-sm p-2">
-                <div class="h-100 d-flex flex-column justify-content-start">
-                    <div class="h-100 forum-box d-flex flex-column justify-content-center">
+                <div class="d-flex flex-column justify-content-start">
+                    <div class="forum-box d-flex flex-column justify-content-center">
                         {% if forums %}
                             {% for forum in forums %}
                                 {% if forum.community == community %}
-                                <a href="{{ forum.get_absolute_url }}" class="forum-link">
+                                <a href="{{ forum.get_absolute_url }}" class="forum-link my-1">
                                     <div class="p-3">
                                         {{ forum.name }}
                                     </div>
