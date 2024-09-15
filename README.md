@@ -70,9 +70,9 @@ Leaf Lounge book store and community hub is built with a `Django` backend - a hi
 - `Gitpod` - The IDE I developed the project in.
 - `VSC` - For quick testing of allauth functionality due to Gitpod's limitations.
 - `Balsamiq` - For project wireframe design.
-- `Color Contrast Accessibility Validator` - for checking colour contrast ratios.
 - `W3C Markup Validation Service` - to validate my HTML for potential errors.
 - `W3C CSS Validation Service` - to validate my CSS code for potential errors.
+- `Code Beautify` - to beautify CSS code.
 - `JSHint` - for checking and validating my JS code. 
 - `Pep8` - for Python code validation and best practices formatting.
 

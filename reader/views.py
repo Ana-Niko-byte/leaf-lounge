@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, reverse
 from django.shortcuts import get_object_or_404, HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.db.models import Q
@@ -11,6 +12,7 @@ from .models import UserProfile
 from .forms import UserProfileForm, ReviewForm
 
 
+@login_required
 def my_profile(request):
     """
     This view handles user access and amendments to their user
@@ -70,21 +72,38 @@ def my_profile(request):
     )
 
 
+@login_required
 def my_books(request):
     """
-    This view handles the retrieval and display of the user's
+    Handles the retrieval and display of the user's
     registered (authored) and purchased books. If the relevant profile
-    isn't found, the view renders a 404 page.
+    isn't found, the view renders a 404 page. This view can only be
+    accessed by registered users.
+
+    For conditional display of authored books, the view checks whether the
+    user's profile is associated with an author profile, and sets the boolean
+    value of is_author accordingly. This is passed to the context for use
+    within the template.
+
+    GET Data:
+    All books associated with the user are retrieved as arrays. Users may
+    choose to see only a selected genre's books, so the view checks for a
+    GET request with 'genre', and displays the appropriate books.
+
+    Returns:
+    Render: renders the relevant template with appropriate context variables.
     """
     # Retrieve the user's profile.
     user_profile = get_object_or_404(UserProfile, user=request.user)
 
     # Check if the user is a registered author.
     is_author = False
+    my_books = None
     if Author.objects.filter(user_profile=user_profile):
         is_author = True
-
-    my_books = Book.objects.filter(author=Author.objects.get(user_profile=user_profile))
+        my_books = Book.objects.filter(
+            author=Author.objects.get(user_profile=user_profile)
+        )
 
     # Retrieve their orders.
     user_orders = Order.objects.filter(user_profile=user_profile)
@@ -147,9 +166,27 @@ def my_books(request):
     )
 
 
+@login_required
 def leave_review(request, id):
     """
-    A view for users to leave a book review.
+    Handles the display of a review form for users to leave reviews on books
+    they have bought. This view is accessed from the
+    secondary navigation bar under the 'My Books' tab via the 'Leave
+    a Review' button under each book. This view can only be accessed
+    by registered users as they will need access to books they have
+    previously bought.
+
+    The view checks for a UserProfile belonging to the user, and retrieves
+    the book they wish to review, or a 404 page in both cases if one is
+    not found.
+
+    POST Data:
+    Fields for review data: template fields + reviewer, approved.
+
+    Returns:
+    Redirect: Redirects to the user's books template on successful review.
+    Render: Renders the review form with an error message if
+    something goes wrong, or the request is GET.
     """
     user_profile = UserProfile.objects.get(user=request.user)
     review_book = get_object_or_404(Book, id=id)
@@ -203,12 +240,22 @@ def leave_review(request, id):
         )
 
 
+@login_required
 def delete_review(request, id):
     """
-    A view for users to delete their reviews.
+    Handles the deletion of a review only if the review reviewer is the user
+    requesting deletion.
+
+    The view checks for a UserProfile belonging to the user and retrieves
+    review, or a 404 page in both cases if one is not found.
+
+    Returns:
+    HttpResponseRedirect: Redirects to the user's profile with relevant
+    messages informing the user whether the review was deleted or an
+    error occurred.
     """
     review_delete = get_object_or_404(Review, id=id)
-    user_profile = UserProfile.objects.get(user=request.user)
+    user_profile = get_object_or_404(UserProfile, user=request.user)
     # Redundant but just in case.
     if review_delete.reviewer == user_profile:
         review_delete.delete()
@@ -226,88 +273,103 @@ def delete_review(request, id):
     return HttpResponseRedirect(reverse('user_profile'))
 
 
+@login_required
 def update_review(request, id):
     """
-    A view for users to update their reviews and save them to the database.
-    """
-    try:
-        if request.method == 'POST':
-            review_to_update = get_object_or_404(Review, id=id)
-            user_profile = UserProfile.objects.get(user=request.user)
-            review_form = ReviewForm(request.POST, instance=review_to_update)
+    Handles the update of a review from the user's profile. Before updating the
+    review, checks whether the user requesting update is the same user who left
+    the review.
 
-            # Redundant but just in case.
-            if review_to_update.reviewer == user_profile:
-                if review_form.is_valid():
-                    review = review_form.save(commit=False)
-                    review.reviewer = user_profile
-                    review.reviewed_on = timezone.now().date()
-                    review.approved = False
-                    review.save()
-                    messages.success(
-                        request,
-                        """
-                        Your review was successfully updated!
-                        Our administrators aim to approve it within 2 business
-                        days :)
-                        You can view any pending reviews in 'My Profile',
-                        under the 'My Reviews' tab.
-                        """
-                    )
-                    return HttpResponseRedirect(reverse('user_profile'))
-                else:
-                    # Add context to keep review-slider open for form errors.
-                    review_form = ReviewForm()
-                    messages.error(
-                        request,
-                        """Please double check your information and correct any
-                        errors.
-                        If the error persists, please get in touch with our
-                        dedicated customer support team to resolve
-                        this issue.
-                        Thank you for your understanding!
-                        """
-                    )
-                    return HttpResponseRedirect(reverse('user_profile'))
+    POST Data:
+    Fields for review data: template fields + reviewer, reviewed_on, approved.
+
+    Returns:
+    HttpResponseRedirect: Redirects to the user's profile with informative and
+    relevant messages in all cases.
+    """
+    review_to_update = get_object_or_404(Review, id=id)
+    user_profile = get_object_or_404(UserProfile, user=request.user)
+    if request.method == 'POST':
+        review_form = ReviewForm(request.POST, instance=review_to_update)
+
+        if review_to_update.reviewer == user_profile:
+            if review_form.is_valid():
+                review = review_form.save(commit=False)
+                review.reviewer = user_profile
+                review.reviewed_on = timezone.now().date()
+                review.approved = False
+                review.save()
+                messages.success(
+                    request,
+                    """
+                    Your review was successfully updated!
+                    Our administrators aim to approve it within 2 business
+                    days :)
+                    You can view any pending reviews in 'My Profile',
+                    under the 'My Reviews' tab.
+                    """
+                )
+                return HttpResponseRedirect(reverse('user_profile'))
             else:
+                review_form = ReviewForm()
                 messages.error(
                     request,
-                    """You don't have permission to delete this review.
-                    If this is a mistake, please contact our customer support
-                    team for assistance."""
+                    """Please double check your information and correct any
+                    errors.
+                    If the error persists, please get in touch with our
+                    dedicated customer support team to resolve this issue.
+                    Thank you for your understanding!
+                    """
                 )
                 return HttpResponseRedirect(reverse('user_profile'))
         else:
-            review_form = ReviewForm
+            messages.error(
+                request,
+                """You don't have permission to delete this review.
+                If this is a mistake, please contact our technical support
+                team for assistance."""
+            )
             return HttpResponseRedirect(reverse('user_profile'))
-
-    except Exception as e:
+    else:
+        review_form = ReviewForm
         return HttpResponseRedirect(reverse('user_profile'))
 
 
+@login_required
 def approve_review(request, id):
     """
-    This view allows admins to approve pending reviews
-    from the client side instead of accessing the review
-    through the Django admin panel.
+    This view allows admins to approve pending reviews from the client side
+    instead of accessing the review through the Django admin panel.
+
+    If the user requesting approval is an not an admin, they are redirected to
+    the user's profile with an error message.
+
+    Returns:
+    Redirect: Redirects to the user's profile.
     """
 
     try:
         review_for_approval = get_object_or_404(Review, id=id)
-        print(review_for_approval)
-        review_for_approval.approved = True
-        review_for_approval.save()
-        messages.success(
-            request,
-            "You've successfully approved this review!"
-        )
+        if request.user.is_superuser:
+            review_for_approval.approved = True
+            review_for_approval.save()
+            messages.success(
+                request,
+                "You've successfully approved this review!"
+            )
+        else:
+            messages.error(
+                request,
+                """You don't have permission to approve this review.
+                If this is a mistake, please contact our technical support
+                team for assistance."""
+            )
         return redirect('user_profile')
     except Exception as e:
         messages.error(
             request,
-            """An error occurred. Please try approving
-            via the admin panel. If the error persists, 
-            please contact our dedicated technical team
+            """An error occurred. Please try approving via the admin panel. If
+            the error persists, please contact our dedicated technical team
             with your query. Thank you for understanding."""
         )
         return redirect('user_profile')

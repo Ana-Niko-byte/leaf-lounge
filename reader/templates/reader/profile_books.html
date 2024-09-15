@@ -14,7 +14,7 @@
     <div class="row shadow-lg p-4 rounded my-3">
         <h4 class="mb-4 text-uppercase small"><strong><i class="fa-solid fa-pen-nib me-2"></i>Authored Books</strong></h4>
         {% for book in my_books %}
-        <div class="book col-2">
+        <div class="col-2">
             {% if book.image %}
             <img src="{{ book.image.url }}" alt="{{ book.book.title }} cover" class="profile-book">
             {% else %}
@@ -55,7 +55,7 @@
                 <div class="book-genre-rows">
                     {% for book in user_books %}
                         {% if book.genre == genre %}
-                        <div class="book col-2">
+                        <div class="col-2">
                             <img src="{{ book.image.url }}" alt="{{ book.book.title }} cover" class="profile-book">
                             <a href="{% url 'leave_review' book.id %}" class="btn-link" data-book-title="{{ book.title }}">
                                 <button class="my-3 custom-button">
@@ -74,7 +74,7 @@
                 {% if filtered_books %}
                 <h4 class="mb-3 text-uppercase small"><strong><i class="fa-solid fa-bookmark fa-sm me-2"></i>{{ user_genre }}</strong></h4>
                     {% for book in filtered_books %}
-                    <div class="book col-2">
+                    <div class="col-2">
                         <img src="{{ book.image.url }}" alt="{{ book.book.title }} cover" class="profile-book">
                         <a href="{% url 'leave_review' book.id %}" class="btn-link" data-book-title="{{ book.title }}">
                             <button class="my-3 custom-button">
