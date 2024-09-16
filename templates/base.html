@@ -63,30 +63,29 @@
             <!-- Main Navigation Bar -->
             <nav class="main-nav navbar navbar-expand-lg flex justify-content-between align-items-center">
                 <a href="{{ home_url }}">
-                    <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}leaf-lounge-logo.png" alt="logo" style="width:250px">
+                    <img class="card-img-top img-fluid logo-image" src="{{ MEDIA_URL }}leaf-lounge-logo.png" alt="leaf lounge logo">
                 </a>
-
                 <div class="navigation-links">
-                    <button class="navbar-toggler me-3 me-md-0" type="button" data-bs-toggle="collapse" data-bs-target="#leafLoungeLinks" aria-controls="leafLoungeLinks" aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="navbar-toggler me-3 me-md-0"  aria-label="burger menu" type="button" data-bs-toggle="collapse" data-bs-target="#leafLoungeLinks" aria-controls="leafLoungeLinks" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <!-- Original Menu for Large Screens -->
                     <ul class="navbar-nav d-none d-lg-flex">
                         <li class="nav-item px-2 mx-1">
                             <div class="nav-item-container">
-                                <a href="{{ home_url }}"><i class="fa-solid fa-sm fa-house-chimney me-2"></i>Home</a>
+                                <a href="{{ home_url }}" aria-label="Go to Home Page"><i class="fa-solid fa-sm fa-house-chimney me-2"></i>Home</a>
                                 <div class="{% url_active 'home' %} mt-1"></div>
                             </div>
                         </li>
                         <li class="nav-item px-2 mx-1">
                             <div class="nav-item-container">
-                                <a href="{{ contact_url }}"><i class="fa-solid fa-sm fa-paper-plane me-2"></i>Contact</a>
+                                <a href="{{ contact_url }}"  aria-label="Go to Contact Page"><i class="fa-solid fa-sm fa-paper-plane me-2"></i>Contact</a>
                                 <div class="{% url_active 'contact' %} mt-1"></div>
                             </div>
                         </li>
                         <li class="nav-item px-2 mx-1">
                             <div class="nav-item-container">
-                                <a href="{{ library_url }}"><i class="fa-solid fa-sm fa-book me-2"></i>Library</a>
+                                <a href="{{ library_url }}"  aria-label="Go to the Library Page"><i class="fa-solid fa-sm fa-book me-2"></i>Library</a>
                                 <div class="{% url_active 'library' %} mt-1"></div>
                             </div>
                         </li>
@@ -94,7 +93,7 @@
                         <!-- Communities -->
                         <li class="nav-item px-2 mx-1">
                             <div class="nav-item-container">
-                                <a href="{{ community_general_url }}">
+                                <a href="{{ community_general_url }}"  aria-label="Visit my Communities">
                                     <i class="fa-solid fa-comments me-2"></i>My Communities
                                 </a>
                                 <div class="{% url_active 'communities' %} mt-1"></div>
@@ -104,7 +103,8 @@
                         <!-- Profile -->
                         <li class="nav-item px-2 mx-1">
                             <div class="nav-item-container">
-                                <a href="{% if request.user.is_authenticated %}{% url 'user_profile' %}{% else %}{{ signup_url }}{% endif %}">
+                                <a href="{% user.is_authenticated %}{% url 'user_profile' %}{% else %}{{ signup_url }}{% endif %}"
+                                aria-label="{% if user.is_authenticated %}Visit my Profile{% else %}Sign Up{% endif %}">
                                     <i class="fa-solid fa-user me-2"></i>My Profile
                                 </a>
                                 <div class="{% url_active 'user_profile' %} mt-1"></div>
@@ -120,7 +120,7 @@
                 <ul class="navbar-nav me-3 align-items-center basket-sign-up">
                     <!-- Basket -->
                     <li class="nav-item px-2 mx-1">
-                        <a href="{{ basket_url }}">
+                        <a href="{{ basket_url }}" aria-label="Go to my Basket">
                             <i class="fa-solid fa-basket-shopping me-1 {% if books_total %} gelatine {% endif %}"></i>
                             <span class="text-sm">
                                 {% if total %}
@@ -135,14 +135,14 @@
                     <!-- Authentication -->
                     <li class="nav-item px-2 mx-1">
                         {% if not request.user.is_authenticated %}
-                        <a href="{{ signup_url }}" class="btn-link">
+                        <a href="{{ signup_url }}" aria-label="Sign Up" class="btn-link">
                             <button class="small-custom-button">
                                 <i class="fa-solid fa-user-plus me-2"></i>
                                 <small>Sign Up</small>
                             </button>
                         </a>
                         {% else %}
-                        <a href="{{ signout_url }}" class="btn-link">
+                        <a href="{{ signout_url }}" aria-label="Sign Out" class="btn-link">
                             <button class="small-custom-button">
                                 <i class="fa-solid fa-arrow-right-from-bracket me-2"></i>
                                 <small>Sign Out</small>
@@ -196,34 +196,35 @@
             <div class="col-lg-8">
                 <ul class="navbar-nav d-flex flex-row justify-content-end align-items-center me-4">
                     <li class="nav-item text-center footer-nav-items">
-                        <a href="{{ home_url }}"><small>Home</small></a>
+                        <a href="{{ home_url }}" aria-label="Go to Home Page"><small>Home</small></a>
                     </li>
                     <li class="mx-2 mx-lg-4">|</li>
                     <li class="nav-item text-center footer-nav-items">
-                        <a href="{{ contact_url }}"><small>Contact</small></a>
+                        <a href="{{ contact_url }}" aria-label="Go to Contact Page"><small>Contact</small></a>
                     </li>
                     <li class="mx-2 mx-lg-4">|</li>
                     <li class="nav-item text-center footer-nav-items">
-                        <a href="{{ library_url }}"><small>Library</small></a>
+                        <a href="{{ library_url }}" aria-label="Go to Library Page"><small>Library</small></a>
                     </li>
                     <li class="d-none d-md-block mx-2 mx-lg-4">|</li>
                     {% if request.user.is_authenticated %}
                     <li class="nav-item text-center footer-nav-items">
-                        <a href="{{ community_general_url }}"><small>Communities</small></a>
+                        <a href="{{ community_general_url }}" aria-label="Visit my Communities"><small>Communities</small></a>
                     </li>
                     <li class="mx-2 mx-lg-4">|</li>
                     <li class="nav-item text-center footer-nav-items">
-                        <a href="{% if request.user.is_authenticated %}{% url 'user_profile' %}{% else %}{{ signup_url }}{% endif %}">
+                        <a href="{% if user.is_authenticated %}{% url 'user_profile' %}{% else %}{{ signup_url }}{% endif %}"
+                        aria-label="{% if user.is_authenticated %}Go to my Profile{% else %}Sign Up{% endif %}">
                             <small>My Profile</small>
                         </a>
                     </li>
                     <li class="mx-2 mx-lg-4">|</li>
                     <li class="nav-item text-center footer-nav-items">
-                        <a href="{{ signout_url }}"><small>Sign Out</small></a>
+                        <a href="{{ signout_url }}" aria-label="Sign Out"><small>Sign Out</small></a>
                     </li>
                     {% else %}
                     <li class="nav-item text-center footer-nav-items">
-                        <a href="{{ signup_url }}">
+                        <a href="{{ signup_url }}" aria-label="Sign Up">
                             <small>Sign Up</small>
                         </a>
                     </li>

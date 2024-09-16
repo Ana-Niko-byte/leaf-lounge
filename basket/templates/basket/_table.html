@@ -1,3 +1,8 @@
+{% block extra_css %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'basket/css/basket.css' %}">
+{% endblock %}
+
 <table class="table table-sm table-shadow">
     <thead class="text-center">
         <tr class="mb-5">
@@ -13,8 +18,8 @@
             <!-- Book -->
             <td>
                 <div class="container-data d-flex flex-row justify-content-start align-items-start pt-3 p-2">
-                    <a href="{{ book.book.get_absolute_url }}">
-                        <img src="{{ book.book.image.url }}" style="width: 80px;" alt="{{ book.book.title }} book cover">
+                    <a href="{{ book.book.get_absolute_url }}" aria-label="Visit {{ book.book.title }} Page">
+                        <img src="{{ book.book.image.url }}" class="table-book" alt="{{ book.book.title }} book cover">
                     </a>
                     <div class="book-basket-info d-flex flex-column justify-content-between ms-3">
                         <div class="general-info flex-fill">
@@ -39,14 +44,20 @@
                 <p id="quantity_{{ book.book_id }}_{{ forloop.counter }}" class="text-center basket-book-quantity mt-3">{{ book.quantity }}</p>
                 <!-- Update Form -->
                 <div class="form-container d-flex align-items-center justify-content-center">
-                    <form action="{% url 'update_basket' book.book_id %}" method="POST" id="update_form_{{ book.book_id }}_{{forloop.counter}}">
+                    <form action="{% url 'update_basket' book.book_id %}" method="post" id="update_form_{{ book.book_id }}_{{forloop.counter}}">
                         {% csrf_token %}
 
                         <!-- Input Group -->
                         <div class="input-group d-none align-items-center justify-content-center" id="form_{{ book.book_id }}_{{ forloop.counter }}">
                             <!-- Delete Button -->
                             <div class="input-group-prepend">
-                                <a href="{% url 'delete_basket' book.book_id %}" class="basket-link btn delete-book my-1" data-book-id="{{ book.book_id }}" data-book-type="{{ book.type }}" data-counter="{{ forloop.counter }}" id="delete_{{ book.book_id }}_{{ forloop.counter }}"><i class="fa-solid fa-trash"></i></a>
+                                <a href="{% url 'delete_basket' book.book_id %}"
+                                    aria-label="Delete {{ book.book.title }} from my Basket"
+                                    class="basket-link btn delete-book my-1" data-book-id="{{ book.book_id }}"
+                                    data-book-type="{{ book.type }}" data-counter="{{ forloop.counter }}"
+                                    id="delete_{{ book.book_id }}_{{ forloop.counter }}">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
                             </div>
                             <!-- /Delete Button -->
 
@@ -71,11 +82,21 @@
                         <!-- Handlers -->
                         <div class="button-container d-flex flex-column justify-content-center">
                             <!-- Manipulation (js) -->
-                            <span class="d-none basket-link custom-button cancel-update my-1" data-book-id="{{ book.book_id }}" id="cancel_{{ book.book_id }}_{{ forloop.counter }}">Cancel</span>
-                            <span class="basket-link custom-button update-book my-1" data-book-id="{{ book.book_id }}" data-counter="{{ forloop.counter }}">Update</span>
+                            <span class="d-none basket-link custom-button cancel-update my-1"
+                                data-book-id="{{ book.book_id }}"
+                                id="cancel_{{ book.book_id }}_{{ forloop.counter }}">Cancel
+                            </span>
+                            <span class="basket-link custom-button update-book my-1"
+                                data-book-id="{{ book.book_id }}"
+                                data-counter="{{ forloop.counter }}">Update
+                            </span>
                             <!-- /Manipulation (js) -->
                             <!-- Button -->
-                            <a class="d-none basket-link custom-button save-book my-1" data-book-id="{{ book.book_id }}" id="save_{{ book.book_id }}_{{ forloop.counter }}">Save Changes</a>
+                            <a class="d-none basket-link custom-button save-book my-1"
+                                data-book-id="{{ book.book_id }}"
+                                id="save_{{ book.book_id }}_{{ forloop.counter }}"
+                                aria-label="Save Changes">Save Changes
+                            </a>
                             <!-- /Button -->
                         </div>
                         <!-- /Handlers -->

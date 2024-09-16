@@ -16,7 +16,7 @@
                 <h6 class="m-0 p-0 mb-3 small text-black text-uppercase"><strong>{{ genre.name }}</strong></h6>
                 <div class="d-flex flex-row align-items-end p-0 m-0">
                     {% for book in books %}
-                    <a href="{{ book.get_absolute_url }}">
+                    <a href="{{ book.get_absolute_url }}" aria-label="Visit {{ book.title }} Page">
                         <div class="book d-flex me-1">
                             <div class="book-spine p-2 d-flex align-items-end">
                                 <p class="text-white book-turned h6 text-uppercase small"><strong>{{ book.title }}</strong></p>
@@ -25,7 +25,7 @@
                             {% if book.image %}
                             <img src="{{ book.image.url }}" alt="{{ book.title }} cover" class="book-main">
                             {% else %}
-                            <img src="{{ MEDIA_URL }}bookplaceholder.png" alt="{{ book.title }} cover" class="book-main">
+                            <img src="{{ MEDIA_URL }}bookplaceholder.png" alt="generic placeholder cover" class="book-main">
                             {% endif %}
                         </div>
                     </a>
@@ -39,13 +39,17 @@
                     <div class="d-flex flex-row align-items-end p-0 m-0">
                         {% for book in books %}
                         {% if book.genre.name == genre.name %}
-                        <a href="{{ book.get_absolute_url }}">
+                        <a href="{{ book.get_absolute_url }}" aria-label="Visit {{ book.title }} Page">
                             <div class="book d-flex me-1">
                                 <div class="book-spine p-2 d-flex align-items-end">
                                     <p class="text-white book-turned h6 text-uppercase small"><strong>{{ book.title }}</strong></p>
                                     <p class="text-white book-turned my-2 small">{{ book.author }} | {{ book.year_published }}</p>
-                                </div> 
+                                </div>
+                                {% if book.image %}
                                 <img src="{{ book.image.url }}" alt="{{ book.title }} cover" class="{% if book.genre in genres_search %}book-main d-flex{% else %}d-none{% endif %}">
+                                {% else %}
+                                <img src="{{ MEDIA_URL }}bookplaceholder.png" alt="generic placeholder cover" class="{% if book.genre in genres_search %}book-main d-flex{% else %}d-none{% endif %}">
+                                {% endif %}
                             </div>
                         </a>
                         {% endif %}
@@ -59,13 +63,17 @@
                 <div class="row book-genre-rows my-2">
                     <h6 class="m-0 p-0 mb-3 small text-black text-uppercase"><strong>{{ book.genre }}</strong></h6>
                     <div class="d-flex flex-row align-items-end p-0 m-0">
-                        <a href="{{ book.get_absolute_url }}">
+                        <a href="{{ book.get_absolute_url }}" aria-label="Visit {{ book.title }} Page">
                             <div class="book d-flex me-1">
                                 <div class="book-spine p-2 d-flex align-items-end">
                                     <p class="text-white book-turned h6 text-uppercase small"><strong>{{ book.title }}</strong></p>
                                     <p class="text-white book-turned my-2 small">{{ book.author }} | {{ book.year_published }}</p>
                                 </div> 
+                                {% if book.image %}
                                 <img src="{{ book.image.url }}" alt="{{ book.title }} cover" class="{% if book.author.last_name in authors_ln %}book-main d-flex{% else %}d-none{% endif %}">
+                                {% else %}
+                                <img src="{{ MEDIA_URL }}bookplaceholder.png" alt="generic placeholder cover" class="{% if book.author.last_name in authors_ln %}book-main d-flex{% else %}d-none{% endif %}">
+                                {% endif %}
                             </div>
                         </a>
                     </div>
@@ -112,7 +120,7 @@
             </form>
             <!-- /Search Form -->
             {% if 'q' in request.GET or 'author' in request.GET or 'genre' in request.GET %}
-                <a href="{{ library_url }}">
+                <a href="{{ library_url }}" aria-label="Show All Books">
                     <button class="custom-button custom-button-extended mt-3">
                         <i class="fa-solid fa-book me-2"></i>Show All
                     </button>
@@ -124,7 +132,7 @@
                         <div class="row mt-3">
                             <p class="small text-black text-uppercase mb-3"><strong>Filters</strong></p>
                             <div class="button-container d-flex flex-column align-items-start justify-content-start">
-                                <button class="table-button mb-2" type="button" data-bs-toggle="collapse" data-bs-target="#authors" aria-expanded="false" aria-controls="authors">
+                                <button class="table-button mb-2" aria-label="Filter by Authors" type="button" data-bs-toggle="collapse" data-bs-target="#authors" aria-expanded="false" aria-controls="authors">
                                     <span>Authors<i class="fa-solid fa-chevron-down fa-sm ms-2"></i></span>
                                 </button>
                                 <div class="collapse multi-collapse my-3" id="authors">
@@ -138,7 +146,7 @@
                                     </div>
                                     {% endfor %}
                                 </div>
-                                <button class="table-button" type="button" data-bs-toggle="collapse" data-bs-target="#genres" aria-expanded="false" aria-controls="genres">
+                                <button class="table-button" aria-label="Filter by Genres" type="button" data-bs-toggle="collapse" data-bs-target="#genres" aria-expanded="false" aria-controls="genres">
                                     <span>Genres<i class="fa-solid fa-chevron-down fa-sm ms-2"></i></span>
                                 </button>
                                 <div class="collapse multi-collapse mt-3" id="genres">
@@ -154,7 +162,7 @@
                                 </div>
                             </div>
                         </div>
-                        <button class="custom-button custom-button-extended mt-3" type="submit">
+                        <button class="custom-button custom-button-extended mt-3" type="submit" aria-label="Search by My Filters">
                             <i class="fa-solid fa-check me-2"></i>Find Books
                         </button>
                     </form>

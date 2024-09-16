@@ -18,7 +18,7 @@
             {% if book.image %}
             <img src="{{ book.image.url }}" alt="{{ book.book.title }} cover" class="profile-book">
             {% else %}
-            <img src="{{ MEDIA_URL }}bookplaceholder.png" alt="{{ book.book.title }} cover" class="profile-book">
+            <img src="{{ MEDIA_URL }}bookplaceholder.png" alt="generic placeholder cover" class="profile-book">
             {% endif %}
             <p class="mt-2"><strong><small>Title: {{ book.title }}</small></strong></p>
             <p class="mt-1"><strong><small>Registered: {{ book.date_added }}</small></strong></p>
@@ -34,14 +34,14 @@
             <form action="{% url 'user_books' %}" class="d-flex flex-column align-items-center justify-content-center" method="get">
                 <h4 class="mb-4 text-uppercase small"><strong><i class="fa-solid fa-book me-2"></i>My Purchases</strong></h4>
                 {% for genre in user_genres %}
-                <button type="submit" class="table-button text-center m-1" name="genre" value="{{ genre.name }}">
+                <button type="submit" class="table-button text-center m-1" name="genre" value="{{ genre.name }}" aria-label="Show books from {{ genre.name }} category">
                     <span class="text-uppercase small"><strong>{{ genre.name }}</strong></span>
                 </button>
                 {% endfor %}
             </form>
             <!-- This needs fixing! should reset the url -->
             <div class="button-container d-flex justify-content-end">
-                <a href="{% url 'user_books' %}" class="btn-link"></a>
+                <a href="{% url 'user_books' %}" aria-label="See all of My Books" class="btn-link"></a>
                     <button class="custom-button mt-3 {% if not chosen %}d-none{% else %}d-block{% endif %}">
                         Show All
                     </button>
@@ -57,7 +57,7 @@
                         {% if book.genre == genre %}
                         <div class="col-2">
                             <img src="{{ book.image.url }}" alt="{{ book.book.title }} cover" class="profile-book">
-                            <a href="{% url 'leave_review' book.id %}" class="btn-link" data-book-title="{{ book.title }}">
+                            <a href="{% url 'leave_review' book.id %}" class="btn-link" data-book-title="{{ book.title }}" aria-label="Leave a Review for {{ book.title }}">
                                 <button class="my-3 custom-button">
                                     Leave a Review
                                 </button>
@@ -76,7 +76,7 @@
                     {% for book in filtered_books %}
                     <div class="col-2">
                         <img src="{{ book.image.url }}" alt="{{ book.book.title }} cover" class="profile-book">
-                        <a href="{% url 'leave_review' book.id %}" class="btn-link" data-book-title="{{ book.title }}">
+                        <a href="{% url 'leave_review' book.id %}" class="btn-link" aria-label="Go to {{ book.title }} Page" data-book-title="{{ book.title }}">
                             <button class="my-3 custom-button">
                                 Leave a Review
                             </button>

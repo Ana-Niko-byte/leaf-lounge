@@ -16,7 +16,7 @@
             <h6 class="m-0 p-0 m-3 small text-black text-uppercase"><strong>More {{ current_genre.name }} Books</strong></h6>
             {% for book in books_in_genre %}
                 <span>
-                    <a href="{{ book.get_absolute_url }}" class="btn-link">
+                    <a href="{{ book.get_absolute_url }}" aria-label="Go to {{ book.book.title }} Page" class="btn-link">
                         <img src="{{ book.image.url }}" alt="{{ book.title }} cover" class="forum-book rounded m-2">
                     </a>
                 </span>
@@ -34,7 +34,7 @@
                         {% if forums %}
                             {% for forum in forums %}
                                 {% if forum.community == community %}
-                                <a href="{{ forum.get_absolute_url }}" class="forum-link my-1">
+                                <a href="{{ forum.get_absolute_url }}" aria-label="Go to Forum named {{ forum.name }}" class="forum-link my-1">
                                     <div class="p-3">
                                         {{ forum.name }}
                                     </div>
@@ -55,12 +55,12 @@
                     <p class="text-muted small mb-3"><strong>Note:</strong> You will be taken inside the forum after creating it.</p>
                 </div>
                 <div class="button-container">
-                    <button type="submit" class="small-custom-button">
+                    <button type="submit" class="small-custom-button" aria-label="Add Forum">
                         <i class="fa-solid fa-plus me-2"></i>Create
                     </button>
                 </div>
             </form>
-            <button class="custom-button mt-3" id="start-forum">
+            <button class="custom-button mt-3" id="start-forum" aria-label="Create Forum Button">
                 <i class="fa-solid fa-comments me-2"></i>Start a Discussion
             </button>
         </div>

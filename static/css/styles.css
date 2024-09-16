@@ -55,6 +55,10 @@ body {
         border-color: orange;
     }
 }
+
+.logo-image{
+    width: 250px;
+}
 /* /Branding */
 
 /* Links */

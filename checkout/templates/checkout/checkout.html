@@ -50,9 +50,9 @@
                             <input type="checkbox" id="save-info" class="form-check-input" name="save-info" checked>
                         {% else %}
                         <label class="form-check-label" for="save-info">Save to My Profile for faster checkouts
-                            <a href="{{ signup_url }}">Create an account</a>
+                            <a href="{{ signup_url }}" aria-label="Create Leaf Lounge Account">Create an account</a>
                             <p>or</p>
-                            <a href="{{ signin_url }}">login</a> to save this information for faster checkouts.
+                            <a href="{{ signin_url }}" aria-label="Log In">login</a> to save this information for faster checkouts.
                         </label>
 
                         {% endif %}

@@ -23,7 +23,7 @@
                         </p>
                     </div>
                     <div class="button-container d-flex justify-content-start">
-                        <a href="{{ signin_url }}" class="btn-link">
+                        <a href="{{ signin_url }}" aria-label="Sign In" class="btn-link">
                             <button class="custom-button">
                                 <i class="fa-solid fa-arrow-right-to-bracket me-2"></i>Log In
                             </button>
@@ -36,7 +36,7 @@
                 <p class="h4">Hey, {% if user.is_superuser %}admin {% endif %}{{ user }}!</p>
                 <h1 class="typewriter typewriter-blurb h2 mt-3 mb-4">Don't miss out on the chatter in your communities :)</h1>
                 <div class="button-container d-flex justify-content-start">
-                    <a href="{{ community_general_url }}" class="btn-link">
+                    <a href="{{ community_general_url }}" aria-label="Visit my Communities" class="btn-link">
                         <button class="custom-button mt-1 mt-md-3">
                             <i class="fa-solid fa-book-open me-2"></i>My Communities
                         </button>
@@ -64,9 +64,9 @@
             <!-- /Search Form -->
             <div class="socials">
                 <div class="socials mt-3">
-                    <a class="mx-2 social-links" href="https://www.facebook.com/profile.php?id=61563390085042" target="_blank"><i class="fa-brands fa-lg fa-facebook"></i></a>
-                    <a class="mx-2 social-links" href="https://github.com/Ana-Niko-byte/leaf-lounge" target="_blank"><i class="fa-brands fa-lg fa-github"></i></a>               
-                    <a class="mx-2 social-links" href="https://www.linkedin.com/in/ana-nikolayenia-k/" target="_blank"><i class="fa-brands fa-lg fa-linkedin"></i></a>
+                    <a class="mx-2 social-links" aria-label="Visit the Leaf Lounge Facebook" href="https://www.facebook.com/profile.php?id=61563390085042" target="_blank"><i class="fa-brands fa-lg fa-facebook"></i></a>
+                    <a class="mx-2 social-links" aria-label="Visit the site developer's GitHub" href="https://github.com/Ana-Niko-byte/leaf-lounge" target="_blank"><i class="fa-brands fa-lg fa-github"></i></a>               
+                    <a class="mx-2 social-links" aria-label="Visit the site developer's Instagram" href="https://www.linkedin.com/in/ana-nikolayenia-k/" target="_blank"><i class="fa-brands fa-lg fa-linkedin"></i></a>
                     <p class="small"><strong>Check out our medias!</strong></p>
                 </div>
             </div>

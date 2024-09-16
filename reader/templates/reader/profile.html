@@ -15,10 +15,10 @@
             {% csrf_token %}
             {{ review_form | crispy }}
             <div class="button-container">
-                <button id="submitButton" type="submit" class="custom-button">
+                <button id="submitButton" type="submit" class="custom-button" aria-label="Update Review">
                     Update Review<i class="fa-solid fa-circle-check ms-2"></i>
                 </button>
-                <button id="cancelReview" class="custom-button" type="button">
+                <button id="cancelReview" class="custom-button" type="button" aria-label="Cancel">
                     Cancel<i class="fa-solid fa-circle-xmark ms-2"></i>
                 </button>
             </div>
@@ -28,23 +28,29 @@
         <div class="col-lg-3 col-md-3 col-sm-12 order-first">
             <ul class="list-unstyled ms-3">
                 <li class="menu-item">
-                    <button class="table-button mb-2 display-button" data-detail="billing">My Billing Details</button>
+                    <button class="table-button mb-2 display-button" data-detail="billing" aria-label="View my Billing Details">
+                        My Billing Details
+                    </button>
                 </li>
                 <li class="menu-item">
-                    <button class="table-button mb-2 display-button" data-detail="history">My Order History</button>
+                    <button class="table-button mb-2 display-button" data-detail="history" aria-label="View my Order History">
+                        My Order History
+                    </button>
                 </li>
                 <li class="menu-item">
-                    <a href="{{ community_general_url }}">
+                    <a href="{{ community_general_url }}" aria-label="Visit my Communities">
                         <button class="table-button mb-2">
                             My Communities
                         </button>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <button class="table-button mb-2 display-button" data-detail="reviews">My Reviews</button>
+                    <button class="table-button mb-2 display-button" data-detail="reviews" aria-label="View my Reviews">
+                        My Reviews
+                    </button>
                 </li>
                 <li class="menu-item">
-                    <a href="{{ contact_url }}">
+                    <a href="{{ contact_url }}" aria-label="Contact Leaf Lounge for Help">
                         <button class="table-button mb-2">
                             Need Help?
                         </button>
@@ -59,41 +65,41 @@
             </div>
             <ul class="list-unstyled">
                 <li class="d-none profile-details mx-0 mx-md-3 d-flex justify-content-start align-items-start ms-5" data-profile="billing-details">
-                        <div class="main-form bg-light rounded shadow-sm p-4">
-                            <h4 class="mb-3 text-uppercase text-start small"><strong><i class="fa-solid fa-book me-2"></i>My Details</strong></h4>
-                            <hr>
-                            <form action="{% url 'user_profile' %}" method="post" id="userProfileForm">
-                                {% csrf_token %}
-                                <div class="inner-form-container d-flex flex-column flex-md-row align-items-start justify-content-between">
-                                    <div class="half">
-                                        <fieldset class="px-3 mb-3">
-                                            <legend class="fieldset-details fieldset-label small text-black text-uppercase text-start"><strong>Contact Details</strong></legend>
-                                            {{ user_form.default_phone_number | as_crispy_field }}
-                                        </fieldset>
-                                        <fieldset class="px-3 mb-3">
-                                            <legend class="fieldset-details fieldset-label small text-black text-uppercase text-start"><strong>Street Address</strong></legend>
-                                            {{ user_form.default_street_1 | as_crispy_field }}
-                                            {{ user_form.default_street_2 | as_crispy_field }}
-                                            {{ user_form.default_town_city | as_crispy_field }}
-                                        </fieldset>
-                                    </div>
-                                    <div class="half">
-                                        <fieldset class="px-3 mb-3">
-                                            <legend class="fieldset-details fieldset-label small text-black text-uppercase text-start"><strong>Locality</strong></legend>
-                                            {{ user_form.default_county | as_crispy_field }}
-                                        </fieldset>
-                                        <fieldset class="px-3 mb-3">
-                                            <legend class="fieldset-details fieldset-label small text-black text-uppercase text-start"><strong>Region</strong></legend>
-                                            {{ user_form.default_postcode | as_crispy_field }}
-                                            {{ user_form.default_country | as_crispy_field }}
-                                        </fieldset>
-                                        <div class="button-container d-flex justify-content-end me-3">
-                                            <button type="submit" class="btn-lg custom-button"><i class="fa-solid fa-circle-check me-2"></i>Update Information</button>
-                                        </div>
+                    <div class="main-form bg-light rounded shadow-sm p-4">
+                        <h4 class="mb-3 text-uppercase text-start small"><strong><i class="fa-solid fa-book me-2"></i>My Details</strong></h4>
+                        <hr>
+                        <form action="{% url 'user_profile' %}" method="post" id="userProfileForm">
+                            {% csrf_token %}
+                            <div class="inner-form-container d-flex flex-column flex-md-row align-items-start justify-content-between">
+                                <div class="half">
+                                    <fieldset class="px-3 mb-3">
+                                        <legend class="fieldset-details fieldset-label small text-black text-uppercase text-start"><strong>Contact Details</strong></legend>
+                                        {{ user_form.default_phone_number | as_crispy_field }}
+                                    </fieldset>
+                                    <fieldset class="px-3 mb-3">
+                                        <legend class="fieldset-details fieldset-label small text-black text-uppercase text-start"><strong>Street Address</strong></legend>
+                                        {{ user_form.default_street_1 | as_crispy_field }}
+                                        {{ user_form.default_street_2 | as_crispy_field }}
+                                        {{ user_form.default_town_city | as_crispy_field }}
+                                    </fieldset>
+                                </div>
+                                <div class="half">
+                                    <fieldset class="px-3 mb-3">
+                                        <legend class="fieldset-details fieldset-label small text-black text-uppercase text-start"><strong>Locality</strong></legend>
+                                        {{ user_form.default_county | as_crispy_field }}
+                                    </fieldset>
+                                    <fieldset class="px-3 mb-3">
+                                        <legend class="fieldset-details fieldset-label small text-black text-uppercase text-start"><strong>Region</strong></legend>
+                                        {{ user_form.default_postcode | as_crispy_field }}
+                                        {{ user_form.default_country | as_crispy_field }}
+                                    </fieldset>
+                                    <div class="button-container d-flex justify-content-end me-3">
+                                        <button type="submit" class="btn-lg custom-button"><i class="fa-solid fa-circle-check me-2"></i>Update Information</button>
                                     </div>
                                 </div>
-                            </form>
-                        </div>
+                            </div>
+                        </form>
+                    </div>
                 </li>
                 <li class="d-none profile-details me-5" data-profile="history-details">
                     <div>
@@ -110,7 +116,11 @@
                                         {% for book in book_order.booklineitem.all %}
                                         <div class="mx-3 mb-3 d-flex flex-column justify-content-between">
                                             <div class="book-info">
-                                                <img src="{{ book.book.image.url }}" class="mt-4 mb-2" style="width: 100px;" alt="{{ book.book.title }} cover">
+                                                {% if book.image %}
+                                                <img src="{{ book.book.image.url }}" class="mt-4 mb-2 profile-books" alt="{{ book.book.title }} cover">
+                                                {% else %}
+                                                <img src="{{ MEDIA_URL }}bookplaceholder.png" alt="generic placeholder cover" class="mt-4 mb-2 profile-books">
+                                                {% endif %}
                                                 <p class="m-0 p-0"><small><strong>( {{ book.quantity }} )</strong></small></p>
                                             </div>
                                         </div>
@@ -179,7 +189,9 @@
                             {% endfor %}
                         {% else %}
                             <p>Looks like you don't have any orders!</p>
-                            <p>To place an order,visit our <span><a href="{{ library_url }}">Library</a></span> :)</p>
+                            <p>To place an order, visit our <span>
+                                <a href="{{ library_url }}" aria-label="Library Page">Library</a></span> :)
+                            </p>
                         {% endif %}
                     </div>
                 </li>
@@ -193,14 +205,19 @@
                                         <div class="half col-6">
                                             <div class="rating-container d-flex">
                                                 <div id="profile-rating-box-{{ forloop.counter }}" data-forloop="{{ forloop.counter }}" data-rating="{{ review.rating }}" class="review rating-box d-flex justify-content-start align-items-start mb-3">
-                                                    <img src="{{ MEDIA_URL }}stars.png" alt="{{ book.title }} cover" width="120" id="profile-loader-image-{{ forloop.counter }}" class="loader-image">
+                                                    <img src="{{ MEDIA_URL }}stars.png" alt="{{ book.title }} cover" id="profile-loader-image-{{ forloop.counter }}" class="loader-image">
                                                     <div id="profile-rating-bar-{{ forloop.counter }}" class="rating-bar"></div>
                                                 </div>
                                             </div>
                                             <h5 class="text-start">{{ review.title }}</h5>
                                         </div>
                                         <div class="half col-6 text-end">
-                                            <p class="ms-2 mt-2 {% if review.approved %}text-success{% endif %}">{% if review.approved %}<i class="fa-solid fa-circle-check fa-sm me-2"></i>Approved{% else %}<i class="fa-solid fa-hourglass-start fa-sm me-2"></i>Pending{% endif %}</p>
+                                            <p class="ms-2 mt-2 {% if review.approved %}text-success{% endif %}">
+                                                {% if review.approved %}
+                                                <i class="fa-solid fa-circle-check fa-sm me-2"></i>Approved
+                                                {% else %}<i class="fa-solid fa-hourglass-start fa-sm me-2"></i>Pending
+                                                {% endif %}
+                                            </p>
                                             <p class="ms-2 small text-secondary">Reviewed on: {{ review.reviewed_on }}</p>
                                         </div>
                                     </div>
@@ -214,7 +231,9 @@
                                     <div class="button-container pb-2 d-flex justify-content-between align-items-end">
                                         {% if not review.approved %}
                                         <button class="btn btn-warning m-2 d-flex justify-content-center align-items-center btn-edit"
-                                        data-review-id="{{ review.id }}" data-review-title="{{ review.title }}" data-review-comment="{{ review.comment }}" data-review-rating="{{ review.rating }}" data-book-title="{{ review.book }}">
+                                            data-review-id="{{ review.id }}" data-review-title="{{ review.title }}"
+                                            data-review-comment="{{ review.comment }}" data-review-rating="{{ review.rating }}"
+                                            data-book-title="{{ review.book }}">
                                             <i class="fa-solid fa-pencil fa-sm me-2"></i>Edit
                                         </button>
                                         {% else %}
@@ -223,13 +242,14 @@
                                         
                                         <div class="admin-button-container d-flex">
                                             {% if not review.approved and user.is_superuser %}
-                                            <a href="{% url 'approve_review' review.id %}" class="btn-link">
+                                            <a href="{% url 'approve_review' review.id %}" aria-label="Approve Review (Admin)" class="btn-link">
                                                 <button class="btn btn-success m-2 d-flex justify-content-center align-items-center">
                                                     <i class="fa-solid fa-check fa-sm me-2"></i>Approve
                                                 </button>
                                             </a>
                                             {% endif %}
-                                            <button class="btn btn-danger m-2 d-flex justify-content-center align-items-center" type="button" data-bs-toggle="modal" data-bs-target="#reviewDelete">
+                                            <button class="btn btn-danger m-2 d-flex justify-content-center align-items-center"
+                                            type="button" data-bs-toggle="modal" data-bs-target="#reviewDelete" aria-label="Delete Review">
                                                 <i class="fa-solid fa-trash fa-sm me-2"></i>Delete
                                             </button>
                                             
@@ -259,7 +279,7 @@
                             {% endfor %}
                         {% else %}
                             <p>You can view any pending and approved reviews here!</p>
-                            <p>To leave a review go to <span><a href="{{ books_url }}">My Books</a></span></p>
+                            <p>To leave a review go to <span><a href="{{ books_url }}" aria-label="Go to my books">My Books</a></span></p>
                         {% endif %}
                     </div>
                 </li>

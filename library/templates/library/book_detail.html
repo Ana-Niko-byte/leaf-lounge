@@ -15,7 +15,7 @@
             <h3 class="mt-3 mt-md-0 mb-3"><strong>{{ book.title }}</strong></h3>
             <div class="rating-container d-flex flex-column flex-md-row">
                 <div id="rating-box" data-rating="{{ ratings }}" class="rating-box d-flex justify-content-start align-items-start border">
-                    <img src="{{ MEDIA_URL }}stars.png" alt="{{ book.title }} cover" width="120" id="loader-image">
+                    <img src="{{ MEDIA_URL }}stars.png" alt="star ratings" width="120" id="loader-image">
                     <div id="rating-bar"></div>
                 </div>
                 <span class="ms-2 small" id="full-rating-review">( <span id="rating-amount"></span> )</span>
@@ -52,7 +52,7 @@
                         <p class="mb-1"><strong>Quantity:</strong></p>
                         <div class="input-group d-flex">
                             <div class="input-group-prepend">
-                                <button type="button" class="library-decrement btn" id="decrement_{{ book.id }}" data-book-id="{{ book.id }}">
+                                <button type="button" aria-label="Reduce by 1" class="library-decrement btn" id="decrement_{{ book.id }}" data-book-id="{{ book.id }}">
                                     <i class="fa-solid fa-minus fa-sm"></i>
                                 </button>
                             </div>
@@ -61,19 +61,19 @@
                                 <span class="small" id="qty_warning_{{ book.id }}"></span>
                             </div>
                             <div class="inut-group-append">
-                                <button type="button" class="library-increment btn" id="increment_{{ book.id }}" data-book-id="{{ book.id }}">
+                                <button type="button" aria-label="Increment by 1" class="library-increment btn" id="increment_{{ book.id }}" data-book-id="{{ book.id }}">
                                     <i class="fa-solid fa-plus fa-sm"></i>
                                 </button>
                             </div>
                         </div>
                     </div>
                     <div class="col-12 d-flex justify-content-around justify-content-md-start align-items-start mt-3 mb-3 mb-md-0">
-                        <a href="{{ library_url }}" class="btn-link">
+                        <a href="{{ library_url }}" class="btn-link" aria-label="Go to Library Page">
                             <button class="custom-button">
                                 <i class="fas fa-chevron-left me-2"></i>Return to Library
                             </button>
                         </a>
-                        <button type="submit" class="me-3 custom-button">
+                        <button type="submit" class="me-3 custom-button" aria-label="Add to Basket">
                             <i class="fa-solid fa-basket-shopping me-2"></i>Add to Basket
                         </button>
                     </div>
@@ -121,7 +121,7 @@
             <h6 class="m-0 p-0 mb-3 small text-black text-uppercase"><strong>{{ book.genre }}</strong></h6>
             <div class="d-flex flex-row align-items-end p-0 m-0">
                 {% for book in author_books %}
-                <a href="{{ book.get_absolute_url }}">
+                <a href="{{ book.get_absolute_url }}" aria-label="Go to {{ book.title }} Page">
                     <div class="book d-flex me-1">
                         <div class="book-spine p-2 d-flex align-items-end">
                             <p class="text-white book-turned h6 text-uppercase small"><strong>{{ book.title }}</strong></p>
@@ -130,7 +130,7 @@
                         {% if book.image %}
                         <img src="{{ book.image.url }}" alt="{{ book.title }} cover" class="book-main">
                         {% else %}
-                        <img src="{{ MEDIA_URL }}bookplaceholder.png" alt="{{ book.title }} cover" class="book-main">
+                        <img src="{{ MEDIA_URL }}bookplaceholder.png" alt="generic placeholder cover" class="book-main">
                         {% endif %}
                     </div>
                 </a>

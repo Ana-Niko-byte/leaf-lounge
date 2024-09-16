@@ -41,6 +41,7 @@ p {
     top: 0;
     left: 0;
     z-index: 1;
+    width: 120px;
 }
 
 .rating-bar {
@@ -74,5 +75,9 @@ p {
 
 .book-profile-order {
     overflow-x: auto;
+}
+
+.profile-books{
+    width: 100px;
 }
 /* /Profile */

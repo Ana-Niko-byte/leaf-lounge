@@ -1,9 +1,14 @@
+{% block extra_css %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'basket/css/basket.css' %}">
+{% endblock %}
+
 {% for book in books_in_basket %}
 <div class="book-basket-container">
     <div class="table table-sm table-shadow p-2">
         <div class="container-data shadow-sm d-flex flex-row justify-content-center align-items-center pt-3 p-2">
-            <a href="{{ book.book.get_absolute_url }}">
-                <img src="{{ book.book.image.url }}" style="width: 80px;" alt="{{ book.book.title }} book cover">
+            <a href="{{ book.book.get_absolute_url }}" aria-label="Go to {{ book.book.title }} Page">
+                <img src="{{ book.book.image.url }}" class="table-book" alt="{{ book.book.title }} book cover">
             </a>
             <div class="book-basket-info d-flex flex-column justify-content-between ms-3">
                 <div class="general-info flex-fill">
@@ -51,11 +56,19 @@
                     <!-- Handlers -->
                     <div class="button-container d-flex flex-column justify-content-center">
                         <!-- Manipulation (js) -->
-                        <span class="d-none basket-link custom-button cancel-update my-1" data-book-id="{{ book.book_id }}" id="cancel_{{ book.book_id }}_{{ forloop.counter }}">Cancel</span>
-                        <span class="basket-link custom-button update-book my-1" data-book-id="{{ book.book_id }}" data-counter="{{ forloop.counter }}">Update</span>
+                        <span class="d-none basket-link custom-button cancel-update my-1"
+                            data-book-id="{{ book.book_id }}"
+                            id="cancel_{{ book.book_id }}_{{ forloop.counter }}">Cancel
+                        </span>
+                        <span class="basket-link custom-button update-book my-1"
+                            data-book-id="{{ book.book_id }}"
+                            data-counter="{{ forloop.counter }}">Update
+                        </span>
                         <!-- /Manipulation (js) -->
                         <!-- Button -->
-                        <a class="d-none basket-link custom-button save-book my-1" data-book-id="{{ book.book_id }}" id="save_{{ book.book_id }}_{{ forloop.counter }}">Save Changes</a>
+                        <a class="d-none basket-link custom-button save-book my-1" data-book-id="{{ book.book_id }}"
+                            id="save_{{ book.book_id }}_{{ forloop.counter }}" aria-label="Save Changes">Save Changes
+                        </a>
                         <!-- /Button -->
                     </div>
                     <!-- /Handlers -->

@@ -58,7 +58,8 @@
                                                         </div>
                                                         <div class="modal-footer d-flex justify-content-between">
                                                             <button type="button" class="custom-button" data-bs-dismiss="modal">No, Cancel</button>
-                                                            <a href="{% url 'delete_message' message.forum.slug message.id %}" class="message-buttons btn p-0 mt-3 mx-0 text-black">
+                                                            <a href="{% url 'delete_message' message.forum.slug message.id %}"
+                                                                class="message-buttons btn p-0 mt-3 mx-0 text-black" aria-label="Delete Message">
                                                                 <i class="fa-solid fa-sm fa-trash me-2"></i><span><small>DELETE</small></span>
                                                             </a>
                                                         </div>

@@ -47,7 +47,7 @@
                     <p>Shipping : {% if book_order.delivery_cost == 0.00 %}<strong>FREE</strong>{% else %}€{{ book_order.delivery_cost }}{% endif %}</p>
                     <p>Total : €{{ book_order.grand_total }}</p>
                 </div>
-                <a href="{{ home_url }}">
+                <a href="{{ home_url }}" aria-label="Go to Home Page">
                     <button class="custom-button w-100 mt-4">
                         <i class="fa-solid fa-house-chimney me-2"></i>Home
                     </button>
@@ -61,7 +61,7 @@
             <div class="book-genre-rows d-flex justify-content-start align-items-end" id="order-summary">
                 {% for book in book_order.booklineitem.all %}
                 <div class="link-container">
-                    <a href="{{ book.book.get_absolute_url }}" class="btn-link">
+                    <a href="{{ book.book.get_absolute_url }}" aria-label="Go to {{ book.book.title }} Page" class="btn-link">
                         <div class="book d-flex me-1 position-relative">
                             <div class="book-spine p-2 d-flex align-items-end">
                                 <p class="text-white book-turned h6 text-uppercase small"><strong>{{ book.book.title }}</strong></p>

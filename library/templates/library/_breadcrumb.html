@@ -2,8 +2,12 @@
 <div class="breadcrumb-container mt-3 me-0 me-md-4">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="nav-crumb breadcrumb-item"><a href="{{ home_url }}">Home</a></li>
-            <li class="nav-crumb breadcrumb-item" aria-current="page"><a href="{{ library_url }}">Library</a></li>
+            <li class="nav-crumb breadcrumb-item">
+                <a href="{{ home_url }}" aria-label="Go to Home Page">Home</a>
+            </li>
+            <li class="nav-crumb breadcrumb-item" aria-current="page">
+                <a href="{{ library_url }}"  aria-label="Back to Library Page">Library</a>
+            </li>
             <li class="nav-crumb breadcrumb-item active"aria-current="page">{{ book.title }}</li>
         </ol>
     </nav>

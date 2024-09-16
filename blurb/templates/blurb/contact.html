@@ -29,11 +29,11 @@
             </p>
             <div class="button-container mt-4">
                 {% if user.is_authenticated %}
-                <a href="{{ community_general_url }}">
+                <a href="{{ community_general_url }}" aria-label="Visit my Communities">
                     <button class="custom-button"><i class="fa-solid fa-comments me-2"></i>My Communities</button>
                 </a>
                 {% else %}
-                <a href="{{ signup_url }}">
+                <a href="{{ signup_url }}" aria-label="Sign Up">
                     <button class="custom-button"><i class="fa-solid fa-user-plus me-2"></i>Join us today!</button>
                 </a>
                 {% endif %}
