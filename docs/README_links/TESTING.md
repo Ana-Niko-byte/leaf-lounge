@@ -1,6 +1,6 @@
 > > > ## Testing & Debugging
-> > >
-> > > This section outlines procedures for manual testing. For automated testing, please see all files `test*.py`.
+
+This section outlines procedures for manual testing. For automated testing, please see all files `test*.py`.
 
 > > ### Manual Testing
 
@@ -9,38 +9,37 @@
 
 > > ### Automated Testing
 
-> #### Models (library app)
-
-`class TestibraryModels():`
+> ### Models (library app)
+### `class TestibraryModels():`
 
 A class for testing models in the Library app. Testing includes asserting equal values to those in the model setup, relational testing (including signal triggers) and basic validation.
 
 Models: `Author`, `Genre`, `Book`, `Review`
 
-###### Methods
-
 `def setUp():`
-
+```Python
     REGISTRATION:
-    Simulates user registration to allow for the creation of a user profile and author profile.
+        Simulates user registration to allow for the creation of a user profile and author profile.
 
     USER PROFILE & AUTHOR PROFILE:
-    Retrieves the user profile automatically created following successful user registration. This is handled via reader.signals.create_or_save_profile.
-    Simulates the creation of an author profile and assigns the relevant user profile to the author.user_profile field.
+        Retrieves the user profile automatically created following successful user registration. This is handled via reader.signals.create_or_save_profile.
+        Simulates the creation of an author profile and assigns the relevant user profile to the author.user_profile field.
 
     GENRE & COMMUNITY:
-    Simulates the creation of a genre. A community instance associated with the genre is created automatically via library.signals.create_community_on_genre_save.
+        Simulates the creation of a genre. A community instance associated with the genre is created automatically via library.signals.create_community_on_genre_save.
 
     BOOK:
-    Simulates the creation of a book with relevant relationships to the author and genre models.
+        Simulates the creation of a book with relevant relationships to the author and genre models.
 
     REVIEW:
-    Simulates the creation of a review with relevant relationships to the user_profile and book models.
+        Simulates the creation of a review with relevant relationships to the user_profile and book models.
 
     Saves the relevant models to the test sqlite3 database.
+```
 
 `def test_author_profile_creation_and_validation():`
 
+```Python
     Asserts the author user profile is the same as the current user's user profile.
     Asserts that an author profile can be blank (for authors uploaded via admin panel). For registering users, the author profile is created automatically.
 
@@ -60,9 +59,10 @@ Models: `Author`, `Genre`, `Book`, `Review`
 
     Asserts the author's bio matches the model's setup value.
     Asserts a ValidationError is raised if the author's bio is empty.
+```
 
 `def test_genre_and_genre_community_creation():`
-
+```Python
     Retrieves the appropriate genre instance.
     Asserts the genre's **str**() returns the expected string for the appropriate genre instance.
 
@@ -71,9 +71,10 @@ Models: `Author`, `Genre`, `Book`, `Review`
 
     Asserts the genre's community field can be blank.
     Asserts the genre's community's name matches the expected value. A community instance is automatically created and linked following a new genre creation. This is handled via library.signals.~
+```
 
 `def test_book_creation():`
-
+```Python
     Retrieves the appropriate book instance.
     Asserts the book's **str**() returns the expected string for the appropriate book instance.
 
@@ -122,9 +123,10 @@ Models: `Author`, `Genre`, `Book`, `Review`
     Asserts a ValidationError is raised if
         - the book's price is empty.
         - the book's price is over 5 decimals, i.e., a book's value is raised too high.
+```
 
 `def test_review_creation():`
-
+```Python
     Retrieves the appropriate review instance for testing.
     Asserts the review's **str**() returns the expected string for the appropriate review instance.
 
@@ -153,30 +155,28 @@ Models: `Author`, `Genre`, `Book`, `Review`
     Asserts a validation error is raised if the reviewed_on date is missing.
 
     Asserts the newly saved review is saved as an unapproved instance.
+```
 
-> #### Models (community app)
+> #### Model (community app)
+### `class TestCommunityModel():`
 
-`class TestCommunityModel():`
-
-    A class for testing the community model. Testing includes asserting equal values to those in the model setup, save method testing, and format validation for datetime objects and slugs.
+A class for testing the community model. Testing includes asserting equal values to those in the model setup, save method testing, and format validation for datetime objects and slugs.
 
 Fields: `Community`
 
-###### Methods
-
 `def setUp():`
-
+```Python
     REGISTRATION:
-    Simulates user registration to allow for users to access community-related functionality and models.
+        Simulates user registration to allow for users to access community-related functionality and models.
 
     GENRE & COMMUNITY:
-    Simulates the creation of a genre. After the mock genre is saved, a community is automatically created.
+        Simulates the creation of a genre. After the mock genre is saved, a community is automatically created.
 
     Saves the relevant models to the test sqlite3 database.
-
+```
 
 `def test_community_creation_following_genre_creation():`
-
+```Python
     Retrieves the appropriate community instance for testing and saves it.
     This process generates the community slug as per the defined format.
 
@@ -192,37 +192,35 @@ Fields: `Community`
 
     Asserts the community's slug matches the expected slug string format.
     Asserts a ValidationError is thrown if the slug is inputted or generated in an incorrect format.
+```
 
----
+### `class TestForumAndMessageModels():`
 
-`class TestForumAndMessageModels():`
-
-    A class for testing the forum and message models in the Community app.
-    Testing includes asserting equal values to those in the model setup, save method testing, user profile association, and format validation for datetime objects and slugs.
+A class for testing the forum and message models in the Community app.
+Testing includes asserting equal values to those in the model setup, save method testing, user profile association, and format validation for datetime objects and slugs.
 
 Fields: `Forum`, `Message`
 
-###### Methods
-
 `def setUp()`
-
+```Python
     REGISTRATION:
-    Simulates user registration to allow for the creation of a user profile.
+        Simulates user registration to allow for the creation of a user profile.
 
     USER PROFILE & AUTHOR PROFILE:
-    Retrieves the user profile automatically created following successful user registration. This is handled via reader.signals.create_or_save_profile.
+        reate_or_save_profile.
 
     GENRE & COMMUNITY & FORUM:
-    Simulates the creation of a genre. After the mock genre is saved, a community is automatically created. After the community is saved, forums can be created inside the community.
-    Simulates the creation of a forum and saves it.
+        Simulates the creation of a genre. After the mock genre is saved, a community is automatically created. After the community is saved, forums can be created inside the community.
+        Simulates the creation of a forum and saves it.
 
     MESSAGE:
-    Simulates the creation of a message and saves it.
+        Simulates the creation of a message and saves it.
 
     Saves the relevant models to the test sqlite3 database.
+```
 
 `def test_forum_creation():`
-
+```Python
     Retrieves the appropriate forum instance for testing.
     Asserts the forum's __str__() returns the expected string for the appropriate forum instance.
 
@@ -239,9 +237,10 @@ Fields: `Forum`, `Message`
     Asserts a ValidationError is thrown if the date_added is does not match today's date.
 
     Asserts the forum is created inside the correct community by checking the name of the community.
+```
 
 `def test_message_creation():`
-
+```Python
     Retrieves the appropriate message instance for testing.
     Asserts the message's __str__() returns the expected string for the appropriate message instance.
 
@@ -257,40 +256,41 @@ Fields: `Forum`, `Message`
 
     Asserts the message's date_sent matches today's date.
     Asserts a ValidationError is thrown if the date_sent does not match today's date.
+```
 
-> #### Models (checkout app)
+> ### Models (checkout app)
 
-`class TestCheckoutModels():`
+### `class TestCheckoutModels():`
 
-    A class for testing the order and booklineitem models in the checkout app.
-    Testing includes asserting equal values to those in the model setup, save method testing, and format validation for timezone objects and slugs.
+A class for testing the order and booklineitem models in the checkout app.
+Testing includes asserting equal values to those in the model setup, save method testing, and format validation for timezone objects and slugs.
 
-Fields: `order`, ``
+Fields: `order`
 
-###### Methods
 `def setUp():`
-
+```Python
     REGISTRATION:
         Simulates user registration to allow for the creation of a user profile.
 
-        USER PROFILE & AUTHOR PROFILE:
+    USER PROFILE & AUTHOR PROFILE:
         Retrieves the user profile automatically created following successful user registration. This is handled via reader.signals.create_or_save_profile.
         Simulates the creation of an author profile and assigns the relevant user profile to the author.user_profile field.
 
-        GENRE & COMMUNITY:
+    GENRE & COMMUNITY:
         Simulates the creation of a genre.
 
-        BOOK:
+    BOOK:
         Simulates the creation of a book with relevant relationships to the author and genre models.
 
-        ORDER & BOOKLINEITEM:
+    ORDER & BOOKLINEITEM:
         Simulates the creation of an order with no order number.
         Simulates the creation of a booklineitem, with relevant relationships to the order and book models. These models in turn depend on the genre, user profile, and author models.
 
-        Saves the relevant models to the test sqlite3 databa 
+    Saves the relevant models to the test sqlite3 database.
+```
 
 `def test_order_creation_and_string_fields():`
-
+```Python
     Retrieves the appropriate order instance for testing.
     Asserts the order's __str__() returns the expected string for the appropriate order instance.
 
@@ -346,9 +346,10 @@ Fields: `order`, ``
 
     Asserts the order's associated county matches the model's setup.
     Asserts a ValidationError is raised if the county is longer than 80 characters.
+```
 
 `def test_order_creation_and_decimal_fields():`
-
+```Python
     Retrieves the appropriate order instance for testing.
     Asserts the order's __str__() returns the expected string for the appropriate order instance.
 
@@ -374,9 +375,10 @@ Fields: `order`, ``
 
     Asserts the order's associated stripe_pid matches the models's setup value.
     Asserts a ValidationError is raised if there is no stripe_pid or it is empty.
+```
 
 `def test_booklineitem_creation():`
-
+```Python
     Retrieves the appropriate booklineitem instance for testing.
     Asserts the booklineitem's __str__() returns the expected string for the appropriate booklineitem instance.
 
@@ -387,25 +389,251 @@ Fields: `order`, ``
     Asserts the booklineitem quantity matches the model's set up and raises a ValidationError is there is no quantity, the quantity is under the minimum value of 1, or over the maximum value of 99.
 
     Asserts the booklineitem book_order_cost is calculated and saved correctly.
+```
 
-> #### Models (reader app)
+> ### Models (reader app)
+### `class TestUserProfile():`
 
-`class TestUserProfile():`
 A class for testing models in the Reader app. Testing includes asserting a user profile is successfully created following user registration, and that the created user profile belongs to the registered user.
 
 Models: `UserProfile`
 
-###### Methods:
 `def setUp():`
+```Python
     REGISTRATION:
-    Simulates user registration to allow for the creation of a user profile.
+        Simulates user registration to allow for the creation of a user profile.
+```
 
 `def test_user_profile_creation_on_user_registration():`
+```Python
     Retrieves the appropriate user profile instance for testing.
+
     Asserts a user profile is successfully created following user registration.
+
     Asserts the user profile's __str__() returns the expected string for the appropriate user profile instance.
+```
 
 
+> ### URLS (basket app)
+### `class TestBasketURLs():`
+A class for testing URLs associated with the basket app. This class tests urls resolve from their FBVs and that certain views are allowed to handle DELETE requests.
+
+`def test_basket_resolves():`
+```Python
+    Reverses the URL name and checks if it returns the correct FBV of basket.
+
+    Asserts the basket view (basket) is resolved from 'basket'.
+```
+
+`def test_add_to_basket_resolves():`
+```Python
+    Reverses the URL name with arguments [int:book_id] and checks if it returns the correct FBV of add_basket.
+
+    Asserts the view for adding items to basket (add_basket) is resolved from 'add_to_basket' with an int argument.
+```
+
+`def test_update_basket_resolves():`
+```Python
+    Reverses the URL name with arguments [int:book_id] and checks if it returns the correct FBV of amend_basket.
+
+    Asserts the view for updating items in basket (amend_basket) is resolved from 'update_basket' with an int argument.
+```
+
+`def test_delete_from_basket_resolves():`
+```Python
+    Reverses the URL name with arguments [slug, int:book_id] and checks if it returns the correct FBV of delete_basket.
+
+    Asserts the view for deleting items from basket (delete_basket) is resolved from 'delete_basket' with an int argument.
+
+    Asserts the view is allowed to handle DELETE requests.
+```
+
+> ### URLS (blurb app)
+### `class TestBlurbURLs():`
+A class for testing URLs associated with the blurb app.
+
+`def test_home_resolves():`
+```Python
+    Reverses the URL name and checks the correct FBV of blurb returns.
+    Asserts the home view (blurb) is resolved from 'home'.
+```
+
+`def test_contact_resolves():`
+```Python
+    Reverses the URL name and checks the correct FBV of contact returns.
+    Asserts the contact view (contact) is resolved from 'contact'.
+```
+
+> ### URLS (checkout app)
+### `class TestCheckoutURLs():`
+
+A class for testing URLs associated with the checkout app.
+This class tests urls resolve from their FBVs.
+
+`def test_checkout_resolves():`
+```Python
+    Reverses the URL name and checks if it returns the correct FBV of checkout.
+
+    Asserts the checkout view (checkout) is resolved from 'checkout'.
+```
+
+`def test_success_resolves():`
+```Python
+    Reverses the URL name with arguments [str:order_number] and checks if it returns the correct FBV of success.
+
+    Asserts the view called after successful checkout (success) is resolved from 'success' with a str argument of the order number.
+```
+
+> ### URLS (community app)
+### `class TestCommunityURLs():`
+
+A class for testing URLs associated with the community app.
+This class tests urls resolve from their FBVs.
+
+`def test_community_general_resolves():`
+```Python
+    Reverses the URL name and checks if it returns the correct FBV of community_general.
+
+    Asserts the community general view (community) is resolved from 'communities'.
+```
+
+`def test_community_specific_resolves():`
+```Python
+    Reverses the URL name with arguments [slug:slug] and checks if it returns the correct FBV of community.
+
+    Asserts specific community views (community) resolve from 'community' with slug arguments generated from the community name.
+```
+
+`def test_forum_detail_resolves():`
+```Python
+    Reverses the URL name with arguments [slug:slug] and checks if it returns the correct FBV of forum_detail.
+
+    Asserts the genre-specific forum details (forum_detail) resolve from 'forum-detail' with slug arguments generated from the forum name.
+```
+
+`def test_author_registration_resolves():`
+```Python
+    Reverses the URL name and checks if it returns the correct FBV of create_author.
+
+    Asserts the author registration view (create_author) is resolved from 'create_author'.
+```
+
+`def test_book_registration_resolves():`
+```Python
+    Reverses the URL name and checks if it returns the correct FBV of upload_book.
+
+    Asserts the book upload/registration view (upload_book) is resolved from 'upload_book'.
+```
+
+`def test_delete_message_from_forum_resolves():`
+```Python
+    Reverses the URL name with arguments [slug:slug] and [int:id] and checks if it returns the correct FBV of delete_message.
+
+    Asserts the view for deleting forum messages (delete_message) resolves from 'delete_message' with arguments of slug: forum name and int: message id.
+```
+
+> ### URLS (library app)
+### `class TestLibraryURLs():`
+A class for testing URLs associated with the library app.
+This class tests urls resolve from their FBVs.
+
+`def test_library_resolves():`
+```Python
+    Reverses the URL name and checks if it returns the correct FBV of library.
+
+    Asserts the library view (library) is resolved from 'library'.
+```
+
+`def test_book_detail_resolves():`
+```Python
+    Reverses the URL name with arguments [slug:slug] and checks if it returns the correct FBV of book_detail.
+
+    Asserts book detail views (book_detail) resolve from 'book-summary' with slug arguments generated from the book title and author last name.
+```
+
+> ### URLS (marketing app)
+### `class TestMarketingURLs():`
+
+A class for testing URLs associated with the marketing app.
+This class tests urls resolve from their FBVs.
+
+`def test_subscribe_resolves():`
+```Python
+    Reverses the URL name and checks if it returns the correct FBV of
+    subscribe.
+
+    Asserts the newsletter subscribe view (subscribe_view) resolves from
+    'subscribe'.
+```
+
+`def test_unsubscribe_resolves():`
+```Python
+    Reverses the URL name and checks if it returns the correct FBV of
+    unsubscribe.
+
+    Asserts the newsletter unsubscribe view (unsubscribe_view) resolves
+    from 'unsubscribe'.
+```
+
+> ### URLS (reader app)
+### `class TestUserProfileAssociatedURLs():`
+
+A class for testing URLs associated with the reader app.
+This class tests urls resolve from their FBVs.
+
+`def test_user_profile_resolves():`
+```Python
+    Reverses the URL name and checks if it returns the correct FBV of
+    my_profile.
+
+    Asserts the user profile view (my_profile) resolves
+    from 'user_profile'.
+```
+
+def test_user_books_resolves():
+```Python
+    Reverses the URL name and checks if it returns the correct FBV of
+    my_books.
+
+    Asserts the user book storage view (my_books) resolves
+    from 'user_books'.
+```
+
+`def test_review_resolves():`
+```Python
+    Reverses the URL name and checks if it returns the correct FBV of
+    leave_review.
+
+    Asserts the view for leaving book reviews (leave_review) resolves
+    from 'leave_review' with an int book id argument.
+```
+
+`def test_update_review_resolves():`
+```Python
+    Reverses the URL name and checks if it returns the correct FBV of
+    update_review.
+
+    Asserts the view for updating book reviews (update_review) resolves
+    from 'update_review' with an int book id argument.
+```
+
+`def test_delete_review_resolves():`
+```Python
+    Reverses the URL name and checks if it returns the correct FBV of
+    delete_review.
+
+    Asserts the view for deleting book reviews (delete_review) resolves
+    from 'delete_review' with an int book id argument.
+```
+
+`def test_admin_approve_review_resolves():`
+```Python
+    Reverses the URL name and checks if it returns the correct FBV of
+    approve_review.
+
+    Asserts the view for admins to approve book reviews (approve_review) resolves
+    from 'approve_review' with an int book id argument.
+```
 
 > > > ## Issues
 
@@ -414,7 +642,8 @@ Models: `UserProfile`
    The error was encountered when attempting to send emails from the contact page. Instead of redirecting users to the home page with a success message, the application would throw the 500 Server Error page, and the email wouldn't reach the recipients' addresses.
 
 > #### Solution
-As it happens, the issue was down to a simple typo in the following line in `blurb/views.py`: `recipient_list=[settings.EMAIL_HOST_USER, f'{email}'],` - the misplaced comma at the end. This syntax rendered the `recipient_list` as an invalid value in the `send_mail()` method, thus throwing the method and redirecting users to the 500 server error page. Removing the comma and saving the file resolved this issue. Testing and eventual resolution were done in `VS Code` by cloning the repository and debugging the relevant code due to Gitpod permissions and limitations.
+>
+> As it happens, the issue was down to a simple typo in the following line in `blurb/views.py`: `recipient_list=[settings.EMAIL_HOST_USER, f'{email}'],` - the misplaced comma at the end. This syntax rendered the `recipient_list` as an invalid value in the `send_mail()` method, thus throwing the method and redirecting users to the 500 server error page. Removing the comma and saving the file resolved this issue. Testing and eventual resolution were done in `VS Code` by cloning the repository and debugging the relevant code due to Gitpod permissions and limitations.
 
 > > > ## Accessibility & Performance
 
@@ -427,7 +656,9 @@ As it happens, the issue was down to a simple typo in the following line in `blu
 > > #### CSS Validation
 
 > > #### JSHint Validation
-All js files are regularly validated during development using [JSHint](https://jshint.com/).
+> >
+> > All js files are regularly validated during development using [JSHint](https://jshint.com/).
 
 > > #### Pep8 Validation
-All python files are regularly validated during development using the [Code Institute PEP8 Linter](https://pep8ci.herokuapp.com/).
+> >
+> > All python files are regularly validated during development using the [Code Institute PEP8 Linter](https://pep8ci.herokuapp.com/).
