@@ -47,17 +47,17 @@
                 <fieldset class="px-3 mb-3">
                     <legend class="fieldset-details fieldset-label small text-black text-uppercase"><strong>About You</strong></legend>
                     <div class="row about-you d-flex justify-content-between align-items-center">
-                        <div class="col-lg-6 col-md-12 col-sm-12">{{ contact_form.name | as_crispy_field }}</div>
-                        <div class="col-lg-6 col-md-12 col-sm-12">{{ contact_form.email | as_crispy_field }}</div>
+                        <div class="col-lg-6 col-md-12 col-sm-12" aria-label="Name">{{ contact_form.name | as_crispy_field }}</div>
+                        <div class="col-lg-6 col-md-12 col-sm-12" aria-label="Email">{{ contact_form.email | as_crispy_field }}</div>
                     </div>
                 </fieldset>
                 <fieldset class="px-3 mb-3">
                     <legend class="fieldset-details fieldset-label small text-black text-uppercase"><strong>Subject</strong></legend>
-                    {{ contact_form.subject | as_crispy_field }}
+                    <div class="col-12" aria-label="Subject">{{ contact_form.subject | as_crispy_field }}</div>
                 </fieldset>
                 <fieldset class="px-3 mb-3">
                     <legend class="fieldset-details fieldset-label small text-black text-uppercase"><strong>Message</strong></legend>
-                    {{ contact_form.message | as_crispy_field }}
+                    <div class="col-12" aria-label="Query">{{ contact_form.message | as_crispy_field }}</div>
                 </fieldset>
                 <div class="form-footer d-flex justify-content-between align-items-end">
                     <p class="small text-muted">P.S. A copy of this query will be sent to your email address.</p>

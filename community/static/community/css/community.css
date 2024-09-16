@@ -12,6 +12,10 @@
     overflow-y: auto;
 }
 
+.forum-box{
+    min-height: 200px;
+}
+
 .message-box {
     border-radius: 7px;
     background-color: var(--green-grey);

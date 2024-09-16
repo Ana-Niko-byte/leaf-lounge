@@ -74,27 +74,27 @@
                                 <div class="half">
                                     <fieldset class="px-3 mb-3">
                                         <legend class="fieldset-details fieldset-label small text-black text-uppercase text-start"><strong>Contact Details</strong></legend>
-                                        {{ user_form.default_phone_number | as_crispy_field }}
+                                        <div aria-label="Saved Phone Number">{{ user_form.default_phone_number | as_crispy_field }}</div>
                                     </fieldset>
                                     <fieldset class="px-3 mb-3">
                                         <legend class="fieldset-details fieldset-label small text-black text-uppercase text-start"><strong>Street Address</strong></legend>
-                                        {{ user_form.default_street_1 | as_crispy_field }}
-                                        {{ user_form.default_street_2 | as_crispy_field }}
-                                        {{ user_form.default_town_city | as_crispy_field }}
+                                        <div aria-label="Saved Street">{{ user_form.default_street_1 | as_crispy_field }}</div>
+                                        <div aria-label="Saved Street">{{ user_form.default_street_2 | as_crispy_field }}</div>
+                                        <div aria-label="Saved Town or City">{{ user_form.default_town_city | as_crispy_field }}</div>
                                     </fieldset>
                                 </div>
                                 <div class="half">
                                     <fieldset class="px-3 mb-3">
                                         <legend class="fieldset-details fieldset-label small text-black text-uppercase text-start"><strong>Locality</strong></legend>
-                                        {{ user_form.default_county | as_crispy_field }}
+                                        <div aria-label="Saved County">{{ user_form.default_county | as_crispy_field }}</div>
                                     </fieldset>
                                     <fieldset class="px-3 mb-3">
                                         <legend class="fieldset-details fieldset-label small text-black text-uppercase text-start"><strong>Region</strong></legend>
-                                        {{ user_form.default_postcode | as_crispy_field }}
-                                        {{ user_form.default_country | as_crispy_field }}
+                                        <div aria-label="Saved Postcode">{{ user_form.default_postcode | as_crispy_field }}</div>
+                                        <div aria-label="Saved Country">{{ user_form.default_country | as_crispy_field }}</div>
                                     </fieldset>
                                     <div class="button-container d-flex justify-content-end me-3">
-                                        <button type="submit" class="btn-lg custom-button"><i class="fa-solid fa-circle-check me-2"></i>Update Information</button>
+                                        <button type="submit" aria-label="Update Information" class="btn-lg custom-button"><i class="fa-solid fa-circle-check me-2"></i>Update Information</button>
                                     </div>
                                 </div>
                             </div>

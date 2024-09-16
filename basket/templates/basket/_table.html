@@ -1,5 +1,6 @@
+{% load static %}
+
 {% block extra_css %}
-{{ block.super }}
 <link rel="stylesheet" href="{% static 'basket/css/basket.css' %}">
 {% endblock %}
 
@@ -24,7 +25,7 @@
                     <div class="book-basket-info d-flex flex-column justify-content-between ms-3">
                         <div class="general-info flex-fill">
                             <h6 class="small m-0 p-0"><strong>Book: </strong>{{ book.book.title }}</h6>
-                            <p class="small m-0 p-0"><strong>Type: </strong>{{ book.type|upper }}</p>
+                            <p class="small m-0 p-0"><strong>Type: </strong>{{ book.type }}</p>
                             <p class="small m-0 p-0"><strong>Genre: </strong>{{ book.book.genre }}</p>
                         </div>
                         <p class="small text-muted">ISBN: {{ book.book.isbn|upper }}</p>
