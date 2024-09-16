@@ -660,13 +660,18 @@ The issue was down to a simple typo in the following line in `blurb/views.py`: `
 ![Home Page Lighthouse Report](../images/lighthouse-home.png)
 
 - `Contact Page`
-![Home Page Lighthouse Report](../images/lighthouse-contact.png)
+![Contact Page Lighthouse Report](../images/lighthouse-contact.png)
+![Contact Accessibility Lighthouse Report](../images/lighthouse-contact-accessibility.png)
 
 - `Library Page`
-![Home Page Lighthouse Report](../images/lighthouse-library.png)
+![Library Page Lighthouse Report](../images/lighthouse-library.png)
 
 - `Basket Page`
-![Home Page Lighthouse Report](../images/lighthouse-basket.png)
+![Basket Page Lighthouse Report](../images/lighthouse-basket.png)
+![Basket Accessibility Lighthouse Report](../images/lighthouse-basket-accessibility.png)
+
+- `Sign Up Page`
+![Sign Up Page Lighthouse Report](../images/lighthouse-basket.png)
 
 > > #### HTML Validation
 

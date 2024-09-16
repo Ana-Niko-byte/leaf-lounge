@@ -38,10 +38,8 @@
                     </button>
                 </li>
                 <li class="menu-item">
-                    <a href="{{ community_general_url }}" aria-label="Visit my Communities">
-                        <button class="table-button mb-2">
-                            My Communities
-                        </button>
+                    <a href="{{ community_general_url }}" aria-label="Visit my Communities" class="table-button mb-2">
+                        My Communities
                     </a>
                 </li>
                 <li class="menu-item">
@@ -50,10 +48,8 @@
                     </button>
                 </li>
                 <li class="menu-item">
-                    <a href="{{ contact_url }}" aria-label="Contact Leaf Lounge for Help">
-                        <button class="table-button mb-2">
-                            Need Help?
-                        </button>
+                    <a href="{{ contact_url }}" aria-label="Contact Leaf Lounge for Help" class="table-button mb-2">
+                        Need Help?
                     </a>
                 </li>
             </ul>
@@ -242,10 +238,8 @@
                                         
                                         <div class="admin-button-container d-flex">
                                             {% if not review.approved and user.is_superuser %}
-                                            <a href="{% url 'approve_review' review.id %}" aria-label="Approve Review (Admin)" class="btn-link">
-                                                <button class="btn btn-success m-2 d-flex justify-content-center align-items-center">
-                                                    <i class="fa-solid fa-check fa-sm me-2"></i>Approve
-                                                </button>
+                                            <a href="{% url 'approve_review' review.id %}" aria-label="Approve Review (Admin)" class="btn btn-success m-2 d-flex justify-content-center align-items-center">
+                                                <i class="fa-solid fa-check fa-sm me-2"></i>Approve
                                             </a>
                                             {% endif %}
                                             <button class="btn btn-danger m-2 d-flex justify-content-center align-items-center"
@@ -279,7 +273,9 @@
                             {% endfor %}
                         {% else %}
                             <p>You can view any pending and approved reviews here!</p>
-                            <p>To leave a review go to <span><a href="{{ books_url }}" aria-label="Go to my books">My Books</a></span></p>
+                            <p>To leave a review go to <span>
+                                <a href="{{ books_url }}" aria-label="Go to my books">My Books</a></span>
+                            </p>
                         {% endif %}
                     </div>
                 </li>

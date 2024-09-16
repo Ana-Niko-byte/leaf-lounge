@@ -21,7 +21,9 @@
                     {% csrf_token %}
                     {{ redirect_field }}
                     <div class="button-container mt-5">
-                        <button class="custom-button ms-0 ms-md-2" type="submit"><i class="fa-solid fa-arrow-right-from-bracket me-2"></i>Confirm</button>
+                        <button class="custom-button ms-0 ms-md-2" type="submit" aria-label="Confirm">
+                            <i class="fa-solid fa-arrow-right-from-bracket me-2"></i>Confirm
+                        </button>
                     </div>
                 {% endslot %}
             {% endelement %}

@@ -31,7 +31,9 @@
                     <div class="input-group d-none align-items-center justify-content-center" id="form_{{ book.book_id }}_{{ forloop.counter }}">
                         <!-- Delete Button -->
                         <div class="input-group-prepend">
-                            <a href="{% url 'delete_basket' book.book_id %}" class="basket-link btn delete-book my-1" data-book-id="{{ book.book_id }}" data-book-type="{{ book.type }}" data-counter="{{ forloop.counter }}" id="delete_{{ book.book_id }}_{{ forloop.counter }}"><i class="fa-solid fa-trash"></i></a>
+                            <a href="{% url 'delete_basket' book.book_id %}" class="basket-link btn delete-book my-1" data-book-id="{{ book.book_id }}" data-book-type="{{ book.type }}" data-counter="{{ forloop.counter }}" id="delete_{{ book.book_id }}_{{ forloop.counter }}">
+                                <i class="fa-solid fa-trash"></i>
+                            </a>
                         </div>
                         <!-- /Delete Button -->
 
@@ -48,7 +50,7 @@
                         </div>
                         <!-- /Increment Quantity -->
                         
-                            <input type="hidden" name="book_type" value="{{ book.type }}">
+                        <input type="hidden" name="book_type" value="{{ book.type }}">
                     </div>
                     <!-- /Input Group -->
 

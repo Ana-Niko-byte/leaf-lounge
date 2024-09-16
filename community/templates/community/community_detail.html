@@ -52,7 +52,9 @@
                 <div class="main-form w-100">
                     {% csrf_token %}
                     <div aria-label="Forum Name">{{ forumForm|crispy }}</div>
-                    <p class="text-muted small mb-3"><strong>Note:</strong> You will be taken inside the forum after creating it.</p>
+                    <p class="text-muted small mb-3">
+                        <strong>Note:</strong> You will be taken inside the forum after creating it.
+                    </p>
                 </div>
                 <div class="button-container">
                     <button type="submit" class="small-custom-button" aria-label="Add Forum">

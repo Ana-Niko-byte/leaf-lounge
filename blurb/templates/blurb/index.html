@@ -23,10 +23,8 @@
                         </p>
                     </div>
                     <div class="button-container d-flex justify-content-start">
-                        <a href="{{ signin_url }}" aria-label="Sign In" class="btn-link">
-                            <button class="custom-button">
-                                <i class="fa-solid fa-arrow-right-to-bracket me-2"></i>Log In
-                            </button>
+                        <a href="{{ signin_url }}" aria-label="Sign In" class="custom-button btn-link">
+                            <i class="fa-solid fa-arrow-right-to-bracket me-2"></i>Log In
                         </a>
                     </div>
                 </div>
@@ -36,10 +34,8 @@
                 <p class="h4">Hey, {% if user.is_superuser %}admin {% endif %}{{ user }}!</p>
                 <h1 class="typewriter typewriter-blurb h2 mt-3 mb-4">Don't miss out on the chatter in your communities :)</h1>
                 <div class="button-container d-flex justify-content-start">
-                    <a href="{{ community_general_url }}" aria-label="Visit my Communities" class="btn-link">
-                        <button class="custom-button mt-1 mt-md-3">
-                            <i class="fa-solid fa-book-open me-2"></i>My Communities
-                        </button>
+                    <a href="{{ community_general_url }}" aria-label="Visit my Communities" class="custom-button mt-1 mt-md-3 btn-link">
+                        <i class="fa-solid fa-book-open me-2"></i>My Communities
                     </a>
                 </div>
             </div>

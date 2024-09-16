@@ -22,15 +22,11 @@
                 {% include 'basket/_summary.html' %}
                 <div class="d-flex flex-column flex-md-row align-items-center align-items-md-start justify-content-between py-3">
                     <a href="{% if user.is_authenticated %}{{ checkout_url }}{% else %}{{ signin_url }}{% endif %}"
-                    aria-label="{% if user.is_authenticated %}Checkout{% else %}Sign In to Checkout{% endif %}">
-                        <button class="custom-button">
-                            <i class="fas fa-lock me-2"></i>Secure Checkout
-                        </button>
+                    aria-label="{% if user.is_authenticated %}Checkout{% else %}Sign In to Checkout{% endif %}" class="custom-button">
+                        <i class="fas fa-lock me-2"></i>Secure Checkout
                     </a>
-                    <a href="{% url 'library' %}" aria-label="Keep Shopping in Library">
-                        <button class="custom-button mt-3 mt-md-0">
-                            <i class="fa-solid fa-sm fa-book me-2"></i>Keep Shopping
-                        </button>
+                    <a href="{% url 'library' %}" aria-label="Keep Shopping in Library" class="text-white custom-button mt-3 mt-md-0">
+                        <i class="fa-solid fa-sm fa-book me-2"></i>Keep Shopping
                     </a>
                 </div>
             </div>
@@ -38,11 +34,8 @@
         {% else %}
         <p class="text-center mt-5"><strong>You have no items in your basket.</strong></p>
         <div class="button-container d-flex justify-content-center">
-            <a href="{{ library_url }}" aria-label="Keep Shopping on Library Page" class="btn-link">
-                <button class="custom-button mt-3">
-                    <i class="fa-solid fa-sm fa-book me-2"></i>
-                    Keep Shopping
-                </button>
+            <a href="{{ library_url }}" aria-label="Keep Shopping on Library Page" class="text-white custom-button mt-3">
+                <i class="fa-solid fa-sm fa-book me-2"></i>Keep Shopping
             </a>
         </div>
         {% endif %}

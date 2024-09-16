@@ -120,10 +120,8 @@
             </form>
             <!-- /Search Form -->
             {% if 'q' in request.GET or 'author' in request.GET or 'genre' in request.GET %}
-                <a href="{{ library_url }}" aria-label="Show All Books">
-                    <button class="custom-button custom-button-extended mt-3">
-                        <i class="fa-solid fa-book me-2"></i>Show All
-                    </button>
+                <a href="{{ library_url }}" aria-label="Show All Books" class="custom-button text-white mt-3">
+                    <i class="fa-solid fa-book me-2"></i>Show All
                 </a>
             {% else %}
             <div class="sort-container d-flex flex-column">
