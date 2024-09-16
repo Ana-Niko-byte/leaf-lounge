@@ -626,6 +626,13 @@ def test_user_books_resolves():
     from 'delete_review' with an int book id argument.
 ```
 
+`def test_unauthenticated_user_is_redirected():`
+```Python
+        Asserts unauthenticated users are redirected instead of allowing
+        access to all views associated with the reader app, as per the
+        @login_required decorator.
+```
+
 `def test_admin_approve_review_resolves():`
 ```Python
     Reverses the URL name and checks if it returns the correct FBV of
