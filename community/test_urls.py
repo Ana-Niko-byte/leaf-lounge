@@ -51,7 +51,7 @@ class TestCommunityURLs(TestCase):
         from 'upload_book'.
 
 
-    def test_delete_message_from_forum_resolves(self):
+    def test_delete_message_from_forum_resolves():
         Reverses the URL name with arguments [slug:slug] and [int:id] and
         checks if it returns the correct FBV of delete_message.
 
