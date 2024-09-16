@@ -3,13 +3,13 @@ from django.urls import reverse, resolve
 from .views import *
 
 
-class TestCommunityURLs(TestCase):
+class TestLibraryURLs(TestCase):
     """
-    A class for testing URLs associated with the community app.
+    A class for testing URLs associated with the library app.
     This class tests urls resolve from their FBVs.
 
     Methods:
-    def test_community_general_resolves():
+    def test_library_resolves():
         Reverses the URL name and checks if it returns the correct FBV of
         library.
 
