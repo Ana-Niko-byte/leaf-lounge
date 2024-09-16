@@ -31,8 +31,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = os.environ.get("DEVELOPMENT")
-DEBUG = False
+DEBUG = os.environ.get("DEVELOPMENT")
 
 ALLOWED_HOSTS = [
     "8000-ananikobyte-leaflounge-2r09i0qn29d.ws.codeinstitute-ide.net",
