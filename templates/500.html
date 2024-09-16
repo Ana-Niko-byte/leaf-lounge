@@ -1,26 +1,29 @@
 {% load static %}
+{% url 'home' as home_url %}
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="">
+        <meta name="description" content="Oops! Something's gone wrong. Please refresh the page. If the issue persists, please contact our dedicated customer support team.">
         <title>Leaf Lounge 500</title>
         <link rel="icon" type="image/x-icon" href="{{ MEDIA_URL }}favicon.ico">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" 
             integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
             crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}" type="text/css">
     </head>
 
     <body>
-        <div class="container text-center">
-            <h1 class="strong my-5">500</h1> 
-            <p> 
-                <strong>Oh no! Something's gone wrong :(</strong>
-            </p>
+        <div class="container text-center mt-5">
+            <h1 class="my-5"><strong>500</strong></h1> 
+            <p><strong>Oh no! Something's gone wrong :(</strong></p>
+            <p class="text-muted small mt-3">Please refresh the page. If the issue persists, please contact our dedicated customer support team.</p>
             <a href="{{ home_url }}" aria-label="Return to Home Page">
-                <button class="custom-button">
+                <button class="custom-button mt-5">
+                    <i class="fa-solid fa-house me-1"></i>
                     Return Home
                 </button>
             </a>
