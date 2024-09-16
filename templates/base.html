@@ -103,7 +103,7 @@
                         <!-- Profile -->
                         <li class="nav-item px-2 mx-1">
                             <div class="nav-item-container">
-                                <a href="{% user.is_authenticated %}{% url 'user_profile' %}{% else %}{{ signup_url }}{% endif %}"
+                                <a href="{% if user.is_authenticated %}{% url 'user_profile' %}{% else %}{{ signup_url }}{% endif %}"
                                 aria-label="{% if user.is_authenticated %}Visit my Profile{% else %}Sign Up{% endif %}">
                                     <i class="fa-solid fa-user me-2"></i>My Profile
                                 </a>
