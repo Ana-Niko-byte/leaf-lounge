@@ -10,52 +10,74 @@ from reader.models import UserProfile
 
 class TestBasketViews(TestCase):
     """
-    A class to test views and status codes associated with the Workspace app.
+    A class to test views associated with the Basket app. Testing scope
+    includes testing correct redirection, status codes and template usage.
 
     Methods:
     def setUp():
-        Creates a Client Instance.
-        Creates a User instance.
-        Simulates user log in to allow for URL testing that require user
-        authentication and the creation of workspaces and tasks.
-        Simulates the creation of a workspace.
-        Simulates the creation of a task.
-        Sets up URLs for testing for views associated with the Workspace app.
+        REGISTRATION:
+            Simulates user registration to allow for users to create an
+            author profile to allow for the creation of a book.
 
-    def test_workspaces_page_GET():
-        This test asserts that the common workspaces URL is retrieved and
-        rendered successfully and as expected.
+        USER & AUTHOR PROFILES:
+            A user profile is created automatically following successful
+            registration and retrieved. This profile is associated with
+            an author profile.
 
-    def test_workspace_detail_page_GET():
-        This test asserts that the workspace detail URL is retrieved and
-        rendered successfully with the expected workspace slug as an argument.
+        GENRE + BOOK:
+            A test genre is created and assigned to the test book instance.
+            This instance is used in the testing of URLs in POST requests.
 
-    def test_delete_workspace_view():
-        This test asserts that the workspace delete URL is retrieved and and
-        rendered successfully with the expected workspace id as an argument.
+        Saves the relevant models to the test sqlite3 database.
+        Retrieves the relevant URLs and assigns them to variables for testing.
 
-    def test_task_update_view_POST():
-        This test asserts that the task update URL is retrieved and and
-        rendered successfully with the expected workspace slug and task id
-        as arguments.
 
-    def test_task_delete_url():
-        This test asserts that the task delete URL is retrieved and and
-        rendered successfully with the expected workspace slug and task id
-        as arguments.
+    def test_basket_get_request_is_retrieved():
+        Retrieves the basket URL and asserts the view renders successfully.
+        Asserts the view status code is 200.
+        Asserts the template used matches the expected template defined in
+        views.py.
+
+
+    def test_add_to_basket_post_request_is_retrieved():
+        Retrieves the add_to_basket URL and asserts the view handles post data.
+        Asserts the view redirects after data handling.
+        Asserts the client is redirected to the correct URL, correctly
+        redirects and has a status code of 302 indicating redirection, a
+        target status of 200 meaning the view is rendered correctly.
+
+
+    def test_update_basket_post_request_is_resolved():
+        Retrieves the update_basket URL and asserts the view handles post data.
+        Asserts the view redirects after data handling.
+        Asserts the client is redirected to the correct URL, correctly
+        redirects and has a status code of 302 indicating redirection, a target
+        status of 200 meaning the view is rendered correctly.
+
+
+    def test_delete_from_basket_post_request_is_resolved():
+        Retrieves the delete_from_basket URL and asserts the view handles
+        post data.
+        Asserts the view status code is 200.
     """
 
     def setUp(self):
         """
         REGISTRATION:
-        Simulates user registration to allow for users to access
-        community-related functionality and models.
+            Simulates user registration to allow for users to create an
+            author profile to allow for the creation of a book.
 
-        GENRE & COMMUNITY:
-        Simulates the creation of a genre. After the mock genre
-        is saved, a community is automatically created.
+        USER & AUTHOR PROFILES:
+            A user profile is created automatically following successful
+            registration and retrieved. This profile is associated with
+            an author profile.
+
+        GENRE + BOOK:
+            A test genre is created and assigned to the test book instance.
+            This instance is used in the testing of URLs in POST requests.
 
         Saves the relevant models to the test sqlite3 database.
+        Retrieves the relevant URLs and assigns them to variables for testing.
         """
         self.client = Client()
         self.user = User(username="ananiko")
@@ -106,7 +128,6 @@ class TestBasketViews(TestCase):
             image=placeholder_image
         )
         self.book.save()
-        self.quantity = 3
 
         self.basket_url = reverse("basket")
         self.add_to_basket_url = reverse("add_to_basket", args=[self.book.id])
@@ -130,8 +151,8 @@ class TestBasketViews(TestCase):
         """
         Retrieves the add_to_basket URL and asserts the view handles post data.
         Asserts the view redirects after data handling.
-        Asserts the client is redirected to the correct URL, correctly
-        redirects and has a status code of 302 indicating redirection, a
+        Asserts the client is redirected to the correct URL, the view correctly
+        redirects and has a status code of 302 indicating redirection, and a
         target status of 200 meaning the view is rendered correctly.
         """
         res = self.client.post(self.add_to_basket_url, {"quantity": 5})
@@ -144,9 +165,9 @@ class TestBasketViews(TestCase):
         """
         Retrieves the update_basket URL and asserts the view handles post data.
         Asserts the view redirects after data handling.
-        Asserts the client is redirected to the correct URL, correctly
-        redirects and has a status code of 302 indicating redirection, a target
-        status of 200 meaning the view is rendered correctly.
+        Asserts the client is redirected to the correct URL, the view correctly
+        redirects and has a status code of 302 indicating redirection, and a
+        target status of 200 meaning the view is rendered correctly.
         """
         res = self.client.post(self.update_basket_url, {"quantity": 2})
         self.assertRedirects(
