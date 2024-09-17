@@ -48,8 +48,15 @@ def add_basket(request, book_id):
     Http404: If the book with the specified ID does not exist in the database.
     """
     book = get_object_or_404(Book, pk=book_id)
-    quantity = int(request.POST.get('quantity'))
+    try:
+        quantity = int(request.POST.get('quantity'))
+    except (TypeError, ValueError):
+        quantity = 2
+
     redirect_url = request.POST.get('redirect_url')
+    if not redirect_url:
+        redirect_url = f'/library/book/{book.slug}/'
+
     type = None
     if 'book_type' in request.POST:
         type = request.POST['book_type']
