@@ -22,7 +22,7 @@
                 {% include 'basket/_summary.html' %}
                 <div class="d-flex flex-column flex-md-row align-items-center align-items-md-start justify-content-between py-3">
                     <a href="{% if user.is_authenticated %}{{ checkout_url }}{% else %}{{ signin_url }}{% endif %}"
-                    aria-label="{% if user.is_authenticated %}Checkout{% else %}Sign In to Checkout{% endif %}" class="custom-button">
+                    aria-label="{% if user.is_authenticated %}Checkout{% else %}Sign In to Checkout{% endif %}" class="text-white custom-button">
                         <i class="fas fa-lock me-2"></i>Secure Checkout
                     </a>
                     <a href="{% url 'library' %}" aria-label="Keep Shopping in Library" class="text-white custom-button mt-3 mt-md-0">

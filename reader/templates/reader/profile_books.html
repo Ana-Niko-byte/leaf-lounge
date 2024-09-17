@@ -41,7 +41,7 @@
             </form>
             <!-- This needs fixing! should reset the url -->
             <div class="button-container d-flex justify-content-end">
-                <a href="{% url 'user_books' %}" aria-label="See all of My Books" class="custom-button mt-3 {% if not chosen %}d-none{% else %}d-block{% endif %} btn-link">
+                <a href="{% url 'user_books' %}" aria-label="See all of My Books" class="text-white custom-button mt-3 {% if not chosen %}d-none{% else %}d-block{% endif %} btn-link">
                     Show All
                 </a>
             </div>
@@ -55,7 +55,7 @@
                         {% if book.genre == genre %}
                         <div class="col-2">
                             <img src="{{ book.image.url }}" alt="{{ book.book.title }} cover" class="profile-book">
-                            <a href="{% url 'leave_review' book.id %}" class="my-3 custom-button btn-link" data-book-title="{{ book.title }}" aria-label="Leave a Review for {{ book.title }}">
+                            <a href="{% url 'leave_review' book.id %}" class="my-3 text-white custom-button btn-link" data-book-title="{{ book.title }}" aria-label="Leave a Review for {{ book.title }}">
                                 Leave a Review
                             </a>
                         </div>
@@ -72,7 +72,7 @@
                     {% for book in filtered_books %}
                     <div class="col-2">
                         <img src="{{ book.image.url }}" alt="{{ book.book.title }} cover" class="profile-book">
-                        <a href="{% url 'leave_review' book.id %}" class="btn-link my-3 custom-button" aria-label="Go to {{ book.title }} Page" data-book-title="{{ book.title }}">
+                        <a href="{% url 'leave_review' book.id %}" class="btn-link my-3 text-white custom-button" aria-label="Go to {{ book.title }} Page" data-book-title="{{ book.title }}">
                             Leave a Review
                         </a>
                     </div>

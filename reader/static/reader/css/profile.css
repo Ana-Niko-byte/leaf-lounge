@@ -77,7 +77,36 @@ p {
     overflow-x: auto;
 }
 
-.profile-books{
+.profile-books {
     width: 100px;
 }
 /* /Profile */
+
+/* Update Review */
+.custom-large-review-field {
+    max-height: 80px;
+    overflow-y: auto;
+}
+
+.custom-review-fields {
+    border-radius: 5px;
+    height: 35px;
+    margin: 0;
+    padding-left: 10px;
+}
+
+.custom-review-fields:focus,
+.custom-large-review-field:focus {
+    box-shadow: none;
+    border: 1px solid var(--dark-blue);
+}
+
+#review-slide{
+    width: 50%;
+}
+
+@media all and (max-width: 400px){
+    #review-slide {
+        width: 100%;
+    }
+}

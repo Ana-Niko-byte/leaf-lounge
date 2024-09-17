@@ -9,12 +9,12 @@
 
 {% block content %}
 <div class="container-fluid">
-    <div class="slider-review position-absolute row w-100 bg-white d-none" id="review-slide">
+    <div class="slider-review position-absolute row border bg-light d-none" id="review-slide">
         <form action="" method="post" id="re-review" class="p-4">
             <h4 class="text-uppercase small"><strong><i class="fa-solid fa-book me-2"></i>Review Form</strong></h4>
             {% csrf_token %}
             {{ review_form | crispy }}
-            <div class="button-container">
+            <div class="button-container d-flex justify-content-between">
                 <button id="submitButton" type="submit" class="custom-button" aria-label="Update Review">
                     Update Review<i class="fa-solid fa-circle-check ms-2"></i>
                 </button>
@@ -38,8 +38,11 @@
                     </button>
                 </li>
                 <li class="menu-item">
-                    <a href="{{ community_general_url }}" aria-label="Visit my Communities" class="table-button mb-2">
-                        My Communities
+                    <!-- This structure is necessary to maintain the styling -->
+                    <a href="{{ community_general_url }}" aria-label="Visit my Communities">
+                        <button class="table-button mb-2">
+                            My Communities
+                        </button>
                     </a>
                 </li>
                 <li class="menu-item">
@@ -48,8 +51,11 @@
                     </button>
                 </li>
                 <li class="menu-item">
-                    <a href="{{ contact_url }}" aria-label="Contact Leaf Lounge for Help" class="table-button mb-2">
-                        Need Help?
+                    <!-- This structure is necessary to maintain the styling -->
+                    <a href="{{ contact_url }}" aria-label="Contact Leaf Lounge for Help">
+                        <button class="table-button mb-2">
+                            Need Help?
+                        </button>
                     </a>
                 </li>
             </ul>
@@ -99,7 +105,9 @@
                 </li>
                 <li class="d-none profile-details me-5" data-profile="history-details">
                     <div>
-                        <h4 class="mb-3 text-uppercase text-center text-md-start small"><strong><i class="fa-solid fa-list me-2"></i>My Order History</strong></h4>
+                        <h4 class="mb-3 text-uppercase text-center text-md-start small"><strong>
+                            <i class="fa-solid fa-list me-2"></i>My Order History</strong>
+                        </h4>
                         {% if book_orders %}
                             {% for book_order in book_orders %}
                             <div class="row accordion accordion-flush my-2 px-3 bg-white shadow-sm p-3 rounded" id="accordion{{ forloop.counter }}">
@@ -112,7 +120,7 @@
                                         {% for book in book_order.booklineitem.all %}
                                         <div class="mx-3 mb-3 d-flex flex-column justify-content-between">
                                             <div class="book-info">
-                                                {% if book.image %}
+                                                {% if book.book.image %}
                                                 <img src="{{ book.book.image.url }}" class="mt-4 mb-2 profile-books" alt="{{ book.book.title }} cover">
                                                 {% else %}
                                                 <img src="{{ MEDIA_URL }}bookplaceholder.png" alt="generic placeholder cover" class="mt-4 mb-2 profile-books">
@@ -138,7 +146,7 @@
                                             <span class="col-9"><p class="m-0 p-0">€{{ book_order.grand_total }}</p></span>
                                         </div>
                                     </div>
-                                    <button class="custom-button mb-4 accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse{{ forloop.counter }}" aria-expanded="false" aria-controls="flush-collapse{{ forloop.counter }}">
+                                    <button class="custom-button mb-4 accordion-button collapsed text-white" aria-label="View Shipping Details" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse{{ forloop.counter }}" aria-expanded="false" aria-controls="flush-collapse{{ forloop.counter }}">
                                         <i class="fa-solid fa-truck-fast me-2"></i>Shipping Details
                                     </button>
                                 </div>
@@ -260,8 +268,9 @@
                                                         </div>
                                                         <div class="modal-footer d-flex justify-content-between">
                                                             <button type="button" class="custom-button" data-bs-dismiss="modal">No, Cancel</button>
+                                                            <!-- Structure necessary to maintain styling -->
                                                             <a href="{% url 'delete_review' review.id %}" class="btn-link">
-                                                                <button type="button" class="custom-button">Yes, Delete</button>
+                                                                <button type="button" class="custom-button"><i class="fa-solid fa-sm fa-trash me-2"></i>Yes, Delete</button>
                                                             </a>
                                                         </div>
                                                     </div>

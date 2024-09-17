@@ -57,10 +57,12 @@
                                                             <p>You won't be able to undo the delete.</p>
                                                         </div>
                                                         <div class="modal-footer d-flex justify-content-between">
-                                                            <button type="button" class="custom-button" data-bs-dismiss="modal">No, Cancel</button>
-                                                            <a href="{% url 'delete_message' message.forum.slug message.id %}"
-                                                                class="message-buttons btn p-0 mt-3 mx-0 text-black" aria-label="Delete Message">
-                                                                <i class="fa-solid fa-sm fa-trash me-2"></i><span><small>DELETE</small></span>
+                                                            <button type="button" class="text-white custom-button" data-bs-dismiss="modal">No, Cancel</button>
+                                                            <!-- Structure necessary to maintain styling -->
+                                                            <a href="{% url 'delete_message' message.forum.slug message.id %}" aria-label="Delete Message">
+                                                                <button class="message-buttons btn p-0 mt-3 mx-0 text-black">
+                                                                    <i class="fa-solid fa-sm fa-trash me-2"></i><span><small>DELETE</small></span>
+                                                                </button>
                                                             </a>
                                                         </div>
                                                     </div>
@@ -91,7 +93,7 @@
                         <p class="text-muted small"><strong>Note:</strong> You won't be able to edit this message after it sends.</p>
                     </div>
                     <div class="button-container">
-                        <button type="submit" class="small-custom-button" id="message-send">
+                        <button type="submit" class="small-custom-button text-white" id="message-send">
                             <i class="fa-solid fa-paper-plane me-2"></i>Send
                         </button>
                     </div>

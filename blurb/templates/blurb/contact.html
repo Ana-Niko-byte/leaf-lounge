@@ -29,11 +29,11 @@
             </p>
             <div class="button-container mt-4">
                 {% if user.is_authenticated %}
-                <a href="{{ community_general_url }}" aria-label="Visit my Communities" class="custom-button">
+                <a href="{{ community_general_url }}" aria-label="Visit my Communities" class="text-white custom-button">
                     <i class="fa-solid fa-comments me-2"></i>My Communities
                 </a>
                 {% else %}
-                <a href="{{ signup_url }}" aria-label="Sign Up" class="custom-button">
+                <a href="{{ signup_url }}" aria-label="Sign Up" class="text-white custom-button">
                     <i class="fa-solid fa-user-plus me-2"></i>Join us today!
                 </a>
                 {% endif %}
@@ -61,7 +61,7 @@
                 </fieldset>
                 <div class="form-footer d-flex justify-content-between align-items-end">
                     <p class="small text-muted">P.S. A copy of this query will be sent to your email address.</p>
-                    <button type="submit" class="custom-button"><i class="fa-solid fa-paper-plane me-2"></i>Send Query</button>
+                    <button type="submit" class="text-white custom-button"><i class="fa-solid fa-paper-plane me-2"></i>Send Query</button>
                 </div>
             </form>
         </div>

@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.db.models import Q, Count
+from django.utils.text import slugify
 
 from .models import *
 from reader.models import UserProfile
@@ -137,6 +138,10 @@ def library(request):
                 [genres_called.append(
                     book.genre
                 ) for book in books if book.genre not in genres_called]
+
+                for genre in filtered_genres:
+                    genre.name = slugify(genre.name)
+
                 context = {
                     'genre_search': True,
                     'genres_called': genres_called,
