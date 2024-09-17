@@ -9,6 +9,31 @@ class TestBlurbViews(TestCase):
     includes testing correct redirection, status codes and template usage.
 
     Methods:
+    def setUp():
+        Retrieves the relevant URLs and assigns them to variables for testing.
+
+
+    def test_home_page_is_retrieved():
+        Retrieves the home page URL and asserts the view renders successfully.
+        Asserts the view status code is 200.
+        Asserts the template used matches the expected template defined in
+        views.py.
+
+
+    def test_contact_page_get_request_is_retrieved():
+        Retrieves the contact page URL and asserts the view renders correctly.
+        Asserts the view status code is 200.
+        Asserts the template used matches the expected template defines in
+        views.py
+
+
+    def test_contact_page_post_request_is_successful():
+        Simulates form data passed to the contact view for testing a POST
+        request.
+        Asserts the client is redirected to the correct URL if the view receives
+        correct contact form data, the view correctly redirects and has a status
+        code of 302 indicating redirection, and a target status of 200 meaning
+        the view is rendered correctly.
     """
 
     def setUp(self):

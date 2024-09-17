@@ -642,6 +642,168 @@ def test_user_books_resolves():
     from 'approve_review' with an int book id argument.
 ```
 
+> ### Views (Basket App)
+
+### `class TestBasketViews(TestCase):`
+
+A class to test views associated with the Basket app. Testing scope
+includes testing correct redirection, status codes and template usage.
+
+
+`def setUp():`
+```Python
+    REGISTRATION:
+        Simulates user registration to allow for users to create an
+        author profile to allow for the creation of a book.
+
+    USER & AUTHOR PROFILES:
+        A user profile is created automatically following successful
+        registration and retrieved. This profile is associated with
+        an author profile.
+
+    GENRE + BOOK:
+        A test genre is created and assigned to the test book instance.
+        This instance is used in the testing of URLs in POST requests.
+
+    Saves the relevant models to the test sqlite3 database.
+    Retrieves the relevant URLs and assigns them to variables for testing.
+```
+
+`def test_basket_get_request_is_retrieved():`
+```Python
+    Retrieves the basket URL and asserts the view renders successfully.
+    Asserts the view status code is 200.
+    Asserts the template used matches the expected template defined in
+    views.py.
+```
+
+`def test_add_to_basket_post_request_is_retrieved():`
+```Python
+    Retrieves the add_to_basket URL and asserts the view handles post data.
+    Asserts the view redirects after data handling.
+    Asserts the client is redirected to the correct URL, correctly
+    redirects and has a status code of 302 indicating redirection, a
+    target status of 200 meaning the view is rendered correctly.
+```
+
+`def test_update_basket_post_request_is_resolved():`
+```Python
+    Retrieves the update_basket URL and asserts the view handles post data.
+    Asserts the view redirects after data handling.
+    Asserts the client is redirected to the correct URL, correctly
+    redirects and has a status code of 302 indicating redirection, a target
+    status of 200 meaning the view is rendered correctly.
+```
+
+`def test_delete_from_basket_post_request_is_resolved():`
+```Python
+    Retrieves the delete_from_basket URL and asserts the view handles
+    post data.
+    Asserts the view status code is 200.
+```
+
+> ### Views (Blurb App)
+### `class TestBlurbViews(TestCase):`
+
+A class to test views associated with the Blurb app. Testing scope
+includes testing correct redirection, status codes and template usage.
+
+`def setUp():`
+```Python
+    Retrieves the relevant URLs and assigns them to variables for testing.
+```
+
+`def test_home_page_is_retrieved():`
+```Python
+    Retrieves the home page URL and asserts the view renders successfully.
+    Asserts the view status code is 200.
+    Asserts the template used matches the expected template defined in
+    views.py.
+```
+
+`def test_contact_page_get_request_is_retrieved():`
+```Python
+    Retrieves the contact page URL and asserts the view renders correctly.
+    Asserts the view status code is 200.
+    Asserts the template used matches the expected template defines in
+    views.py
+```
+
+`def test_contact_page_post_request_is_successful():`
+```Python
+    Simulates form data passed to the contact view for testing a POST
+    request.
+    Asserts the client is redirected to the correct URL if the view receives
+    correct contact form data, the view correctly redirects and has a status
+    code of 302 indicating redirection, and a target status of 200 meaning
+    the view is rendered correctly.
+```
+
+> ### Views (Checkout App)
+> ### Views (Community App)
+> ### Views (Library App)
+> ### Views (Marketing App)
+> ### Views (Reader App)
+
+> ### Forms (Blurb App)
+### `class TestContactForm(TestCase):`
+A class for testing the Contact Form associated with the Blurb app.
+This form allows users to contact the Leaf Lounge team with queries.
+
+`def test_contact_for_name_is_required():`
+```Python
+    Asserts the contact form is invalid without a name value.
+    Asserts the error raised as a result of the empty value stems
+    from the "name" key.
+    Asserts the error raises matches the expected error.
+```
+
+`def test_contact_form_email_is_required():`
+```Python
+    Asserts the contact form is invalid without an email value.
+    Asserts the error raised as a result of the empty value stems
+    from the "email" key.
+    Asserts the error raises matches the expected error.
+```
+
+`def test_contact_form_email_format_is_correct():`
+```Python
+    Asserts the contact form is invalid if the email value is of
+    an incorrect format.
+    Asserts the error raised as a result of the incorrectly-formatted
+    value stems from the "email" key.
+    Asserts the error raises matches the expected error.
+```
+
+`def test_contact_form_subject_is_required():`
+```Python
+    Asserts the contact form is invalid without a subject value.
+    Asserts the error raised as a result of the empty value stems
+    from the "subject" key.
+    Asserts the error raises matches the expected error.
+```
+
+`def test_contact_form_message_is_required():`
+```Python
+    Asserts the contact form is invalid without a message value.
+    Asserts the error raised as a result of the empty value stems
+    from the "message" key.
+    Asserts the error raises matches the expected error.
+```
+
+`def test_correctly_filled_form_is_valid():`
+```Python
+    Asserts a correctly filled form is valid.
+```
+
+
+
+
+
+
+
+
+
 > > > ## Issues
 
 1. #### Contact Page `ConnectionRefusedError`
@@ -665,6 +827,7 @@ The issue was down to a simple typo in the following line in `blurb/views.py`: `
 
 - `Library Page`
 ![Library Page Lighthouse Report](../images/lighthouse-library.png)
+![Library Best Practices Lighthouse Report](../images/lighthouse-library-best-practices.png)
 
 - `Basket Page`
 ![Basket Page Lighthouse Report](../images/lighthouse-basket.png)
