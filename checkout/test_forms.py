@@ -321,7 +321,7 @@ class TestOrderForm(TestCase):
 
     def test_order_form_country_must_be_predefined(self):
         """
-        Asserts the contact form is invalid with an incorrect value.
+        Asserts the contact form is invalid with an incorrect country value.
         Asserts the error raised as a result of the incorrect value stems
         from the "country" key.
         Asserts the error raises matches the expected error.
