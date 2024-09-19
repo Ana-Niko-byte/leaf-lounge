@@ -8,7 +8,7 @@ class TestContactForm(TestCase):
     This form allows users to contact the Leaf Lounge team with queries.
 
     Methods:
-    def test_contact_for_name_is_required():
+    def test_contact_form_name_is_required():
         Asserts the contact form is invalid without a name value.
         Asserts the error raised as a result of the empty value stems
         from the "name" key.
@@ -46,7 +46,7 @@ class TestContactForm(TestCase):
     def test_correctly_filled_form_is_valid():
         Asserts a correctly filled form is valid.
     """
-    def test_contact_for_name_is_required(self):
+    def test_contact_form_name_is_required(self):
         """
         Asserts the contact form is invalid without a name value.
         Asserts the error raised as a result of the empty value stems
