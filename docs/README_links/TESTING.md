@@ -7,7 +7,7 @@ This section outlines procedures for manual testing. For automated testing, plea
 | Feature | Expected Outcome | Testing Procedure | Result | Remark |
 | ------- | ---------------- | ----------------- | ------ | ------ |
 
-> > ### Automated Testing
+>> ### Automated Testing
 
 > ### Models (library app)
 ### `class TestibraryModels():`
@@ -158,6 +158,7 @@ Models: `Author`, `Genre`, `Book`, `Review`
 ```
 
 > #### Model (community app)
+
 ### `class TestCommunityModel():`
 
 A class for testing the community model. Testing includes asserting equal values to those in the model setup, save method testing, and format validation for datetime objects and slugs.
@@ -259,7 +260,6 @@ Fields: `Forum`, `Message`
 ```
 
 > ### Models (checkout app)
-
 ### `class TestCheckoutModels():`
 
 A class for testing the order and booklineitem models in the checkout app.
@@ -576,7 +576,7 @@ This class tests urls resolve from their FBVs.
 ```
 
 > ### URLS (reader app)
-### `class TestUserProfileAssociatedURLs():`
+### `class TestUserProfileURLs():`
 
 A class for testing URLs associated with the reader app.
 This class tests urls resolve from their FBVs.
@@ -643,7 +643,6 @@ def test_user_books_resolves():
 ```
 
 > ### Views (Basket App)
-
 ### `class TestBasketViews(TestCase):`
 
 A class to test views associated with the Basket app. Testing scope
@@ -740,9 +739,91 @@ includes testing correct redirection, status codes and template usage.
 ```
 
 > ### Views (Checkout App)
+
+
 > ### Views (Community App)
+
+
 > ### Views (Library App)
+### `class TestLibraryViews(TestCase):`
+A class for testing all views associated with the Library app.Testing scope includes testing correct redirection, status codes and template usage.
+
+`def setUp():`
+```Python
+    REGISTRATION:
+        Simulates user registration to allow for users to create an
+        author profile to allow for the creation of a book.
+
+    USER & AUTHOR PROFILES:
+        A user profile is created automatically following successful
+        registration and retrieved. This profile is associated with
+        an author profile.
+
+    GENRE + BOOK:
+        A test genre is created and assigned to the test book instance.
+        This instance is used in the testing of URLs in POST requests.
+
+    Saves the relevant models to the test sqlite3 database.
+    Retrieves the relevant URLs and assigns them to variables for testing.
+```
+
+`def test_library_q_get_request_is_successful():`
+```Python
+    Retrieves the library URL with a request for a specific keyword
+    to be included in the book title (via search bar) and asserts
+    the view renders successfully.
+    Asserts the template used matches the expected template defined in
+    views.py.
+```
+
+`def test_library_author_get_request_is_successful():`
+```Python
+    Retrieves the library URL with a request for a specific author
+    (via filters) and asserts the view renders successfully.
+    Asserts the view status code is 200.
+    Asserts the template used matches the expected template defined in
+    views.py.
+```
+
+`def test_library_genre_get_request_is_successful():`
+```Python
+    Retrieves the library URL with a request for a specific genre
+    (via filters) and asserts the view renders successfully.
+    Asserts the view status code is 200.
+    Asserts the template used matches the expected template defined in
+    views.py.
+```
+
+`def test_book_detail_get_request_is_successful():`
+```Python
+    Retrieves the book detail URL with a book slug argument and asserts
+    the view renders successfully.
+    Asserts the view status code is 200.
+    Asserts the template used matches the expected template defined in
+    views.py.
+```
+
 > ### Views (Marketing App)
+### `class TestMarketingViews(TestCase):`
+A class to test views associated with the Marketing app. Testing scope includes testing correct redirection and redirection status codes.
+
+`def setUp():`
+```Python
+    Retrieves the relevant URLs and assigns them to variables for testing.
+```
+
+`def test_subscribe_post_request_is_successful():`
+```Python
+    Simulates form data passed to the subscribe form for testing a POST request.
+    Asserts the client is redirected to the correct URL if the view receives correct form data, the view correctly redirects and has a status code of 302 indicating redirection, and a target status of 200 meaning the view is rendered correctly.
+```
+
+`def test_unsubscribe_post_request_is_successful():`
+```Python
+    Simulates form data passed to the unsubscribe form for testing a POST request.
+    Asserts the client is redirected to the correct URL if the view receives correct form data, the view correctly redirects and has a status code of 302 indicating redirection, and a target status of 200 meaning the view is rendered correctly.
+```
+
 > ### Views (Reader App)
 
 > ### Forms (Blurb App)
@@ -796,12 +877,416 @@ This form allows users to contact the Leaf Lounge team with queries.
     Asserts a correctly filled form is valid.
 ```
 
+> ### Forms (Checkout App)
+### `class TestOrderForm(TestCase):`
+A class for testing the Order Form associated with the Checkout app.
+This form allows users to place orders by specifying their billing address.
 
+`def test_order_form_name_is_required():`
+```Python
+    Asserts the order form is invalid without a full_name value.
+    Asserts the error raised as a result of the empty value stems from the "full_name" key.
+    Asserts the error raises matches the expected error.
+```
 
+`def test_order_form_email_is_required():`
+```Python
+    Asserts the order form is invalid without an email value.
+    Asserts the error raised as a result of the empty value stems from the "email" key.
+    Asserts the error raises matches the expected error.
+```
 
+`def test_order_form_email_format_is_correct():`
+```Python
+    Asserts the contact form is invalid if the email value is of an incorrect format.
+    Asserts the error raised as a result of the incorrectly-formatted value stems from the "email" key.
+    Asserts the error raises matches the expected error.
+```
 
+`def test_order_form_phone_number_is_required():`
+```Python
+    Asserts the order form is invalid without a phone_number value.
+    Asserts the error raised as a result of the empty value stems from the "phone_number" key.
+    Asserts the error raises matches the expected error.
+```
 
+`def test_order_form_street_1_is_required():`
+```Python
+    Asserts the contact form is invalid without a street_1 value.
+    Asserts the error raised as a result of the empty value stems from the "street_1" key.
+    Asserts the error raises matches the expected error.
+```
 
+`def test_order_form_street_2_is_not_required():`
+```Python
+    Asserts the contact form is valid if there is no street_2 value provided by the user at checkout.
+```
+
+`def test_order_form_town_city_is_required():`
+```Python
+    Asserts the contact form is invalid without a town_city value.
+    Asserts the error raised as a result of the empty value stems from the "town_city" key.
+    Asserts the error raises matches the expected error.
+```
+
+`def test_order_form_postcode_is_not_required():`
+```Python
+    Asserts the contact form is valid if there is no postcode value provided by the user at checkout.
+```
+
+`def test_order_form_county_is_not_required():`
+```Python
+    Asserts the contact form is valid if there is no county value provided by the user at checkout.
+```
+
+`def test_order_form_country_is_required():`
+```Python
+    Asserts the contact form is invalid without a country value.
+    Asserts the error raised as a result of the empty value stems from the "country" key.
+    Asserts the error raises matches the expected error.
+```
+
+`def test_order_form_country_must_be_predefined():`
+```Python
+    Asserts the contact form is invalid with an incorrect value.
+    Asserts the error raised as a result of the incorrect value stems from the "country" key.
+    Asserts the error raises matches the expected error.
+```
+
+`def test_fully_and_correctly_filled_form_is_valid():`
+```Python
+    Asserts an order form instance that is full and correctly filled out is valid.
+```
+
+`def test_partially_but_correctly_filled_form_is_valid():`
+```Python
+    Asserts an order form instance that is partially but correctly filled out is valid.
+```
+
+> ### Forms (Community App)
+### `class TestAuthorForm(TestCase):`
+"""
+A class for testing the Author Form associated with the community app.
+This form allows registered users to create an Author Profile account so that they can register and upload books onto the Leaf Lounge website.
+
+`def setUp():`
+```Python
+    REGISTRATION:
+        Simulates user registration to allow for the creation of a user profile.
+
+    USER PROFILE & AUTHOR PROFILE:
+        Retrieves the user profile automatically created following successful user registration. This is handled via reader.signals.create_or_save_profile.
+        Simulates the creation of an author profile and assigns the relevant user profile to the author.user_profile field.
+
+    Saves the relevant models to the test sqlite3 database.
+```
+
+`def test_user_profile_is_not_required():`
+```Python
+    Asserts an Author profile can be created without an associated user profile - this is specifically for authors uploaded via the admin panel. This is not representative of authors created by Leaf Lounge users.
+```
+
+`def test_first_name_is_required():`
+```Python
+    Asserts the author form is invalid with an empty first_name value.
+    Asserts the error raised as a result of the incorrect value stems from the "first_name" key.
+    Asserts the error raises matches the expected error.
+```
+
+`def test_last_name_is_required():`
+```Python
+    Asserts the author form is invalid with an empty last_name value.
+    Asserts the error raised as a result of the incorrect value stems from the "last_name" key.
+    Asserts the error raises matches the expected error.
+```
+
+`def test_d_o_b_is_required():`
+```Python
+    Asserts the author form is invalid with an empty d_o_b value.
+    Asserts the error raised as a result of the incorrect value stems from the "d_o_b" key.
+    Asserts the error raises matches the expected error.
+```
+
+`def test_d_o_b_must_be_correct_format():`
+```Python
+    Asserts the author form is invalid with an incorrectly formatted d_o_b value, which should follow YYYY-MM-DD.
+    Asserts the error raised as a result of the incorrect value stems from the "d_o_b" key.
+    Asserts the error raises matches the expected error. The formatting of this is handled automatically via the form. This test checks bad user injection.
+```
+
+`def test_nationality_is_not_required():`
+```Python
+    Asserts the author form is valid even if no value for the Nationality was provided.
+```
+
+`def test_bio_is_required():`
+```Python
+    Asserts the author form is invalid with an empty bio value.
+    Asserts the error raised as a result of the incorrect value stems from the "bio" key.
+    Asserts the error raises matches the expected error.
+```
+
+`def test_fully_and_correctly_filled_form_is_valid():`
+```Python
+    Asserts the author form is valid when all information is provided.
+```
+
+### `class TestBookForm(TestCase):`
+A class for testing the Book Registration Form associated with the community app.
+This form allows registered users with associated profile accounts to register their books. These books can be viewed under "My Books" in the secondary navigation bar.
+
+`def setUp():`
+```Python
+    REGISTRATION:
+        Simulates user registration to allow for the creation of a user profile.
+
+    USER PROFILE & AUTHOR PROFILE:
+        Retrieves the user profile automatically created following
+        successful user registration. This is handled via reader.signals.create_or_save_profile.
+        Simulates the creation of an author profile and assigns the relevant user profile to the author.user_profile field.
+
+    GENRE & COMMUNITY:
+        Simulates the creation of a genre.
+
+    Saves the relevant models to the test sqlite3 database.
+```
+
+`def missing_field_assertion():`
+```Python
+    A helper function used for running assertion tests for missing values in form fields.
+
+    Arguments:
+    value: str - the form field being tested.
+    form: obj - the form being tested.
+```
+
+`def test_book_form_title_is_required():`
+```Python
+    Asserts the book form is invalid with an empty title value.
+    Asserts the error raised as a result of the incorrect value stems from the "title" key.
+    Asserts the error raises matches the expected error.
+```
+
+`def test_book_form_isbn_is_required():`
+```Python
+    Asserts the book form is invalid with an empty isbn value.
+    Asserts the error raised as a result of the incorrect value stems from the "isbn" key.
+    Asserts the error raises matches the expected error.
+```
+
+`def test_book_form_blurb_is_required():`
+```Python
+    Asserts the book form is invalid with an empty blurb value.
+    Asserts the error raised as a result of the incorrect value stems from the "blurb" key.
+    Asserts the error raises matches the expected error.
+```
+
+`def test_book_form_genre_is_required():`
+```Python
+    Asserts the book form is invalid with an empty genre value.
+    Asserts the error raised as a result of the incorrect value stems from the "genre" key.
+    Asserts the error raises matches the expected error.
+```
+
+`def test_book_form_year_published_is_not_required():`
+```Python
+    Asserts the book form is valid without a year_published value.
+```
+
+`def test_book_form_publisher_is_not_required():`
+```Python
+    Asserts the book form is valid without a publisher value.
+```
+
+`def test_book_form_type_is_required():`
+```Python
+    Asserts the book form is invalid with an empty type value.
+    Asserts the error raised as a result of the incorrect value stems from the "type" key.
+    Asserts the error raises matches the expected error.
+```
+
+`def test_book_form_type_must_be_one_of_predefined():`
+```Python
+    Asserts the book form is invalid with an incorrect type value.
+    Asserts the error raised as a result of the incorrect value stems from the "type" key.
+    Asserts the error raises matches the expected error.
+```
+
+`def test_book_form_price_is_required():`
+```Python
+    Asserts the book form is invalid with an empty price value.
+    Asserts the error raised as a result of the incorrect value stems from the "price" key.
+    Asserts the error raises matches the expected error.
+```
+
+`def test_book_form_price_must_be_under_5_digits():`
+```Python
+    Asserts the book form is invalid if a price value over 5 digits is provided for books.
+    Asserts the error raised as a result of the incorrect value stems from the "price" key.
+    Asserts the error raises matches the expected error.
+```
+
+`def test_test_correctly_filled_form_is_valid():`
+```Python
+    Asserts a correctly filled form is valid.
+```
+
+### `class TestForumForm(TestCase):`
+A class for testing the Forum form associated with the community app.
+This form allows users to create chat forums within genre communities.
+
+`def test_forum_form_name_is_required():`
+```Python
+    Asserts the forum form is invalid with an empty name value.
+    Asserts the error raised as a result of the incorrect value stems from the "name" key.
+    Asserts the error raises matches the expected error.
+```
+
+`def test_filled_forum_form_is_valid():`
+```Python
+    Asserts a correctly filled form is valid.
+```
+
+### `class TestMessageForm(TestCase):`
+A class for testing the Message form associated with the community app.
+This form allows users to send messages within forums.
+
+`def test_forum_form_name_is_required():`
+```Python
+    Asserts the message form is invalid with an empty content value.
+    Asserts the error raised as a result of the incorrect value stems from the "content" key.
+    Asserts the error raises matches the expected error.
+```
+
+`def test_filled_message_form_is_valid():`
+```Python
+    Asserts a correctly filled form is valid.
+```
+
+> ### Forms (Marketing App)
+### `class TestNewsletterForm(TestCase):`
+A class for testing the Newsletter Form associated with the Marketing app.
+This form allows users to sign up to the Leaf Lounge Newsletter powered by Mailchimp.
+
+`def test_newsletter_form_email_is_required():`
+```Python
+    Asserts the newsletter form is invalid without an email value.
+    Asserts the error raised as a result of the empty value stems from the "email" key.
+    Asserts the error raises matches the expected error.
+```
+
+`def test_newsletter_form_email_format_is_correct():`
+```Python
+    Asserts the newsletter form is invalid if the email value is of an incorrect format.
+    Asserts the error raised as a result of the incorrectly-formatted value stems from the "email" key.
+    Asserts the error raises matches the expected error.
+```
+
+`def test_correctly_filled_form_is_valid():`
+```Python
+    Asserts a correctly filled form is valid.
+```
+
+> ### Forms (Reader App)
+### `class TestUserProfileForm(TestCase):`
+A class for testing the UserProfile Form associated with the reader app.
+This form allows users to streamline the checkout process by pre-filling their information on the checkout page.
+
+`def test_user_profile_form_information_is_not_required():`
+```Python
+    Asserts the user profile form is valid even if there is no information provided. These fields are optional.
+```
+
+`def test_fully_and_correctly_filled_form_is_valid():`
+```Python
+    Asserts the user profile form is valid with all information provided.
+    These fields are optional, but are used for faster checkout processes.
+```
+
+`def test_partially_but_correctly_filled_form_is_valid():`
+```Python
+    Asserts the user profile form is valid with partial information provided.
+    These fields are optional, but are used for faster checkout processes.
+```
+
+### `class TestReviewForm(TestCase):`
+A class for testing the Review Form associated with the reader app.
+This form allows users leave reviews on books they have purchased. This form can be accessed through "My Books" > "Leave a Review", and all pending and approved reviews can be viewed under "My Profile" > "My Reviews".
+
+`def setUp():`
+```Python
+    REGISTRATION:
+        Simulates user registration to allow for the creation of a user
+        profile.
+
+    USER PROFILE & AUTHOR PROFILE:
+        Retrieves the user profile automatically created following successful user registration. This is handled via reader.signals.create_or_save_profile.
+        Simulates the creation of an author profile and assigns the relevant user profile to the author.user_profile field.
+
+    GENRE & COMMUNITY:
+        Simulates the creation of a genre.
+
+    BOOK:
+        Simulates the creation of a book with relevant relationships to the author and genre models. This is required as reviews need a valid book instance.
+
+    Saves the relevant models to the test sqlite3 database.
+    Retrieves the relevant URLs and assigns them to variables for testing.
+```
+
+`def test_review_form_book_is_required():`
+```Python
+    Asserts the review form is invalid with an empty book value.
+    Asserts the error raised as a result of the incorrect value stems from the "book" key.
+    Asserts the error raises matches the expected error.
+```
+
+`def test_review_form_book_must_be_valid():`
+```Python
+    Asserts the review form is invalid with an incorrect book value.
+    This means a value that does not reference a book in the database.
+    Asserts the error raised as a result of the incorrect value stems from the "book" key.
+    Asserts the error raises matches the expected error.
+```
+
+`def test_review_form_title_is_required():`
+```Python
+    Asserts the review form is invalid with an empty title value.
+    Asserts the error raised as a result of the incorrect value stems from the "title" key.
+    Asserts the error raises matches the expected error.
+```
+
+`def test_review_form_rating_is_required():`
+```Python
+    Asserts the review form is invalid with an empty rating value.
+    Asserts the error raised as a result of the incorrect value stems from the "rating" key.
+    Asserts the error raises matches the expected error.
+```
+
+`def test_review_form_rating_must_be_more_than__or_equal_1():`
+```Python
+    Asserts the review form is invalid with a rating value <1.
+    Asserts the error raised as a result of the incorrect value stems from the "rating" key.
+    Asserts the error raises matches the expected error.
+```
+
+`def test_review_form_rating_must_be_less_than_or_equal_10():`
+```Python
+    Asserts the review form is invalid with a rating value >10.
+    Asserts the error raised as a result of the incorrect value stems from the "rating" key.
+    Asserts the error raises matches the expected error.
+```
+
+`def test_review_form_comment_is_required():`
+```Python
+    Asserts the review form is invalid with an empty comment value.
+    Asserts the error raised as a result of the incorrect value stems from the "comment" key.
+    Asserts the error raises matches the expected error.
+```
+
+`def test_review_form_is_valid():`
+```Python
+    Asserts a review form instance that is full and correctly filled out is valid.
+```
 
 
 > > > ## Issues
