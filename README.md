@@ -3,6 +3,10 @@ The application is available for viewing [here](https://leaf-a4f5da9d5073.heroku
 
 Also available for viewing here:
 [Facebook Page](https://www.facebook.com/profile.php?id=61563390085042).
+As part of the social media marketing strategy, a Facebook page was created for the Leaf Lounge community.
+The profile picture is of the `Leaf Lounge` logo, building brand recognition, with a relevant cover photo. A single post was made as part of an introduction to the website, with a link to the deployed version, (and a warning message telling users to not input any banking information into the checkout).
+
+![Facebook Screenshot](docs/images/facebook.png)
 
 ![Leaf Lounge Responsive Image]()
 

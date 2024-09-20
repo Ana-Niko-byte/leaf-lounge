@@ -51,14 +51,6 @@ class TestCommunityViews(TestCase):
         views.py.
 
 
-    def test_specific_community_get_request_is_successful():
-        Retrieves a specific community URL and asserts the view renders
-        successfully.
-        Asserts the status code is 200.
-        Asserts the template used matches the expected template defined in
-        views.py.
-
-
     def test_forum_get_request_is_successful():
         Retrieves a specific forum URL and asserts the view renders
         successfully.
@@ -191,19 +183,6 @@ class TestCommunityViews(TestCase):
         res = self.client.get(self.communities_url)
         self.assertEqual(res.status_code, 200)
         self.assertTemplateUsed(res, "community/community.html")
-
-    # def test_specific_community_get_request_is_successful(self):
-    #     """
-    #     Retrieves a specific community URL and asserts the view renders
-    #     successfully.
-    #     Asserts the status code is 200.
-    #     Asserts the template used matches the expected template defined in
-    #     views.py.
-    #     """
-    #     self.community.save()
-    #     res = self.client.get(self.community_url)
-    #     self.assertEqual(res.status_code, 200)
-    #     self.assertTemplateUsed(res, "community/community_detail.html")
 
     def test_forum_get_request_is_successful(self):
         """
