@@ -202,89 +202,169 @@
                 <li class="d-none profile-details" data-profile="reviews-details">
                     <div>
                         <h4 class="text-uppercase text-center text-md-start small"><strong><i class="fa-solid fa-pencil me-2"></i>My Reviews</strong></h4>
-                        {% if user_reviews %}
-                            {% for review in user_reviews %}
-                                <div class="row outer-review bg-white shadow-sm p-2 rounded m-3">
-                                    <div class="header row">
-                                        <div class="half col-6">
-                                            <div class="rating-container d-flex">
-                                                <div id="profile-rating-box-{{ forloop.counter }}" data-forloop="{{ forloop.counter }}" data-rating="{{ review.rating }}" class="review rating-box d-flex justify-content-start align-items-start mb-3">
-                                                    <img src="{{ MEDIA_URL }}stars.png" alt="{{ book.title }} cover" id="profile-loader-image-{{ forloop.counter }}" class="loader-image">
-                                                    <div id="profile-rating-bar-{{ forloop.counter }}" class="rating-bar"></div>
+                        {% if user.is_superuser %}
+                            {% if all_reviews %}
+                                {% for review in all_reviews %}
+                                    <div class="row outer-review bg-white shadow-sm p-2 rounded m-3">
+                                        <div class="header row">
+                                            <div class="half col-6">
+                                                <div class="rating-container d-flex">
+                                                    <div id="profile-rating-box-{{ forloop.counter }}" data-forloop="{{ forloop.counter }}" data-rating="{{ review.rating }}" class="review rating-box d-flex justify-content-start align-items-start mb-3">
+                                                        <img src="{{ MEDIA_URL }}stars.png" alt="{{ book.title }} cover" id="profile-loader-image-{{ forloop.counter }}" class="loader-image">
+                                                        <div id="profile-rating-bar-{{ forloop.counter }}" class="rating-bar"></div>
+                                                    </div>
                                                 </div>
+                                                <h5 class="text-start">{{ review.title }}</h5>
                                             </div>
-                                            <h5 class="text-start">{{ review.title }}</h5>
+                                            <div class="half col-6 text-end">
+                                                <p class="ms-2 mt-2 {% if review.approved %}text-success{% endif %}">
+                                                    {% if review.approved %}
+                                                    <i class="fa-solid fa-circle-check fa-sm me-2"></i>Approved
+                                                    {% else %}<i class="fa-solid fa-hourglass-start fa-sm me-2"></i>Pending
+                                                    {% endif %}
+                                                </p>
+                                                <p class="ms-2 small text-secondary">Reviewed on: {{ review.reviewed_on }}</p>
+                                            </div>
                                         </div>
-                                        <div class="half col-6 text-end">
-                                            <p class="ms-2 mt-2 {% if review.approved %}text-success{% endif %}">
-                                                {% if review.approved %}
-                                                <i class="fa-solid fa-circle-check fa-sm me-2"></i>Approved
-                                                {% else %}<i class="fa-solid fa-hourglass-start fa-sm me-2"></i>Pending
-                                                {% endif %}
-                                            </p>
-                                            <p class="ms-2 small text-secondary">Reviewed on: {{ review.reviewed_on }}</p>
+                                        <div class="inner-review bg-light shadow-sm p-2 rounded m-2 d-flex flex-column justify-content-between">
+                                            <div class="general-info">
+                                                <p class="ms-2 small text-start"><strong>Book: {{ review.book.title }}</strong></p>
+                                                <p class="ms-2 small text-start">Author: {{ review.book.author }}</p>
+                                                <p class="ms-2 small text-start">Reviewer: {{ review.reviewer }}</p>
+                                            </div>
+                                            <p class="pb-2 text-start">{{ review.comment|safe }}</p>
                                         </div>
-                                    </div>
-                                    <div class="inner-review bg-light shadow-sm p-2 rounded m-2 d-flex flex-column justify-content-between">
-                                        <div class="general-info">
-                                            <p class="ms-2 small text-start"><strong>Book: {{ review.book.title }}</strong></p>
-                                            <p class="ms-2 small text-start">Author: {{ review.book.author }}</p>
-                                        </div>
-                                        <p class="pb-2 text-start">{{ review.comment|safe }}</p>
-                                    </div>
-                                    <div class="button-container pb-2 d-flex justify-content-between align-items-end">
-                                        {% if not review.approved %}
-                                        <button class="btn btn-warning m-2 d-flex justify-content-center align-items-center btn-edit"
-                                            data-review-id="{{ review.id }}" data-review-title="{{ review.title }}"
-                                            data-review-comment="{{ review.comment }}" data-review-rating="{{ review.rating }}"
-                                            data-book-title="{{ review.book }}">
-                                            <i class="fa-solid fa-pencil fa-sm me-2"></i>Edit
-                                        </button>
-                                        {% else %}
-                                        <p class="ms-2 my-2 small text-muted">You can no longer edit this review.</p>
-                                        {% endif %}
-                                        
-                                        <div class="admin-button-container d-flex">
-                                            {% if not review.approved and user.is_superuser %}
-                                            <a href="{% url 'approve_review' review.id %}" aria-label="Approve Review (Admin)" class="btn btn-success m-2 d-flex justify-content-center align-items-center">
-                                                <i class="fa-solid fa-check fa-sm me-2"></i>Approve
-                                            </a>
-                                            {% endif %}
-                                            <button class="btn btn-danger m-2 d-flex justify-content-center align-items-center"
-                                            type="button" data-bs-toggle="modal" data-bs-target="#reviewDelete" aria-label="Delete Review">
-                                                <i class="fa-solid fa-trash fa-sm me-2"></i>Delete
+                                        <div class="button-container pb-2 d-flex justify-content-between align-items-end">
+                                            {% if not review.approved %}
+                                            <button class="btn btn-warning m-2 d-flex justify-content-center align-items-center btn-edit"
+                                                data-review-id="{{ review.id }}" data-review-title="{{ review.title }}"
+                                                data-review-comment="{{ review.comment }}" data-review-rating="{{ review.rating }}"
+                                                data-book-title="{{ review.book }}">
+                                                <i class="fa-solid fa-pencil fa-sm me-2"></i>Edit
                                             </button>
+                                            {% else %}
+                                            <p class="ms-2 my-2 small text-muted">You can no longer edit this review.</p>
+                                            {% endif %}
                                             
-                                            <!-- Modal -->
-                                            <div class="modal fade" id="reviewDelete" tabindex="-1" role="dialog" aria-labelledby="reviewDelete" aria-hidden="true">
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header border-0 d-flex justify-content-between">
-                                                            <h5 class="modal-title" id="reviewDelete">Are you sure?</h5>
-                                                            <span aria-hidden="true" class="close" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-xmark"></i></span>
-                                                        </div>
-                                                        <div class="modal-body border-0">
-                                                            <p>You won't be able to undo the delete.</p>
-                                                        </div>
-                                                        <div class="modal-footer d-flex justify-content-between">
-                                                            <button type="button" class="custom-button" data-bs-dismiss="modal">No, Cancel</button>
-                                                            <!-- Structure necessary to maintain styling -->
-                                                            <a href="{% url 'delete_review' review.id %}" class="btn-link">
-                                                                <button type="button" class="custom-button"><i class="fa-solid fa-sm fa-trash me-2"></i>Yes, Delete</button>
-                                                            </a>
+                                            <div class="admin-button-container d-flex">
+                                                {% if not review.approved and user.is_superuser %}
+                                                <a href="{% url 'approve_review' review.id %}" aria-label="Approve Review (Admin)" class="btn btn-success m-2 d-flex justify-content-center align-items-center">
+                                                    <i class="fa-solid fa-check fa-sm me-2"></i>Approve
+                                                </a>
+                                                {% endif %}
+                                                <button class="btn btn-danger m-2 d-flex justify-content-center align-items-center"
+                                                type="button" data-bs-toggle="modal" data-bs-target="#reviewDelete" aria-label="Delete Review">
+                                                    <i class="fa-solid fa-trash fa-sm me-2"></i>Delete
+                                                </button>
+                                                
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="reviewDelete" tabindex="-1" role="dialog" aria-labelledby="reviewDelete" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header border-0 d-flex justify-content-between">
+                                                                <h5 class="modal-title" id="reviewDelete">Are you sure?</h5>
+                                                                <span aria-hidden="true" class="close" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-xmark"></i></span>
+                                                            </div>
+                                                            <div class="modal-body border-0">
+                                                                <p>You won't be able to undo the delete.</p>
+                                                            </div>
+                                                            <div class="modal-footer d-flex justify-content-between">
+                                                                <button type="button" class="custom-button" data-bs-dismiss="modal">No, Cancel</button>
+                                                                <!-- Structure necessary to maintain styling -->
+                                                                <a href="{% url 'delete_review' review.id %}" class="btn-link">
+                                                                    <button type="button" class="custom-button"><i class="fa-solid fa-sm fa-trash me-2"></i>Yes, Delete</button>
+                                                                </a>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            {% endfor %}
+                                {% endfor %}
+                            {% else %}
+                                <p>Any pending reviews will appear here!</p>
+                            {% endif %}
                         {% else %}
-                            <p>You can view any pending and approved reviews here!</p>
-                            <p>To leave a review go to <span>
-                                <a href="{{ books_url }}" aria-label="Go to my books">My Books</a></span>
-                            </p>
+                            {% if user_reviews %}
+                                {% for review in user_reviews %}
+                                    <div class="row outer-review bg-white shadow-sm p-2 rounded m-3">
+                                        <div class="header row">
+                                            <div class="half col-6">
+                                                <div class="rating-container d-flex">
+                                                    <div id="profile-rating-box-{{ forloop.counter }}" data-forloop="{{ forloop.counter }}" data-rating="{{ review.rating }}" class="review rating-box d-flex justify-content-start align-items-start mb-3">
+                                                        <img src="{{ MEDIA_URL }}stars.png" alt="{{ book.title }} cover" id="profile-loader-image-{{ forloop.counter }}" class="loader-image">
+                                                        <div id="profile-rating-bar-{{ forloop.counter }}" class="rating-bar"></div>
+                                                    </div>
+                                                </div>
+                                                <h5 class="text-start">{{ review.title }}</h5>
+                                            </div>
+                                            <div class="half col-6 text-end">
+                                                <p class="ms-2 mt-2 {% if review.approved %}text-success{% endif %}">
+                                                    {% if review.approved %}
+                                                    <i class="fa-solid fa-circle-check fa-sm me-2"></i>Approved
+                                                    {% else %}<i class="fa-solid fa-hourglass-start fa-sm me-2"></i>Pending
+                                                    {% endif %}
+                                                </p>
+                                                <p class="ms-2 small text-secondary">Reviewed on: {{ review.reviewed_on }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="inner-review bg-light shadow-sm p-2 rounded m-2 d-flex flex-column justify-content-between">
+                                            <div class="general-info">
+                                                <p class="ms-2 small text-start"><strong>Book: {{ review.book.title }}</strong></p>
+                                                <p class="ms-2 small text-start">Author: {{ review.book.author }}</p>
+                                            </div>
+                                            <p class="pb-2 text-start">{{ review.comment|safe }}</p>
+                                        </div>
+                                        <div class="button-container pb-2 d-flex justify-content-between align-items-end">
+                                            {% if not review.approved %}
+                                            <button class="btn btn-warning m-2 d-flex justify-content-center align-items-center btn-edit"
+                                                data-review-id="{{ review.id }}" data-review-title="{{ review.title }}"
+                                                data-review-comment="{{ review.comment }}" data-review-rating="{{ review.rating }}"
+                                                data-book-title="{{ review.book }}">
+                                                <i class="fa-solid fa-pencil fa-sm me-2"></i>Edit
+                                            </button>
+                                            {% else %}
+                                            <p class="ms-2 my-2 small text-muted">You can no longer edit this review.</p>
+                                            {% endif %}
+                                            
+                                            <div class="admin-button-container d-flex">
+                                                <button class="btn btn-danger m-2 d-flex justify-content-center align-items-center"
+                                                type="button" data-bs-toggle="modal" data-bs-target="#reviewDelete" aria-label="Delete Review">
+                                                    <i class="fa-solid fa-trash fa-sm me-2"></i>Delete
+                                                </button>
+                                                
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="reviewDelete" tabindex="-1" role="dialog" aria-labelledby="reviewDelete" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header border-0 d-flex justify-content-between">
+                                                                <h5 class="modal-title" id="reviewDelete">Are you sure?</h5>
+                                                                <span aria-hidden="true" class="close" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-xmark"></i></span>
+                                                            </div>
+                                                            <div class="modal-body border-0">
+                                                                <p>You won't be able to undo the delete.</p>
+                                                            </div>
+                                                            <div class="modal-footer d-flex justify-content-between">
+                                                                <button type="button" class="custom-button" data-bs-dismiss="modal">No, Cancel</button>
+                                                                <!-- Structure necessary to maintain styling -->
+                                                                <a href="{% url 'delete_review' review.id %}" class="btn-link">
+                                                                    <button type="button" class="custom-button"><i class="fa-solid fa-sm fa-trash me-2"></i>Yes, Delete</button>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            {% else %}
+                                <p>You can view any pending and approved reviews here!</p>
+                                <p>To leave a review go to <span>
+                                    <a href="{{ books_url }}" aria-label="Go to my books">My Books</a></span>
+                                </p>
+                            {% endif %}
                         {% endif %}
                     </div>
                 </li>

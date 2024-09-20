@@ -56,6 +56,7 @@ def my_profile(request):
     user_form = UserProfileForm(instance=reader)
     book_orders = reader.orders.all()
     user_reviews = Review.objects.filter(reviewer=reader)
+    all_reviews = Review.objects.all()
 
     context = {
         'reader': reader,
@@ -63,6 +64,7 @@ def my_profile(request):
         'review_form': review_form,
         'book_orders': book_orders,
         'user_reviews': user_reviews,
+        'all_reviews': all_reviews,
         'profile_page': True
     }
     return render(

@@ -2,11 +2,85 @@
 This section outlines procedures for manual testing. For automated testing, please see all files `test*.py`.
 
 >> ### Manual Testing
+
+> #### Home Page
+
 | Feature | Expected Outcome | Testing Procedure | Result | Remark |
 | ------- | ---------------- | ----------------- | ------ | ------ |
+| jumbotron conditional displays | based on user authentication, display different headers in jumbotron + check displays on different screen sizes | Login + visual check/ logout + visual check/ login as admin + visual check | works as intended - less information on smaller screens, more on larger, admin header displays + typewriter message changes based on authentication | ![Test Passed](../images/green-tick.png) |
+| search bar | finds correct books + redirects to Library | query "Wuthering Heights" | works as intended - locates the correct book | ![Test Passed](../images/green-tick.png) |
+| social media | Opens a new page as per link | Click each | works as intended | ![Test Passed](../images/green-tick.png) |
+| subscribe/unsubscribe form | subscribe the email address to the mailing list, unsubscribe email address from the mailing list | manual subscribe/unsubscribe + check mailchimp mailing list | works as intended | ![Test Passed](../images/green-tick.png) |
+| all links | redirect to expected locations | manual testing | works as intended | ![Test Passed](../images/green-tick.png) |
+
+> #### Contact Page
+
+| Feature | Expected Outcome | Testing Procedure | Result | Remark |
+| ------- | ---------------- | ----------------- | ------ | ------ |
+| contact page | sends valid queries to email | send query + check email for correct content and headers | works as intended, copy sent to registered business email + user email, does not send emails without all fields | ![Test Passed](../images/green-tick.png) |
+
+
+> #### Library Page
+
+| Feature | Expected Outcome | Testing Procedure | Result | Remark |
+| ------- | ---------------- | ----------------- | ------ | ------ |
+| book shelves | display books by genre | visual check | books are correctly displayed by genre | ![Test Passed](../images/green-tick.png) |
+| book detail | onclick, takes users to dedicated book detail views | click on random books | works as intended | ![Test Passed](../images/green-tick.png) |
+| custom filters | show a row of books that match the filter parameters | select random | works as intended, shows a dedicated page where no books match the query, else, displays books in a book shelf | ![Test Passed](../images/green-tick.png) |
+
+> #### Basket
+
+| Feature | Expected Outcome | Testing Procedure | Result | Remark |
+| ------- | ---------------- | ----------------- | ------ | ------ |
+| basket page | no items in basket = dedicated page + library button, items = item summary | with no books in basket, check the dedicated page displays with a working button to "keep shopping", add items to basket and check for a basket summary page | works as intended | ![Test Passed](../images/green-tick.png) |
+
+> #### Checkout
+
+| Feature | Expected Outcome | Testing Procedure | Result | Remark |
+| ------- | ---------------- | ----------------- | ------ | ------ |
+| basket summary | display basket items in a summary table with relevant information | visual check | works as intended | ![Test Passed](../images/green-tick.png) |
+| dedicated checkout page | users can fill information, input payment details + select to save info to profile | manual check + check profile after submission | works as intended | ![Test Passed](../images/green-tick.png) |
+| success page | redirect users to success page with order confirmation, order summary + relevant buttons | manual check + logic check | works as intended | ![Test Passed](../images/green-tick.png) |
+| confirmation email | send order comfirmation email | go through checkout process + check for email | works as intended - email recieved | ![Test Passed](../images/green-tick.png) |
+
+> #### Become an Author
+
+| Feature | Expected Outcome | Testing Procedure | Result | Remark |
+| ------- | ---------------- | ----------------- | ------ | ------ |
+| only registered users can access this functionality | redirects to sign up page | log out + manual check | works as intended | ![Test Passed](../images/green-tick.png) |
+| author form | displays a registration form + link to find existing account | manual check | works as intended - a success message pops up telling the user an associated profile has been located | ![Test Passed](../images/green-tick.png) |
+| book form | redirects to a book registration form if an author profile exists | manual check | works as intended - users may register their book | ![Test Passed](../images/green-tick.png) |
+
+> #### My Books
+
+| Feature | Expected Outcome | Testing Procedure | Result | Remark |
+| ------- | ---------------- | ----------------- | ------ | ------ |
+| only registered users can access this functionality | redirects to sign up page | log out + manual check | works as intended | ![Test Passed](../images/green-tick.png) |
+| display purchased books | display user purchased books by genre | visual check | works as intended | ![Test Passed](../images/green-tick.png) |
+| display authored books | only displays authored books if the user has an associated author account | logic check | works as intended | ![Test Passed](../images/green-tick.png) |
+| genre filtering | only displays user purchased books from the selected genre | manual check | works as intended | ![Test Passed](../images/green-tick.png) |
+| leave a review | takes the user to a dedicated review form for reviewing a purchased book | manual check | works as intended | ![Test Passed](../images/green-tick.png) |
+
+> #### My Communities
+
+| Feature | Expected Outcome | Testing Procedure | Result | Remark |
+| ------- | ---------------- | ----------------- | ------ | ------ |
+| general communities page | displays only the communities from which the user has purchased at least one book | manual check of purchased genres + logic in view | works as intended | ![Test Passed](../images/green-tick.png) |
+| specific community | onclick on one community from general communities page, takes the user into a dedicated community view | manual check | works as intended | ![Test Passed](../images/green-tick.png) |
+| specific community page | displays more books from genre + existing forums + form to create new forum | visual check | works as intended | ![Test Passed](../images/green-tick.png) |
+| create new forum | on inputting a forum name into the form, take user into forum chat | manual check | works as intended | ![Test Passed](../images/green-tick.png) |
+| chat | send messages, view other user messages + delete your own message | manual + visual check | works as intended | ![Test Passed](../images/green-tick.png) |
+
+> #### My Profile
+
+| Feature | Expected Outcome | Testing Procedure | Result | Remark |
+| ------- | ---------------- | ----------------- | ------ | ------ |
+| table buttons | display relevant row based on button selection | manual check | works as intended | ![Test Passed](../images/green-tick.png) |
+| view reviews | under My reviews, view all user reviews | visual check | works as intended | ![Test Passed](../images/green-tick.png) |
+| approved reviews | after review approval, review should display under relevant book + take effect on over all book rating | visual check | works as intended | ![Test Passed](../images/green-tick.png) |
+| admin approval | as admin, be able to approve reviews from here | login as admin + check all reviews for the book display | works as intended | ![Test Passed](../images/green-tick.png) |
 
 >> ### Automated Testing
-
 > ### Models (library app)
 ### `class TestibraryModels():`
 
