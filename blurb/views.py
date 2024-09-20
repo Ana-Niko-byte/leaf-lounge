@@ -3,6 +3,7 @@ from django.core.mail import send_mail
 from django.contrib import messages
 
 from django.conf import settings
+from library.models import Book
 
 from .forms import *
 
@@ -11,9 +12,13 @@ def blurb(request):
     """
     Retrieves and displays the details of the home page.
     """
+    books = Book.objects.filter(genre__name="Classics")
     return render(
         request,
-        'blurb/index.html'
+        'blurb/index.html',
+        {
+            "books": books,
+        }
     )
 
 

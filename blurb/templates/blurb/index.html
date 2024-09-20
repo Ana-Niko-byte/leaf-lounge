@@ -41,13 +41,13 @@
             </div>
         {% endif %}
     </div>
-    <div class="search-form-container w-100 p-0 m-0">
+    <div class="search-form-container w-100 d-flex flex-column flex-md-row justify-content-between p-0 m-0">
         <div class="m-5">
             <!-- Search Form -->
             <form method="GET" action="{% url 'library' %}">
                 <p class="ps-2 small mb-2"><strong>Let's find a book :)</strong></p>
                 <div class="input-group input-group-search mb-lg-5">
-                    <input class="form-control form-control-search search-input p-2 ps-3" type="text" name="q" placeholder="Book Name" autofocus>
+                    <input class="form-control form-control-search search-input p-2 ps-3" id="search-bar" type="text" name="q" placeholder="Book Name" autofocus>
                     <div class="input-group-append">
                         <button class="form-control form-control-search search-button p-2" type="submit" aria-label="Search">
                             <span class="icon">
@@ -64,6 +64,28 @@
                     <a class="mx-2 social-links" aria-label="Visit the site developer's GitHub" href="https://github.com/Ana-Niko-byte/leaf-lounge" target="_blank"><i class="fa-brands fa-lg fa-github"></i></a>               
                     <a class="mx-2 social-links" aria-label="Visit the site developer's Instagram" href="https://www.linkedin.com/in/ana-nikolayenia-k/" target="_blank"><i class="fa-brands fa-lg fa-linkedin"></i></a>
                     <p class="small"><strong>Check out our medias!</strong></p>
+                </div>
+            </div>
+        </div>
+        <div class="book-sample d-none d-lg-flex me-4 mb-4">
+            <div class="book-genre-rows my-2">
+                <h6 class="m-0 p-0 mb-3 small text-black text-uppercase"><strong>{{ genre.name }}</strong></h6>
+                <div class="d-flex flex-row align-items-end p-0 m-0">
+                    {% for book in books %}
+                    <a href="{{ book.get_absolute_url }}" aria-label="Visit {{ book.title }} Page">
+                        <div class="book d-flex me-1">
+                            <div class="book-spine p-2 d-flex align-items-end">
+                                <p class="text-white book-turned h6 text-uppercase small"><strong>{{ book.title }}</strong></p>
+                                <p class="text-white book-turned my-2 small">{{ book.author }} | {{ book.year_published }}</p>
+                            </div> 
+                            {% if book.image %}
+                            <img src="{{ book.image.url }}" alt="{{ book.title }} cover" class="book-main">
+                            {% else %}
+                            <img src="{{ MEDIA_URL }}bookplaceholder.png" alt="generic placeholder cover" class="book-main">
+                            {% endif %}
+                        </div>
+                    </a>
+                    {% endfor %}
                 </div>
             </div>
         </div>

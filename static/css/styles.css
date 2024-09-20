@@ -169,6 +169,10 @@ p {
     transition: all 0.2s ease;
 }
 
+#search-bar{
+    min-width: 300px;
+}
+
 .search-button,
 .form-control {
     transition: all 0.4s ease;
@@ -327,9 +331,9 @@ body {
 }
 
 .jumbotron {
-    background-image: url(../../media/author-type.png);
+    background-image: url(../../media/leaf-shadow-jumbotron.png);
     background-repeat: no-repeat;
-    background-color: var(--mute-grey-color);
+    background-color: var(--green-grey);
     background-size: cover;
     background-position: right;
     height: 545px;
@@ -618,12 +622,13 @@ footer {
     .typewriter {
         font-size: 0.95rem;
         max-width: 350px;
+        font-weight: 800;
     }
 
-    .jumbotron{
-        background-image: none;
-        background-color: var(--green-grey);
+    #search-bar{
+        min-width: 150px;
     }
+    
 }
 
 @media all and (max-width: 1375px) {

@@ -189,8 +189,8 @@
         <!-- Footer -->
         <footer class="py-3 row m-0 p-0 d-flex align-items-center" id="leaf-footer">
             {% include 'marketing/subscribe.html' %}
-            <div class="col-lg-8">
-                <ul class="navbar-nav d-flex flex-row justify-content-end align-items-center me-4">
+            <div class="col-lg-8 d-flex flex-column flex-md-row justify-content-center align-items-center justify-content-md-end">
+                <ul class="navbar-nav d-flex flex-row justify-content-end align-items-center">
                     <li class="nav-item text-center footer-nav-items">
                         <a href="{{ home_url }}" aria-label="Go to Home Page"><small>Home</small></a>
                     </li>
@@ -207,7 +207,9 @@
                     <li class="nav-item text-center footer-nav-items">
                         <a href="{{ community_general_url }}" aria-label="Visit my Communities"><small>Communities</small></a>
                     </li>
-                    <li class="mx-2 mx-lg-4">|</li>
+                </ul>
+                <ul class="navbar-nav d-flex flex-row justify-content-end align-items-center me-0 me-md-4">
+                    <li class="mx-2 mx-lg-4 d-none d-md-block">|</li>
                     <li class="nav-item text-center footer-nav-items">
                         <a href="{% if user.is_authenticated %}{% url 'user_profile' %}{% else %}{{ signup_url }}{% endif %}"
                         aria-label="{% if user.is_authenticated %}Go to my Profile{% else %}Sign Up{% endif %}">
@@ -244,6 +246,7 @@
         <script src="{% static 'js/actions.js' %}" type="module"></script>
         <script src="{% static 'js/library.js' %}" type="module"></script>
         <script src="{% static 'js/marketing.js' %}" type="module"></script>
+        <script src="{% static 'js/book_display.js' %}" type="module"></script>
         <!-- /Custom Scripts -->
         <!-- Stripe Payment JS -->
         <script src="https://js.stripe.com/v3/"></script>
