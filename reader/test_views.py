@@ -17,7 +17,7 @@ class TestReaderViews(TestCase):
     for reviews, and for admins to approve pending reviews.
 
     Methods:
-        def setUp():
+    def setUp():
         REGISTRATION:
             Simulates user registration to allow for users to create an
             author profile to allow for the creation of a book.

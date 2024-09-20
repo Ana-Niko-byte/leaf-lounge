@@ -445,7 +445,7 @@ A class for testing the community model. Testing includes asserting equal values
     Asserts a ValidationError is thrown if the slug is inputted or generated in an incorrect format.
 ```
 
-`class TestForumAndMessageModels(TestCase):`
+### `class TestForumAndMessageModels(TestCase):`
 A class for testing the forum and message models in the Community app.
 Testing includes asserting equal values to those in the model setup, save method testing, user profile association, and format validation for datetime objects and slugs.
 
@@ -845,10 +845,118 @@ includes testing correct redirection, status codes and template usage.
 ```
 
 > ### Views (Checkout App)
+### `class TestCheckoutViews(TestCase):`
+A class to test views associated with the Checkout app. Testing scope includes testing correct redirection, status codes and template usage.
 
+`def setUp():`
+```Python
+    REGISTRATION:
+    Simulates user registration to allow for the creation of a user profile.
+
+    USER PROFILE & AUTHOR PROFILE:
+    Retrieves the user profile automatically created following successful user registration. This is handled via
+    reader.signals.create_or_save_profile.
+    Simulates the creation of an author profile and assigns the relevant user profile to the author.user_profile field.
+
+    GENRE & COMMUNITY:
+    Simulates the creation of a genre.
+
+    BOOK:
+    Simulates the creation of a book with relevant relationships to the author and genre models.
+
+    ORDER & BOOKLINEITEM:
+    Simulates the creation of an order with no order number.
+    Simulates the creation of a booklineitem, with relevant relationships to the order and book models. These models in turn depend on the genre, user profile, and author models.
+
+    Saves the relevant models to the test sqlite3 database.
+    Retrieves the relevant URLs and assigns them to variables for testing.
+```
+
+`def test_checkout_get_request_no_basket_redirects():`
+```Python
+    Retrieves the checkout URL and asserts the view redirects to the library when there is no baslet (or no items) provided.
+```
+
+`def test_checkout_get_request_is_successful():`
+```Python
+    Sets up a mock session with a single book in the basket.
+    Retrieves the checkout URL and asserts the view has a status code of 200 and renders with the expected template as defined in views.py
+```
+
+`def test_checkout_post_request_is_retrieved():`
+```Python
+    Retrieves the checkout URL and asserts the view handles POST requests.
+    Asserts the view redirects (status code 302) post handling - the specific URL is not tested here as it takes a randomly generated order number for an argument. However, the actual view redirects to the correct URL.
+```
+
+`def test_success_get_request_is_successful():`
+```Python
+    Retrieves the success URL and asserts the view renders successfully.
+    Asserts the view status code is 200.
+    Asserts the template used matches the expected template defined in views.py.
+```
 
 > ### Views (Community App)
+### `class TestCommunityViews(TestCase):`
+A class for testing all views associated with the Community app. Testing scope includes testing correct redirection, status codes and template usage.
 
+`def setUp():`
+```Python
+    REGISTRATION:
+        Simulates user registration to allow for users to create anmauthor profile to allow for the creation of a book.
+
+    USER & AUTHOR PROFILES:
+        A user profile is created automatically following successful registration and retrieved. This profile is associated with an author profile.
+
+    GENRE & COMMUNITY & FORUM:
+        Simulates the creation of a genre. After the mock genre is saved, a community is automatically created. After the community is saved, forums can be created inside the community.
+        Simulates the creation of a forum and saves it.
+
+    MESSAGE:
+        Simulates the creation of a message and saves it.
+
+    Saves the relevant models to the test sqlite3 database.
+    Retrieves the relevant URLs and assigns them to variables for testing.
+```
+
+`def test_communities_get_request_is_successful():`
+```Python
+    Retrieves the communities URL and asserts the view renders successfully.
+    Asserts the status code is 200.
+    Asserts the template used matches the expected template defined in views.py.
+```
+
+`def test_forum_get_request_is_successful():`
+```Python
+    Retrieves a specific forum URL and asserts the view renders successfully.
+    Asserts the status code is 200.
+    Asserts the template used matches the expected template defined in views.py.
+```
+
+`def test_forum_post_request_is_successful():`
+```Python
+    Retrieves the forum URL and asserts the view handles POST requests.
+    Asserts the view redirects to the correct URL after a message is created, the status code is 302 signifying redirection, the status of the view being redirected to is 200, and that the redirection was performed correctly.
+```
+
+`def test_forum_message_deletion():`
+```Python
+    Retrieves the message_delete URL and asserts the view handles DELETE requests.
+    Asserts the view redirects to the correct URL following deletion, the status code is 302 signifying redirection, the status of the view being redirected to is 200, and that the redirection was performed correctly.
+```
+
+`def test_create_author_get_request_is_successful():`
+```Python
+    Retrieves the create_author URL and asserts the view renders successfully.
+    Asserts the status code is 200.
+    Asserts the template used matches the expected template defined in views.py.
+```
+
+`def test_create_author_post_request_is_successful():`
+```Python
+    Retrieves the create_author URL and asserts the view handles POST requests.
+    Asserts the view redirects to the correct URL - the upload_book URL through which new book instances are created, the status code is 302 signifying redirection, the status of the view being redirected to is 200, and that the redirection was performed correctly.
+```
 
 > ### Views (Library App)
 ### `class TestLibraryViews(TestCase):`
@@ -931,6 +1039,121 @@ A class to test views associated with the Marketing app. Testing scope includes 
 ```
 
 > ### Views (Reader App)
+### `class TestReaderViews(TestCase):`
+A class for testing all views associated with the Reader app. Testing scope includes testing correct redirection, status codes and template usage. These views allow users to access their profile, purchased books, CRUD functionality for reviews, and for admins to approve pending reviews.
+
+`def setUp():`
+```Python
+    REGISTRATION:
+        Simulates user registration to allow for users to create an
+        author profile to allow for the creation of a book.
+
+    USER & AUTHOR PROFILES:
+        A user profile is created automatically following successful
+        registration and retrieved. This profile is associated with
+        an author profile.
+
+    GENRE + BOOK:
+        A test genre is created and assigned to the test book instance.
+        This instance is used in the testing of URLs in POST requests.
+
+    REVIEW:
+        A test review is created for testing URLs for creating, deleting
+        and updating reviews. The creaeted user profile and book are
+        associated with this instance.
+
+    Saves the relevant models to the test sqlite3 database.
+    Retrieves the relevant URLs and assigns them to variables for testing.
+```
+
+`def test_my_profile_get_request_is_successful():`
+```Python
+    Retrieves the profile URL and asserts the view renders successfully.
+    Asserts the status code is 200.
+    Asserts the template used matches the expected template defined in
+    views.py.
+```
+
+`def test_my_profile_post_request_is_successful():`
+```Python
+    Retrieves the profile URL and posts user address data to it.
+    Asserts the view accepts POST data, redirects to the correct URL, the
+    status code is 302 signifying redirection, the status of the view being
+    redirected to is 200, the correct message comes up, and that the
+    redirection was performed correctly.
+```
+
+`def test_user_books_get_request_is_successful():`
+```Python
+    Retrieves the user_books URL and asserts the view renders successfully.
+    Asserts the status code is 200.
+    Asserts the template used matches the expected template defined in
+    views.py.
+```
+
+`def test_user_books_get_specific_genre_request_is_successful():`
+```Python
+    Retrieves the user_books URL and asserts the view renders successfully.
+    Asserts the status code is 200.
+    Asserts the template used matches the expected template defined in
+    views.py.
+```
+
+`def test_review_page_get_request_is_successful():`
+```Python
+    Retrieves the leave_review URL with an argument of a book id, and
+    asserts the view renders successfully.
+    Asserts the status code is 200.
+    Asserts the template used matches the expected template defined in
+    views.py.
+```
+
+`def test_user_can_leave_a_review():`
+```Python
+    Retrieves the leave_review URL.
+    Asserts the view accepts POST data, redirects to the correct URL, the
+    status code is 302 signifying redirection, the status of the view being
+    redirected to is 200, and that the redirection was performed correctly.
+```
+
+`def test_delete_review():`
+```Python
+    Retrieves the delete_review URL and provides the review id for the
+    review to be deleted.
+    Asserts the view accepts DELETE data, redirects to the correct URL,
+    the status code is 302 signifying redirection, the status of the view
+    being redirected to is 200, the correct message comes up, and that the
+    redirection was performed correctly.
+```
+
+`def test_update_review_get_request_is_successful():`
+```Python
+    Retrieves the update_review URL and provides the id of the review for
+    updating.
+    Asserts the view redirects to the user profile page if a GET request
+    is made. This view only handles POST requests.
+```
+
+`def test_update_review_post_request_is_successful():`
+```Python
+    Retrieves the update_review URL and provides the id of the review for
+    updating.
+    Asserts the view accepts POST data, redirects to the correct URL,
+    the status code is 302 signifying redirection, the status of the view
+    being redirected to is 200, and that the redirection was performed
+    correctly.
+```
+
+`def test_approve_review_is_successful():`
+```Python
+    Retrieves the approve_review URL and provides the id of the review for
+    updating.
+    The permissions for this review (admin access only) are handled by
+    views.py
+    Asserts the view accepts POST data, redirects to the correct URL, the
+    status code is 302 signifying redirection, the status of the view being
+    redirected to is 200, and that the redirection was performed correctly.
+```
 
 > ### Forms (Blurb App)
 ### `class TestContactForm(TestCase):`
@@ -1396,19 +1619,16 @@ This form allows users leave reviews on books they have purchased. This form can
 
 
 >>> ## Issues
-
 1. #### Contact Page `ConnectionRefusedError`
    ![Connection Refused Error](../../docs/images/connectionrefusederror.png)
    The error was encountered when attempting to send emails from the contact page. Instead of redirecting users to the home page with a success message, the application would throw the 500 Server Error page, and the email wouldn't reach the recipients' addresses.
 
 > #### Solution
-
 The issue was down to a simple typo in the following line in `blurb/views.py`: `recipient_list=[settings.EMAIL_HOST_USER, f'{email}'],` - the misplaced comma at the end. This syntax rendered the `recipient_list` as an invalid value in the `send_mail()` method, thus throwing the method and redirecting users to the 500 server error page. Removing the comma and saving the file resolved this issue. Testing and eventual resolution were done in `VS Code` by cloning the repository and debugging the relevant code due to Gitpod permissions and limitations.
 
 >>> ## Accessibility & Performance
 
 >> #### Lighthouse
-
 - `Home Page`
 ![Home Page Lighthouse Report](../images/lighthouse-home.png)
 
