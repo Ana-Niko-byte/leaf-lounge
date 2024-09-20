@@ -261,7 +261,7 @@ def delete_review(request, id):
         review_delete.delete()
         messages.success(
             request,
-            """Your review for successfully deleted!"""
+            """Your review was successfully deleted!"""
         )
     else:
         messages.error(

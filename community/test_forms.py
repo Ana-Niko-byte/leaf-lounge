@@ -11,7 +11,7 @@ class TestAuthorForm(TestCase):
     so that they can register and upload books onto the Leaf Lounge website.
 
     Methods:
-    def setUp(self):
+    def setUp():
         REGISTRATION:
             Simulates user registration to allow for the creation of a user
             profile.
@@ -277,7 +277,7 @@ class TestBookForm(TestCase):
     secondary navigation bar.
 
     Methods:
-        def setUp():
+    def setUp():
         REGISTRATION:
             Simulates user registration to allow for the creation of a user
             profile.

@@ -4,19 +4,19 @@ from .forms import *
 
 class TestNewsletterForm(TestCase):
     """
-    A class for testing the Contact Form associated with the Blurb app.
-    This form allows users to contact the Leaf Lounge team with queries.
+    A class for testing the Newsletter Form associated with the Marketing app.
+    This form allows users to sign up to the Leaf Lounge Newsletter powered by Mailchimp.
 
     Methods:
     def test_newsletter_form_email_is_required():
-        Asserts the contact form is invalid without an email value.
+        Asserts the newsletter form is invalid without an email value.
         Asserts the error raised as a result of the empty value stems
         from the "email" key.
         Asserts the error raises matches the expected error.
 
 
     def test_newsletter_form_email_format_is_correct():
-        Asserts the contact form is invalid if the email value is of
+        Asserts the newsletter form is invalid if the email value is of
         an incorrect format.
         Asserts the error raised as a result of the incorrectly-formatted
         value stems from the "email" key.
@@ -29,7 +29,7 @@ class TestNewsletterForm(TestCase):
 
     def test_newsletter_form_email_is_required(self):
         """
-        Asserts the contact form is invalid without an email value.
+        Asserts the newsletter form is invalid without an email value.
         Asserts the error raised as a result of the empty value stems
         from the "email" key.
         Asserts the error raises matches the expected error.
@@ -47,7 +47,7 @@ class TestNewsletterForm(TestCase):
 
     def test_newsletter_form_email_format_is_correct(self):
         """
-        Asserts the contact form is invalid if the email value is of
+        Asserts the newsletter form is invalid if the email value is of
         an incorrect format.
         Asserts the error raised as a result of the incorrectly-formatted
         value stems from the "email" key.

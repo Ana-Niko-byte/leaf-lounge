@@ -389,6 +389,17 @@ def create_author(request):
                     apologise for any inconvenience caused."""
                 )
             return redirect('home')
+        else:
+            author_form = AuthorForm()
+            context = {
+            'authorForm': author_form,
+            'profile_exists': profile_exists,
+        }
+        return render(
+            request,
+            'community/create_author.html',
+            context
+        )
     else:
         author_form = AuthorForm()
         context = {

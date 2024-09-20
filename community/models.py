@@ -14,7 +14,6 @@ class Community(models.Model):
     name : CharField - the name of the community.
     description : TextField - the community intro/description.
     slug : SlugField - the community slug.
-    image : ImageField - the community header image.
 
     Methods:
     def __str__() -> str : Returns a string indicating the community name,
@@ -36,10 +35,6 @@ class Community(models.Model):
     slug = models.SlugField(
         blank=True,
         null=False
-    )
-    image = models.ImageField(
-        null=True,
-        blank=True
     )
 
     def __str__(self):

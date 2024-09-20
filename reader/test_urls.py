@@ -3,7 +3,7 @@ from django.urls import reverse, resolve
 from .views import *
 
 
-class TestUserProfileAssociatedURLs(TestCase):
+class TestUserProfileURLs(TestCase):
     """
     A class for testing URLs associated with the reader app.
     This class tests urls resolve from their FBVs.

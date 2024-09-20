@@ -10,7 +10,7 @@
 {% block content %}
 <div class="container">
     <!-- Registered -->
-    {% if is_author %}
+    {% if is_author and my_books %}
     <div class="row shadow-lg p-4 rounded my-3">
         <h4 class="mb-4 text-uppercase small"><strong><i class="fa-solid fa-pen-nib me-2"></i>Authored Books</strong></h4>
         {% for book in my_books %}

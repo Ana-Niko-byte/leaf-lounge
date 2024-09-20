@@ -1,6 +1,6 @@
 {% load static %}
 
-<div class="col-lg-4 d-flex flex-column ps-5">
+<div class="col-lg-4 d-flex flex-column align-items-start justify-content-start ps-5">
     <label class="toggle mb-2">
         <input type="checkbox" id="subscribe-unsubscribe">
         <span class="slider round">
@@ -9,7 +9,7 @@
         </span>
     </label>
     <!-- Subscribe -->
-    <form method="post" action="{% url 'subscribe' %}" class="subscribe-form d-flex align-items-center justify-content-start">
+    <form method="post" action="{% url 'subscribe' %}" class="subscribe-form d-flex flex-column flex-md-row align-items-center justify-content-start">
         {% csrf_token %}
         <div class="inner-form-container d-flex align-items-center justify-content-center">
             {{ marketing_form.as_p }}
@@ -17,10 +17,10 @@
                 <i class="add fa-solid fa-circle-check fa-lg"></i>
             </button>
         </div>
-        <img src="{{ MEDIA_URL }}mailchimp.webp" class="mailchimp-logo ms-2" alt="Mailchimp Newsletter Logo">
+        <img src="{{ MEDIA_URL }}mailchimp.webp" class="mailchimp-logo ms-2 my-2 my-md-0" alt="Mailchimp Newsletter Logo">
     </form>
     <!-- Unsubscribe -->
-    <form method="post" action="{% url 'unsubscribe' %}" class="unsubscribe-form d-none align-items-center justify-content-start">
+    <form method="post" action="{% url 'unsubscribe' %}" class="unsubscribe-form d-none flex-column flex-md-row align-items-center justify-content-start">
         {% csrf_token %}
         <div class="inner-form-container d-flex align-items-center justify-content-center">
             {{ marketing_form.as_p }}
@@ -28,6 +28,6 @@
                 <i class="remove fa-solid fa-circle-xmark fa-lg"></i>
             </button>
         </div>
-        <img src="{{ MEDIA_URL }}mailchimp.webp" class="mailchimp-logo ms-2" alt="Mailchimp Newsletter Logo">
+        <img src="{{ MEDIA_URL }}mailchimp.webp" class="mailchimp-logo ms-2 my-2 my-md-0" alt="Mailchimp Newsletter Logo">
     </form>
 </div>

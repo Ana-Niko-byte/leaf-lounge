@@ -1,9 +1,7 @@
-> > > ## Testing & Debugging
-
+>>> ## Testing & Debugging
 This section outlines procedures for manual testing. For automated testing, please see all files `test*.py`.
 
-> > ### Manual Testing
-
+>> ### Manual Testing
 | Feature | Expected Outcome | Testing Procedure | Result | Remark |
 | ------- | ---------------- | ----------------- | ------ | ------ |
 
@@ -411,6 +409,114 @@ Models: `UserProfile`
     Asserts a user profile is successfully created following user registration.
 
     Asserts the user profile's __str__() returns the expected string for the appropriate user profile instance.
+```
+
+
+> ### Models (community app)
+### `class TestCommunityModel(TestCase):`
+A class for testing the community model. Testing includes asserting equal values to those in the model setup, save method testing, and format validation for datetime objects and slugs.
+
+`def setUp():`
+```Python
+    REGISTRATION:
+    Simulates user registration to allow for users to access community-related functionality and models.
+
+    GENRE & COMMUNITY:
+    Simulates the creation of a genre. After the mock genre is saved, a community is automatically created.
+
+    Saves the relevant models to the test sqlite3 database.
+```
+
+`def test_community_creation_following_genre_creation():`
+```Python
+    Retrieves the appropriate community instance for testing and saves it.
+    This process generates the community slug as per the defined format.
+
+    Asserts the community's __str__() returns the expected string for the appropriate community instance.
+
+    Asserts the correct community is retrieved.
+    Asserts a ValidationError is raised if the community's name is empty.
+    Asserts a ValidationError is raised if there is no community name.
+    Asserts a ValidationError is raised if the community's name exceeds the 80 character limit.
+
+    Asserts the community's description matches the model's setup value.
+
+    Asserts the community's slug matches the expected slug string format.
+    Asserts a ValidationError is thrown if the slug is inputted or generated in an incorrect format.
+```
+
+`class TestForumAndMessageModels(TestCase):`
+A class for testing the forum and message models in the Community app.
+Testing includes asserting equal values to those in the model setup, save method testing, user profile association, and format validation for datetime objects and slugs.
+
+`def setUp()`
+```Python
+    REGISTRATION:
+    Simulates user registration to allow for the creation of a user
+    profile.
+
+    USER PROFILE & AUTHOR PROFILE:
+    Retrieves the user profile automatically created following successful
+    user registration. This is handled via
+    reader.signals.create_or_save_profile.
+
+    GENRE & COMMUNITY & FORUM:
+    Simulates the creation of a genre. After the mock genre
+    is saved, a community is automatically created. After
+    the community is saved, forums can be created inside the
+    community.
+    Simulates the creation of a forum and saves it.
+
+    MESSAGE:
+    Simulates the creation of a message and saves it.
+
+    Saves the relevant models to the test sqlite3 database.
+```
+
+`def test_forum_creation():`
+```Python
+    Retrieves the appropriate forum instance for testing.
+    Asserts the forum's __str__() returns the expected string for the
+    appropriate forum instance.
+
+    Asserts the correct forum is retrieved by checking the name.
+    Asserts a ValidationError is raised if the forum's name is empty.
+    Asserts a ValidationError is raised if there is no forum name.
+    Asserts a ValidationError is raised if the forum's name exceeds the
+    80 character limit.
+
+    Asserts the forum slug is automatically generated in the correct
+    format after the instance is saved.
+    Asserts a ValidationError is thrown if the slug is inputted or
+    generated in an incorrect format.
+
+    Asserts the forum's date_added matches today's date.
+    Asserts a ValidationError is thrown if the date_added is does not match
+    today's date.
+
+    Asserts the forum is created inside the correct community by checking
+    the name of the community.
+```
+
+`def test_message_creation():`
+```Python
+    Retrieves the appropriate message instance for testing.
+    Asserts the message's __str__() returns the expected string for the
+    appropriate message instance.
+
+    Asserts the message is created inside the correct forum by checking
+    its associated forum name.
+
+    Asserts the message's content matches the model's setup value.
+    Asserts a ValidationError is raised if the message's content is empty.
+    Asserts a ValidationError is raised if there is no message content.
+
+    Asserts the message sender matches the expected user profile.
+    Asserts the message sender's username matches the expected value.
+
+    Asserts the message's date_sent matches today's date.
+    Asserts a ValidationError is thrown if the date_sent does not match
+    today's date.
 ```
 
 
@@ -1289,7 +1395,7 @@ This form allows users leave reviews on books they have purchased. This form can
 ```
 
 
-> > > ## Issues
+>>> ## Issues
 
 1. #### Contact Page `ConnectionRefusedError`
    ![Connection Refused Error](../../docs/images/connectionrefusederror.png)
@@ -1299,9 +1405,9 @@ This form allows users leave reviews on books they have purchased. This form can
 
 The issue was down to a simple typo in the following line in `blurb/views.py`: `recipient_list=[settings.EMAIL_HOST_USER, f'{email}'],` - the misplaced comma at the end. This syntax rendered the `recipient_list` as an invalid value in the `send_mail()` method, thus throwing the method and redirecting users to the 500 server error page. Removing the comma and saving the file resolved this issue. Testing and eventual resolution were done in `VS Code` by cloning the repository and debugging the relevant code due to Gitpod permissions and limitations.
 
-> > > ## Accessibility & Performance
+>>> ## Accessibility & Performance
 
-> > #### Lighthouse
+>> #### Lighthouse
 
 - `Home Page`
 ![Home Page Lighthouse Report](../images/lighthouse-home.png)
@@ -1321,14 +1427,12 @@ The issue was down to a simple typo in the following line in `blurb/views.py`: `
 - `Sign Up Page`
 ![Sign Up Page Lighthouse Report](../images/lighthouse-basket.png)
 
-> > #### HTML Validation
+>> #### HTML Validation
 
-> > #### CSS Validation
+>> #### CSS Validation
 
-> > #### JSHint Validation
-
+>> #### JSHint Validation
 All js files are regularly validated during development using [JSHint](https://jshint.com/).
 
-> > #### Pep8 Validation
-
+>> #### Pep8 Validation
 All python files are regularly validated during development using the [Code Institute PEP8 Linter](https://pep8ci.herokuapp.com/).

@@ -539,6 +539,7 @@ input:checked + .slider:before {
     background-color: #f4e4d6;
     padding-left: 20px;
     padding-top: 20px;
+    margin-left: 2px;
 }
 /* /Shelf */
 
@@ -595,6 +596,11 @@ footer {
     .typewriter {
         font-size: 0.95rem;
         max-width: 350px;
+    }
+
+    .jumbotron{
+        background-image: none;
+        background-color: var(--green-grey);
     }
 }
 
