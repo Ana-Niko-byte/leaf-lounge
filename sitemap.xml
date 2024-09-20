@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>https://leaf-a4f5da9d5073.herokuapp.com/</loc>
+  <lastmod>2024-09-20T13:56:21+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://leaf-a4f5da9d5073.herokuapp.com/contact/</loc>
+  <lastmod>2024-09-20T13:56:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://leaf-a4f5da9d5073.herokuapp.com/library/</loc>
+  <lastmod>2024-09-20T13:56:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://leaf-a4f5da9d5073.herokuapp.com/basket/</loc>
+  <lastmod>2024-09-20T13:56:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://leaf-a4f5da9d5073.herokuapp.com/accounts/signup/</loc>
+  <lastmod>2024-09-20T13:56:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://leaf-a4f5da9d5073.herokuapp.com/accounts/login/</loc>
+  <lastmod>2024-09-20T13:56:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://leaf-a4f5da9d5073.herokuapp.com/library/book/test-book-niko/</loc>
+  <lastmod>2024-09-20T13:56:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://leaf-a4f5da9d5073.herokuapp.com/library/book/villette-bronte/</loc>
+  <lastmod>2024-09-20T13:56:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://leaf-a4f5da9d5073.herokuapp.com/library/book/the-professor-bronte/</loc>
+  <lastmod>2024-09-20T13:56:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://leaf-a4f5da9d5073.herokuapp.com/library/book/agnes-grey-bronte/</loc>
+  <lastmod>2024-09-20T13:56:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://leaf-a4f5da9d5073.herokuapp.com/library/book/the-tenant-of-wildfell-hall-bronte/</loc>
+  <lastmod>2024-09-20T13:56:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://leaf-a4f5da9d5073.herokuapp.com/library/book/crime-and-punishment-dostoevsky/</loc>
+  <lastmod>2024-09-20T13:56:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://leaf-a4f5da9d5073.herokuapp.com/library/book/shirley-bronte/</loc>
+  <lastmod>2024-09-20T13:56:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://leaf-a4f5da9d5073.herokuapp.com/library/book/the-idiot-dostoevsky/</loc>
+  <lastmod>2024-09-20T13:56:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://leaf-a4f5da9d5073.herokuapp.com/library/book/a-tale-of-two-cities-dickens/</loc>
+  <lastmod>2024-09-20T13:56:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://leaf-a4f5da9d5073.herokuapp.com/library/book/great-expectations-dickens/</loc>
+  <lastmod>2024-09-20T13:56:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://leaf-a4f5da9d5073.herokuapp.com/library/book/the-old-man-and-the-sea-hemingway/</loc>
+  <lastmod>2024-09-20T13:56:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://leaf-a4f5da9d5073.herokuapp.com/library/book/the-brothers-karamazov-dostoevsky/</loc>
+  <lastmod>2024-09-20T13:56:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://leaf-a4f5da9d5073.herokuapp.com/library/book/moby-dick-melville/</loc>
+  <lastmod>2024-09-20T13:56:21+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://leaf-a4f5da9d5073.herokuapp.com/library/book/the-adventures-of-tom-sawyer-twain/</loc>
+  <lastmod>2024-09-20T13:56:21+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://leaf-a4f5da9d5073.herokuapp.com/library/book/adventures-of-huckleberry-finn-twain/</loc>
+  <lastmod>2024-09-20T13:56:21+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://leaf-a4f5da9d5073.herokuapp.com/library/book/to-kill-a-mockingbird-lee/</loc>
+  <lastmod>2024-09-20T13:56:21+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://leaf-a4f5da9d5073.herokuapp.com/library/book/the-great-gatsby-fitzgerald/</loc>
+  <lastmod>2024-09-20T13:56:21+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://leaf-a4f5da9d5073.herokuapp.com/library/book/1984-orwell/</loc>
+  <lastmod>2024-09-20T13:56:21+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://leaf-a4f5da9d5073.herokuapp.com/library/book/the-prince-and-the-pauper-twain/</loc>
+  <lastmod>2024-09-20T13:56:21+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://leaf-a4f5da9d5073.herokuapp.com/library/book/for-whom-the-bell-tolls-hemingway/</loc>
+  <lastmod>2024-09-20T13:56:21+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://leaf-a4f5da9d5073.herokuapp.com/library/book/war-and-peace-tolstoy/</loc>
+  <lastmod>2024-09-20T13:56:21+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://leaf-a4f5da9d5073.herokuapp.com/library/book/one-hundred-years-of-solitude-marquez/</loc>
+  <lastmod>2024-09-20T13:56:21+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://leaf-a4f5da9d5073.herokuapp.com/library/book/wuthering-heights-bronte/</loc>
+  <lastmod>2024-09-20T13:56:21+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://leaf-a4f5da9d5073.herokuapp.com/library/book/pride-and-prejudice-austen/</loc>
+  <lastmod>2024-09-20T13:56:21+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://leaf-a4f5da9d5073.herokuapp.com/library/book/jane-eyre-bronte/</loc>
+  <lastmod>2024-09-20T13:56:21+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://leaf-a4f5da9d5073.herokuapp.com/library/book/the-lord-of-the-rings-tolkien/</loc>
+  <lastmod>2024-09-20T13:56:21+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://leaf-a4f5da9d5073.herokuapp.com/library/book/the-hobbit-tolkien/</loc>
+  <lastmod>2024-09-20T13:56:21+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://leaf-a4f5da9d5073.herokuapp.com/library/book/brave-new-world-huxley/</loc>
+  <lastmod>2024-09-20T13:56:21+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://leaf-a4f5da9d5073.herokuapp.com/library/book/the-catcher-in-the-rye-salinger/</loc>
+  <lastmod>2024-09-20T13:56:21+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://leaf-a4f5da9d5073.herokuapp.com/accounts/password/reset/</loc>
+  <lastmod>2024-09-20T13:56:21+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+
+</urlset>

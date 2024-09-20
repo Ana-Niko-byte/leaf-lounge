@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /accounts/
+Disallow: /basket/
+Sitemap: https://leaf-a4f5da9d5073.herokuapp.com/sitemap.xml
