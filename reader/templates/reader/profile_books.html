@@ -67,21 +67,21 @@
             {% endfor %}
         </div>
         <div class="col-lg-9 col-md-8 col-sm-12">
+            {% if filtered_books %}
             <div class="book-genre-rows">
-                {% if filtered_books %}
                 <h4 class="mb-3 text-uppercase small"><strong><i class="fa-solid fa-bookmark fa-sm me-2"></i>{{ user_genre }}</strong></h4>
-                    {% for book in filtered_books %}
-                    <div class="col-lg-2 col-md-4 col-sm-12 me-3">
-                        <img src="{{ book.image.url }}" alt="{{ book.book.title }} cover" class="profile-book mb-2">
-                        <div class="mb-3 d-flex justify-content-center">
-                            <a href="{% url 'leave_review' book.id %}" class="btn-link text-white custom-button" aria-label="Go to {{ book.title }} Page" data-book-title="{{ book.title }}">
-                                Leave a Review
-                            </a>
-                        </div>
+                {% for book in filtered_books %}
+                <div class="col-lg-2 col-md-4 col-sm-12 me-3">
+                    <img src="{{ book.image.url }}" alt="{{ book.book.title }} cover" class="profile-book mb-2">
+                    <div class="mb-3 d-flex justify-content-center">
+                        <a href="{% url 'leave_review' book.id %}" class="btn-link text-white custom-button" aria-label="Go to {{ book.title }} Page" data-book-title="{{ book.title }}">
+                            Leave a Review
+                        </a>
                     </div>
-                    {% endfor %}
-                {% endif %}
+                </div>
+                {% endfor %}
             </div>
+            {% endif %}
         </div>
         <!-- Purchased -->
 

@@ -195,6 +195,7 @@ def leave_review(request, id):
         reviewForm = ReviewForm(request.POST)
         if reviewForm.is_valid():
             review = reviewForm.save(commit=False)
+            review.book = review_book
             review.reviewer = user_profile
             review.approved = False
             review.save()

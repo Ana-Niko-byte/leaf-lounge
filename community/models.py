@@ -84,7 +84,7 @@ class Forum(models.Model):
     (forum title)-(forum community)-(forum id).
     """
     name = models.CharField(
-        max_length=50,
+        max_length=100,
         blank=False,
         null=False
     )

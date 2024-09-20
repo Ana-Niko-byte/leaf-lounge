@@ -68,14 +68,12 @@ class ReviewForm(forms.ModelForm):
     class Meta:
         model = Review
         fields = {
-            'book',
             'title',
             'rating',
             'comment',
         }
 
     field_order = [
-        'book',
         'title',
         'rating',
         'comment',
@@ -91,7 +89,9 @@ class ReviewForm(forms.ModelForm):
         for field in self.fields:
             if field == 'comment':
                 self.fields[field].widget.attrs['placeholder'] = 'Great book!'
-                self.fields[field].widget.attrs['class'] = 'custom-large-review-field'
-            elif field == 'rating':
-                self.fields[field].widget.attrs['placeholder'] = 'Rating out of 10'
+                self.fields["comment"].widget.attrs['class'] = 'custom-large-review-field'
+            else:
                 self.fields[field].widget.attrs['class'] = 'custom-review-fields'
+
+            if field == 'rating':
+                self.fields[field].widget.attrs['placeholder'] = 'Rating out of 10'

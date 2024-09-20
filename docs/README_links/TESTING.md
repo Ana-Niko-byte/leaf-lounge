@@ -483,7 +483,7 @@ Testing includes asserting equal values to those in the model setup, save method
     Asserts a ValidationError is raised if the forum's name is empty.
     Asserts a ValidationError is raised if there is no forum name.
     Asserts a ValidationError is raised if the forum's name exceeds the
-    80 character limit.
+    100 character limit.
 
     Asserts the forum slug is automatically generated in the correct
     format after the instance is saved.

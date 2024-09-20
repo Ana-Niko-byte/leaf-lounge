@@ -272,6 +272,28 @@ p {
     border: 1px solid var(--dark-blue);
 }
 
+/* Review Form */
+.custom-review-fields {
+    min-width: 290px;
+    max-width: 340px;
+    border-radius: 5px;
+    height: 35px;
+    margin: 0;
+    padding-left: 10px;
+}
+
+.custom-review-fields:focus,
+.custom-large-review-field:focus {
+    box-shadow: none;
+    border: 1px solid var(--dark-blue);
+}
+
+.custom-large-review-field {
+    max-height: 80px;
+    overflow-y: auto;
+}
+/* /Review Form */
+
 .subscribe-input {
     height: 35px;
     margin: 0;

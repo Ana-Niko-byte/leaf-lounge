@@ -1,5 +1,4 @@
-> > > ## Structure
-
+>>> ## Structure
 - Navigation
 
   - Main Navigation Bar
@@ -184,12 +183,12 @@
   - Copyright
     - Dynamic Year
 
-> > > ## Models
+>>> ## Models
 Below is an ERD for `Leaf Lounge`'s db models.
 
 ![Leaf Lounge ERD](docs/images/quickdbdiagrams.png)
 
-> > #### The Author Model (library app)
+>> #### The Author Model (library app)
 Represents a Leaf Lounge author. Authors can register new books on the website, with new books being saved under their UserProfile.
 
 Fields: `user_profile`, `first_name`, `last_name`, `d_o_b`, `nationality`, `bio`
@@ -237,7 +236,7 @@ def __str__() -> str : (author's first name) (author's last name)
 
 ---
 
-> > #### The Genre Model (library app)
+>> #### The Genre Model (library app)
 Represents the breakdown of a book Genre. Each genre has an associated community, which is created at the same time as a new Genre is created. Each book registered on the app is given an associated Genre. After purchasing the book, the user gets access to the community associated with the genre.
 
 Fields: `name`, `community`
@@ -266,7 +265,7 @@ def __str__() -> str : (genre name)
 
 ---
 
-> > #### The Book Model (library app)
+>> #### The Book Model (library app)
 Represents a Book on Leaf Lounge. Books can be uploaded directly by admin, or registered on the website by registered Leaf Lounge authors. After selecting (clicking) on a book on the 'Library' page, users are taken into a detail view of that book. All books have associated reviews, genres, authors, and communities.
 
 Fields: `title`, `isbn`, `slug`, `author`, `genre`, `blurb`, `year_published`, `publisher`, `type`, `date_added`, `price`, `image`
@@ -381,7 +380,7 @@ Orders by earliest date added.
 
 ---
 
-> > #### The Review Model (library app)
+>> #### The Review Model (library app)
 Represents a book review. Reviews can be left by registered users, who have purchased at least one book. The link for this is under the 'My Books' tab in the secondary navigation bar. Reviews can be edited prior to approval, and deleted at any stage. Approved reviews are displayed on the relevant book detail page. Reviews are displayed as star fillings on all relevant pages.
 
 Fields: `reviewer`, `book`, `title`, `rating`, `comment`, `reviewed_on`, `approved`
@@ -436,7 +435,7 @@ Fields: `reviewer`, `book`, `title`, `rating`, `comment`, `reviewed_on`, `approv
 
 ---
 
-> > #### The Order Model (checkout app)
+>> #### The Order Model (checkout app)
 Represents a user's book Order. Orders are placed via the checkout page. Order histories can be viewed under the 'My Profile' tab.
 
 Fields: `order_number`, `user_profile`, `full_name`, `email`, `phone_number`, `country`, `postcode`, `town_city`, `street_1`, `street_2`, `county`, `date`, `delivery_cost`, `order_total`, `grand_total`, `original_basket`, `stripe_pid`
@@ -593,7 +592,7 @@ def __str__() -> int : order number.
 
 ---
 
-> > #### The BookLineItem Model (checkout app)
+>> #### The BookLineItem Model (checkout app)
 Represents a book lineitem for each book inside an order.
 
 Fields: `order`, `book`, `type`, `quantity`, `book_order_cost`
@@ -648,7 +647,7 @@ def __str__() -> str : 'ISBN: (book ISBN), order: (order number uuid)'.
 
 ---
 
-> > #### The Community Model (community app)
+>> #### The Community Model (community app)
 Represents a genre community where users can access forums, chats and messages. Users are granted access to the community matching the book genre after making purchasing a book in that genre.
 
 Fields: `name`, `description`, `slug`, `image`
@@ -685,7 +684,7 @@ def __str__() -> str : (community name)
 
 ---
 
-> > #### The Forum Model (community app)
+>> #### The Forum Model (community app)
 Represents a community forum. Each community can have multiple forums. All users inside the community have full access to forums in the community, and users may create new forums inside the community for chats and networking.
 
 Fields: `name`, `slug`, `date_created`, `community`
@@ -736,7 +735,7 @@ def get_absolute_url(): Returns -> the forum detail page with (self.slug) as url
 
 ---
 
-> > #### The Message Model (community app)
+>> #### The Message Model (community app)
 Represents a message within a community forum. Messages can be viewed by all members of the forum, but can only be deleted by the user who sent the message.
 
 Fields: `forum`, `content`, `messenger`, `date_sent`
@@ -773,7 +772,7 @@ def __str__() -> str : "Message in '(forum name)'"
 
 ---
 
-> > #### The UserProfile Model (reader app)
+>> #### The UserProfile Model (reader app)
 A user profile for maintaining default delivery information, order history, and saved books.
 
 Fields: `user`, `default_street_1`, `default_street_2`, `default_town_city`, `default_county`, `default_postcode`, `default_country`

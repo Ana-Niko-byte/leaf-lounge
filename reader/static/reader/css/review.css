@@ -34,16 +34,3 @@
 .review-book {
     width: 335px;
 }
-
-.custom-review-fields {
-    width: 340px;
-    border-radius: 5px;
-    height: 35px;
-    margin: 0;
-    padding-left: 10px;
-}
-
-.custom-review-fields:focus {
-    box-shadow: none;
-    border: 1px solid var(--dark-blue);
-}

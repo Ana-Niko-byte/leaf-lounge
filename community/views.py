@@ -141,7 +141,7 @@ def community(request, slug):
             messages.error(
                 request,
                 "Please enter a valid name for your forum."
-            )
+            )   
     forumForm = ForumForm()
 
     context = {

@@ -29,7 +29,7 @@
                     <p class="small text-muted mt-2">P.S. This field will autofill ;)</p>
                 </div>
                 {% csrf_token %}
-                <div class="inner-form-container d-flex align-items-end justify-content-between">
+                <div class="inner-form-container d-flex flex-column flex-md-row align-items-end justify-content-between">
                     <div class="review-form">
                         {{ reviewForm|crispy }}
                     </div>
