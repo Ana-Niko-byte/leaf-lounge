@@ -14,7 +14,7 @@
     <div class="row shadow-lg p-4 rounded my-3">
         <h4 class="mb-4 text-uppercase small"><strong><i class="fa-solid fa-pen-nib me-2"></i>Authored Books</strong></h4>
         {% for book in my_books %}
-        <div class="col-2">
+        <div class="col-lg-2 col-md-3 col-sm-6">
             {% if book.image %}
             <img src="{{ book.image.url }}" alt="{{ book.book.title }} cover" class="profile-book">
             {% else %}
@@ -39,7 +39,6 @@
                 </button>
                 {% endfor %}
             </form>
-            <!-- This needs fixing! should reset the url -->
             <div class="button-container d-flex justify-content-end">
                 <a href="{% url 'user_books' %}" aria-label="See all of My Books" class="text-white custom-button mt-3 {% if not chosen %}d-none{% else %}d-block{% endif %} btn-link">
                     Show All
@@ -50,14 +49,16 @@
             {% for genre in user_genres %}
             <div class="genre-container mb-5 rounded">
                 <h4 class="mb-3 text-uppercase small"><strong><i class="fa-solid fa-bookmark fa-sm me-2"></i>{{ genre.name }}</strong></h4>
-                <div class="book-genre-rows">
+                <div class="book-genre-rows d-flex align-items-end">
                     {% for book in user_books %}
                         {% if book.genre == genre %}
-                        <div class="col-2">
-                            <img src="{{ book.image.url }}" alt="{{ book.book.title }} cover" class="profile-book">
-                            <a href="{% url 'leave_review' book.id %}" class="my-3 text-white custom-button btn-link" data-book-title="{{ book.title }}" aria-label="Leave a Review for {{ book.title }}">
-                                Leave a Review
-                            </a>
+                        <div class="col-lg-2 col-md-4 col-sm-12 me-3">
+                            <img src="{{ book.image.url }}" alt="{{ book.book.title }} cover" class="profile-book mb-2">
+                            <div class="mb-3 d-flex justify-content-center">
+                                <a href="{% url 'leave_review' book.id %}" class="text-white custom-button btn-link" data-book-title="{{ book.title }}" aria-label="Leave a Review for {{ book.title }}">
+                                    Leave a Review
+                                </a>
+                            </div>
                         </div>
                         {% endif %}
                     {% endfor %}
@@ -70,11 +71,13 @@
                 {% if filtered_books %}
                 <h4 class="mb-3 text-uppercase small"><strong><i class="fa-solid fa-bookmark fa-sm me-2"></i>{{ user_genre }}</strong></h4>
                     {% for book in filtered_books %}
-                    <div class="col-2">
-                        <img src="{{ book.image.url }}" alt="{{ book.book.title }} cover" class="profile-book">
-                        <a href="{% url 'leave_review' book.id %}" class="btn-link my-3 text-white custom-button" aria-label="Go to {{ book.title }} Page" data-book-title="{{ book.title }}">
-                            Leave a Review
-                        </a>
+                    <div class="col-lg-2 col-md-4 col-sm-12 me-3">
+                        <img src="{{ book.image.url }}" alt="{{ book.book.title }} cover" class="profile-book mb-2">
+                        <div class="mb-3 d-flex justify-content-center">
+                            <a href="{% url 'leave_review' book.id %}" class="btn-link text-white custom-button" aria-label="Go to {{ book.title }} Page" data-book-title="{{ book.title }}">
+                                Leave a Review
+                            </a>
+                        </div>
                     </div>
                     {% endfor %}
                 {% endif %}

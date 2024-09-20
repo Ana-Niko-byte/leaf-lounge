@@ -15,6 +15,60 @@ class TestCheckoutViews(TestCase):
     includes testing correct redirection, status codes and template usage.
 
     Methods:
+    def setUp():
+        REGISTRATION:
+        Simulates user registration to allow for the creation of a user
+        profile.
+
+        USER PROFILE & AUTHOR PROFILE:
+        Retrieves the user profile automatically created following successful
+        user registration. This is handled via
+        reader.signals.create_or_save_profile.
+        Simulates the creation of an author profile and assigns the relevant
+        user profile to the author.user_profile field.
+
+        GENRE & COMMUNITY:
+        Simulates the creation of a genre.
+
+        BOOK:
+        Simulates the creation of a book with relevant relationships to the
+        author and genre models.
+
+        ORDER & BOOKLINEITEM:
+        Simulates the creation of an order with no order number.
+        Simulates the creation of a booklineitem, with relevant relationships
+        to the order and book models. These models in turn depend on the
+        genre, user profile, and author models.
+
+        Saves the relevant models to the test sqlite3 database.
+        Retrieves the relevant URLs and assigns them to variables for testing.
+
+
+    def test_checkout_get_request_no_basket_redirects():
+        Retrieves the checkout URL and asserts the view redirects to the
+        library when there is no baslet (or no items) provided.
+
+
+    def test_checkout_get_request_is_successful():
+        Sets up a mock session with a single book in the basket.
+        Retrieves the checkout URL and asserts the view has a
+        status code of 200 and renders with the expected template
+        as defined in views.py
+
+
+    def test_checkout_post_request_is_retrieved():
+        Retrieves the checkout URL and asserts the view handles POST requests.
+        Asserts the view redirects (status code 302) post handling - the
+        specific URL is not tested here as it takes a randomly generated order
+        number for an argument. However, the actual view redirects to the correct
+        URL.
+
+
+    def test_success_get_request_is_successful():
+        Retrieves the success URL and asserts the view renders successfully.
+        Asserts the view status code is 200.
+        Asserts the template used matches the expected template defined in
+        views.py.
     """
 
     def setUp(self):
@@ -122,31 +176,41 @@ class TestCheckoutViews(TestCase):
         self.booklineitem.save()
 
         self.checkout_url = reverse("checkout")
-        self.checkout_url = reverse("success", args=[self.order.order_number])
+        self.success_url = reverse("success", args=[self.order.order_number])
 
-    def test_checkout_get_request_is_retrieved(self):
+    def test_checkout_get_request_no_basket_redirects(self):
         """
-        Retrieves the checkout URL and asserts the view renders successfully.
-        Asserts the view status code is 200.
-        Asserts the template used matches the expected template defined in
-        views.py.
+        Retrieves the checkout URL and asserts the view redirects to the
+        library when there is no baslet (or no items) provided.
         """
-        session = self.client.session
-        session["basket"] = {}
-        session.save()
-
-        res = self.client.post(self.checkout_url)
-        # Not redirecting? - is basket improperly configured?
+        res = self.client.get(self.checkout_url)
         self.assertEqual(res.status_code, 302)
         self.assertRedirects(res, reverse("library"))
 
+    def test_checkout_get_request_is_successful(self):
+        """
+        Sets up a mock session with a single book in the basket.
+        Retrieves the checkout URL and asserts the view has a
+        status code of 200 and renders with the expected template
+        as defined in views.py
+        """
+        session = self.client.session
+        session['basket'] = {
+            f"{self.book.id}": {'books_by_type': {'Softcover': 1}}
+            }
+        session.save()
+
+        res = self.client.get(self.checkout_url)
+        self.assertEqual(res.status_code, 200)
+        self.assertTemplateUsed(res, "checkout/checkout.html")
+
     def test_checkout_post_request_is_retrieved(self):
         """
-        Retrieves the add_to_basket URL and asserts the view handles post data.
-        Asserts the view redirects after data handling.
-        Asserts the client is redirected to the correct URL, the view correctly
-        redirects and has a status code of 302 indicating redirection, and a
-        target status of 200 meaning the view is rendered correctly.
+        Retrieves the checkout URL and asserts the view handles POST requests.
+        Asserts the view redirects (status code 302) post handling - the
+        specific URL is not tested here as it takes a randomly generated order
+        number for an argument. However, the actual view redirects to the correct
+        URL.
         """
         mock_order = {
             "full_name": "Tester Tester",
@@ -157,35 +221,21 @@ class TestCheckoutViews(TestCase):
             "town_city": "Town",
             "postcode": "12345",
             "county": "County",
-            "country": "IE"
+            "country": "IE",
+            # This is not the actual client_secret key.
+            "client_secret": "pi_1ABCDEFG_secret_123456789"
         }
 
         res = self.client.post(self.checkout_url, data=mock_order)
+        self.assertEqual(res.status_code, 302)
 
-        self.assertRedirects(
-            res, f'/success/{self.order.order_number}/', status_code=302,
-            target_status_code=200, fetch_redirect_response=True
-        )
-
-    def test_update_basket_post_request_is_resolved(self):
+    def test_success_get_request_is_successful(self):
         """
-        Retrieves the update_basket URL and asserts the view handles post data.
-        Asserts the view redirects after data handling.
-        Asserts the client is redirected to the correct URL, the view correctly
-        redirects and has a status code of 302 indicating redirection, and a
-        target status of 200 meaning the view is rendered correctly.
-        """
-        res = self.client.post(self.update_basket_url, {"quantity": 2})
-        self.assertRedirects(
-            res, f'/basket/', status_code=302, target_status_code=200,
-            fetch_redirect_response=True
-        )
-
-    def test_delete_from_basket_post_request_is_resolved(self):
-        """
-        Retrieves the delete_from_basket URL and asserts the view handles
-        post data.
+        Retrieves the success URL and asserts the view renders successfully.
         Asserts the view status code is 200.
+        Asserts the template used matches the expected template defined in
+        views.py.
         """
-        res = self.client.post(self.delete_from_basket_url, {"quantity": 2})
+        res = self.client.get(self.success_url)
         self.assertEqual(res.status_code, 200)
+        self.assertTemplateUsed(res, "checkout/success.html")

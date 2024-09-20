@@ -326,6 +326,10 @@ def create_author(request):
                     user=request.user
                 )
                 profile_exists = True
+                messages.success(
+                    request,
+                    "Found your profile! :)"
+                )
                 break
             except UserProfile.DoesNotExist:
                 attempt += 1
