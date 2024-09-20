@@ -11,6 +11,112 @@ from .forms import ReviewForm
 
 class TestReaderViews(TestCase):
     """
+    A class for testing all views associated with the Reader app. Testing scope
+    includes testing correct redirection, status codes and template usage. These
+    views allow users to access their profile, purchased books, CRUD functionality
+    for reviews, and for admins to approve pending reviews.
+
+    Methods:
+        def setUp():
+        REGISTRATION:
+            Simulates user registration to allow for users to create an
+            author profile to allow for the creation of a book.
+
+        USER & AUTHOR PROFILES:
+            A user profile is created automatically following successful
+            registration and retrieved. This profile is associated with
+            an author profile.
+
+        GENRE + BOOK:
+            A test genre is created and assigned to the test book instance.
+            This instance is used in the testing of URLs in POST requests.
+
+        REVIEW:
+            A test review is created for testing URLs for creating, deleting
+            and updating reviews. The creaeted user profile and book are
+            associated with this instance.
+
+        Saves the relevant models to the test sqlite3 database.
+        Retrieves the relevant URLs and assigns them to variables for testing.
+
+
+    def test_my_profile_get_request_is_successful():
+        Retrieves the profile URL and asserts the view renders successfully.
+        Asserts the status code is 200.
+        Asserts the template used matches the expected template defined in
+        views.py.
+
+
+    def test_my_profile_post_request_is_successful():
+        Retrieves the profile URL and posts user address data to it.
+        Asserts the view accepts POST data, redirects to the correct URL, the
+        status code is 302 signifying redirection, the status of the view being
+        redirected to is 200, the correct message comes up, and that the
+        redirection was performed correctly.
+
+
+    def test_user_books_get_request_is_successful():
+        Retrieves the user_books URL and asserts the view renders successfully.
+        Asserts the status code is 200.
+        Asserts the template used matches the expected template defined in
+        views.py.
+
+
+    def test_user_books_get_specific_genre_request_is_successful():
+        Retrieves the user_books URL and asserts the view renders successfully.
+        Asserts the status code is 200.
+        Asserts the template used matches the expected template defined in
+        views.py.
+
+
+    def test_review_page_get_request_is_successful():
+        Retrieves the leave_review URL with an argument of a book id, and
+        asserts the view renders successfully.
+        Asserts the status code is 200.
+        Asserts the template used matches the expected template defined in
+        views.py.
+
+
+    def test_user_can_leave_a_review():
+        Retrieves the leave_review URL.
+        Asserts the view accepts POST data, redirects to the correct URL, the
+        status code is 302 signifying redirection, the status of the view being
+        redirected to is 200, and that the redirection was performed correctly.
+
+
+    def test_delete_review():
+        Retrieves the delete_review URL and provides the review id for the
+        review to be deleted.
+        Asserts the view accepts DELETE data, redirects to the correct URL,
+        the status code is 302 signifying redirection, the status of the view
+        being redirected to is 200, the correct message comes up, and that the
+        redirection was performed correctly.
+
+
+    def test_update_review_get_request_is_successful():
+        Retrieves the update_review URL and provides the id of the review for
+        updating.
+        Asserts the view redirects to the user profile page if a GET request
+        is made. This view only handles POST requests.
+
+
+    def test_update_review_post_request_is_successful():
+        Retrieves the update_review URL and provides the id of the review for
+        updating.
+        Asserts the view accepts POST data, redirects to the correct URL,
+        the status code is 302 signifying redirection, the status of the view
+        being redirected to is 200, and that the redirection was performed
+        correctly.
+
+
+    def test_approve_review_is_successful():
+        Retrieves the approve_review URL and provides the id of the review for
+        updating.
+        The permissions for this review (admin access only) are handled by
+        views.py
+        Asserts the view accepts POST data, redirects to the correct URL, the
+        status code is 302 signifying redirection, the status of the view being
+        redirected to is 200, and that the redirection was performed correctly.
     """
 
     def setUp(self):
@@ -27,6 +133,11 @@ class TestReaderViews(TestCase):
         GENRE + BOOK:
             A test genre is created and assigned to the test book instance.
             This instance is used in the testing of URLs in POST requests.
+
+        REVIEW:
+            A test review is created for testing URLs for creating, deleting
+            and updating reviews. The creaeted user profile and book are
+            associated with this instance.
 
         Saves the relevant models to the test sqlite3 database.
         Retrieves the relevant URLs and assigns them to variables for testing.
