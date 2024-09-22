@@ -16,12 +16,19 @@
                 <form id="authorForm" method="post" class="bg-white p-4 rounded shadow-lg">
                     <h3 class="mb-3 text-uppercase small d-block d-lg-none"><strong>😉 Let's Get You Registered!</strong></h3>
                     {% csrf_token %}
+                    <!-- If users already have an author account, this appears. -->
+                    {% if author_profile %}
+                        <p class="mb-4 text-center"><strong>Looks like you already have an Author Account :)</strong></p>
+                        <div class="button-container d-flex justify-content-center">
+                            <a href="{{ upload_book }}">
+                                <button class="custom-button" type="button">
+                                    Get my Profile
+                                </button>
+                            </a>
+                        </div>
+                    {% else %}
                     <div class="form-field-container d-flex flex-column flex-md-row">
                         <fieldset class="px-3 mb-3">
-                            {% if profile_exists %}
-                                <p class="small">Already a Leaf Lounge Author?</p>
-                                <p class="small mb-3"><a href="{{ upload_book }}">Find my profile</a></p>
-                                {% endif %}
                             <legend class="fieldset-details fieldset-label small text-black text-uppercase"><strong>Author</strong></legend>
                             <p class="text-muted small mb-2">This name will appear as the book author!</p>
                             {{ authorForm.first_name | as_crispy_field }}
@@ -37,6 +44,7 @@
                     <div class="btn-container d-flex justify-content-center">
                         <button type="submit" class="custom-button text-white"><i class="fa-solid fa-paper-plane me-2"></i>Submit</button>
                     </div>
+                    {% endif %}
                 </form>
             </div>
             <!-- /Author Form -->

@@ -11,6 +11,7 @@ from checkout.models import Order
 from .forms import *
 
 import datetime
+import time
 
 
 @login_required
@@ -316,24 +317,24 @@ def create_author(request):
     HttpResponseRedirect: Redirects to the book registration page
     upon successful registration or back to the homepage on age restriction.
     """
+    author_profile = None
     if request.user.username != 'AnonymousUser':
         # Check for existing profiles before creating new.
         profile_exists = False
         attempt = 1
         while attempt <= 5:
             try:
-                p = UserProfile.objects.filter(
+                p = UserProfile.objects.get(
                     user=request.user
                 )
                 profile_exists = True
-                messages.success(
-                    request,
-                    "Found your profile! :)"
-                )
+                author_profile = Author.objects.get(user_profile=p)
                 break
-            except UserProfile.DoesNotExist:
+            except (UserProfile.DoesNotExist, Author.DoesNotExist):
                 attempt += 1
                 time.sleep(1)
+
+    print(author_profile)
 
     if request.method == 'POST':
         author_form = AuthorForm(data=request.POST)
@@ -408,7 +409,7 @@ def create_author(request):
         author_form = AuthorForm()
         context = {
             'authorForm': author_form,
-            'profile_exists': profile_exists,
+            'author_profile': author_profile,
         }
         return render(
             request,

@@ -29,7 +29,7 @@ body {
 }
 
 .typewriter {
-    max-width: 920px;
+    max-width: 940px;
     overflow: hidden;
     border-right: 0.1em solid var(--dark-navy);
     white-space: nowrap;

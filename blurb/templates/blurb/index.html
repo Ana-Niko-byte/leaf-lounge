@@ -6,7 +6,7 @@
     <div class="greeting-container">
         {% if not user.is_authenticated %}
             <div class="welcome-container ps-4 ps-md-5 pt-4 pt-md-5">
-                <h1 class="typewriter typewriter-blurb h2 mt-3 mb-4">Join millions of readers on your next journey</h1>
+                <h1 class="typewriter typewriter-blurb h2 mt-3 mb-4">Join millions of readers on your Leaf Lounge journey</h1>
                 <div class="secondary-container d-flex align-items-start justify-content-center justify-content-md-between">
                     <div class="motivation-container order-last me-5 pe-5 d-none d-lg-block">
                         <p class="mb-4">
@@ -41,7 +41,7 @@
             </div>
         {% endif %}
     </div>
-    <div class="search-form-container w-100 d-flex flex-column flex-lg-row border justify-content-between p-0 m-0">
+    <div class="search-form-container w-100 d-flex flex-column flex-lg-row justify-content-between p-0 m-0">
         <div class="m-5">
             <!-- Search Form -->
             <form method="GET" action="{% url 'library' %}">
