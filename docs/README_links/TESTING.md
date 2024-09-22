@@ -1704,7 +1704,12 @@ The issue was down to a simple typo in the following line in `blurb/views.py`: `
 
 >> #### Lighthouse
 - `Home Page`
-![Home Page Lighthouse Report](../images/lighthouse-home.png)
+![Home Page Lighthouse Report](../images/lighthouse-home-report.png)
+![Home Page Best Practices Lighthouse Report](../images/lighthouse-home-best-practices-report.png)
+
+While changing image size ratio isn't great, this is only done in the library shelves to constrain the books. On the book detail page, user books page, and basket/checkout - the image ratio is maintained.
+
+While the book image covers take a while to load, a dark background colour is applied to the books to ensure the UI is still accessible while they load.
 
 - `Contact Page`
 ![Contact Page Lighthouse Report](../images/lighthouse-contact.png)
@@ -1714,6 +1719,10 @@ The issue was down to a simple typo in the following line in `blurb/views.py`: `
 ![Library Page Lighthouse Report](../images/lighthouse-library.png)
 ![Library Best Practices Lighthouse Report](../images/lighthouse-library-best-practices.png)
 
+While changing image size ratio isn't great, this is only done in the library shelves to constrain the books. On the book detail page, user books page, and basket/checkout - the image ratio is maintained.
+
+While the book image covers take a while to load, a dark background colour is applied to the books to ensure the UI is still accessible while they load.
+
 - `Basket Page`
 ![Basket Page Lighthouse Report](../images/lighthouse-basket.png)
 ![Basket Accessibility Lighthouse Report](../images/lighthouse-basket-accessibility.png)
@@ -1721,31 +1730,39 @@ The issue was down to a simple typo in the following line in `blurb/views.py`: `
 - `Sign Up Page`
 ![Sign Up Page Lighthouse Report](../images/lighthouse-basket.png)
 
+The rest of the application pages couldn't be reached by the Validator as the user must be authenticated to access them.
+
 >> #### HTML Validation
 All pages were validated using the  [W3C CSS Markup Validation Service](https://validator.w3.org/). Several pages showed HTML errors, however these are attributed solely to Django's makeup and codeflow. Each page is described below.
 
+For the sake of brevity, templates with the same errors are grouped together, with an explanation of each error provided at the end. 
+
 Home Page -
 ![Home Page Markup Errors](../images/html-home-validation.png)
-The `Duplicate ID` error relates to the mailchimp subscribe/unsubscribe toggle. Django forms are automatically assigned ids, based on the input names, thus as both forms are email input fields, both are labelled "id_email". This does not impede the flow of logic or data handling in the application.
 
 Contact Page -
 ![Contact Page Markup Errors](../images/html-contact-validation.png)
 
-
 Library Page -
 ![Library Page Markup Errors](../images/html-library-validation.png)
 
+Basket Page -
+![Basket Page Markup Errors](../images/html-basket-validation.png)
+
+Checkout Page -
+![Checkout Page Markup Errors](../images/html-checkout-validation.png)
+
+The `Duplicate ID` error relates to the mailchimp subscribe/unsubscribe toggle. Django forms are automatically assigned ids, based on the input names, thus as both forms are email input fields, both are labelled "id_email". This does not impede the flow of logic or data handling in the application.
+
+The `JS type attribute` warning is ignored, as some JS files aren't properly recognised in Chrome without it.
 
 Book Detail Page -
 ![Book Detail Page Markup Errors](../images/html-book-detail-validation.png)
 
-> The next couple of images show templates where the same errors can be observed. These stem either from Django's syntax and automatic attribute assignment, or from the Newsletter form in the footer. An explanation of each is given at the very end.
+> The next couple of images show templates with errors stemming either from Django's syntax and automatic attribute assignment, or from the Newsletter form in the footer. An explanation of each is given at the very end.
 
 General Communities Page -
 ![Community General Page Markup Errors](../images/html-community-validation.png)
-
-The `Duplicate ID` error relates to the Newsletter in the footer, and more information is available in the Home Page section of [HTML Validation](#html-validation)
-
 
 Specific Community Page -
 ![Specific Community Markup Errors](../images/html-specific-community-validation.png)
@@ -1764,6 +1781,8 @@ The `Button must not appear as a descendant of the a element` error relates to t
 The `Duplicate ID` error relates to the Newsletter in the footer, and more information is available in the Home Page section of [HTML Validation](#html-validation)
 
 The `aria-describedby` error stems from Django's syntax and automatic assignment of attributes to certain elements.
+
+
 
 
 >> #### CSS Validation
