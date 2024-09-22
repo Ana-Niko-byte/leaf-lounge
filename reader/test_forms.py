@@ -171,23 +171,23 @@ class TestReviewForm(TestCase):
     def setUp(self):
         """
         REGISTRATION:
-        Simulates user registration to allow for the creation of a user
-        profile.
+            Simulates user registration to allow for the creation of a user
+            profile.
 
         USER PROFILE & AUTHOR PROFILE:
-        Retrieves the user profile automatically created following successful
-        user registration. This is handled via
-        reader.signals.create_or_save_profile.
-        Simulates the creation of an author profile and assigns the relevant
-        user profile to the author.user_profile field.
+            Retrieves the user profile automatically created following successful
+            user registration. This is handled via
+            reader.signals.create_or_save_profile.
+            Simulates the creation of an author profile and assigns the relevant
+            user profile to the author.user_profile field.
 
         GENRE & COMMUNITY:
-        Simulates the creation of a genre.
+        Simulates the    creation of a genre.
 
         BOOK:
-        Simulates the creation of a book with relevant relationships to the
-        author and genre models. This is required as reviews need a valid book
-        instance.
+            Simulates the creation of a book with relevant relationships to the
+            author and genre models. This is required as reviews need a valid book
+            instance.
 
         Saves the relevant models to the test sqlite3 database.
         Retrieves the relevant URLs and assigns them to variables for testing.

@@ -1,5 +1,4 @@
 // This file handles the increment and decrement of book quantities in the library app as basket uses counters.
-
 document.addEventListener("DOMContentLoaded", () => {
     const iButtons = [...document.getElementsByClassName('library-increment')];
     const dButtons = [...document.getElementsByClassName('library-decrement')];

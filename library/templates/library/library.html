@@ -1,4 +1,5 @@
 {% extends "_second_nav.html" %}
+{% load custom_filters %}
 {% load static %}
 
 {% block extra_css %}
@@ -138,14 +139,14 @@
                                     {% for author in book_count_authors %}
                                     <div class="input-group d-flex align-items-center">
                                         {% if author.last_name == "brontë" %}
-                                        <input type="checkbox" id="{{ author.last_name | lower }}-{{ author.first_name }}-author" name="author" value="{{ author.last_name }}" {% if author.last_name in authors_ln %} checked = "checked" {% endif %}>
-                                        <label class="ms-3" for="{{ author.last_name | lower }}-{{ author.first_name }}-author">
+                                        <input type="checkbox" id="{{ author.last_name | slugify }}-{{ author.first_name }}-author" name="author" value="{{ author.last_name }}" {% if author.last_name in authors_ln %} checked = "checked" {% endif %}>
+                                        <label class="ms-3" for="{{ author.last_name | slugify }}-{{ author.first_name }}-author">
                                             {{ author }}
                                             <span class="small ms-2">({{ author.book_count }} book{% if author.book_count > 1 %}s{% endif %})</span>
                                         </label><br>
                                         {% else %}
-                                        <input type="checkbox" id="{{ author.first_name | lower }}-author" name="author" value="{{ author.last_name }}" {% if author.last_name in authors_ln %} checked = "checked" {% endif %}>
-                                        <label class="ms-3" for="{{ author.first_name | lower }}-author">
+                                        <input type="checkbox" id="{{ author.first_name | slugify }}-author" name="author" value="{{ author.last_name }}" {% if author.last_name in authors_ln %} checked = "checked" {% endif %}>
+                                        <label class="ms-3" for="{{ author.first_name | slugify }}-author">
                                             {{ author }}
                                             <span class="small ms-2">({{ author.book_count }} book{% if author.book_count > 1 %}s{% endif %})</span>
                                         </label><br>
@@ -159,8 +160,8 @@
                                 <div class="collapse multi-collapse mt-3" id="genres">
                                     {% for genre in filtered_genres %}
                                     <div class="input-group d-flex align-items-center">
-                                        <input type="checkbox" id="{{ genre.name }}-genre" name="genre" value="{{ genre.name }}" {% if genre in genres_called %} checked = "checked" {% elif genre.name in book_genres %} checked = "checked" {% endif %}>
-                                        <label class="ms-3" for="{{ genre.name }}-genre">
+                                        <input type="checkbox" id="{{ genre.name | slugify }}-genre" name="genre" value="{{ genre.name }}" {% if genre in genres_called %} checked = "checked" {% elif genre.name in book_genres %} checked = "checked" {% endif %}>
+                                        <label class="ms-3" for="{{ genre.name | slugify }}-genre">
                                             {{ genre }}
                                             <span class="small ms-2">({{ genre.genre_count }} book{% if genre.genre_count > 1 %}s{% endif %})</span>
                                         </label><br>

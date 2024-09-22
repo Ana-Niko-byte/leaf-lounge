@@ -31,7 +31,8 @@ class ContactForm(forms.Form):
             attrs={
                 'placeholder': 'Emily Brontë',
                 'autofocus': True,
-                'class': 'custom-fields'
+                'class': 'custom-fields',
+                'aria-label': 'Name'
             }
         )
     )
@@ -40,7 +41,8 @@ class ContactForm(forms.Form):
         widget=forms.EmailInput(
             attrs={
                 'placeholder': 'e.bronte@example.com',
-                'class': 'custom-fields'
+                'class': 'custom-fields',
+                'aria-label': 'Email'
             }
         )
     )
@@ -50,7 +52,8 @@ class ContactForm(forms.Form):
         widget=forms.Select(
             attrs={
                 'class': 'form-control',
-                'class': 'custom-fields'
+                'class': 'custom-fields',
+                'aria-label': 'Subject'
             }
         )
     )
@@ -60,7 +63,8 @@ class ContactForm(forms.Form):
         widget=forms.Textarea(
             attrs={
                 'placeholder': '''Your query in 400 characters or less...''',
-                'class': 'custom-fields-large'
+                'class': 'custom-fields-large',
+                'aria-label': 'Message'
             }
         )
     )

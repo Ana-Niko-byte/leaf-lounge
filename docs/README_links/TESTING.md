@@ -1722,8 +1722,52 @@ The issue was down to a simple typo in the following line in `blurb/views.py`: `
 ![Sign Up Page Lighthouse Report](../images/lighthouse-basket.png)
 
 >> #### HTML Validation
+All pages were validated using the  [W3C CSS Markup Validation Service](https://validator.w3.org/). Several pages showed HTML errors, however these are attributed solely to Django's makeup and codeflow. Each page is described below.
+
+Home Page -
+![Home Page Markup Errors](../images/html-home-validation.png)
+The `Duplicate ID` error relates to the mailchimp subscribe/unsubscribe toggle. Django forms are automatically assigned ids, based on the input names, thus as both forms are email input fields, both are labelled "id_email". This does not impede the flow of logic or data handling in the application.
+
+Contact Page -
+![Contact Page Markup Errors](../images/html-contact-validation.png)
+
+
+Library Page -
+![Library Page Markup Errors](../images/html-library-validation.png)
+
+
+Book Detail Page -
+![Book Detail Page Markup Errors](../images/html-book-detail-validation.png)
+
+> The next couple of images show templates where the same errors can be observed. These stem either from Django's syntax and automatic attribute assignment, or from the Newsletter form in the footer. An explanation of each is given at the very end.
+
+General Communities Page -
+![Community General Page Markup Errors](../images/html-community-validation.png)
+
+The `Duplicate ID` error relates to the Newsletter in the footer, and more information is available in the Home Page section of [HTML Validation](#html-validation)
+
+
+Specific Community Page -
+![Specific Community Markup Errors](../images/html-specific-community-validation.png)
+
+Become an Author Page -
+![Become an Author age Markup Errors](../images/html-become-author-validation.png)
+
+Profile Page -
+![Profile Page Markup Errors](../images/html-profile-validation.png)
+
+Profile Books Page -
+![User Books Page Markup Errors](../images/html-profile-books-validation.png)
+
+The `Button must not appear as a descendant of the a element` error relates to the structure of the website's buttons. It is generally considered best practice to not have two nested 'clickable' elements. However, this structure is necessary to maintain the style and display of the buttons, as simple anchor tags do not respond as well to Bootstrap classes.
+
+The `Duplicate ID` error relates to the Newsletter in the footer, and more information is available in the Home Page section of [HTML Validation](#html-validation)
+
+The `aria-describedby` error stems from Django's syntax and automatic assignment of attributes to certain elements.
+
 
 >> #### CSS Validation
+All pages passed the [W3C CSS Validator](https://jigsaw.w3.org/css-validator/) with no errors. Last tested 22/09/2024.
 
 >> #### JSHint Validation
 All js files are regularly validated during development using [JSHint](https://jshint.com/).

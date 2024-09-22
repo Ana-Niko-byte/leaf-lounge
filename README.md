@@ -1,14 +1,7 @@
 # `Leaf Lounge`
 The application is available for viewing [here](https://leaf-a4f5da9d5073.herokuapp.com/).
 
-Also available for viewing here:
-[Facebook Page](https://www.facebook.com/profile.php?id=61563390085042).
-As part of the social media marketing strategy, a Facebook page was created for the Leaf Lounge community.
-The profile picture is of the `Leaf Lounge` logo, building brand recognition, with a relevant cover photo. A single post was made as part of an introduction to the website, with a link to the deployed version, (and a warning message telling users to not input any banking information into the checkout).
-
-![Facebook Screenshot](docs/images/facebook.png)
-
-![Leaf Lounge Responsive Image]()
+![Leaf Lounge Responsive Image](docs/images/leaf-lounge-responsive.jpg)
 
 >>> ## Introduction
 Leaf Lounge book store and community hub is built with a `Django` backend - a high-level Python framework that encourages rapid development and clean code practices, and `Bootstrap5`, an extensive styling library. As a networking platform, Leaf Lounge offers book lovers the unique opportunity to connect and share impressions, reviews, and critiques of books. Visitors wishing to join one of Leaf Lounge's vast communities need only purchase a book and create an account to gain access to their personal profile, immediately gaining access to all Leaf Lounge has to offer. Additionally, registered users have the option of becoming a Leaf Lounge author by registering for an author profile and uploading their own published works to the Leaf Lounge library.
@@ -161,6 +154,12 @@ The application comes packed with the following functionality and features:
 - As a user and community member, I would like the ability to leave reviews so new users can get feedback on a book prior to making purchase.
 _Note: full CRUD functionality will be implemented here._
 
+Also available for viewing here:
+[Facebook Page](https://www.facebook.com/profile.php?id=61563390085042).
+As part of the social media marketing strategy, a Facebook page was created for the Leaf Lounge community.
+The profile picture is of the `Leaf Lounge` logo, building brand recognition, with a relevant cover photo. A single post was made as part of an introduction to the website, with a link to the deployed version, (and a warning message telling users to not input any banking information into the checkout).
+
+![Facebook Screenshot](docs/images/facebook.png)
 
 >>> ## UX Goals
 - As a site user, I would like fast access to only the pages that would benefit my experience.
@@ -229,7 +228,7 @@ Select the middle box with GitHub's logo to connect your Heroku app to a GitHub 
 
 If prompted, authorize Heroku to access your GitHub account.
 At the bottom, enter the name of the repository you wish to deploy to, and click Connect.
-![Connect GitHub to Heroku](static/images/00-configure-github-heroku.png)
+![Connect GitHub to Heroku](docs/images/00-configure-github-heroku.png)
 
 ### Step 3: Automatic Deploy (Optional)
 Under `Automatic Deploys`, choose a branch from your GitHub repository that Heroku will watch for changes.
@@ -240,7 +239,7 @@ Enable automatic deploys by clicking `Enable Automatic Deploys`. With this, ever
 When you create the app, you will need to add the `heroku/python` buildpack in the `Settings` tab.
 
 Add Heroku/Python Buildpack:
-![Add Heroku/Python Buildpack](static/images/00-heroku-python-buildpack-heroku.png)
+![Add Heroku/Python Buildpack](docs/images/00-heroku-python-buildpack-heroku.png)
 
 ### Step 5: Deploy Your App
 If you've enabled automatic deploys, any push to the selected branch will automatically deploy your application.
@@ -250,7 +249,7 @@ If you prefer to deploy manually or want to deploy a branch without enabling aut
 ### Step 6: View The Application
 Your application will have a similar look to the following Heroku URL configuration: `https://*.herokuapp.com` and can be found after clicking the `Open App` button on your dashboard in the top right corner.
 
-![Open App](static/images/00-open-app-heroku.png)
+![Open App](docs/images/00-open-app-heroku.png)
 
 >>> ## Forking a GitHub Repository
 To make changes to your repository without changing its original state, you can make a copy of it via `fork`. This ensures the original repository remains unchanged. 

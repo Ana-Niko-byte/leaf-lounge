@@ -186,7 +186,7 @@
 >>> ## Models
 Below is an ERD for `Leaf Lounge`'s db models.
 
-![Leaf Lounge ERD](docs/images/quickdbdiagrams.png)
+![Leaf Lounge ERD](../images/quickdbdiagrams.png)
 
 >> #### The Author Model (library app)
 Represents a Leaf Lounge author. Authors can register new books on the website, with new books being saved under their UserProfile.

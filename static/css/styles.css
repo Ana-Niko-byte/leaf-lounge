@@ -631,6 +631,14 @@ footer {
     
 }
 
+@media all and (min-width: 500px){
+    .typewriter {
+        font-size: 1.3rem;
+        max-width: 620px;
+        font-weight: 800;
+    }
+}
+
 @media all and (max-width: 1375px) {
     .basket-sign-up {
         display: none;
