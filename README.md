@@ -146,7 +146,9 @@ The _shelves_ in the library use a combination of cold-brown tones to mimick woo
 [TESTING.md](https://github.com/Ana-Niko-byte/leaf-lounge/blob/main/docs/README_links/TESTING.md)
 
 >>> ## Deployment
-The application is deployed on Heroku via a GitHub  connection, and is available for viewing in the link at the top of this README.md document. To deploy a Heroku project, please refer to the guide below.
+The application is deployed on Heroku via a GitHub connection, and is available for viewing in the link at the top of this README.md document. Additionally, the site is hosted on AWS, and uses S3 for file storage.
+
+To deploy a Heroku project, please refer to the guide below. 
 
 ### Foreword
 There are some general requirements when it comes to setting up your application and its files: 
@@ -155,9 +157,10 @@ There are some general requirements when it comes to setting up your application
 - In Django's settings.py file, setting Debug = True in development will display a detailed errors page if the application comes across an error hindering template rendering. It will also allow the collection of static files (stylesheets, images, and javascript files automatically). Setting Debug = False will display standard error pages under the same conditions and will not update any changes to static files.
 
 In Heroku, this is configured under `Config Vars` in the `Settings` tab.
-> Note: Do not commit to GitHub with Debug = True. Always set Debug = False before committing to avoid exposing personal details.
 
-> You will need two-factor verification set up to enable log in.
+> _Note: Do not commit to GitHub with Debug = True. Always set Debug = False before committing to avoid exposing personal details._
+
+> _Note: You will need two-factor verification set up to enable log in._
 
 ### Step 1: Create an App on Heroku
 Log onto your Heroku dashboard using your username and password, and confirm the access code in the two-factor verification app of your choosing.
@@ -203,6 +206,71 @@ If you prefer to deploy manually or want to deploy a branch without enabling aut
 Your application will have a similar look to the following Heroku URL configuration: `https://*.herokuapp.com` and can be found after clicking the `Open App` button on your dashboard in the top right corner.
 
 ![Open App](docs/images/00-open-app-heroku.png)
+
+>>> ## AWS S3
+To follow this guide, you will need to have created an account on [aws](https://aws.amazon.com/).
+
+### Create an S3 Bucket
+Login in to your account, and in the top navigation bar, in the search menu, type "S3". Click on the `S3 Scalable Storage in the Cloud` button, and click `Create Bucket`.
+
+To create the new bucket:
+- Enter a bucket name.
+- Select `ACLs Enabled`.
+- Select `Bucket Owner Preferred`.
+- Deselect `Block All Public Access`.
+- Check the box to acknowledge the risk of public access.
+- Leave the other options unchanged and click `Create Bucket`.
+
+### Enable Static Website Hosting
+Under `General Purpose Buckets`, click on your bucket. Click on the `Properties` tab and scroll down to the `Static Website Hosting` section and click `Edit`.
+
+- Click `Enable`.
+- Enter `"index.html"` (without quotes) into the Index document input.
+- Enter `"error.html"` (without quotes) into the Error document input.
+- Click `Save changes`.
+
+
+### Change CORS Configuration
+Click on the `Permissions` tab and scroll down to the Cross-origin resource sharing (CORS) section and click `Edit`.
+
+- Add the following code for the CORS settings.
+- Click `Save changes`.
+
+```Python
+[
+  {
+    "AllowedHeaders": ["Authorization"],
+    "AllowedMethods": ["GET"],
+    "AllowedOrigins": ["*"],
+    "ExposeHeaders": []
+  }
+]
+```
+
+### Add A Bucket Policy
+In the same `Permissions` tab of your S3 bucket, scroll to the `Bucket policy` section, click `Edit` and click `Policy Generator`.
+
+This will open in a new tab.
+- For the policy type you can select `S3 Bucket Policy`.
+- For the principal you can enter `*`.
+- For the Action select `GetObject` from the dropdown.
+
+Go Back to the Policy Editor and copy your `Bucket ARN`.
+
+Go back to the Policy Generator.
+- Paste the ARN into the ARN input.
+- Click `Add Statement`.
+- Click `Generate Policy`.
+- Copy all of the text in the window popup. Paste this Policy JSON code into the Policy Editor and add a `/*` to the end of your `Bucked ARN`.
+- Click `Save Changes`.
+
+### Edit ACL (Access Control List)
+On the `Permissions` tab, scroll down to the `Access Control List` section and click `Edit`.
+
+- Click `List` in the Everyone (public access).
+- Click the checkbox to indicate that you understand the effects of the changes.
+- Click `Save changes`.
+
 
 >>> ## Forking a GitHub Repository
 To make changes to your repository without changing its original state, you can make a copy of it via `fork`. This ensures the original repository remains unchanged. 

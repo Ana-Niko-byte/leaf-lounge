@@ -10,7 +10,7 @@
 {% block content %}
 <div class="container">
     <div class="row d-flex justify-content-center">
-        <form id="bookForm" method="post" class="bg-white p-3 rounded shadow-lg">
+        <form id="bookForm" method="post" class="bg-white p-3 rounded shadow-lg" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="form-field-container d-flex flex-column">
                 <div class="book-details d-flex flex-column flex-md-row justify-content-between">

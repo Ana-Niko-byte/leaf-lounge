@@ -427,7 +427,7 @@ def upload_book(request):
     profile = UserProfile.objects.get(user=request.user)
     author = get_object_or_404(Author, user_profile=profile)
     if request.method == 'POST':
-        book_form = BookForm(data=request.POST)
+        book_form = BookForm(request.POST, request.FILES)
         if book_form.is_valid():
             book = book_form.save(commit=False)
             book.author = author
@@ -447,7 +447,6 @@ def upload_book(request):
                 this issue.
                 Thank you for your understanding!"""
             )
-            return redirect('upload_book')
     else:
         book_form = BookForm()
 
