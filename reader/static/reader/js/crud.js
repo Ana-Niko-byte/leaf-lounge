@@ -48,12 +48,10 @@ function enterFormDetails(reviewId, button){
     /**
      * Retrieves necessary values and sets them into the Review form for editing.
      * 
-     * In dropdown, selects the appropriate book from the list and disables the input.
-     * Sets retrieved review values and puts them into the appropriate form fields.
+     * Sets retrieved review values and sets them into the appropriate form fields.
      * Dynamically sets the update_review URL.
      */
     const form = document.getElementById("re-review");
-    const book = button.dataset.bookTitle;
     const title = button.dataset.reviewTitle;
     const comment = button.dataset.reviewComment;
     const rating = button.dataset.reviewRating;
@@ -62,14 +60,6 @@ function enterFormDetails(reviewId, button){
     const formRating = document.getElementById("id_rating");
     const formComment = document.getElementById("id_comment");
 
-    const option = [...document.getElementsByTagName("option")].filter(option => option.hasAttribute("selected"))[0];
-    const relevant_option = [...document.getElementsByTagName("option")].filter(option => option.innerText.includes(`${book}`))[0];
-
-    if (option.hasAttribute("selected")){
-        option.removeAttribute("selected");
-    }
-
-    relevant_option.setAttribute("selected", "selected");
     formTitle.value = title;
     formRating.value = rating;
     formComment.value = comment;

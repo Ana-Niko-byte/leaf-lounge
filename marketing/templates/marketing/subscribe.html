@@ -12,7 +12,7 @@
     <form method="post" id="subscribe-form" action="{% url 'subscribe' %}" class="subscribe-form d-flex flex-column flex-md-row align-items-center justify-content-start">
         {% csrf_token %}
         <div class="inner-form-container d-flex align-items-center justify-content-center">
-            {{ marketing_form.as_p }}
+            {{ subscribe_form.as_p }}
             <button type="submit" class="subscribe-btn d-flex justify-content-center align-items-center" aria-label="Subscribe">
                 <i class="add fa-solid fa-circle-check fa-lg"></i>
             </button>
@@ -23,7 +23,7 @@
     <form method="post" id="unsubscribe-form" action="{% url 'unsubscribe' %}" class="unsubscribe-form d-none flex-column flex-md-row align-items-center justify-content-start">
         {% csrf_token %}
         <div class="inner-form-container d-flex align-items-center justify-content-center">
-            {{ marketing_form.as_p }}
+            {{ unsubscribe_form.as_p }}
             <button type="submit" class="unsubscribe-btn d-flex justify-content-center align-items-center" aria-label="Unsubscribe">
                 <i class="remove fa-solid fa-circle-xmark fa-lg"></i>
             </button>

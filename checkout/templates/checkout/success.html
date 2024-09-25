@@ -41,17 +41,17 @@
                     <p>{{ book_order.postcode }}</p>
                 {% endif %}
                 <p>{{ book_order.country }}</p>
-                <div class="billing mt-4">
+                <div class="billing my-4">
                     <h5 class="text-uppercase"><strong>Billing Breakdown</strong></h5>
                     <p>Subtotal : €{{ book_order.order_total }}</p>
                     <p>Shipping : {% if book_order.delivery_cost == 0.00 %}<strong>FREE</strong>{% else %}€{{ book_order.delivery_cost }}{% endif %}</p>
                     <p>Total : €{{ book_order.grand_total }}</p>
                 </div>
-                <a href="{{ home_url }}" aria-label="Go to Home Page">
-                    <button class="custom-button w-100 mt-4">
+                <div class="d-flex">
+                    <a href="{{ home_url }}" class="btn-link text-white custom-button-link me-0 me-md-2 w-100" aria-label="Go to Home Page">
                         <i class="fa-solid fa-house-chimney me-2"></i>Home
-                    </button>
-                </a>
+                    </a>
+                </div>
             </div>
         </div>
 

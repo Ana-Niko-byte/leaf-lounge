@@ -15,9 +15,15 @@ def mailchimp_marketing(request):
 
     Returns: context object.
     """
-    marketing_form = EmailForm()
+    subscribe_form = EmailForm()
+    unsubscribe_form = EmailForm()
+
+    subscribe_form.fields['email'].widget.attrs.update({'id': 'subscribe-input'})
+    unsubscribe_form.fields['email'].widget.attrs.update({'id': 'unsubscribe-input'})
+
     context = {
-        "marketing_form": marketing_form,
+        "subscribe_form": subscribe_form,
+        "unsubscribe_form": unsubscribe_form,
     }
 
     return context

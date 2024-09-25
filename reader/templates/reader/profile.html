@@ -38,12 +38,11 @@
                     </button>
                 </li>
                 <li class="menu-item">
-                    <!-- This structure is necessary to maintain the styling -->
-                    <a href="{{ community_general_url }}" aria-label="Visit my Communities">
-                        <button class="table-button mb-2">
+                    <div class="mb-2 table-button text-center">
+                        <a href="{{ community_general_url }}" aria-label="Visit my Communities" class="btn-link">
                             My Communities
-                        </button>
-                    </a>
+                        </a>
+                    </div>
                 </li>
                 <li class="menu-item">
                     <button class="table-button mb-2 display-button" data-detail="reviews" aria-label="View my Reviews">
@@ -51,12 +50,11 @@
                     </button>
                 </li>
                 <li class="menu-item">
-                    <!-- This structure is necessary to maintain the styling -->
-                    <a href="{{ contact_url }}" aria-label="Contact Leaf Lounge for Help">
-                        <button class="table-button mb-2">
+                    <div class="mb-2 table-button text-center">
+                        <a href="{{ contact_url }}" aria-label="Contact Leaf Lounge for Help" class="btn-link">
                             Need Help?
-                        </button>
-                    </a>
+                        </a>
+                    </div>
                 </li>
             </ul>
         </div>
@@ -262,7 +260,7 @@
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header border-0 d-flex justify-content-between">
-                                                                <h5 class="modal-title" id="reviewDelete">Are you sure?</h5>
+                                                                <h5 class="modal-title" id="reviewDeleteHeading">Are you sure?</h5>
                                                                 <span aria-hidden="true" class="close" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-xmark"></i></span>
                                                             </div>
                                                             <div class="modal-body border-0">
@@ -270,9 +268,8 @@
                                                             </div>
                                                             <div class="modal-footer d-flex justify-content-between">
                                                                 <button type="button" class="custom-button" data-bs-dismiss="modal">No, Cancel</button>
-                                                                <!-- Structure necessary to maintain styling -->
-                                                                <a href="{% url 'delete_review' review.id %}" class="btn-link">
-                                                                    <button type="button" class="custom-button"><i class="fa-solid fa-sm fa-trash me-2"></i>Yes, Delete</button>
+                                                                <a href="{% url 'delete_review' review.id %}" class="btn-link text-white custom-button-link" aria-label="Delete My Review">
+                                                                    <i class="fa-solid fa-sm fa-trash me-2"></i>Yes, Delete
                                                                 </a>
                                                             </div>
                                                         </div>
@@ -330,16 +327,16 @@
                                             
                                             <div class="admin-button-container d-flex">
                                                 <button class="btn btn-danger m-2 d-flex justify-content-center align-items-center"
-                                                type="button" data-bs-toggle="modal" data-bs-target="#reviewDelete" aria-label="Delete Review">
+                                                type="button" data-bs-toggle="modal" data-bs-target="#reviewDeleteAdmin" aria-label="Delete Review">
                                                     <i class="fa-solid fa-trash fa-sm me-2"></i>Delete
                                                 </button>
                                                 
                                                 <!-- Modal -->
-                                                <div class="modal fade" id="reviewDelete" tabindex="-1" role="dialog" aria-labelledby="reviewDelete" aria-hidden="true">
+                                                <div class="modal fade" id="reviewDeleteAdmin" tabindex="-1" role="dialog" aria-labelledby="reviewDeleteAdmin" aria-hidden="true">
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header border-0 d-flex justify-content-between">
-                                                                <h5 class="modal-title" id="reviewDelete">Are you sure?</h5>
+                                                                <h5 class="modal-title" id="reviewDeleteHeadingAdmin">Are you sure?</h5>
                                                                 <span aria-hidden="true" class="close" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-xmark"></i></span>
                                                             </div>
                                                             <div class="modal-body border-0">
@@ -347,9 +344,8 @@
                                                             </div>
                                                             <div class="modal-footer d-flex justify-content-between">
                                                                 <button type="button" class="custom-button" data-bs-dismiss="modal">No, Cancel</button>
-                                                                <!-- Structure necessary to maintain styling -->
-                                                                <a href="{% url 'delete_review' review.id %}" class="btn-link">
-                                                                    <button type="button" class="custom-button"><i class="fa-solid fa-sm fa-trash me-2"></i>Yes, Delete</button>
+                                                                <a href="{% url 'delete_review' review.id %}" class="btn-link text-white custom-button-link" aria-label="Delete My Review">
+                                                                    <i class="fa-solid fa-sm fa-trash me-2"></i>Yes, Delete
                                                                 </a>
                                                             </div>
                                                         </div>

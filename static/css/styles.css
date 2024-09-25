@@ -340,7 +340,8 @@ body {
 }
 
 .custom-button,
-.small-custom-button {
+.small-custom-button,
+.custom-button-link {
     text-decoration: none;
     border-color: transparent;
     background-color: var(--dark-blue);
@@ -355,6 +356,12 @@ body {
     border-radius: 7px;
 }
 
+.custom-button-link{
+    min-width: 150px;
+    padding: 13px 35px;
+    border-radius: 7px;
+}
+
 .small-custom-button {
     width: 120px;
     padding: 7px;
@@ -362,18 +369,22 @@ body {
 }
 
 .custom-button:hover,
-.small-custom-button:hover {
+.small-custom-button:hover,
+.custom-button-link:hover {
     background-color: var(--book-outline);
 }
 
-.custom-button:hover {
-    transform: translateY(-5px);
+.custom-button:hover,
+.custom-button-link:hover {
     box-shadow: 0 10px var(--light-green-grey);
 }
 
 .small-custom-button:hover {
-    transform: translateY(-3px);
     box-shadow: 0 6px var(--light-green-grey);
+}
+
+.table-button a {
+    color: var(--dark-text-color);
 }
 
 .table-button {
@@ -381,6 +392,7 @@ body {
     padding: 10px;
     text-decoration: none;
     color: var(--dark-text-color);
+    background-color: rgb(224, 224, 224);
     border: none;
     outline: none;
     transition: all 0.2s ease;
@@ -391,6 +403,10 @@ body {
     color: var(--white-text);
     transform: translateY(-5px);
     box-shadow: 0 10px var(--light-green-grey);
+}
+
+.table-button:hover a {
+    color: var(--white-text);
 }
 
 .custom-button-small {

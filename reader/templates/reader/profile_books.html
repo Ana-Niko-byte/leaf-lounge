@@ -39,7 +39,7 @@
                 </button>
                 {% endfor %}
             </form>
-            <div class="button-container d-flex justify-content-end">
+            <div class="button-container">
                 <a href="{% url 'user_books' %}" aria-label="See all of My Books" class="text-white custom-button mt-3 {% if not chosen %}d-none{% else %}d-block{% endif %} btn-link">
                     Show All
                 </a>
@@ -68,8 +68,8 @@
         </div>
         <div class="col-lg-9 col-md-8 col-sm-12">
             {% if filtered_books %}
-            <div class="book-genre-rows">
-                <h4 class="mb-3 text-uppercase small"><strong><i class="fa-solid fa-bookmark fa-sm me-2"></i>{{ user_genre }}</strong></h4>
+            <h4 class="mb-3 text-uppercase small"><strong><i class="fa-solid fa-bookmark fa-sm me-2"></i>{{ user_genre }}</strong></h4>
+            <div class="book-genre-rows d-flex">
                 {% for book in filtered_books %}
                 <div class="col-lg-2 col-md-4 col-sm-12 me-3">
                     <img src="{{ book.image.url }}" alt="{{ book.book.title }} cover" class="profile-book mb-2">

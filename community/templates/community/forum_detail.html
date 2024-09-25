@@ -58,12 +58,11 @@
                                                         </div>
                                                         <div class="modal-footer d-flex justify-content-between">
                                                             <button type="button" class="text-white custom-button" data-bs-dismiss="modal">No, Cancel</button>
-                                                            <!-- Structure necessary to maintain styling -->
-                                                            <a href="{% url 'delete_message' message.forum.slug message.id %}" aria-label="Delete Message">
-                                                                <button class="message-buttons btn p-0 mt-3 mx-0 text-black">
+                                                            <div class="mt-3">
+                                                                <a href="{% url 'delete_message' message.forum.slug message.id %}" class="message-buttons p-0 btn-link text-black" aria-label="Delete Message">
                                                                     <i class="fa-solid fa-sm fa-trash me-2"></i><span><small>DELETE</small></span>
-                                                                </button>
-                                                            </a>
+                                                                </a>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>

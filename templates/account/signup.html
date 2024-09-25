@@ -29,12 +29,12 @@
                     <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}">
                     {% endif %}
                     <div class="d-flex justify-content-center">
-                        <a href="{{ home_url }}" class="btn-link" aria-label="Back to Login">
-                            <button class="custom-button me-3">
-                                Home
-                            </button>
+                        <a href="{{ home_url }}" class="btn-link text-white custom-button-link me-0 me-md-2" aria-label="Back to Login">
+                            <i class="fa-solid fa-house-chimney me-2"></i>Home
                         </a>
-                        <button type="submit" class="custom-button ms-3" aria-label="Sign Up">{% trans "Sign Up" %}</button>
+                        <button type="submit" class="custom-button ms-3" aria-label="Sign Up">
+                            <i class="fa-solid fa-user-plus me-2"></i>{% trans "Sign Up" %}
+                        </button>
                     </div>
                 </form>
             {% endif %}

@@ -20,10 +20,8 @@
                     {% if author_profile %}
                         <p class="mb-4 text-center"><strong>Looks like you already have an Author Account :)</strong></p>
                         <div class="button-container d-flex justify-content-center">
-                            <a href="{{ upload_book }}">
-                                <button class="custom-button" type="button">
-                                    Get my Profile
-                                </button>
+                            <a href="{{ upload_book }}" class="btn-link text-white custom-button-link me-0 me-md-2" aria-label="Retrieve My Existing Author Profile">
+                                Get My Profile
                             </a>
                         </div>
                     {% else %}

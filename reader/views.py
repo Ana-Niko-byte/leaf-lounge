@@ -260,13 +260,17 @@ def delete_review(request, id):
     review_delete = get_object_or_404(Review, id=id)
     user_profile = get_object_or_404(UserProfile, user=request.user)
     # Redundant but just in case.
-    if review_delete.reviewer == user_profile:
+    if review_delete.reviewer == user_profile or request.user.is_superuser:
         review_delete.delete()
         messages.success(
             request,
             """Your review was successfully deleted!"""
         )
     else:
+        print(review_delete)
+        print(review_delete.id)
+        print(review_delete.reviewer)
+        print(user_profile)
         messages.error(
             request,
             """You don't have permission to delete this review. If this is a
