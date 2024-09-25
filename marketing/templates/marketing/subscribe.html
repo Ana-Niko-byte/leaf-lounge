@@ -9,7 +9,7 @@
         </span>
     </label>
     <!-- Subscribe -->
-    <form method="post" action="{% url 'subscribe' %}" class="subscribe-form d-flex flex-column flex-md-row align-items-center justify-content-start">
+    <form method="post" id="subscribe-form" action="{% url 'subscribe' %}" class="subscribe-form d-flex flex-column flex-md-row align-items-center justify-content-start">
         {% csrf_token %}
         <div class="inner-form-container d-flex align-items-center justify-content-center">
             {{ marketing_form.as_p }}
@@ -20,7 +20,7 @@
         <img src="{{ MEDIA_URL }}mailchimp.webp" class="mailchimp-logo ms-2 my-2 my-md-0" alt="Mailchimp Newsletter Logo">
     </form>
     <!-- Unsubscribe -->
-    <form method="post" action="{% url 'unsubscribe' %}" class="unsubscribe-form d-none flex-column flex-md-row align-items-center justify-content-start">
+    <form method="post" id="unsubscribe-form" action="{% url 'unsubscribe' %}" class="unsubscribe-form d-none flex-column flex-md-row align-items-center justify-content-start">
         {% csrf_token %}
         <div class="inner-form-container d-flex align-items-center justify-content-center">
             {{ marketing_form.as_p }}
