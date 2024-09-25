@@ -88,7 +88,7 @@
                 <form method="post" id="messageForm" class="d-flex justify-content-start align-items-start mt-2 mt-md-3 my-2 mt-md-4">
                     <div class="main-form w-100">
                         {% csrf_token %}
-                        <div aria-label="Message">{{ message_form|crispy }}</div>
+                        <div>{{ message_form|crispy }}</div>
                         <p class="text-muted small"><strong>Note:</strong> You won't be able to edit this message after it sends.</p>
                     </div>
                     <div class="button-container">

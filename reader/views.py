@@ -267,10 +267,6 @@ def delete_review(request, id):
             """Your review was successfully deleted!"""
         )
     else:
-        print(review_delete)
-        print(review_delete.id)
-        print(review_delete.reviewer)
-        print(user_profile)
         messages.error(
             request,
             """You don't have permission to delete this review. If this is a

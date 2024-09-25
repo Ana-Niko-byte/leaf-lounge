@@ -51,7 +51,7 @@
             <form method="post" class="d-none justify-content-start align-items-start mt-2 mt-md-3 my-2 mt-md-4" id="forumForm">
                 <div class="main-form w-100">
                     {% csrf_token %}
-                    <div aria-label="Forum Name">{{ forumForm|crispy }}</div>
+                    <div>{{ forumForm|crispy }}</div>
                     <p class="text-muted small mb-3">
                         <strong>Note:</strong> You will be taken inside the forum after creating it.
                     </p>
@@ -68,6 +68,7 @@
         </div>
         <!-- /Forums -->
     </div>
+</div>
 {% endblock %}
 
 {% block extra_js %}

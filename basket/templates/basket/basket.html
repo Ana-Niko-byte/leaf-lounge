@@ -45,12 +45,15 @@
 
 {% block extra_js %}
 {{ block.super }}
-    <script type="text/javascript">
+    <script>
         const delete_btns = document.getElementsByClassName('delete-book');
 
         for (let button of delete_btns){
-            button.addEventListener('click', function(e){
+            handleCookies(button);
+        }
 
+        function handleCookies(button){
+            button.addEventListener('click', function(e){
                 e.preventDefault();
 
                 // Taken from Django Documentation + Stack Overflow: 

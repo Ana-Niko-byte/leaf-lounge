@@ -224,7 +224,6 @@ def forum_detail(request, slug):
                     this issue.
                     Thank you for your understanding!"""
                 )
-                print(f'{e}')
                 return HttpResponseRedirect(
                     reverse('forum_detail', args=[slug])
                 )
@@ -333,8 +332,6 @@ def create_author(request):
             except (UserProfile.DoesNotExist, Author.DoesNotExist):
                 attempt += 1
                 time.sleep(1)
-
-    print(author_profile)
 
     if request.method == 'POST':
         author_form = AuthorForm(data=request.POST)
