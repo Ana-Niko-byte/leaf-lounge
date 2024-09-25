@@ -6,16 +6,16 @@ The application is available for viewing [here](https://leaf-a4f5da9d5073.heroku
 >>> ## Introduction
 Leaf Lounge book store and community hub is built with a `Django` backend - a high-level Python framework that encourages rapid development and clean code practices, and `Bootstrap5`, an extensive styling library. As a networking platform, Leaf Lounge offers book lovers the unique opportunity to connect and share impressions, reviews, and critiques of books. Visitors wishing to join one of Leaf Lounge's vast communities need only purchase a book and create an account to gain access to their personal profile, immediately gaining access to all Leaf Lounge has to offer. Additionally, registered users have the option of becoming a Leaf Lounge author by registering for an author profile and uploading their own published works to the Leaf Lounge library.
 
+>>> ## SEO & Marketing
+[MARKETING.md](https://github.com/Ana-Niko-byte/leaf-lounge/blob/main/docs/README_links/MARKETING.md)
+
 >>> ## Table of Contents
 - [Technology Stack](#technology-stack)
 - [Feature Sneak Peek](#feature-sneak-peek)
 - [Structure](#structure)
 - [Wireframes](#wireframes)
 - [User Stories](#user-stories)
-- [Strategy](#strategy)
-- [Scope of Application](#scope-of-application)
 - [Business/Social Goals](#businesssocial-goals)
-  - [Target Audience](#target-audience)
 - [UX Goals](#ux-goals)
 - [Features](#features)
 - [Models](#models)
@@ -111,55 +111,8 @@ Leaf Lounge book store and community hub is built with a `Django` backend - a hi
 | 31 | As a user, I require access to the book's genre community after making a purchase so I can network and engage with fellow book-enthusiasts. | `must-have` | <img src="docs/images/green-tick.png" alt="test passed" style="max-width: 40px;"> |
 | 32 | As a user and community member, I would like the ability to leave reviews so new users can get feedback on a book prior to making purchase. | `must-have` | <img src="docs/images/green-tick.png" alt="test passed" style="max-width: 40px;"> |
 
->>> ## Strategy
-This website strives to create an engaging and interactive environment for readers and book enthusiasts to connect, network and broaden the outreach of new authors within various book communities. Several intuitive features in the navigation bar at the top of the page and considerable consideration given to the overall design and feel of the website make the user's experience pleasant and easy-going, link shopping in a book shop.
-
-By adopting a similar layout to that of a bookstore, users visiting the library collection get fast access to all Leaf Lounge has to offer, while being able to partake in the same book-shopping experience from the comfort of their own homes.
-
->>> ## Scope of Application
-Leaf Lounge Bookstore and Community Hub is a dynamic platform built on a Django backend, leveraging the high-level Python framework known for its rapid development capabilities and clean code practices. Enhanced with Bootstrap 5 for modern and responsive design, Leaf Lounge serves as a networking space for book enthusiasts to connect, share impressions, reviews, and critiques. Membership is simple: by purchasing a book and creating an account, visitors gain immediate access to their personal profile and the full range of community features. Registered users also have the opportunity to become Leaf Lounge authors by setting up an author profile and uploading their published works to the Leaf Lounge library, further enriching the community experience.
-
-The application comes packed with the following functionality and features:
-  - Robust E-Commerce integration with Stripe payments.
-  - Search and Filter Books for quick and easy access to your favourite works.
-  - Engaging and interactive UI for a real-life online library experience.
-  - A dedicated contact page for handling user queries.
-  - User profiles for storing, managing, and amending data for personalised and streamlined experiences.
-  - Community Forums for connecting and engaging with like-minded book enthusiasts and genre fanatics.
-
 >>> ## Business/Social Goals
-
->> #### Target Audience
-`Readers` `Authors` `Publishers` `Book Critics` `Book Enthusiasts` `Users 15+ years of age (payment)`.
-
-- As a first time visitor, I would like to be taken directly to the 'Leaf Lounge' home page so that I have quick access to all relevant information to get started.
-- As a site user, I would like a custom profile with my personal information.
-- As a site user, I would like the option to read more information on the book before buying it.
-- As a site visitor, I require access to the library page so that I can view and choose from available books.
-- As a site user, it would be nice to have a contact page so that I could contact the 'Leaf Lounge' team with queries.
-- As a site user, I require a checkout page from which I can make secure transactions.
-- As a site user, I require access to the chatroom so that I can network with other readers.
-- As a site user, I would like the option of viewing the books I have bought and storing them in my profile.
-- As a site user, I would like the option of viewing my books before buying them.
-- As a site user, I would like the option of amending my books before buying them.
-- As a site user, I would like the option of deleting books from my basket.
-- As a site user, I require a secure payment system to make transactions.
-- As a site user, I require the option of signing-up, signing-in and signing-out of my account so that I can have a more personal experience and manage my data.
-- As a site visitor, I would like the option of signing up for the Leaf Lounge Newsletter, without needing to register for an account.
-- As a site user, I would like access to Leaf Lounge's social media so that I could follow the page and stay up to date.
-- As a site user, I would like the ability to search for a book so that I can quickly find the one I am looking for.
-- As a book enthusiast, I would like the option of registering as an author and putting my work on Leaf Lounge so that I can get exposure within the communities.
-- As a site user, I would like the option of viewing the books I have bought and storing them in my profile so that I can access the book communities and view my order history.
-- As a user, I require access to the book's genre community after making a purchase so I can network and engage with fellow book-enthusiasts.
-- As a user and community member, I would like the ability to leave reviews so new users can get feedback on a book prior to making purchase.
-_Note: full CRUD functionality will be implemented here._
-
-Also available for viewing here:
-[Facebook Page](https://www.facebook.com/profile.php?id=61563390085042).
-As part of the social media marketing strategy, a Facebook page was created for the Leaf Lounge community.
-The profile picture is of the `Leaf Lounge` logo, building brand recognition, with a relevant cover photo. A single post was made as part of an introduction to the website, with a link to the deployed version, (and a warning message telling users to not input any banking information into the checkout).
-
-![Facebook Screenshot](docs/images/facebook.png)
+[MARKETING.md](https://github.com/Ana-Niko-byte/leaf-lounge/blob/main/docs/README_links/MARKETING.md)
 
 >>> ## UX Goals
 - As a site user, I would like fast access to only the pages that would benefit my experience.

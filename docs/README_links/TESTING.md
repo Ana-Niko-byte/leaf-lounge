@@ -1733,9 +1733,7 @@ While the book image covers take a while to load, a dark background colour is ap
 The rest of the application pages couldn't be reached by the Validator as the user must be authenticated to access them.
 
 >> #### HTML Validation
-All pages were validated using the  [W3C CSS Markup Validation Service](https://validator.w3.org/). Several pages showed HTML errors, however these are attributed solely to Django's makeup and codeflow. Each page is described below.
-
-For the sake of brevity, templates with the same errors are grouped together, with an explanation of each error provided at the end. 
+All pages were validated using the  [W3C CSS Markup Validation Service](https://validator.w3.org/).
 
 Home Page -
 ![Home Page Markup Errors](../images/html-home-validation.png)
@@ -1749,41 +1747,27 @@ Library Page -
 Basket Page -
 ![Basket Page Markup Errors](../images/html-basket-validation.png)
 
-Checkout Page -
-![Checkout Page Markup Errors](../images/html-checkout-validation.png)
-
-The `Duplicate ID` error relates to the mailchimp subscribe/unsubscribe toggle. Django forms are automatically assigned ids, based on the input names, thus as both forms are email input fields, both are labelled "id_email". This does not impede the flow of logic or data handling in the application.
-
-The `JS type attribute` warning is ignored, as some JS files aren't properly recognised in Chrome without it.
-
 Book Detail Page -
 ![Book Detail Page Markup Errors](../images/html-book-detail-validation.png)
 
-> The next couple of images show templates with errors stemming either from Django's syntax and automatic attribute assignment, or from the Newsletter form in the footer. An explanation of each is given at the very end.
+> The next couple of images show templates inaccessible by the HTML validator via URL, as they require user authentication, thus were validated by direct input. All pages showed no errors.
 
-General Communities Page -
-![Community General Page Markup Errors](../images/html-community-validation.png)
+The following are such tested templates:
 
-Specific Community Page -
-![Specific Community Markup Errors](../images/html-specific-community-validation.png)
+- Checkout Page
+- General Communities Page
+- Specific Community Page
+- Become an Author Page
+- Profile Page
+- Profile Books Page
 
-Become an Author Page -
-![Become an Author age Markup Errors](../images/html-become-author-validation.png)
+Inaccessible Pages Validation BY DIRECT INPUT-
+![Innaccessible Template Validation](../images/html-inaccessible-direct-input-validation.png)
 
-Profile Page -
-![Profile Page Markup Errors](../images/html-profile-validation.png)
+When validated via URL, the Validator validates the `Allauth Login` page for the project, and the following error comes up for all of these pages -
+![Login Validation Error](../images/html-inaccessible-url-validation.png)
 
-Profile Books Page -
-![User Books Page Markup Errors](../images/html-profile-books-validation.png)
-
-The `Button must not appear as a descendant of the a element` error relates to the structure of the website's buttons. It is generally considered best practice to not have two nested 'clickable' elements. However, this structure is necessary to maintain the style and display of the buttons, as simple anchor tags do not respond as well to Bootstrap classes.
-
-The `Duplicate ID` error relates to the Newsletter in the footer, and more information is available in the Home Page section of [HTML Validation](#html-validation)
-
-The `aria-describedby` error stems from Django's syntax and automatic assignment of attributes to certain elements.
-
-
-
+The `aria-describedby` error stems from Allauth's automatic assignment of attributes to certain elements. This library has not been amended in this project, and the error comes with the library. This issue has been brought up with student support. This code is not part of the project's custom code.
 
 >> #### CSS Validation
 All pages passed the [W3C CSS Validator](https://jigsaw.w3.org/css-validator/) with no errors. Last tested 22/09/2024.
