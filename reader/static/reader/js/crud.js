@@ -2,24 +2,31 @@ document.addEventListener("DOMContentLoaded", () => {
     const slider = document.getElementById("review-slide");
     displayForm(slider);
     handleCancel(slider);
-})
+});
 
 function displayForm(slider){
     const editButtons = [...document.getElementsByClassName("btn-edit")];
     for (let button of editButtons){
-        button.addEventListener('click', function(e){
-            e.preventDefault();
-            const reviewId = button.dataset.reviewId;
-
-            // Display the form
-            if (slider.classList.contains("d-none")){
-                slider.classList.remove("d-none");
-                slider.classList.add("d-flex");
-            }
-
-            enterFormDetails(reviewId, button);
-        })
+        handleLoop(button, slider);
     }
+}
+
+function handleLoop(button, slider){
+    /**
+     * Handles the display of the 'Edit' form based on the button clicked.
+     */
+    button.addEventListener('click', function(e){
+        e.preventDefault();
+        const reviewId = button.dataset.reviewId;
+
+        // Display the form
+        if (slider.classList.contains("d-none")){
+            slider.classList.remove("d-none");
+            slider.classList.add("d-flex");
+        }
+
+        enterFormDetails(reviewId, button);
+    });
 }
 
 function handleCancel(slider){
@@ -34,7 +41,7 @@ function handleCancel(slider){
             slider.classList.remove("d-flex");
             slider.classList.add("d-none");
         }
-    })
+    });
 }
 
 function enterFormDetails(reviewId, button){

@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     rating();
-})
+});
 
 function rating(){
     /**
@@ -12,7 +12,7 @@ function rating(){
     const box = document.getElementById("rating-box");
 
     const initial = 0;
-    let ratings = [...box.dataset.rating]
+    let ratings = [...box.dataset.rating];
     ratings = ratings.map((x) => parseInt(x)).filter((x) => parseInt(x));
     const sum = ratings.reduce(
         (accumulator, currentValue) => accumulator + currentValue,
@@ -25,4 +25,4 @@ function rating(){
         document.getElementById("full-rating-review").innerHTML = 'No Reviews';
     }
     document.getElementById("rating-bar").style.width = `${barWidth}%`;
-};
+}

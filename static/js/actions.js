@@ -11,29 +11,37 @@ document.addEventListener("DOMContentLoaded", () => {
     for (let button of update_btns){
         // Iterates over each update button visible in the template and executes styling code
         // + displays buttons for form handling.
-        button.addEventListener('click', function(e){
-            e.preventDefault();
-            // Set quantity value to input field 'value'.
-            const bookId = button.dataset.bookId;
-            const counter = button.dataset.counter;
-
-            const actualQTY = document.getElementById(`quantity_${bookId}_${counter}`);
-            // Styling
-            const inputFields = document.getElementById(`form_${bookId}_${counter}`);
-            const cancel = document.getElementById(`cancel_${bookId}_${counter}`);
-            const save = document.getElementById(`save_${bookId}_${counter}`);
-
-            // Toggle form visibility instead of url redirect in template.
-            cancelActions(cancel, button, save, inputFields, actualQTY);
-
-            // Handle visibility of elements when form is displayed.
-            handleStyling(cancel, button, save, inputFields, actualQTY);
-
-            // Submit the relevant form.
-            saveForm(save, bookId, counter);
-        });
+        handleEventListenerActions(button);
     }
 });
+
+function handleEventListenerActions(button){
+    /**
+     * Attaches an event listener to each button and prevents form submission.
+     * Handles all user actions on input form in and invokes the save form function.
+     */
+    button.addEventListener('click', function(e){
+        e.preventDefault();
+        // Set quantity value to input field 'value'.
+        const bookId = button.dataset.bookId;
+        const counter = button.dataset.counter;
+
+        const actualQTY = document.getElementById(`quantity_${bookId}_${counter}`);
+        // Styling
+        const inputFields = document.getElementById(`form_${bookId}_${counter}`);
+        const cancel = document.getElementById(`cancel_${bookId}_${counter}`);
+        const save = document.getElementById(`save_${bookId}_${counter}`);
+
+        // Toggle form visibility instead of url redirect in template.
+        cancelActions(cancel, button, save, inputFields, actualQTY);
+
+        // Handle visibility of elements when form is displayed.
+        handleStyling(cancel, button, save, inputFields, actualQTY);
+
+        // Submit the relevant form.
+        saveForm(save, bookId, counter);
+    });
+}
 
 function cancelActions(cancelBtn, updateBtn, saveBtn, inputFields, actualQTY){
     /**

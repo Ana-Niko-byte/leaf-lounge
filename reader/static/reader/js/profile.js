@@ -85,18 +85,23 @@ document.addEventListener('DOMContentLoaded', function(){
         }
     });
 
-    // Hide/Display Profile Tabs (IIFE).
+    // Hide/Display Profile Tabs.
     const buttons = [...document.getElementsByClassName('display-button')];
     for (let button of buttons){
-        (function(button){
-            const buttonDataValue = button.dataset.detail;
-            button.addEventListener('click', () => {
-                hideStarter();
-                FilterAndDisplay(buttonDataValue);
-            });
-        })(button);
+        handleButtonClick(button);
     }
 
     // Star Ratings
     profile_fill();
 });
+
+function handleButtonClick(button){
+    /**
+     * Handles the display of profile tabs based on the button clicked.
+     */
+    const buttonDataValue = button.dataset.detail;
+    button.addEventListener('click', () => {
+        hideStarter();
+        FilterAndDisplay(buttonDataValue);
+    });
+}

@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     rating_fill();
-})
+});
 
 function rating_fill(){
     /**
@@ -10,5 +10,5 @@ function rating_fill(){
     rating_input.addEventListener("change", () => {
         const barWidth = parseFloat(rating_input.value) * 10;
         document.getElementById("rating-bar-review").style.width = `${barWidth}%`;
-    })
+    });
 }

@@ -32,6 +32,7 @@ def subscribe_view(request):
     """
     if request.method == 'POST':
         marketing_form = EmailForm(request.POST)
+        marketing_form.fields['email'].widget.attrs.update({'id': 'subscribe-input'})
         if marketing_form.is_valid():
             try:
                 form_email = marketing_form.cleaned_data['email']
@@ -87,6 +88,7 @@ def unsubscribe_view(request):
     """
     if request.method == 'POST':
         marketing_form = EmailForm(request.POST)
+        marketing_form.fields['email'].widget.attrs.update({'id': 'unsubscribe-input'})
         if marketing_form.is_valid():
             try:
                 form_email = marketing_form.cleaned_data['email']

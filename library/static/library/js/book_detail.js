@@ -5,4 +5,4 @@ document.addEventListener("DOMContentLoaded", () => {
         const loopCount = review.dataset.count;
         document.getElementById(`rating-bar-detail-${loopCount}`).style.width = `${(reviewRating * 10)}%`;
     }
-})
+});

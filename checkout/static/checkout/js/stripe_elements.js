@@ -34,7 +34,7 @@ card.addEventListener('change', function(event){
             <i class="fa fa-times" aria-hidden="true"></i>
         </span>
         <span>${event.error.message}</span>
-        `
+        `;
         $(errorDiv).html(html);
     } else {
         errorDiv.textContent = '';
@@ -64,7 +64,7 @@ form.addEventListener('submit', function(e) {
         'csrfmiddlewaretoken': csrfToken,
         'client_secret': clientSecret,
         'save_info': saveInfo,
-    }
+    };
 
     // Creates URL to post to.
     var url = '/checkout/cache_checkout_data/';
