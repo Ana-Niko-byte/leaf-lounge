@@ -1753,10 +1753,10 @@ When validated via URL, the Validator validates the `Allauth Login` page for the
 The `aria-describedby` error stems from Allauth's automatic assignment of attributes to certain elements. This library has not been amended in this project, and the error comes with the library. This issue has been brought up with student support. This code is not part of the project's custom code.
 
 >> #### CSS Validation
-All pages passed the [W3C CSS Validator](https://jigsaw.w3.org/css-validator/) with no errors. Last tested 22/09/2024.
+All pages passed the [W3C CSS Validator](https://jigsaw.w3.org/css-validator/) with no errors. No errors or warnings have been noticed as of the final validation review, dated 26/09/2024.
 
 >> #### JSHint Validation
-All js files are regularly validated during development using [JSHint](https://jshint.com/).
+All js files are regularly validated during development using [JSHint](https://jshint.com/). No errors or warnings have been noticed as of the final validation review, dated 26/09/2024.
 
 >> #### Pep8 Validation
-All python files are regularly validated during development using the [Code Institute PEP8 Linter](https://pep8ci.herokuapp.com/).
+All python files are regularly validated during development using the [Code Institute PEP8 Linter](https://pep8ci.herokuapp.com/). No errors or warnings have been noticed as of the final validation review, dated 26/09/2024.

@@ -341,4 +341,7 @@ class TestForumAndMessageModels(TestCase):
         self.assertEqual(self.message.messenger, self.user_profile)
         self.assertEqual(self.message.messenger.user.username, "ananiko")
 
-        self.assertEqual(self.message.date_sent.date(), timezone.now().astimezone().date())
+        self.assertEqual(
+            self.message.date_sent.date(),
+            timezone.now().astimezone().date()
+        )
