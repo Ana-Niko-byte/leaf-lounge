@@ -260,7 +260,13 @@ def delete_review(request, id):
     review_delete = get_object_or_404(Review, id=id)
     user_profile = get_object_or_404(UserProfile, user=request.user)
     # Redundant but just in case.
-    if review_delete.reviewer == user_profile or request.user.is_superuser:
+    if request.user.is_superuser:
+        review_delete.delete()
+        messages.success(
+            request,
+            f"""{review_delete.reviewer}'s review was successfully deleted!"""
+        )
+    elif review_delete.reviewer == user_profile:
         review_delete.delete()
         messages.success(
             request,

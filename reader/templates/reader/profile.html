@@ -202,6 +202,7 @@
                         <h4 class="text-uppercase text-center text-md-start small"><strong><i class="fa-solid fa-pencil me-2"></i>My Reviews</strong></h4>
                         {% if user.is_superuser %}
                             {% if all_reviews %}
+                                <p>As an admin, all user reviews will appear here.</p>
                                 {% for review in all_reviews %}
                                     <div class="row outer-review bg-white shadow-sm p-2 rounded m-3">
                                         <div class="header row">
@@ -251,12 +252,12 @@
                                                 </a>
                                                 {% endif %}
                                                 <button class="btn btn-danger m-2 d-flex justify-content-center align-items-center"
-                                                type="button" data-bs-toggle="modal" data-bs-target="#reviewDelete" aria-label="Delete Review">
+                                                type="button" data-bs-toggle="modal" data-bs-target="#reviewDelete-{{ forloop.counter }}" aria-label="Delete Review">
                                                     <i class="fa-solid fa-trash fa-sm me-2"></i>Delete
                                                 </button>
                                                 
                                                 <!-- Modal -->
-                                                <div class="modal fade" id="reviewDelete" tabindex="-1" role="dialog" aria-labelledby="reviewDelete" aria-hidden="true">
+                                                <div class="modal fade" id="reviewDelete-{{ forloop.counter }}" tabindex="-1" role="dialog" aria-labelledby="reviewDelete" aria-hidden="true">
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header border-0 d-flex justify-content-between">
@@ -327,12 +328,12 @@
                                             
                                             <div class="admin-button-container d-flex">
                                                 <button class="btn btn-danger m-2 d-flex justify-content-center align-items-center"
-                                                type="button" data-bs-toggle="modal" data-bs-target="#reviewDeleteAdmin" aria-label="Delete Review">
+                                                type="button" data-bs-toggle="modal" data-bs-target="#reviewDeleteAdmin-{{ forloop.counter }}" aria-label="Delete Review">
                                                     <i class="fa-solid fa-trash fa-sm me-2"></i>Delete
                                                 </button>
                                                 
                                                 <!-- Modal -->
-                                                <div class="modal fade" id="reviewDeleteAdmin" tabindex="-1" role="dialog" aria-labelledby="reviewDeleteAdmin" aria-hidden="true">
+                                                <div class="modal fade" id="reviewDeleteAdmin-{{ forloop.counter }}" tabindex="-1" role="dialog" aria-labelledby="reviewDeleteAdmin" aria-hidden="true">
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header border-0 d-flex justify-content-between">

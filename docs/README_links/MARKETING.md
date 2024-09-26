@@ -1,11 +1,24 @@
 >>> ## SEO & Marketing
 
 >> #### Keyword Research
-- `book community`
-- `online books`
+
+> ###### Short-Tail Keywords
 - `book lounge`
-- `buy books online`
-- `online book club`
+- `books online`
+- `book club`
+- `leaf lounge`
+- `epub books`
+
+> ###### Long-Tail Keywords
+- `book communities ireland`
+- `book lounge ireland`
+- `buy books online ireland`
+- `online book club ireland`
+- `bronte books community`
+- `epub online book store`
+- `cheap epubs and ebooks online`
+
+> _Note: While LMS content suggests using the likes of Wordtracker for keyword research, the solution now offers only one free search per day, with no additional being offered via incognito mode. Keyword research was conducted by looking up each of the short-tail and long-tail keywords and browsing through the suggested websites._
 
 >> #### Similar Businesses (Research)
 - [books.ie](https://www.books.ie/)
