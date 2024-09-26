@@ -30,10 +30,10 @@ class TestBlurbViews(TestCase):
     def test_contact_page_post_request_is_successful():
         Simulates form data passed to the contact view for testing a POST
         request.
-        Asserts the client is redirected to the correct URL if the view receives
-        correct contact form data, the view correctly redirects and has a status
-        code of 302 indicating redirection, and a target status of 200 meaning
-        the view is rendered correctly.
+        Asserts the client is redirected to the correct URL if the view
+        receives correct contact form data, the view correctly redirects and
+        has a status code of 302 indicating redirection, and a target status of
+        200 meaning the view is rendered correctly.
     """
 
     def setUp(self):
@@ -69,10 +69,10 @@ class TestBlurbViews(TestCase):
         """
         Simulates form data passed to the contact view for testing a POST
         request.
-        Asserts the client is redirected to the correct URL if the view receives
-        correct contact form data, the view correctly redirects and has a status
-        code of 302 indicating redirection, and a target status of 200 meaning
-        the view is rendered correctly.
+        Asserts the client is redirected to the correct URL if the view
+        receives correct contact form data, the view correctly redirects and
+        has a status code of 302 indicating redirection, and a target status of
+        200 meaning the view is rendered correctly.
         """
         test_data = {
             'name': 'Tester',

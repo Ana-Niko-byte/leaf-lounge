@@ -114,21 +114,6 @@ class TestReviewForm(TestCase):
         Retrieves the relevant URLs and assigns them to variables for testing.
 
 
-    def test_review_form_book_is_required():
-        Asserts the review form is invalid with an empty book value.
-        Asserts the error raised as a result of the incorrect value stems
-        from the "book" key.
-        Asserts the error raises matches the expected error.
-
-
-    def test_review_form_book_must_be_valid():
-        Asserts the review form is invalid with an incorrect book value.
-        This means a value that does not reference a book in the database.
-        Asserts the error raised as a result of the incorrect value stems
-        from the "book" key.
-        Asserts the error raises matches the expected error.
-
-
     def test_review_form_title_is_required():
         Asserts the review form is invalid with an empty title value.
         Asserts the error raised as a result of the incorrect value stems
@@ -175,19 +160,19 @@ class TestReviewForm(TestCase):
             profile.
 
         USER PROFILE & AUTHOR PROFILE:
-            Retrieves the user profile automatically created following successful
-            user registration. This is handled via
+            Retrieves the user profile automatically created following
+            successful user registration. This is handled via
             reader.signals.create_or_save_profile.
-            Simulates the creation of an author profile and assigns the relevant
-            user profile to the author.user_profile field.
+            Simulates the creation of an author profile and assigns the
+            relevant user profile to the author.user_profile field.
 
         GENRE & COMMUNITY:
         Simulates the    creation of a genre.
 
         BOOK:
             Simulates the creation of a book with relevant relationships to the
-            author and genre models. This is required as reviews need a valid book
-            instance.
+            author and genre models. This is required as reviews need a valid
+            book instance.
 
         Saves the relevant models to the test sqlite3 database.
         Retrieves the relevant URLs and assigns them to variables for testing.
@@ -242,38 +227,6 @@ class TestReviewForm(TestCase):
         )
         self.book.save()
 
-    def test_review_form_book_is_required(self):
-        """
-        Asserts the review form is invalid with an empty book value.
-        Asserts the error raised as a result of the incorrect value stems
-        from the "book" key.
-        Asserts the error raises matches the expected error.
-        """
-        review_form = ReviewForm({
-            "book": "",
-            "title": "Test Title",
-            "rating": 4,
-            "comment": "Not bad"
-        })
-        self.assertFalse(review_form.is_valid())
-
-    def test_review_form_book_must_be_valid(self):
-        """
-        Asserts the review form is invalid with an incorrect book value.
-        This means a value that does not reference a book in the database.
-        Asserts the error raised as a result of the incorrect value stems
-        from the "book" key.
-        Asserts the error raises matches the expected error.
-        """
-        review_form = ReviewForm({
-            "book": "Not a Valid Book",
-            "title": "Test Title",
-            "rating": 4,
-            "comment": "Not bad"
-        })
-        self.assertFalse(review_form.is_valid())
-        self.assertIn("book", review_form.errors.keys())
-
     def test_review_form_title_is_required(self):
         """
         Asserts the review form is invalid with an empty title value.
@@ -302,7 +255,6 @@ class TestReviewForm(TestCase):
         Asserts the error raises matches the expected error.
         """
         review_form = ReviewForm({
-            "book": self.book,
             "title": "Test Title",
             "rating": "",
             "comment": "Not bad"
@@ -322,7 +274,6 @@ class TestReviewForm(TestCase):
         Asserts the error raises matches the expected error.
         """
         review_form = ReviewForm({
-            "book": self.book,
             "title": "Test Title",
             "rating": 0,
             "comment": "Not bad"
@@ -342,7 +293,6 @@ class TestReviewForm(TestCase):
         Asserts the error raises matches the expected error.
         """
         review_form = ReviewForm({
-            "book": self.book,
             "title": "Test Title",
             "rating": 13,
             "comment": "Not bad"
@@ -362,7 +312,6 @@ class TestReviewForm(TestCase):
         Asserts the error raises matches the expected error.
         """
         review_form = ReviewForm({
-            "book": self.book,
             "title": "Test Title",
             "rating": 8,
             "comment": ""
@@ -380,9 +329,10 @@ class TestReviewForm(TestCase):
         correctly filled out is valid.
         """
         review_form = ReviewForm({
-            "book": self.book,
             "title": "",
             "rating": 4,
             "comment": "Not bad"
         })
         self.assertFalse(review_form.is_valid())
+
+# removed "book" from form. Check rest of errors.

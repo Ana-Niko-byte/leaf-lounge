@@ -32,7 +32,6 @@ def subscribe_view(request):
     """
     if request.method == 'POST':
         marketing_form = EmailForm(request.POST)
-        # marketing_form.fields['email'].widget.attrs.update({'id': 'subscribe-input'})
         if marketing_form.is_valid():
             try:
                 form_email = marketing_form.cleaned_data['email']
@@ -45,7 +44,7 @@ def subscribe_view(request):
                     member_info,
                 )
                 messages.success(
-                    request, 
+                    request,
                     """
                     You've successfully subscribed to our mailing list! :)
                     """
@@ -54,7 +53,7 @@ def subscribe_view(request):
             except ApiClientError as error:
                 messages.error(
                     request,
-                    """Our mailing list is currently being updated. 
+                    """Our mailing list is currently being updated.
                     Please try again a bit later or get in touch
                     with our dedicated customer support team to resolve
                     this issue.
@@ -88,7 +87,6 @@ def unsubscribe_view(request):
     """
     if request.method == 'POST':
         marketing_form = EmailForm(request.POST)
-        # marketing_form.fields['email'].widget.attrs.update({'id': 'unsubscribe-input'})
         if marketing_form.is_valid():
             try:
                 form_email = marketing_form.cleaned_data['email']
@@ -104,7 +102,7 @@ def unsubscribe_view(request):
                     member_update,
                 )
                 messages.success(
-                    request, 
+                    request,
                     """
                     You've successfully unsubscribed from our mailing list! :(
                     """

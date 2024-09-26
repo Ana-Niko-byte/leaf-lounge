@@ -245,8 +245,9 @@ class BookLineItem(models.Model):
         Assigns the total lineitem cost based on price/unit and quantity
         if not already assigned.
         """
-        # Line breaks PEP8 standards but no way to shorten it without renaming.
-        if not self.book_order_cost or self.book_order_cost != self.book.price * self.quantity:
+        if (
+            not self.book_order_cost or
+                self.book_order_cost != self.book.price * self.quantity):
             self.book_order_cost = self.book.price * self.quantity
         super(BookLineItem, self).save(*args, **kwargs)
 

@@ -5,7 +5,8 @@ from .forms import *
 class TestNewsletterForm(TestCase):
     """
     A class for testing the Newsletter Form associated with the Marketing app.
-    This form allows users to sign up to the Leaf Lounge Newsletter powered by Mailchimp.
+    This form allows users to sign up to the Leaf Lounge Newsletter powered by
+    Mailchimp.
 
     Methods:
     def test_newsletter_form_email_is_required():
@@ -37,7 +38,7 @@ class TestNewsletterForm(TestCase):
         newsletter_form = EmailForm({
             "email": ""
         })
-        
+
         self.assertFalse(newsletter_form.is_valid())
         self.assertIn("email", newsletter_form.errors.keys())
         self.assertEqual(
@@ -56,7 +57,7 @@ class TestNewsletterForm(TestCase):
         newsletter_form = EmailForm({
             "email": "123",
         })
-        
+
         self.assertFalse(newsletter_form.is_valid())
         self.assertIn("email", newsletter_form.errors.keys())
         self.assertEqual(

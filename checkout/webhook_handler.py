@@ -79,17 +79,16 @@ class StripeWH_Handler():
         username = intent.metadata.username
         if username != 'AnonymousUser':
             # user.username cannot be used directly with get() or filter()
-            user_profile = UserProfile.objects.get(user__username=username)
+            u_prof = UserProfile.objects.get(user__username=username)
             if save_info:
-                user_profile.default_phone_number = shipping_details.phone
-                user_profile.default_street_1 = shipping_details.address.line1
-                user_profile.default_street_2 = shipping_details.address.line2
-                user_profile.default_town_city = shipping_details.address.city
-                user_profile.default_county = shipping_details.address.state
-                # Line breaks PEP8 but no way to shorten without renaming.
-                user_profile.default_postcode = shipping_details.address.postal_code
-                user_profile.default_country = shipping_details.address.country
-                user_profile.save()
+                u_prof.default_phone_number = shipping_details.phone
+                u_prof.default_street_1 = shipping_details.address.line1
+                u_prof.default_street_2 = shipping_details.address.line2
+                u_prof.default_town_city = shipping_details.address.city
+                u_prof.default_county = shipping_details.address.state
+                u_prof.default_postcode = shipping_details.address.postal_code
+                u_prof.default_country = shipping_details.address.country
+                u_prof.save()
 
         order_exists = False
         attempt = 1

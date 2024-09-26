@@ -1,5 +1,4 @@
 from django import forms
-from .widgets import CustomClearableFileInput
 
 from library.models import Review
 from .models import *
@@ -89,9 +88,15 @@ class ReviewForm(forms.ModelForm):
         for field in self.fields:
             if field == 'comment':
                 self.fields[field].widget.attrs['placeholder'] = 'Great book!'
-                self.fields["comment"].widget.attrs['class'] = 'custom-large-review-field'
+                self.fields[
+                    "comment"
+                ].widget.attrs['class'] = 'custom-large-review-field'
             else:
-                self.fields[field].widget.attrs['class'] = 'custom-review-fields'
+                self.fields[
+                    field
+                ].widget.attrs['class'] = 'custom-review-fields'
 
             if field == 'rating':
-                self.fields[field].widget.attrs['placeholder'] = 'Rating out of 10'
+                self.fields[
+                    field
+                ].widget.attrs['placeholder'] = 'Rating out of 10'

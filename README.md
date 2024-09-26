@@ -267,10 +267,77 @@ Go back to the Policy Generator.
 ### Edit ACL (Access Control List)
 On the `Permissions` tab, scroll down to the `Access Control List` section and click `Edit`.
 
-- Click `List` in the Everyone (public access).
-- Click the checkbox to indicate that you understand the effects of the changes.
+- Click `List` in Everyone (public access).
+- Check the checkbox to indicate you understand the changes and their effects.
 - Click `Save changes`.
 
+### Create User Group
+- Search and select `IAM` in the search bar.
+- Click `User groups` on the left hand side.
+- Click `Create Group` and enter a group name.
+- Click `Create User Group` at the bottom of the page.
+
+### Create A Policy
+- Click `Policies` in the left-handside menu.
+- Click `Create Policy`.
+  - Click the `JSON` tab.
+  - Click the `Actions` dropdown.
+  - Click `Import policy`.
+  - Search for `S3`.
+  - Select `AmazonS3FullAccess`.
+  - Click `Import Policy`.
+- In the top navigation bar, search for `S3` and right click the button. Open this in a new tab for ease of access for the following steps.
+- In this new tab, find your bucket and copy your `Bucket ARN`.
+- Go back to the previous tab and add your ARN in quotes to the `Resource` list twice, for the second one add `/*` after the ARN.
+
+Your code should follow this structure: 
+
+```Python
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Sid": "Statement1",
+			"Effect": "Allow",
+			"Action": [
+				"s3:*"
+			],
+			"Resource": [
+				"YOUR_ARN",
+				"YOUR_ARN/*"
+			]
+		}
+	]
+}
+
+```
+- Click `Next`.
+- Enter a Policy name and description and click `Create Policy`.
+
+### Attach Policy
+- Click `User groups` in the left-handside menu.
+- Find your group and click it.
+  - Click the `Permissions` tab.
+  - Click the `Add Permissions` dropdown.
+  - Click `Attach Policies`.
+    - Search for the policy you created earlier and select its checkbox. 
+    - Click `Attach Policies`.
+
+### Create A User
+- Click `Users` in the left-handside menu.
+- Click `Create User`.
+  - Enter a name and click `Next`.
+- Select the group you created and click `Next`.
+- Click `Create User`.
+
+### Create An Access Key
+- Click on your user and go into the `Security Credentials` tab.
+- Scroll down to `Access Keys` and click `Create Access Key`.
+  - Select `Application Running Outside AWS`.
+  - Click `Next`.
+- Click `Create Access Key`.
+- Download the .csv file and click `Done`.
+- Open the file in a text editor of your choice, and use the values provided as your `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` keys in Heroku Config Vars.
 
 >>> ## Forking a GitHub Repository
 To make changes to your repository without changing its original state, you can make a copy of it via `fork`. This ensures the original repository remains unchanged. 

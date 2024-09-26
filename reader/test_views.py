@@ -12,9 +12,9 @@ from .forms import ReviewForm
 class TestReaderViews(TestCase):
     """
     A class for testing all views associated with the Reader app. Testing scope
-    includes testing correct redirection, status codes and template usage. These
-    views allow users to access their profile, purchased books, CRUD functionality
-    for reviews, and for admins to approve pending reviews.
+    includes testing correct redirection, status codes and template usage.
+    These views allow users to access their profile, purchased books, CRUD
+    functionality for reviews, and for admins to approve pending reviews.
 
     Methods:
     def setUp():

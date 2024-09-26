@@ -59,10 +59,9 @@ class TestUserProfileURLs(TestCase):
         Reverses the URL name and checks if it returns the correct FBV of
         approve_review.
 
-        Asserts the view for admins to approve book reviews (approve_review) resolves
-        from 'approve_review' with an int book id argument.
+        Asserts the view for admins to approve book reviews (approve_review)
+        resolves from 'approve_review' with an int book id argument.
     """
-
 
     def test_user_profile_resolves(self):
         """
@@ -103,7 +102,7 @@ class TestUserProfileURLs(TestCase):
         from 'delete_review' with an int book id argument.
         """
         path = reverse('delete_review', args=[5])
-        self.assertEqual(resolve(path).func, delete_review) 
+        self.assertEqual(resolve(path).func, delete_review)
 
     def test_unauthenticated_user_is_redirected(self):
         """
@@ -141,8 +140,8 @@ class TestUserProfileURLs(TestCase):
 
     def test_admin_approve_review_resolves(self):
         """
-        Asserts the view for admins to approve book reviews (approve_review) resolves
-        from 'approve_review' with an int book id argument.
+        Asserts the view for admins to approve book reviews (approve_review)
+        resolves from 'approve_review' with an int book id argument.
         """
         path = reverse('approve_review', args=[5])
         self.assertEqual(resolve(path).func, approve_review)

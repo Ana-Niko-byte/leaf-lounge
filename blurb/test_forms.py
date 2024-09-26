@@ -59,7 +59,7 @@ class TestContactForm(TestCase):
             "subject": "Career Opportunities",
             "message": "Testing the form."
         })
-        
+
         self.assertFalse(contact_form.is_valid())
         self.assertIn("name", contact_form.errors.keys())
         self.assertEqual(
@@ -80,7 +80,7 @@ class TestContactForm(TestCase):
             "subject": "Career Opportunities",
             "message": "Testing the form."
         })
-        
+
         self.assertFalse(contact_form.is_valid())
         self.assertIn("email", contact_form.errors.keys())
         self.assertEqual(
@@ -102,7 +102,7 @@ class TestContactForm(TestCase):
             "subject": "Career Opportunities",
             "message": "Testing the form."
         })
-        
+
         self.assertFalse(contact_form.is_valid())
         self.assertIn("email", contact_form.errors.keys())
         self.assertEqual(
@@ -123,7 +123,7 @@ class TestContactForm(TestCase):
             "subject": "",
             "message": "Testing the form."
         })
-        
+
         self.assertFalse(contact_form.is_valid())
         self.assertIn("subject", contact_form.errors.keys())
         self.assertEqual(
@@ -144,7 +144,7 @@ class TestContactForm(TestCase):
             "subject": "Career Opportunities",
             "message": ""
         })
-        
+
         self.assertFalse(contact_form.is_valid())
         self.assertIn("message", contact_form.errors.keys())
         self.assertEqual(
@@ -162,5 +162,5 @@ class TestContactForm(TestCase):
             "subject": "Career Opportunities",
             "message": "Testing this form."
         })
-        
+
         self.assertTrue(contact_form.is_valid())

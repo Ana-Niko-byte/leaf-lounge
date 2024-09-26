@@ -504,10 +504,10 @@ class TestCheckoutModels(TestCase):
         correctly.
         """
         booklineitem = get_object_or_404(BookLineItem, order=self.order)
-        # Line breaks PEP8 standards but no way of shortening.
         self.assertEqual(
             booklineitem.__str__(),
-            f"ISBN : {booklineitem.book.isbn}, order: {booklineitem.order.order_number}"
+            f"ISBN : {booklineitem.book.isbn}, " +
+            f"order: {booklineitem.order.order_number}"
         )
 
         self.assertEqual(

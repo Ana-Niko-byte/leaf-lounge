@@ -11,15 +11,20 @@ def mailchimp_marketing(request):
     the Leaf Lounge newsletter from every page via the footer.
 
     Context:
-    'marketing_form': (form object) : The Newsletter form that takes the user's email.
+    'marketing_form': (form object) : The Newsletter form that takes the user's
+    email.
 
     Returns: context object.
     """
     subscribe_form = EmailForm()
     unsubscribe_form = EmailForm()
 
-    subscribe_form.fields['email'].widget.attrs.update({'id': 'subscribe-input'})
-    unsubscribe_form.fields['email'].widget.attrs.update({'id': 'unsubscribe-input'})
+    subscribe_form.fields['email'].widget.attrs.update(
+        {'id': 'subscribe-input'}
+    )
+    unsubscribe_form.fields['email'].widget.attrs.update(
+        {'id': 'unsubscribe-input'}
+    )
 
     context = {
         "subscribe_form": subscribe_form,
@@ -27,4 +32,3 @@ def mailchimp_marketing(request):
     }
 
     return context
-

@@ -513,10 +513,10 @@ class TestibraryModels(TestCase):
         Asserts the newly saved review is saved as an unapproved instance.
         """
         review = Review.objects.get(reviewer=self.user_profile, book=self.book)
-        # Line breaks PEP8 standards but no way of shortening.
         self.assertEqual(
             review.__str__(),
-            'Review for "How to Test Django Models" by Firstname Lastname : 8/10'
+            'Review for "How to Test Django Models" ' +
+            'by Firstname Lastname : 8/10'
         )
 
         self.assertEqual(review.reviewer, self.user_profile)

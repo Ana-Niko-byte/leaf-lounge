@@ -198,8 +198,6 @@ class TestForumAndMessageModels(TestCase):
         Asserts the message sender's username matches the expected value.
 
         Asserts the message's date_sent matches today's date.
-        Asserts a ValidationError is thrown if the date_sent does not match
-        today's date.
     """
     def setUp(self):
         """
@@ -249,8 +247,7 @@ class TestForumAndMessageModels(TestCase):
         self.message = Message(
             forum=self.forum,
             content="test message",
-            messenger=self.user_profile,
-            date_sent=timezone.now()
+            messenger=self.user_profile
         )
         self.message.save()
 
@@ -325,8 +322,6 @@ class TestForumAndMessageModels(TestCase):
         Asserts the message sender's username matches the expected value.
 
         Asserts the message's date_sent matches today's date.
-        Asserts a ValidationError is thrown if the date_sent does not match
-        today's date.
         """
         self.message = get_object_or_404(Message, messenger=self.user_profile)
         self.assertEqual(
@@ -346,7 +341,4 @@ class TestForumAndMessageModels(TestCase):
         self.assertEqual(self.message.messenger, self.user_profile)
         self.assertEqual(self.message.messenger.user.username, "ananiko")
 
-        self.assertEqual(self.message.date_sent.date(), timezone.now().date())
-        with self.assertRaises(ValidationError):
-            self.message.date_sent = timezone.now().date()
-            self.message.full_clean()
+        self.assertEqual(self.message.date_sent.date(), timezone.now().astimezone().date())

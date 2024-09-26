@@ -60,8 +60,8 @@ class TestCheckoutViews(TestCase):
         Retrieves the checkout URL and asserts the view handles POST requests.
         Asserts the view redirects (status code 302) post handling - the
         specific URL is not tested here as it takes a randomly generated order
-        number for an argument. However, the actual view redirects to the correct
-        URL.
+        number for an argument. However, the actual view redirects to the
+        correct URL.
 
 
     def test_success_get_request_is_successful():
@@ -209,8 +209,8 @@ class TestCheckoutViews(TestCase):
         Retrieves the checkout URL and asserts the view handles POST requests.
         Asserts the view redirects (status code 302) post handling - the
         specific URL is not tested here as it takes a randomly generated order
-        number for an argument. However, the actual view redirects to the correct
-        URL.
+        number for an argument. However, the actual view redirects to the
+        correct URL.
         """
         mock_order = {
             "full_name": "Tester Tester",

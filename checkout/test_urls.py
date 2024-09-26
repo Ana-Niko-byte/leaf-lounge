@@ -17,8 +17,8 @@ class TestCheckoutURLs(TestCase):
 
 
     def test_success_resolves():
-        Reverses the URL name with arguments [str:order_number] and checks if it
-        returns the correct FBV of success.
+        Reverses the URL name with arguments [str:order_number] and checks if
+        it returns the correct FBV of success.
 
         Asserts the view called after successful checkout (success) is resolved
         from 'success' with a str argument of the order number.

@@ -142,7 +142,7 @@ def community(request, slug):
             messages.error(
                 request,
                 "Please enter a valid name for your forum."
-            )   
+            )
     forumForm = ForumForm()
 
     context = {
@@ -193,9 +193,11 @@ def forum_detail(request, slug):
     for message in forum_messages:
         if message.messenger not in forum_participants:
             forum_participants.append(message.messenger)
-    
+
     for participant in forum_participants:
-        first_member_message = Message.objects.filter(messenger=participant).first()
+        first_member_message = Message.objects.filter(
+            messenger=participant
+        ).first()
         participant.first_message = first_member_message
 
     if request.method == 'POST':
@@ -394,9 +396,9 @@ def create_author(request):
         else:
             author_form = AuthorForm()
             context = {
-            'authorForm': author_form,
-            'profile_exists': profile_exists,
-        }
+                'authorForm': author_form,
+                'profile_exists': profile_exists,
+            }
         return render(
             request,
             'community/create_author.html',

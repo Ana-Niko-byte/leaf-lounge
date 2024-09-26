@@ -82,7 +82,7 @@ This section outlines procedures for manual testing. For automated testing, plea
 
 >> ### Automated Testing
 > ### Models (library app)
-### `class TestibraryModels():`
+### `class TestLibraryModels():`
 
 A class for testing models in the Library app. Testing includes asserting equal values to those in the model setup, relational testing (including signal triggers) and basic validation.
 
@@ -589,8 +589,6 @@ Testing includes asserting equal values to those in the model setup, save method
     Asserts the message sender's username matches the expected value.
 
     Asserts the message's date_sent matches today's date.
-    Asserts a ValidationError is thrown if the date_sent does not match
-    today's date.
 ```
 
 
@@ -1634,21 +1632,6 @@ This form allows users leave reviews on books they have purchased. This form can
 
     Saves the relevant models to the test sqlite3 database.
     Retrieves the relevant URLs and assigns them to variables for testing.
-```
-
-`def test_review_form_book_is_required():`
-```Python
-    Asserts the review form is invalid with an empty book value.
-    Asserts the error raised as a result of the incorrect value stems from the "book" key.
-    Asserts the error raises matches the expected error.
-```
-
-`def test_review_form_book_must_be_valid():`
-```Python
-    Asserts the review form is invalid with an incorrect book value.
-    This means a value that does not reference a book in the database.
-    Asserts the error raised as a result of the incorrect value stems from the "book" key.
-    Asserts the error raises matches the expected error.
 ```
 
 `def test_review_form_title_is_required():`
