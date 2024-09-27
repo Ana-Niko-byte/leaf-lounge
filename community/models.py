@@ -84,12 +84,12 @@ class Forum(models.Model):
     (forum title)-(forum community)-(forum id).
     """
     name = models.CharField(
-        max_length=100,
+        max_length=50,
         blank=False,
         null=False
     )
     slug = models.SlugField(
-        max_length=50,
+        max_length=250,
         blank=True,
         null=True
     )

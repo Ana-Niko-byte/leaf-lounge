@@ -123,6 +123,7 @@ class ForumForm(forms.ModelForm):
         self.fields['name'].label = False
         self.fields['name'].widget.attrs['placeholder'] = 'Descriptive Name: '
         self.fields['name'].widget.attrs['class'] = 'forum-input'
+        self.fields['name'].widget.attrs['maxlength'] = '50'
 
 
 class MessageForm(forms.ModelForm):

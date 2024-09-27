@@ -116,10 +116,12 @@ def community(request, slug):
     user_orders = Order.objects.filter(user_profile=user_profile)
 
     if request.method == 'POST':
-        forumForm = ForumForm(data=request.POST)
+        forumForm = ForumForm(request.POST)
         if forumForm.is_valid():
             try:
                 forum = forumForm.save(commit=False)
+                forum_name = forumForm.cleaned_data["name"]
+                forum.name = forum_name[:50]
                 forum.community = community
                 forum.save()
                 messages.success(
@@ -139,11 +141,13 @@ def community(request, slug):
                 )
                 return redirect(reverse('community', args=[slug]))
         else:
+            print(form.errors)
             messages.error(
                 request,
                 "Please enter a valid name for your forum."
             )
-    forumForm = ForumForm()
+    else:
+        forumForm = ForumForm()
 
     context = {
         'forums': forums,
