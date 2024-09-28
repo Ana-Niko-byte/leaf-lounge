@@ -141,7 +141,6 @@ def community(request, slug):
                 )
                 return redirect(reverse('community', args=[slug]))
         else:
-            print(form.errors)
             messages.error(
                 request,
                 "Please enter a valid name for your forum."

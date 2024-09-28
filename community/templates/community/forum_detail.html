@@ -16,15 +16,8 @@
                 <div class="forum-message-container bg-white shadow-sm d-flex flex-column justify-content-start pt-2">
 
                     {% if not forum_messages %}
-                        <p class="small text-center h5 text-secondary mt-4">Start the chat to connect with others in your community :)</p>
+                        <p class="small text-center h5 text-secondary mt-4 mx-3 mx-md-0">Start the chat to connect with others in your community :)</p>
                     {% else %}
-                        <!-- Date -->
-                        {% if last_message.date == todays_date %}
-                        <p class="text-center text-uppercase"><strong><small>Today</small></strong></p>
-                        {% else %}
-                        <p class="text-center text-uppercase">{{ last_message.date }}</p>
-                        {% endif %}
-                        <!-- Date -->
 
                         {% for message in forum_messages %}
                             <!-- Message -->
@@ -67,15 +60,21 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            {% endif %}
 
 
                                             <div class="message-sent d-flex align-items-center justify-content-between">
+                                                {% if message.date_sent.date == todays_date %}
                                                 <p class="text-end text-white"><small>sent: {{ message.date_sent.time }}</small></p>
+                                                {% else %}
+                                                <p class="text-end text-white mt-2"><small>sent: {{ message.date_sent.date }}</small></p>
+                                                {% endif %}
+                                                {% if message.messenger.id == request.user.id %}
                                                 <span class="tickies d-flex justify-content-end my-2 ms-2">
                                                     <i class="fa-solid fa-check-double"></i>
                                                 </span>
+                                                {% endif %}
                                             </div>
-                                            {% endif %}
                                         </div>
                                     </div>
                                 </div>

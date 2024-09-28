@@ -218,8 +218,6 @@ def leave_review(request, id):
                 Thank you for your understanding!
                 """
             )
-            reviewForm = ReviewForm()
-
             context = {
                 'reviewForm': reviewForm,
                 'review_book': review_book,

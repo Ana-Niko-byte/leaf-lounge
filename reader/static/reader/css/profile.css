@@ -88,7 +88,7 @@ p {
 }
 /* Update Review */
 
-@media all and (max-width: 400px){
+@media all and (max-width: 800px){
     #review-slide {
         width: 100%;
     }

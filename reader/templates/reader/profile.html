@@ -10,12 +10,12 @@
 {% block content %}
 <div class="container-fluid">
     <div class="slider-review position-absolute row border bg-light d-none" id="review-slide">
-        <form action="" method="post" id="re-review" class="p-4">
+        <form method="post" id="re-review" class="p-4">
             <h4 class="text-uppercase small"><strong><i class="fa-solid fa-book me-2"></i>Review Form</strong></h4>
             {% csrf_token %}
             {{ review_form | crispy }}
-            <div class="button-container d-flex justify-content-between">
-                <button id="submitButton" type="submit" class="custom-button" aria-label="Update Review">
+            <div class="button-container d-flex flex-column flex-md-row justify-content-between">
+                <button id="submitButton" type="submit" class="custom-button mb-2 mb-md-0" aria-label="Update Review">
                     Update Review<i class="fa-solid fa-circle-check ms-2"></i>
                 </button>
                 <button id="cancelReview" class="custom-button" type="button" aria-label="Cancel">
@@ -26,7 +26,7 @@
     </div>
     <div class="row mt-3">
         <div class="col-lg-3 col-md-3 col-sm-12 order-first">
-            <ul class="list-unstyled ms-3">
+            <ul class="list-unstyled ms-0 ms-md-3">
                 <li class="menu-item">
                     <button class="table-button mb-2 display-button" data-detail="billing" aria-label="View my Billing Details">
                         My Billing Details
@@ -59,12 +59,12 @@
             </ul>
         </div>
         <div class="col-lg-9 col-md-9 col-sm-12 order-first order-md-last text-center">
-            <div class="profile-starter me-5 pt-3">
+            <div class="profile-starter me-0 me-md-5 pt-3">
                 <h5>Hey there! You've found your profile.</h5>
                 <p>To get started, click on a button on the left handside to view, change, or delete your information.</p>
             </div>
             <ul class="list-unstyled">
-                <li class="d-none profile-details mx-0 mx-md-3 d-flex justify-content-start align-items-start ms-5" data-profile="billing-details">
+                <li class="d-none profile-details mx-0 mx-md-3 d-flex justify-content-start align-items-start ms-0 ms-md-5" data-profile="billing-details">
                     <div class="main-form bg-light rounded shadow-sm p-4">
                         <h4 class="mb-3 text-uppercase text-start small"><strong><i class="fa-solid fa-book me-2"></i>My Details</strong></h4>
                         <hr>
@@ -132,16 +132,16 @@
                                 <div class="col-lg-3 d-flex flex-column justify-content-between">
                                     <div class="info-container ms-4 mt-3">
                                         <div class="row d-flex shadow-sm p-2">
-                                            <p class="col-3"><strong>Subtotal: </strong></p>
-                                            <p class="col-9 m-0 p-0">€{{ book_order.order_total }}</p>
+                                            <p class="col-lg-3 col-md-4 col-sm-6 p-0"><strong>Subtotal: </strong></p>
+                                            <p class="col-lg-9 col-md-8 col-sm-6 my-0 p-0">€{{ book_order.order_total }}</p>
                                         </div>
                                         <div class="row d-flex shadow-sm p-2">
-                                            <p class="col-3"><strong>Shipping: </strong></p>
-                                            <p class="col-9 m-0 p-0">{% if book_order.delivery_cost == 0.00 %}<strong>FREE</strong>{% else %}€{{ book_order.delivery_cost }}{% endif %}</p></span>
+                                            <p class="col-lg-3 col-md-4 col-sm-6 p-0"><strong>Shipping: </strong></p>
+                                            <p class="col-lg-9 col-md-8 col-sm-6 my-0 p-0">{% if book_order.delivery_cost == 0.00 %}<strong>FREE</strong>{% else %}€{{ book_order.delivery_cost }}{% endif %}</p></span>
                                         </div>
                                         <div class="row d-flex shadow-sm p-2">
-                                            <p class="col-3"><strong>Total: </strong></p>
-                                            <p class="col-9 m-0 p-0">€{{ book_order.grand_total }}</p>
+                                            <p class="col-lg-3 col-md-4 col-sm-6 p-0"><strong>Total: </strong></p>
+                                            <p class="col-lg-9 col-md-8 col-sm-6 my-0 p-0">€{{ book_order.grand_total }}</p>
                                         </div>
                                     </div>
                                     <button class="custom-button ms-2 accordion-button collapsed text-white" aria-label="View Shipping Details" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse{{ forloop.counter }}" aria-expanded="false" aria-controls="flush-collapse{{ forloop.counter }}">
@@ -152,38 +152,38 @@
                                     <div class="accordion-body text-start">
                                         <h6 class="my-3 text-uppercase"><strong>Shipping Address</strong></h6>
                                         <div class="row d-flex shadow-sm p-2">
-                                            <p class="col-3"><strong>Full Name: </strong></p>
-                                            <p class="col-9 text-start my-0 p-0">{{ book_order.full_name }}</p>
+                                            <p class="col-lg-3 col-md-4 col-sm-6 p-0"><strong>Full Name: </strong></p>
+                                            <p class="col-lg-9 col-md-8 col-sm-6 my-0 p-0">{{ book_order.full_name }}</p>
                                         </div>
                                         <div class="row d-flex shadow-sm p-2">
-                                            <p class="col-3"><strong>Street 1: </strong></p>
-                                            <p class="col-9 my-0 p-0">{{ book_order.street_1 }}</p>
+                                            <p class="col-lg-3 col-md-4 col-sm-6 p-0"><strong>Street 1: </strong></p>
+                                            <p class="col-lg-9 col-md-8 col-sm-6 my-0 p-0">{{ book_order.street_1 }}</p>
                                         </div>
                                         {% if book_order.street_2 %}
                                         <div class="row d-flex shadow-sm p-2">
-                                            <p class="col-3"><strong>Street 2: </strong></p>
-                                            <p class="col-9 my-0 p-0">{{ book_order.street_2 }}</p>
+                                            <p class="col-lg-3 col-md-4 col-sm-6 p-0"><strong>Street 2: </strong></p>
+                                            <p class="col-lg-9 col-md-8 col-sm-6 my-0 p-0">{{ book_order.street_2 }}</p>
                                         </div>
                                         {% endif %}
                                         <div class="row d-flex shadow-sm p-2">
-                                            <p class="col-3"><strong>Town / City: </strong></p>
-                                            <p class="col-9 my-0 p-0">{{ book_order.town_city }}</p>
+                                            <p class="col-lg-3 col-md-4 col-sm-6 p-0"><strong>Town / City: </strong></p>
+                                            <p class="col-lg-9 col-md-8 col-sm-6 my-0 p-0">{{ book_order.town_city }}</p>
                                         </div>
                                         {% if book_order.county %}
                                         <div class="row d-flex shadow-sm p-2">
-                                            <p class="col-3"><strong>County: </strong></p>
-                                            <p class="col-9 my-0 p-0">{{ book_order.county }}</p>
+                                            <p class="col-lg-3 col-md-4 col-sm-6 p-0"><strong>County: </strong></p>
+                                            <p class="col-lg-9 col-md-8 col-sm-6 my-0 p-0">{{ book_order.county }}</p>
                                         </div>
                                         {% endif %}
                                         {% if book_order.postcode %}
                                         <div class="row d-flex shadow-sm p-2">
-                                            <p class="col-3"><strong>Postcode: </strong></p>
-                                            <p class="col-9 my-0 p-0">{{ book_order.postcode }}</p>
+                                            <p class="col-lg-3 col-md-4 col-sm-6 p-0"><strong>Postcode: </strong></p>
+                                            <p class="col-lg-9 col-md-8 col-sm-6 my-0 p-0">{{ book_order.postcode }}</p>
                                         </div>
                                         {% endif %}
                                         <div class="row d-flex shadow-sm p-2">
-                                            <p class="col-3"><strong>Country: </strong></p>
-                                            <p class="col-9 my-0 p-0">{{ book_order.country }}</p>
+                                            <p class="col-lg-3 col-md-4 col-sm-6 p-0"><strong>Country: </strong></p>
+                                            <p class="col-lg-9 col-md-8 col-sm-6 my-0 p-0">{{ book_order.country }}</p>
                                         </div>
                                     </div>
                                 </div>
