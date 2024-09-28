@@ -21,30 +21,30 @@
         </div>
         <div class="price-container">
             <p class="small text-center pt-3"><strong>Price/Book: </strong>€{{ book.book.price|floatformat:2 }}</p>
-            <p id="quantity_{{ book.book_id }}_{{ forloop.counter }}" class="text-center basket-book-quantity"><strong>Quantity: </strong>{{ book.quantity }}</p>
+            <p id="mobile-quantity_{{ book.book_id }}_{{ forloop.counter }}" class="text-center basket-book-quantity"><strong>Quantity: </strong>{{ book.quantity }}</p>
             <!-- Update Form -->
             <div class="form-container d-flex align-items-center justify-content-center">
-                <form action="{% url 'update_basket' book.book_id %}" method="POST" id="update_form_{{ book.book_id }}_{{forloop.counter}}">
+                <form action="{% url 'update_basket' book.book_id %}" method="POST" id="mobile-update_form_{{ book.book_id }}_{{forloop.counter}}">
                     {% csrf_token %}
 
                     <!-- Input Group -->
-                    <div class="input-group d-none align-items-center justify-content-center" id="form_{{ book.book_id }}_{{ forloop.counter }}">
+                    <div class="input-group d-none align-items-center justify-content-center" id="mobile-form_{{ book.book_id }}_{{ forloop.counter }}">
                         <!-- Delete Button -->
                         <div class="input-group-prepend">
-                            <a href="{% url 'delete_basket' book.book_id %}" class="basket-link btn delete-book my-1" data-book-id="{{ book.book_id }}" data-book-type="{{ book.type }}" data-counter="{{ forloop.counter }}" id="delete_{{ book.book_id }}_{{ forloop.counter }}">
+                            <a href="{% url 'delete_basket' book.book_id %}" class="basket-link btn delete-book my-1" data-book-id="{{ book.book_id }}" data-book-type="{{ book.type }}" data-counter="{{ forloop.counter }}" id="mobile-delete_{{ book.book_id }}_{{ forloop.counter }}">
                                 <i class="fa-solid fa-trash"></i>
                             </a>
                         </div>
                         <!-- /Delete Button -->
 
                         <div class="qty-container">
-                            <input type="number" class="form-control qty_input text-center" name="quantity" value="{{ book.quantity }}" min="1" max="99" data-book-id="{{ book.book_id }}" id="book_id_{{ book.book_id }}_{{ forloop.counter }}">
-                            <span class="small" id="qty_warning_{{ book.book_id }}_{{forloop.counter}}"></span>
+                            <input type="number" class="form-control qty_input text-center" name="quantity" value="{{ book.quantity }}" min="1" max="99" data-book-id="{{ book.book_id }}" id="mobile-book_id_{{ book.book_id }}_{{ forloop.counter }}">
+                            <span class="small" id="mobile-qty_warning_{{ book.book_id }}_{{forloop.counter}}"></span>
                         </div>
 
                         <!-- Increment Quantity -->
                         <div class="inut-group-append">
-                            <button type="button" class="increment btn" id="increment_{{ book.book_id }}_{{ forloop.counter }}" data-book-id="{{ book.book_id }}" data-counter="{{ forloop.counter }}">
+                            <button type="button" class="increment btn" id="mobile-increment_{{ book.book_id }}_{{ forloop.counter }}" data-book-id="{{ book.book_id }}" data-counter="{{ forloop.counter }}">
                                 <i class="fa-solid fa-plus"></i>
                             </button>
                         </div>
@@ -60,7 +60,7 @@
                         <!-- Manipulation (js) -->
                         <span class="d-none basket-link text-white custom-button cancel-update my-1"
                             data-book-id="{{ book.book_id }}"
-                            id="cancel_{{ book.book_id }}_{{ forloop.counter }}">Cancel
+                            id="mobile-cancel_{{ book.book_id }}_{{ forloop.counter }}">Cancel
                         </span>
                         <span class="basket-link text-white custom-button update-book my-1"
                             data-book-id="{{ book.book_id }}"
@@ -69,7 +69,7 @@
                         <!-- /Manipulation (js) -->
                         <!-- Button -->
                         <a class="d-none basket-link text-white custom-button save-book my-1" data-book-id="{{ book.book_id }}"
-                            id="save_{{ book.book_id }}_{{ forloop.counter }}" aria-label="Save Changes">Save Changes
+                            id="mobile-save_{{ book.book_id }}_{{ forloop.counter }}" aria-label="Save Changes">Save Changes
                         </a>
                         <!-- /Button -->
                     </div>

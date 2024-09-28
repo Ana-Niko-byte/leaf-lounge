@@ -17,33 +17,36 @@
         </div>
     </div>
     <div class="row my-3 d-flex justify-content-around align-items-start">
-        <div class="col-12 col-lg-5 order-lg-last bg-light rounded shadow-sm p-4">
+        <div class="col-12 col-lg-5 order-lg-last bg-white rounded shadow-sm p-4">
             <h6 class="text-uppercase"><strong>Order Summary ( {{ basket_items_count }} )</strong></h6>
             <hr>
-            <div class="row">
+            <div class="row d-block d-md-none">
+                {% include 'basket/_mobile_table.html' %}
+            </div>
+            <div class="row d-none d-md-block">
                 {% include 'basket/_table.html' %}
             </div>
             <div class="row">
                 {% include 'basket/_summary.html' %}
             </div>
         </div>
-        <div class="col-12 col-lg-6 col-md-12 col-sm-12">
+        <div class="col-12 col-lg-6 col-md-12 col-sm-12 mt-3 mt-md-0">
             <form action="{{ checkout_url }}" id="book-payment-form" method="POST">
                 {% csrf_token %}
                 <fieldset class="px-3 mb-3">
                     <legend class="fieldset-details fieldset-label small text-black text-uppercase"><strong>Details</strong></legend>
-                    <div aria-label="Billing Name">{{ orderForm.full_name | as_crispy_field }}</div>
-                    <div aria-label="Billing Email">{{ orderForm.email | as_crispy_field }}</div>
-                    <div aria-label="Billing Phone Number">{{ orderForm.phone_number | as_crispy_field }}</div>
+                    <div>{{ orderForm.full_name | as_crispy_field }}</div>
+                    <div>{{ orderForm.email | as_crispy_field }}</div>
+                    <div>{{ orderForm.phone_number | as_crispy_field }}</div>
                 </fieldset>
                 <fieldset class="px-3 mb-3">
                     <legend class="fieldset-delivery fieldset-label small text-black text-uppercase"><strong>Delivery</strong></legend>
-                    <div aria-label="Billing Street">{{ orderForm.street_1 | as_crispy_field }}</div>
-                    <div aria-label="Billing Street">{{ orderForm.street_2 | as_crispy_field }}</div>
-                    <div aria-label="Billing Town or City">{{ orderForm.town_city | as_crispy_field }}</div>
-                    <div aria-label="Billing County">{{ orderForm.county | as_crispy_field }}</div>
-                    <div aria-label="Billing Postcode">{{ orderForm.postcode | as_crispy_field }}</div>
-                    <div aria-label="Billing Country">{{ orderForm.country | as_crispy_field }}</div>
+                    <div>{{ orderForm.street_1 | as_crispy_field }}</div>
+                    <div>{{ orderForm.street_2 | as_crispy_field }}</div>
+                    <div>{{ orderForm.town_city | as_crispy_field }}</div>
+                    <div>{{ orderForm.county | as_crispy_field }}</div>
+                    <div>{{ orderForm.postcode | as_crispy_field }}</div>
+                    <div>{{ orderForm.country | as_crispy_field }}</div>
                     <div class="form-check">
                         {% if user.is_authenticated %}
                             <label class="form-check-label small" for="save-info">Save delivery information to 'My Profile' for faster checkouts.</label>
@@ -84,10 +87,8 @@
         </div>
     </div>
 </div>
-<div id="loading-overlay">
-    <h1 class="text-dark logo-font loading-spinner">
-        <i class="fas fa-2x fa-sync-alt fa-spin"></i>
-    </h1>
+<div id="loading-overlay" class="text-dark logo-font loading-spinner h1">
+    <i class="fas fa-2x fa-sync-alt fa-spin"></i>
 </div>
 {% endblock %}
 

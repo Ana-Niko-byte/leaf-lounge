@@ -137,7 +137,7 @@
                                         </div>
                                         <div class="row d-flex shadow-sm p-2">
                                             <p class="col-lg-3 col-md-4 col-sm-6 p-0"><strong>Shipping: </strong></p>
-                                            <p class="col-lg-9 col-md-8 col-sm-6 my-0 p-0">{% if book_order.delivery_cost == 0.00 %}<strong>FREE</strong>{% else %}€{{ book_order.delivery_cost }}{% endif %}</p></span>
+                                            <p class="col-lg-9 col-md-8 col-sm-6 my-0 p-0">{% if book_order.delivery_cost == 0.00 %}<strong>FREE</strong>{% else %}€{{ book_order.delivery_cost }}{% endif %}</p>
                                         </div>
                                         <div class="row d-flex shadow-sm p-2">
                                             <p class="col-lg-3 col-md-4 col-sm-6 p-0"><strong>Total: </strong></p>
@@ -257,11 +257,11 @@
                                                 </button>
                                                 
                                                 <!-- Modal -->
-                                                <div class="modal fade" id="reviewDelete-{{ forloop.counter }}" tabindex="-1" role="dialog" aria-labelledby="reviewDelete" aria-hidden="true">
+                                                <div class="modal fade" id="reviewDelete-{{ forloop.counter }}" tabindex="-1" role="dialog" aria-hidden="true">
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header border-0 d-flex justify-content-between">
-                                                                <h5 class="modal-title" id="reviewDeleteHeading">Are you sure?</h5>
+                                                                <h5 class="modal-title" id="reviewDeleteHeading-{{ forloop.counter }}">Are you sure?</h5>
                                                                 <span aria-hidden="true" class="close" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i></span>
                                                             </div>
                                                             <div class="modal-body border-0">
@@ -333,11 +333,11 @@
                                                 </button>
                                                 
                                                 <!-- Modal -->
-                                                <div class="modal fade" id="reviewDeleteAdmin-{{ forloop.counter }}" tabindex="-1" role="dialog" aria-labelledby="reviewDeleteAdmin" aria-hidden="true">
+                                                <div class="modal fade" id="reviewDeleteAdmin-{{ forloop.counter }}" tabindex="-1" role="dialog" aria-hidden="true">
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header border-0 d-flex justify-content-between">
-                                                                <h5 class="modal-title" id="reviewDeleteHeadingAdmin">Are you sure?</h5>
+                                                                <h5 class="modal-title" id="reviewDeleteHeadingAdmin-{{ forloop.counter }}">Are you sure?</h5>
                                                                 <span aria-hidden="true" class="close" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-xmark"></i></span>
                                                             </div>
                                                             <div class="modal-body border-0">

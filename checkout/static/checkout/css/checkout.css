@@ -31,6 +31,7 @@
 .stripe-style-input::placeholder,
 #id_country {
   color: var(--placeholder-grey);
+  height: 45px;
 }
 
 select,
