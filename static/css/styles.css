@@ -56,7 +56,7 @@ body {
     }
 }
 
-.logo-image{
+.logo-image {
     width: 250px;
 }
 /* /Branding */
@@ -356,7 +356,7 @@ body {
     border-radius: 7px;
 }
 
-.custom-button-link{
+.custom-button-link {
     min-width: 150px;
     padding: 13px 35px;
     border-radius: 7px;
@@ -641,13 +641,13 @@ footer {
         font-weight: 800;
     }
 
-    #search-bar{
+    #search-bar {
         min-width: 150px;
     }
     
 }
 
-@media all and (min-width: 500px){
+@media all and (min-width: 500px) {
     .typewriter {
         font-size: 1.3rem;
         max-width: 620px;

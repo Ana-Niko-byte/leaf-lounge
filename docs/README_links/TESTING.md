@@ -1716,7 +1716,7 @@ While the book image covers take a while to load, a dark background colour is ap
 The rest of the application pages couldn't be reached by the Validator as the user must be authenticated to access them.
 
 >> #### HTML Validation
-All pages were validated using the  [W3C CSS Markup Validation Service](https://validator.w3.org/).
+All pages were validated using the  [W3C CSS Markup Validation Service](https://validator.w3.org/). Last validated on 28/09/2024, with no errors encountered except for one Allauth template error described below.
 
 Home Page -
 ![Home Page Markup Errors](../images/html-home-validation.png)
