@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function rating(){
     /**
-     * Retrives the view's ratings array.
+     * Retrives the view's ratings array and converts it into a usable array.
      * Maps Strings to Numbers + filters !Nan.
      * Calculates average percentage based on ratings and number of ratings.
      * Sets the rating bar's width to be the rating percentage.
@@ -12,7 +12,7 @@ function rating(){
     const box = document.getElementById("rating-box");
 
     const initial = 0;
-    let ratings = [...box.dataset.rating];
+    let ratings = box.dataset.rating.replace(/\[|\]|\''/g, '').split(',');
     ratings = ratings.map((x) => parseInt(x)).filter((x) => parseInt(x));
     const sum = ratings.reduce(
         (accumulator, currentValue) => accumulator + currentValue,
