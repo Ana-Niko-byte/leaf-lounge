@@ -37,7 +37,7 @@ To improve site navigation, a sitemap.xml file was created using [XML Sitemaps](
 Additionally, a robots.txt file is provided for informing crawlers which directories they may crawl, with a link to the generated sitemap for a comprehensive breakdown. This file signals a level of search engine quality and improves the SEO ranking of the website.
 
 >> #### Marketing Strategy
-`Leaf Lounge` is a C2C solution, allowing users to sell their own books to other site users. Leaf Lounge also provides its own library for users to purchase books.
+`Leaf Lounge` is a firstly B2C solution, with a C2C background, allowing users who have purchased at least one book from the Leaf Lounge library, and who have created author accounts associated with the business, to sell their own books to other site users.
 
 > ###### Planning
 This website strives to create an engaging and interactive environment for readers and book enthusiasts to connect, network and broaden the outreach of new authors within various book communities. Several intuitive features in the navigation bar at the top of the page and considerable consideration given to the overall design and feel of the website make the user's experience pleasant and easy-going, link shopping in a book shop.
